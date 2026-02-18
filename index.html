@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>leaving clues in places no one thought to look</title>
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #0b0b0b;
       font-family: "SF Mono", Menlo, monospace;
       color: #eaeaea;
+      padding: 0; /* stays same on desktop */
     }
 
     .window {
@@ -20,7 +22,7 @@
       border-radius: 12px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
       overflow: hidden;
-      min-width: 420px;
+      min-width: 420px; /* desktop stays exactly as you had it */
     }
 
     .window-bar {
@@ -58,6 +60,25 @@
     @keyframes blink {
       0%, 50%, 100% { opacity: 1; }
       25%, 75% { opacity: 0; }
+    }
+
+    /* ✅ Mobile-only: same layout, just fits the screen */
+    @media (max-width: 520px) {
+      body {
+        padding: 16px;           /* breathing room so it doesn’t touch edges */
+        align-items: flex-start; /* prevents “tiny centered” feel on short screens */
+      }
+
+      .window {
+        min-width: 0;            /* overrides the 420px minimum */
+        width: 100%;             /* fill available space */
+        max-width: 520px;        /* keeps it from getting comically wide on tablets */
+      }
+
+      #terminal {
+        padding: 16px;           /* slightly tighter so text has room */
+        font-size: 13px;         /* tiny tweak for small screens */
+      }
     }
   </style>
 </head>
