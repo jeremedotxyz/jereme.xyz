@@ -62,7 +62,7 @@
       25%, 75% { opacity: 0; }
     }
 
-    /* ✅ MOBILE FIX */
+    /* ✅ MOBILE FIX (center both axes properly) */
     @media (max-width: 520px) {
       body {
         padding: 16px;
@@ -72,8 +72,8 @@
 
       .window {
         min-width: 0;
+        max-width: 420px; /* keeps original size feel */
         width: 100%;
-        max-width: 520px;
       }
 
       #terminal {
