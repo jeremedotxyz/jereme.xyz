@@ -1,2 +1,100 @@
-<h1>links</h1>
-<p>find me where it matters</p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>jereme.xyz — about</title>
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --panel:#111214;
+      --text:#eaeaea;
+      --muted:#9aa0a6;
+      --line:#24262b;
+      --link:#cfcfcf;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 700px at 20% -10%, #1a1b1f 0%, transparent 60%),
+                  radial-gradient(900px 600px at 120% 10%, #14161a 0%, transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.5;
+    }
+    .wrap{max-width:860px;margin:0 auto;padding:28px 18px 80px;}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 14px;border:1px solid var(--line);border-radius:14px;
+      background:rgba(17,18,20,.75);backdrop-filter: blur(10px);
+    }
+    .dots{display:flex;gap:8px;align-items:center}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .red{background:#ff5f57}.yel{background:#febc2e}.grn{background:#28c840}
+    .crumb{color:var(--muted);font-size:13px}
+    .crumb a{color:var(--muted);text-decoration:none}
+    .crumb a:hover{color:var(--text)}
+    .card{
+      margin-top:18px;padding:22px 18px;border:1px solid var(--line);border-radius:18px;
+      background:rgba(17,18,20,.55);backdrop-filter: blur(10px);
+    }
+    h1{margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+    p{margin:0 0 14px;color:var(--muted)}
+    .grid{display:grid;gap:12px;margin-top:16px}
+    @media(min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+    .pill{
+      padding:14px;border:1px solid var(--line);border-radius:16px;
+      background:rgba(8,8,8,.35)
+    }
+    .pill h3{margin:0 0 6px;font-size:14px;color:var(--link);font-weight:600}
+    .pill p{margin:0;color:var(--muted);font-size:13px}
+    .nav{margin-top:16px;display:flex;gap:14px;flex-wrap:wrap}
+    .nav a{
+      color:var(--link);text-decoration:none;font-size:13px;
+      padding:8px 10px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(8,8,8,.25)
+    }
+    .nav a:hover{border-color:#3a3d45;color:#fff}
+    .foot{margin-top:22px;color:#6f757c;font-size:12px}
+    .cursor{display:inline-block;transform:translateY(2px);animation:blink 1.05s steps(2,end) infinite}
+    @keyframes blink{50%{opacity:0}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="dots" aria-hidden="true">
+        <span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span>
+      </div>
+      <div class="crumb">
+        <a href="/site/">site</a> / about <span class="cursor">▌</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>about</h1>
+      <p>currently under construction — but on purpose. no filler. no noise.</p>
+
+      <div class="grid">
+        <div class="pill">
+          <h3>what this is</h3>
+          <p>a personal hub. minimal on the outside, structured on the inside.</p>
+        </div>
+        <div class="pill">
+          <h3>what it isn’t</h3>
+          <p>a loud portfolio. a timeline. a performance. we don’t do that here.</p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="/site/">home</a>
+        <a href="/site/projects/">projects</a>
+        <a href="/site/links/">links</a>
+      </div>
+
+      <div class="foot">jereme.xyz — quietly building.</div>
+    </div>
+  </div>
+</body>
+</html>
