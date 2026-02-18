@@ -1,1 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>jereme.xyz</title>
 
+  <style>
+    :root{
+      --bg:#070812;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.10);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background: var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      color: var(--text);
+    }
+
+    .terminal{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.35);
+      padding: 18px 20px;
+      font-family: var(--mono);
+      min-width: 300px;
+    }
+
+    .termbar{
+      display:flex;
+      gap:6px;
+      margin-bottom:12px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background: rgba(255,255,255,.2);
+    }
+
+    .content{
+      font-size:14px;
+      color: var(--muted);
+      white-space:pre;
+    }
+
+    .cursor{
+      display:inline-block;
+      width:8px;
+      height:1em;
+      background: rgba(255,255,255,.7);
+      margin-left:4px;
+      animation: blink 1s steps(1,end) infinite;
+    }
+
+    @keyframes blink{
+      50%{ opacity:0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="terminal">
+    <div class="termbar">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="content" id="text"></div>
+  </div>
+
+  <script>
+    const text = "> handshake: accepted";
+    const el = document.getElementById("text");
+
+    let i = 0;
+
+    function type(){
+      if(i <= text.length){
+        el.innerHTML = text.slice(0,i) + '<span class="cursor"></span>';
+        i++;
+        setTimeout(type, 110); // slower typing
+      }
+    }
+
+    type();
+  </script>
+
+</body>
+</html>
