@@ -6,165 +6,199 @@
   <title>leaving clues in places no one thought to look</title>
 
   <style>
-    :root{
-      --bg1:#0a0a0a;
-      --bg2:#000;
-      --card:#0d0d0d;
-      --border:#222;
-      --text:#eaeaea;
-      --muted:#aaa;
-      --icon:#b6b6b6;
+    body {
+      margin: 0;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0b0b0b;
+      font-family: "SF Mono", Menlo, monospace;
+      color: #eaeaea;
     }
 
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: radial-gradient(circle at top, var(--bg1), var(--bg2));
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    .window {
+      background: #111;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      min-width: 420px;
     }
 
-    .container{
-      width:min(720px, 92vw);
+    .window-bar {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #1a1a1a;
     }
 
-    .terminal-bar{
-      background:#111;
-      border:1px solid var(--border);
-      border-radius:10px;
-      padding:8px 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      font-size:12px;
-      color:#8a8a8a;
-      margin-bottom:16px;
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
     }
 
-    .dots{display:flex;gap:6px;align-items:center;}
-    .dot{width:10px;height:10px;border-radius:50%;}
-    .red{background:#ff5f56;}
-    .yellow{background:#ffbd2e;}
-    .green{background:#27c93f;}
+    .red { background: #ff5f57; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #28c840; }
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:32px;
-      text-align:left;
-      box-shadow:0 0 40px rgba(255,255,255,0.02);
+    #terminal {
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 120px;
     }
 
-    h1{margin:0 0 10px;font-size:28px;}
-    p{margin:0 0 10px;color:var(--muted);line-height:1.6;}
-
-    .nav{margin-top:18px;}
-    .nav a{
-      display:inline-block;
-      text-decoration:none;
-      color:#cfcfcf;
-      border:1px solid #333;
-      padding:6px 12px;
-      border-radius:999px;
-      margin-right:8px;
-      font-size:12px;
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      background: #eaeaea;
+      margin-left: 4px;
+      animation: blink 1s infinite;
     }
 
-    .footer{
-      margin-top:28px;
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      opacity:.85;
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
     }
 
-    .footer a{
-      display:inline-flex;
-      width:20px;
-      height:20px;
-      align-items:center;
-      justify-content:center;
+    .footer {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0.7;
     }
 
-    .footer svg{
-      width:20px;
-      height:20px;
-      fill:var(--icon);
+    .footer a {
+      display: inline-flex;
     }
 
-    .threads-img{
-      width:20px;
-      height:20px;
-      display:block;
-      filter: invert(1) opacity(.78);
+    .footer svg,
+    .footer img {
+      width: 18px;
+      height: 18px;
+      fill: #aaa;
+    }
+
+    .footer img {
+      filter: invert(1) opacity(0.8);
+    }
+
+    /* MOBILE */
+    @media (max-width: 520px) {
+      body {
+        padding: 16px;
+      }
+
+      .window {
+        min-width: 0;
+        width: 100%;
+        max-width: 420px;
+      }
+
+      #terminal {
+        padding: 16px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
-    <div class="terminal-bar">
-      <div class="dots">
-        <div class="dot red"></div>
-        <div class="dot yellow"></div>
-        <div class="dot green"></div>
-      </div>
-      <div>site / about</div>
+  <div class="window">
+    <div class="window-bar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
     </div>
 
-    <div class="card">
-      <h1>about</h1>
-      <p>i build things that start as thoughts and end up real.</p>
-      <p>i like unfinished ideas. quiet systems. things that don’t announce themselves but still work.</p>
-      <p>most of what i’m doing right now is early, but intentional.</p>
+    <div id="terminal"></div>
+  </div>
 
-      <div class="nav">
-        <a href="/">home</a>
-        <a href="/site/projects/">projects</a>
-        <a href="/site/links/">links</a>
-      </div>
-    </div>
+  <div class="footer">
 
-    <div class="footer">
-      <!-- X -->
-      <a href="https://x.com/jeremedotxyz" target="_blank" aria-label="X">
-        <svg viewBox="0 0 24 24">
-          <path d="M18.244 2H21l-6.49 7.41L22.5 22h-6.906l-5.41-7.08L4.5 22H1.744l6.94-7.92L1.5 2h7.094l4.89 6.48L18.244 2z"/>
-        </svg>
-      </a>
+    <!-- X -->
+    <a href="https://x.com/jeremedotxyz" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M18 2h3l-7 8 8 12h-6l-5-7-6 7H2l8-9-8-11h6l5 6 5-6z"/>
+      </svg>
+    </a>
 
-      <!-- GitHub -->
-      <a href="https://github.com/jeremedotxyz" target="_blank" aria-label="GitHub">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 .5C5.65.5.5 5.65.5 12A11.5 11.5 0 008 23.2c.6.1.8-.25.8-.55v-2c-3.3.7-4-1.4-4-1.4-.55-1.4-1.3-1.8-1.3-1.8-1.1-.75.1-.75.1-.75 1.2.1 1.8 1.2 1.8 1.2 1.05 1.8 2.8 1.3 3.5 1 .1-.75.4-1.3.75-1.6-2.65-.3-5.4-1.3-5.4-5.8 0-1.3.45-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.75.8 1.2 1.8 1.2 3.1 0 4.5-2.75 5.5-5.4 5.8.4.35.8 1 .8 2v3c0 .3.2.65.8.55A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/>
-        </svg>
-      </a>
+    <!-- GitHub -->
+    <a href="https://github.com/jeremedotxyz" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11 11 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2v3c0 .3.2.6.8.5A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/>
+      </svg>
+    </a>
 
-      <!-- Spotify -->
-      <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c205bce70483405d" target="_blank" aria-label="Spotify">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-.9-.3.1-.7-.1-.8-.5-.1-.3.1-.7.5-.8 4-1 7.5-.6 10.3 1 .3.2.4.6.2 1zm1.3-3c-.2.3-.7.5-1 .2-2.9-1.8-7.3-2.3-10.7-1.1-.4.1-.9-.1-1-.6-.1-.4.1-.9.6-1 3.9-1.2 8.8-.6 12 1.3.4.2.5.7.1 1.2zm.1-3.1c-3.4-2-9-2.2-12.2-1.1-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.2 10-1 13.9 1.3.5.3.6.9.3 1.4-.3.4-.9.6-1.4.2z"/>
-        </svg>
-      </a>
+    <!-- Spotify -->
+    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c205bce70483405d" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-.9-.3.1-.7-.1-.8-.5-.1-.3.1-.7.5-.8 4-1 7.5-.6 10.3 1 .3.2.4.6.2 1zm1.3-3c-.2.3-.7.5-1 .2-2.9-1.8-7.3-2.3-10.7-1.1-.4.1-.9-.1-1-.6-.1-.4.1-.9.6-1 3.9-1.2 8.8-.6 12 1.3.4.2.5.7.1 1.2zm.1-3.1c-3.4-2-9-2.2-12.2-1.1-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.2 10-1 13.9 1.3.5.3.6.9.3 1.4-.3.4-.9.6-1.4.2z"/>
+      </svg>
+    </a>
 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" aria-label="Instagram">
-        <svg viewBox="0 0 24 24">
-          <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.2A4.8 4.8 0 1016.8 12 4.8 4.8 0 0012 7.2zm0 2A2.8 2.8 0 119.2 12 2.8 2.8 0 0112 9.2zm4.8-2.3a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"/>
-        </svg>
-      </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/>
+      </svg>
+    </a>
 
-      <!-- Threads (image) -->
-      <a href="https://www.threads.net/@jeremedotxyz" target="_blank" aria-label="Threads">
-        <img class="threads-img" src="/site/assets/threads.png" alt="Threads">
-      </a>
-    </div>
+    <!-- Threads -->
+    <a href="https://www.threads.net/@jeremedotxyz" target="_blank">
+      <img src="/site/assets/threads.png" alt="Threads">
+    </a>
 
   </div>
+
+  <script>
+    const lines = [
+      "handshake accepted.",
+      "old version archived.",
+      "rebuild in progress."
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    const speed = 40;
+    const terminal = document.getElementById("terminal");
+
+    function typeLine() {
+      if (lineIndex >= lines.length) {
+        addCursor();
+        return;
+      }
+
+      const lineDiv = document.createElement("div");
+      terminal.appendChild(lineDiv);
+
+      function typeChar() {
+        if (charIndex < lines[lineIndex].length) {
+          lineDiv.textContent += lines[lineIndex][charIndex];
+          charIndex++;
+          setTimeout(typeChar, speed);
+        } else {
+          charIndex = 0;
+          lineIndex++;
+          setTimeout(typeLine, 500);
+        }
+      }
+
+      typeChar();
+    }
+
+    function addCursor() {
+      const cursor = document.createElement("span");
+      cursor.classList.add("cursor");
+      terminal.appendChild(cursor);
+    }
+
+    typeLine();
+  </script>
+
 </body>
 </html>
