@@ -16,6 +16,7 @@
       background: #0b0b0b;
       font-family: "SF Mono", Menlo, monospace;
       color: #eaeaea;
+      padding: 0;
     }
 
     .window {
@@ -38,7 +39,6 @@
       height: 12px;
       border-radius: 50%;
     }
-
     .red { background: #ff5f57; }
     .yellow { background: #ffbd2e; }
     .green { background: #28c840; }
@@ -68,40 +68,36 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      opacity: 0.7;
+      opacity: 0.75;
     }
 
     .footer a {
       display: inline-flex;
+      width: 20px;
+      height: 20px;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
     }
 
-    .footer svg,
+    .footer svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
     .footer img {
       width: 18px;
       height: 18px;
-      fill: #aaa;
-    }
-
-    .footer img {
-      filter: invert(1) opacity(0.8);
+      display: block;
+      filter: invert(1) opacity(0.82);
     }
 
     /* MOBILE */
     @media (max-width: 520px) {
-      body {
-        padding: 16px;
-      }
-
-      .window {
-        min-width: 0;
-        width: 100%;
-        max-width: 420px;
-      }
-
-      #terminal {
-        padding: 16px;
-        font-size: 13px;
-      }
+      body { padding: 16px; }
+      .window { min-width: 0; width: 100%; max-width: 420px; }
+      #terminal { padding: 16px; font-size: 13px; }
     }
   </style>
 </head>
@@ -114,45 +110,42 @@
       <span class="dot yellow"></span>
       <span class="dot green"></span>
     </div>
-
     <div id="terminal"></div>
   </div>
 
   <div class="footer">
-
     <!-- X -->
-    <a href="https://x.com/jeremedotxyz" target="_blank">
-      <svg viewBox="0 0 24 24">
-        <path d="M18 2h3l-7 8 8 12h-6l-5-7-6 7H2l8-9-8-11h6l5 6 5-6z"/>
+    <a href="https://x.com/jeremedotxyz" target="_blank" aria-label="X">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#aaa" d="M18.244 2H21l-6.49 7.41L22.5 22h-6.906l-5.41-7.08L4.5 22H1.744l6.94-7.92L1.5 2h7.094l4.89 6.48L18.244 2z"/>
       </svg>
     </a>
 
     <!-- GitHub -->
-    <a href="https://github.com/jeremedotxyz" target="_blank">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11 11 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2v3c0 .3.2.6.8.5A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/>
+    <a href="https://github.com/jeremedotxyz" target="_blank" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#aaa" d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11 11 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2v3c0 .3.2.6.8.5A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/>
       </svg>
     </a>
 
     <!-- Spotify -->
-    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c205bce70483405d" target="_blank">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-.9-.3.1-.7-.1-.8-.5-.1-.3.1-.7.5-.8 4-1 7.5-.6 10.3 1 .3.2.4.6.2 1zm1.3-3c-.2.3-.7.5-1 .2-2.9-1.8-7.3-2.3-10.7-1.1-.4.1-.9-.1-1-.6-.1-.4.1-.9.6-1 3.9-1.2 8.8-.6 12 1.3.4.2.5.7.1 1.2zm.1-3.1c-3.4-2-9-2.2-12.2-1.1-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.2 10-1 13.9 1.3.5.3.6.9.3 1.4-.3.4-.9.6-1.4.2z"/>
+    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c205bce70483405d" target="_blank" aria-label="Spotify">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#aaa" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.8-9.3-.9-.3.1-.7-.1-.8-.5-.1-.3.1-.7.5-.8 4-1 7.5-.6 10.3 1 .3.2.4.6.2 1zm1.3-3c-.2.3-.7.5-1 .2-2.9-1.8-7.3-2.3-10.7-1.1-.4.1-.9-.1-1-.6-.1-.4.1-.9.6-1 3.9-1.2 8.8-.6 12 1.3.4.2.5.7.1 1.2zm.1-3.1c-3.4-2-9-2.2-12.2-1.1-.5.2-1-.1-1.2-.6-.2-.5.1-1 .6-1.2 3.7-1.2 10-1 13.9 1.3.5.3.6.9.3 1.4-.3.4-.9.6-1.4.2z"/>
       </svg>
     </a>
 
     <!-- Instagram -->
-    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank">
-      <svg viewBox="0 0 24 24">
-        <path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6.5-.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/>
+    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#aaa" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.2A4.8 4.8 0 1016.8 12 4.8 4.8 0 0012 7.2zm0 2A2.8 2.8 0 119.2 12 2.8 2.8 0 0112 9.2zm4.8-2.3a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"/>
       </svg>
     </a>
 
-    <!-- Threads -->
-    <a href="https://www.threads.net/@jeremedotxyz" target="_blank">
+    <!-- Threads (image) -->
+    <a href="https://www.threads.net/@jeremedotxyz" target="_blank" aria-label="Threads">
       <img src="/site/assets/threads.png" alt="Threads">
     </a>
-
   </div>
 
   <script>
@@ -168,10 +161,7 @@
     const terminal = document.getElementById("terminal");
 
     function typeLine() {
-      if (lineIndex >= lines.length) {
-        addCursor();
-        return;
-      }
+      if (lineIndex >= lines.length) { addCursor(); return; }
 
       const lineDiv = document.createElement("div");
       terminal.appendChild(lineDiv);
@@ -187,7 +177,6 @@
           setTimeout(typeLine, 500);
         }
       }
-
       typeChar();
     }
 
