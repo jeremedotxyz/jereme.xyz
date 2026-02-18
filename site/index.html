@@ -1,59 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>jereme.xyz</title>
   <style>
     body {
       margin: 0;
-      background: #0b0b0b;
-      color: #eaeaea;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
-    }
-
-    .container {
-      max-width: 600px;
-      width: 100%;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #888;
-      margin-bottom: 30px;
-    }
-
-    a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0b0b0b;
+      font-family: "SF Mono", Menlo, monospace;
       color: #eaeaea;
-      text-decoration: none;
-      margin-bottom: 12px;
-      font-size: 16px;
-      transition: 0.2s;
     }
 
-    a:hover {
-      opacity: 0.6;
+    .window {
+      background: #111;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      min-width: 420px;
+    }
+
+    .window-bar {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #1a1a1a;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .red { background: #ff5f57; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #28c840; }
+
+    #terminal {
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 120px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      background: #eaeaea;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>jereme.xyz</h1>
-    <p>building something real.</p>
+  <div class="window">
+    <div class="window-bar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
 
-    <a href="/site/about/">about</a>
-    <a href="/site/projects/">projects</a>
-    <a href="/site/links/">links</a>
+    <div id="terminal"></div>
   </div>
+
+  <script>
+    const lines = [
+      "handshake accepted.",
+      "old version archived.",
+      "rebuild in progress."
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    const speed = 40;
+    const terminal = document.getElementById("terminal");
+
+    function typeLine() {
+      if (lineIndex >= lines.length) {
+        addCursor();
+
+        // OPTIONAL AUTO REDIRECT 👇
+        // setTimeout(() => {
+        //   window.location.href = "/site/";
+        // }, 2500);
+
+        return;
+      }
+
+      const lineDiv = document.createElement("div");
+      terminal.appendChild(lineDiv);
+
+      function typeChar() {
+        if (charIndex < lines[lineIndex].length) {
+          lineDiv.textContent += lines[lineIndex][charIndex];
+          charIndex++;
+          setTimeout(typeChar, speed);
+        } else {
+          charIndex = 0;
+          lineIndex++;
+          setTimeout(typeLine, 500);
+        }
+      }
+
+      typeChar();
+    }
+
+    function addCursor() {
+      const cursor = document.createElement("span");
+      cursor.classList.add("cursor");
+      terminal.appendChild(cursor);
+    }
+
+    typeLine();
+  </script>
 
 </body>
 </html>
