@@ -1,101 +1,59 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>jereme.xyz</title>
-
   <style>
-    :root{
-      --bg:#070812;
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.72);
-      --line:rgba(255,255,255,.10);
-      --radius: 18px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: #eaeaea;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    *{ box-sizing:border-box; }
-
-    body{
-      margin:0;
-      background: var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-      color: var(--text);
+    .container {
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
     }
 
-    .terminal{
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(0,0,0,.35);
-      padding: 18px 20px;
-      font-family: var(--mono);
-      min-width: 300px;
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
     }
 
-    .termbar{
-      display:flex;
-      gap:6px;
-      margin-bottom:12px;
+    p {
+      color: #888;
+      margin-bottom: 30px;
     }
 
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background: rgba(255,255,255,.2);
+    a {
+      display: block;
+      color: #eaeaea;
+      text-decoration: none;
+      margin-bottom: 12px;
+      font-size: 16px;
+      transition: 0.2s;
     }
 
-    .content{
-      font-size:14px;
-      color: var(--muted);
-      white-space:pre;
-    }
-
-    .cursor{
-      display:inline-block;
-      width:8px;
-      height:1em;
-      background: rgba(255,255,255,.7);
-      margin-left:4px;
-      animation: blink 1s steps(1,end) infinite;
-    }
-
-    @keyframes blink{
-      50%{ opacity:0; }
+    a:hover {
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
 
-  <div class="terminal">
-    <div class="termbar">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-    <div class="content" id="text"></div>
+  <div class="container">
+    <h1>jereme.xyz</h1>
+    <p>building something real.</p>
+
+    <a href="/site/about/">about</a>
+    <a href="/site/projects/">projects</a>
+    <a href="/site/links/">links</a>
   </div>
-
-  <script>
-    const text = "> handshake: accepted";
-    const el = document.getElementById("text");
-
-    let i = 0;
-
-    function type(){
-      if(i <= text.length){
-        el.innerHTML = text.slice(0,i) + '<span class="cursor"></span>';
-        i++;
-        setTimeout(type, 110); // slower typing
-      }
-    }
-
-    type();
-  </script>
 
 </body>
 </html>
