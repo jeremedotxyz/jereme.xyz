@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>leaving clues in places no one thought to look</title>
+
+  <!-- ICONS (this is the key piece you were missing before) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
@@ -66,21 +70,24 @@
       25%, 75% { opacity: 0; }
     }
 
-    /* Plain links (NOT a footer) */
+    /* ICON LINKS */
     .links {
       margin-top: 18px;
-      font-size: 12px;
+      display: flex;
+      gap: 18px;
+      font-size: 18px;
       opacity: 0.7;
-      text-align: center;
-      line-height: 1.8;
     }
+
     .links a {
       color: #eaeaea;
       text-decoration: none;
     }
-    .links a:hover { text-decoration: underline; }
 
-    /* Mobile: keep same vibe, just scale cleanly */
+    .links a:hover {
+      opacity: 1;
+    }
+
     @media (max-width: 480px) {
       #terminal { font-size: 13px; padding: 18px; }
     }
@@ -98,12 +105,13 @@
     <div id="terminal"></div>
   </div>
 
-  <!-- Plain text links below the window (NOT pinned / not footer) -->
+  <!-- ICON LINKS -->
   <div class="links">
-    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" rel="noopener">instagram</a> ·
-    <a href="https://www.threads.com/@jeremedotxyz" target="_blank" rel="noopener">threads</a> ·
-    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c205bce70483405d" target="_blank" rel="noopener">spotify</a> ·
-    <a href="https://github.com/jeremedotxyz" target="_blank" rel="noopener">github</a>
+    <a href="https://x.com/jeremedotxyz" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    <a href="https://github.com/jeremedotxyz" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72" target="_blank"><i class="fa-brands fa-spotify"></i></a>
+    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.threads.com/@jeremedotxyz" target="_blank"><i class="fa-brands fa-threads"></i></a>
   </div>
 
   <script>
@@ -151,5 +159,4 @@
     typeLine();
   </script>
 
-</body>
-</html>
+</body
