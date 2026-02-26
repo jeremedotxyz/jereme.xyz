@@ -1,23 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NTH4464X6R');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NTH4464X6R');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>oh, hi. 👋🏼</title>
-
-  <!-- ICONS (this is the key piece you were missing before) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     body {
       margin: 0;
@@ -32,7 +26,6 @@
       padding: 16px;
       box-sizing: border-box;
     }
-
     .window {
       background: #111;
       border-radius: 12px;
@@ -41,24 +34,20 @@
       width: 100%;
       max-width: 560px;
     }
-
     .window-bar {
       display: flex;
       gap: 8px;
       padding: 10px 12px;
       background: #1a1a1a;
     }
-
     .dot {
       width: 12px;
       height: 12px;
       border-radius: 50%;
     }
-
     .red { background: #ff5f57; }
     .yellow { background: #ffbd2e; }
     .green { background: #28c840; }
-
     #terminal {
       padding: 20px;
       font-size: 14px;
@@ -66,86 +55,123 @@
       min-height: 120px;
       word-wrap: break-word;
     }
-
     .cursor {
       display: inline-block;
       width: 8px;
+      height: 14px;
       background: #eaeaea;
       margin-left: 4px;
+      vertical-align: middle;
       animation: blink 1s infinite;
     }
-
     @keyframes blink {
       0%, 50%, 100% { opacity: 1; }
       25%, 75% { opacity: 0; }
     }
-
-    /* ICON LINKS */
     .links {
       margin-top: 18px;
       display: flex;
       gap: 18px;
-      font-size: 18px;
       opacity: 0.7;
     }
-
     .links a {
       color: #eaeaea;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.2s;
     }
-
     .links a:hover {
       opacity: 1;
     }
-
+    .links svg {
+      width: 20px;
+      height: 20px;
+      fill: #eaeaea;
+    }
+    .project-links {
+      margin-top: 14px;
+      display: flex;
+      gap: 0;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      opacity: 0.45;
+    }
+    .project-links span.label {
+      color: #eaeaea;
+    }
+    .project-links .sep {
+      margin: 0 8px;
+      opacity: 0.4;
+    }
     @media (max-width: 480px) {
       #terminal { font-size: 13px; padding: 18px; }
     }
   </style>
 </head>
 <body>
-
   <div class="window">
     <div class="window-bar">
       <span class="dot red"></span>
       <span class="dot yellow"></span>
       <span class="dot green"></span>
     </div>
-
     <div id="terminal"></div>
   </div>
 
   <!-- ICON LINKS -->
   <div class="links">
-    <a href="https://x.com/jeremedotxyz" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="https://github.com/jeremedotxyz" target="_blank"><i class="fa-brands fa-github"></i></a>
-    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72" target="_blank"><i class="fa-brands fa-spotify"></i></a>
-    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://www.threads.com/@jeremedotxyz" target="_blank"><i class="fa-brands fa-threads"></i></a>
+    <!-- X / Twitter -->
+    <a href="https://x.com/jeremedotxyz" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <!-- GitHub -->
+    <a href="https://github.com/jeremedotxyz" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+    <!-- Spotify -->
+    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+    </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/jeremedotxyz/" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <!-- Threads -->
+    <a href="https://www.threads.com/@jeremedotxyz" target="_blank">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.028-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.353 1.332-3.179.988-.89 2.4-1.382 4.115-1.43.781-.022 1.523.017 2.216.114-.114-.765-.351-1.38-.706-1.833-.489-.619-1.298-.943-2.406-.962h-.058c-.86 0-1.957.247-2.685 1.525l-1.78-1.005C8.483 5.96 10.033 5.0 12.03 5.0h.1c3.043.046 4.905 1.832 5.365 5.177.026.188.046.377.062.567.604.303 1.162.664 1.661 1.08 1.225 1.02 2.015 2.402 2.257 3.898.43 2.668-.444 5.516-3.068 7.074C16.979 23.513 14.913 24 12.186 24zm-.48-9.773c-.034 0-.07 0-.104.002-1.218.033-2.143.327-2.705.852-.456.412-.683.973-.652 1.578.059 1.095 1.052 1.75 2.564 1.669 1.134-.062 1.983-.465 2.525-1.198.49-.664.734-1.608.727-2.81a12.93 12.93 0 00-2.355-.093z"/></svg>
+    </a>
+  </div>
+
+  <!-- PROJECT LINKS (no URLs yet) -->
+  <div class="project-links">
+    <span class="label">fw/r</span>
+    <span class="sep">|</span>
+    <span class="label">pine</span>
+    <span class="sep">|</span>
+    <span class="label">nrthrn</span>
+    <span class="sep">|</span>
+    <span class="label">moyogi</span>
   </div>
 
   <script>
     const lines = [
       "terms are set.",
       "handshake complete.",
-      "don't worry, you’re early.",
+      "don't worry, you're early.",
       "pardon the dust."
     ];
-
     let lineIndex = 0;
     let charIndex = 0;
     const speed = 40;
     const terminal = document.getElementById("terminal");
-
     function typeLine() {
       if (lineIndex >= lines.length) {
         addCursor();
         return;
       }
-
       const lineDiv = document.createElement("div");
       terminal.appendChild(lineDiv);
-
       function typeChar() {
         if (charIndex < lines[lineIndex].length) {
           lineDiv.textContent += lines[lineIndex][charIndex];
@@ -157,17 +183,14 @@
           setTimeout(typeLine, 500);
         }
       }
-
       typeChar();
     }
-
     function addCursor() {
       const cursor = document.createElement("span");
       cursor.classList.add("cursor");
       terminal.appendChild(cursor);
     }
-
     typeLine();
   </script>
-
-</body
+</body>
+</html>
