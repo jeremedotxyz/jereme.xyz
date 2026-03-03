@@ -254,6 +254,8 @@
 
   </div>
 
+
+
   <div class="links">
 
     <a href="https://x.com/jeremedotxyz" target="_blank">
@@ -286,13 +288,15 @@
 
     </a>
 
-    <a href="https://digg.com/@jereme" target="_blank">
+                            <a href="https://digg.com/@jereme" target="_blank">
 
       <svg viewBox="2 2 50 30" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;margin-left:-6px;" fill="#eaeaea"><path d="m10 2v7h-8v17h13v-24zm0 20h-3v-9h3zm7-13h5v17h-5zm0-7h5v5h-5zm7 7v17h8v2h-8v4h13v-23zm8 13h-3v-9h3zm7-13v17h8v2h-8v4h13v-23zm8 13h-3v-9h3z"/></svg>
 
     </a>
 
   </div>
+
+
 
   <div class="project-links">
 
@@ -311,6 +315,8 @@
     <a class="label" href="https://moyogi.xyz" target="_blank">moyogi</a>
 
   </div>
+
+
 
   <script>
 
@@ -339,3 +345,55 @@
       if (lineIndex >= lines.length) {
 
         addCursor();
+
+        return;
+
+      }
+
+      const lineDiv = document.createElement("div");
+
+      terminal.appendChild(lineDiv);
+
+      function typeChar() {
+
+        if (charIndex < lines[lineIndex].length) {
+
+          lineDiv.textContent += lines[lineIndex][charIndex];
+
+          charIndex++;
+
+          setTimeout(typeChar, speed);
+
+        } else {
+
+          charIndex = 0;
+
+          lineIndex++;
+
+          setTimeout(typeLine, 500);
+
+        }
+
+      }
+
+      typeChar();
+
+    }
+
+    function addCursor() {
+
+      const cursor = document.createElement("span");
+
+      cursor.classList.add("cursor");
+
+      terminal.appendChild(cursor);
+
+    }
+
+    typeLine();
+
+  </script>
+
+</body>
+
+</html>
