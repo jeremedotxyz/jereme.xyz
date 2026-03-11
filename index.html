@@ -28,84 +28,54 @@
       font-family: "SF Mono", Menlo, monospace;
       color: #eaeaea;
       padding: 20px 16px;
+      gap: 24px;
     }
 
-    .window {
-      background: #111;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-      width: 100%;
-      max-width: 560px;
-    }
-
-    .window-bar {
+    /* ── Play button ── */
+    .player {
       display: flex;
-      gap: 8px;
-      padding: 10px 12px;
-      background: #1a1a1a;
+      align-items: center;
+      justify-content: center;
     }
 
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
+    .play-btn {
+      width: 56px;
+      height: 56px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
       flex-shrink: 0;
+      opacity: 0.7;
+      transition: opacity 0.2s;
     }
 
-    .red    { background: #ff5f57; }
-    .yellow { background: #ffbd2e; }
-    .green  { background: #28c840; }
-
-    #terminal {
-      padding: 20px;
-      font-size: 14px;
-      line-height: 1.7;
-      min-height: 120px;
-      word-break: break-word;
-      overflow-wrap: break-word;
-      position: relative;
+    .play-btn:hover {
+      opacity: 1;
     }
 
-    /* scanline overlay */
-    #terminal::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(0,0,0,0.08) 3px,
-        rgba(0,0,0,0.08) 4px
-      );
-      pointer-events: none;
+    .play-btn:active {
+      opacity: 0.5;
     }
 
-    .prompt {
-      color: #555;
-      user-select: none;
-      margin-right: 8px;
+    .play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #eaeaea;
+      /* nudge play icon slightly right to optically center */
+      transform: translateX(1px);
+      transition: opacity 0.15s;
     }
 
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 14px;
-      background: #eaeaea;
-      margin-left: 4px;
-      vertical-align: middle;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75%      { opacity: 0; }
+    .play-btn.playing svg {
+      transform: translateX(0);
     }
 
     /* ── Social icons ── */
     .links {
-      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
@@ -121,13 +91,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      /* larger tap target on mobile */
       min-width: 36px;
       min-height: 36px;
       transition: opacity 0.2s;
     }
 
-    .links a:hover  { opacity: 1; }
+    .links a:hover { opacity: 1; }
 
     .links svg {
       width: 20px;
@@ -138,7 +107,6 @@
 
     /* ── Project links ── */
     .project-links {
-      margin-top: 12px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -165,58 +133,30 @@
       opacity: 0.4;
     }
 
-    /* icon fade-in */
-    .links, .project-links {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .links.visible, .project-links.visible {
-      opacity: 0.7;
-    }
-    .project-links.visible {
-      opacity: 0.45;
-    }
-
     /* ── Mobile tweaks ── */
     @media (max-width: 480px) {
-      #terminal {
-        font-size: 13px;
-        padding: 16px;
-      }
-
-      .links {
-        gap: 12px;
-      }
-
-      .project-links {
-        font-size: 11px;
-      }
+      .links { gap: 12px; }
+      .project-links { font-size: 11px; }
     }
 
-    /* Extra-small screens (SE, Galaxy A series, etc.) */
     @media (max-width: 360px) {
       body { padding: 16px 12px; }
-
-      #terminal {
-        font-size: 12px;
-        padding: 14px;
-      }
-
-      .window {
-        border-radius: 10px;
-      }
     }
   </style>
 </head>
 <body>
 
-  <div class="window">
-    <div class="window-bar">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-    </div>
-    <div id="terminal"></div>
+  <div class="player">
+    <button class="play-btn" id="playBtn" aria-label="Play">
+      <!-- Play icon -->
+      <svg id="iconPlay" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <!-- Pause icon (hidden by default) -->
+      <svg id="iconPause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
   </div>
 
   <div class="links">
@@ -251,126 +191,33 @@
   </div>
 
   <script>
-    // per-line speed profiles: [baseMs, jitterMs]
-    // higher jitter = more hesitant/human feeling
-    const lines = [
-      { text: "hi there.",                              speed: [60,  20]  },
-      { text: "we're still wiring things together.",    speed: [38,  80]  },
-      { text: "the lights should be working soon.",     speed: [42,  50]  },
-      { text: "pardon the dust.",                       speed: [55,  110] },
-    ];
-    let lineIndex = 0;
-    let charIndex  = 0;
-    const terminal  = document.getElementById("terminal");
+    const btn       = document.getElementById("playBtn");
+    const iconPlay  = document.getElementById("iconPlay");
+    const iconPause = document.getElementById("iconPause");
+    const audio     = new Audio("audio.mp3"); // ← swap filename as needed
 
-    function jitter(speed) {
-      const [base, range] = speed;
-      return Math.max(15, base + (Math.random() * range - range / 2));
-    }
+    audio.addEventListener("ended", () => {
+      iconPlay.style.display  = "";
+      iconPause.style.display = "none";
+      btn.classList.remove("playing");
+      btn.setAttribute("aria-label", "Play");
+    });
 
-    function typeLine() {
-      if (lineIndex >= lines.length) {
-        addCursor();
-        document.querySelector(".links").classList.add("visible");
-        document.querySelector(".project-links").classList.add("visible");
-        addNowPlaying();
-        addClock();
-        return;
+    btn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        iconPlay.style.display  = "none";
+        iconPause.style.display = "";
+        btn.classList.add("playing");
+        btn.setAttribute("aria-label", "Pause");
+      } else {
+        audio.pause();
+        iconPlay.style.display  = "";
+        iconPause.style.display = "none";
+        btn.classList.remove("playing");
+        btn.setAttribute("aria-label", "Play");
       }
-
-      const { text, speed } = lines[lineIndex];
-      const lineDiv = document.createElement("div");
-      terminal.appendChild(lineDiv);
-
-      function typeChar() {
-        if (charIndex < text.length) {
-          lineDiv.appendChild(document.createTextNode(text[charIndex]));
-          charIndex++;
-          setTimeout(typeChar, jitter(speed));
-        } else {
-          charIndex = 0;
-          lineIndex++;
-          setTimeout(typeLine, 500);
-        }
-      }
-      typeChar();
-    }
-
-    function addCursor() {
-      const cursor = document.createElement("span");
-      cursor.classList.add("cursor");
-      terminal.appendChild(cursor);
-    }
-
-    function addClock() {
-      const clockDiv = document.createElement("div");
-      clockDiv.style.marginTop = "10px";
-      clockDiv.style.borderTop = "1px solid #222";
-      clockDiv.style.paddingTop = "10px";
-      clockDiv.style.fontSize = "12px";
-      clockDiv.style.color = "#444";
-      terminal.appendChild(clockDiv);
-
-      function tick() {
-        const now = new Date();
-        const hh  = String(now.getHours()).padStart(2, "0");
-        const mm  = String(now.getMinutes()).padStart(2, "0");
-        const ss  = String(now.getSeconds()).padStart(2, "0");
-        clockDiv.textContent = `${hh}:${mm}:${ss}`;
-      }
-      tick();
-      setInterval(tick, 1000);
-    }
-
-    async function addNowPlaying() {
-      try {
-        const res = await fetch("/now-playing.json?t=" + Date.now());
-        if (!res.ok) return;
-        const data = await res.json();
-        if (!data.isPlaying && !data.track && !data.episode) return;
-
-        const lineDiv = document.createElement("div");
-        lineDiv.style.marginTop = "10px";
-        lineDiv.style.borderTop = "1px solid #222";
-        lineDiv.style.paddingTop = "10px";
-        lineDiv.style.color = "#555";
-        lineDiv.style.fontSize = "12px";
-
-        if (data.isPlaying) {
-          const isPodcast = data.type === "episode";
-          const primary = isPodcast ? data.episode : data.track;
-          const secondary = isPodcast ? data.show : data.artist;
-
-          const adPatterns = /\b(ad|ads|promo|sponsor|advertisement|sponsored)\b/i;
-          if (isPodcast && adPatterns.test(primary)) {
-            lineDiv.innerHTML =
-              `<span style="color:#333">▪</span> ` +
-              `<span style="color:#444">radio silence</span>`;
-          } else {
-            const icon = isPodcast ? "🎙" : `<span style="color:#1DB954">▶</span>`;
-            lineDiv.innerHTML =
-              `${icon} ` +
-              `<span style="color:#aaa">${escHtml(primary)}</span>` +
-              ` <span style="color:#444">—</span> ` +
-              `<span style="color:#666">${escHtml(secondary)}</span>`;
-          }
-        } else {
-          lineDiv.innerHTML =
-            `<span style="color:#333">▪</span> ` +
-            `<span style="color:#444">radio silence</span>`;
-        }
-
-        terminal.appendChild(lineDiv);
-      } catch (e) {
-        // silently skip if file isn't there yet
-      }
-    }
-
-    function escHtml(str) {
-      return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-    }
-
-    typeLine();
+    });
   </script>
 </body>
 </html>
