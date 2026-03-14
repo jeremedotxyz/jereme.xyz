@@ -1,217 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NTH4464X6R');
-  </script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🧭</title>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #d4d0c8;
+      --dim: #4a4845;
+      --accent: #c8b89a;
+      --border: #1e1e1e;
+      --input-bg: #0f0f0f;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Courier Prime', 'Courier New', monospace;
     }
 
     body {
-      margin: 0;
-      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .center-block {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: #0b0b0b;
-      font-family: "SF Mono", Menlo, monospace;
-      color: #eaeaea;
-      padding: 20px 16px;
-      gap: 24px;
-    }
-
-    /* ── Play button ── */
-    .player {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 3.5rem;
+      margin-bottom: 6rem;
     }
 
     .play-btn {
-      width: 56px;
-      height: 56px;
+      background: transparent;
       border: none;
-      background: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      outline: none;
-      flex-shrink: 0;
-      opacity: 0.7;
+      padding: 0;
       transition: opacity 0.2s;
     }
 
-    .play-btn:hover {
-      opacity: 1;
-    }
-
-    .play-btn:active {
-      opacity: 0.5;
-    }
+    .play-btn:hover { opacity: 0.6; }
 
     .play-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: #eaeaea;
-      /* nudge play icon slightly right to optically center */
-      transform: translateX(1px);
-      transition: opacity 0.15s;
+      width: 18px;
+      height: 18px;
+      fill: var(--fg);
+      transition: fill 0.2s;
     }
 
-    .play-btn.playing svg {
-      transform: translateX(0);
-    }
+    .play-btn:hover svg { fill: var(--accent); }
 
-    /* ── Social icons ── */
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
-      opacity: 0.7;
-      width: 100%;
-      max-width: 560px;
-    }
+    audio { display: none; }
 
-    .links a {
-      color: #eaeaea;
-      text-decoration: none;
+    /* ── FOOTER (inline under play button) ── */
+    .inline-footer {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 36px;
-      min-height: 36px;
-      transition: opacity 0.2s;
+      gap: 2.5rem;
+      flex-wrap: wrap;
     }
 
-    .links a:hover { opacity: 1; }
+    .inline-footer a, .signal-trigger {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+    }
 
-    .links svg {
-      width: 20px;
-      height: 20px;
-      fill: #eaeaea;
+    .inline-footer a:hover, .signal-trigger:hover { color: var(--fg); }
+
+    /* ── SIGNAL OVERLAY ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+
+    .overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .signal-form {
+      width: 100%;
+      max-width: 380px;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      transform: translateY(8px);
+      transition: transform 0.25s;
+    }
+
+    .overlay.open .signal-form {
+      transform: translateY(0);
+    }
+
+    .signal-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--dim);
+      text-transform: lowercase;
+      margin-bottom: 0.35rem;
       display: block;
     }
 
-    /* ── Project links ── */
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 4px 0;
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      opacity: 0.45;
+    .signal-form input,
+    .signal-form textarea {
       width: 100%;
-      max-width: 560px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-bottom-color: var(--dim);
+      color: var(--fg);
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+      outline: none;
+      transition: border-color 0.2s;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
     }
 
-    .project-links span.label { color: #eaeaea; }
-
-    .project-links a.label {
-      color: #eaeaea;
-      text-decoration: none;
-      transition: opacity 0.2s;
+    .signal-form input:focus,
+    .signal-form textarea:focus {
+      border-bottom-color: var(--accent);
     }
 
-    .project-links a.label:hover { opacity: 1; }
-
-    .project-links .sep {
-      margin: 0 8px;
-      opacity: 0.4;
+    .signal-form textarea {
+      resize: none;
+      height: 90px;
+      line-height: 1.5;
     }
 
-    /* ── Mobile tweaks ── */
-    @media (max-width: 480px) {
-      .links { gap: 12px; }
-      .project-links { font-size: 11px; }
+    .signal-form input::placeholder,
+    .signal-form textarea::placeholder {
+      color: var(--dim);
+      opacity: 0.5;
     }
 
-    @media (max-width: 360px) {
-      body { padding: 16px 12px; }
-    }
-
-    /* ── Footer ── */
-    .footer {
+    .form-actions {
       display: flex;
-      flex-direction: row;
-      gap: 32px;
-      font-family: "Courier New", Courier, monospace;
-      font-size: 13px;
-      color: #eaeaea;
-      opacity: 0.7;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.4rem;
     }
 
-    .footer a {
-      color: #eaeaea;
-      text-decoration: none;
+    .close-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 0;
+      text-transform: lowercase;
+    }
+
+    .close-btn:hover { color: var(--fg); }
+
+    .send-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1.2rem;
+      text-transform: lowercase;
       transition: opacity 0.2s;
     }
 
-    .footer a:hover { opacity: 1; }
+    .send-btn:hover { opacity: 0.85; }
+    .send-btn:disabled { opacity: 0.4; cursor: default; }
+
+    .status-msg {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      text-align: center;
+      min-height: 1rem;
+    }
+
+    .status-msg.ok { color: var(--accent); }
+    .status-msg.err { color: #a06060; }
   </style>
 </head>
 <body>
 
-  <div class="player">
-    <button class="play-btn" id="playBtn" aria-label="Play">
-      <!-- Play icon -->
-      <svg id="iconPlay" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 5v14l11-7z"/>
-      </svg>
-      <!-- Pause icon (hidden by default) -->
-      <svg id="iconPause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
-        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-      </svg>
-    </button>
-  </div>
+  <main>
+    <div class="center-block">
+      <button class="play-btn" id="playBtn" aria-label="Play">
+        <svg viewBox="0 0 16 16" id="playIcon"><polygon points="3,1 14,8 3,15"/></svg>
+      </button>
+      <audio id="audio" src="audio.mp3"></audio>
+      <nav class="inline-footer">
+        <a href="https://www.threads.net/@jereme" target="_blank" rel="noopener">field notes</a>
+        <a href="https://github.com/jereme" target="_blank" rel="noopener">artifacts</a>
+        <a href="https://open.spotify.com/user/jereme" target="_blank" rel="noopener">lat/long</a>
+        <button class="signal-trigger" id="signalTrigger">signal</button>
+      </nav>
+    </div>
+  </main>
 
-  <div class="footer">
-    <a href="https://www.threads.com/@jeremedotxyz" target="_blank">field notes</a>
-    <a href="https://github.com/jeremedotxyz" target="_blank">artifacts</a>
-    <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d33865cdd2d144b4" target="_blank">lat/long</a>
+  <!-- Signal overlay -->
+  <div class="overlay" id="overlay">
+    <div class="signal-form">
+      <div>
+        <label class="signal-label" for="sigName">name</label>
+        <input type="text" id="sigName" placeholder="—" autocomplete="off" />
+      </div>
+      <div>
+        <label class="signal-label" for="sigEmail">email</label>
+        <input type="email" id="sigEmail" placeholder="—" autocomplete="off" />
+      </div>
+      <div>
+        <label class="signal-label" for="sigMsg">message</label>
+        <textarea id="sigMsg" placeholder="—"></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="close-btn" id="closeBtn">cancel</button>
+        <button class="send-btn" id="sendBtn">transmit</button>
+      </div>
+      <p class="status-msg" id="statusMsg"></p>
+    </div>
   </div>
 
   <script>
-    const btn       = document.getElementById("playBtn");
-    const iconPlay  = document.getElementById("iconPlay");
-    const iconPause = document.getElementById("iconPause");
-    const audio     = new Audio("audio.mp3"); // ← swap filename as needed
+    // ── Play/Pause ──
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
 
-    audio.addEventListener("ended", () => {
-      iconPlay.style.display  = "";
-      iconPause.style.display = "none";
-      btn.classList.remove("playing");
-      btn.setAttribute("aria-label", "Play");
-    });
+    const pauseSVG = `<rect x="3" y="2" width="4" height="12"/><rect x="9" y="2" width="4" height="12"/>`;
+    const playSVG = `<polygon points="3,1 14,8 3,15"/>`;
 
-    btn.addEventListener("click", () => {
+    playBtn.addEventListener('click', () => {
       if (audio.paused) {
         audio.play();
-        iconPlay.style.display  = "none";
-        iconPause.style.display = "";
-        btn.classList.add("playing");
-        btn.setAttribute("aria-label", "Pause");
+        playIcon.innerHTML = pauseSVG;
+        playBtn.classList.add('playing');
       } else {
         audio.pause();
-        iconPlay.style.display  = "";
-        iconPause.style.display = "none";
-        btn.classList.remove("playing");
-        btn.setAttribute("aria-label", "Play");
+        playIcon.innerHTML = playSVG;
+        playBtn.classList.remove('playing');
       }
     });
+
+    audio.addEventListener('ended', () => {
+      playIcon.innerHTML = playSVG;
+      playBtn.classList.remove('playing');
+    });
+
+    // ── Signal form ──
+    const overlay = document.getElementById('overlay');
+    const signalTrigger = document.getElementById('signalTrigger');
+    const closeBtn = document.getElementById('closeBtn');
+    const sendBtn = document.getElementById('sendBtn');
+    const statusMsg = document.getElementById('statusMsg');
+
+    signalTrigger.addEventListener('click', () => overlay.classList.add('open'));
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+    function close() {
+      overlay.classList.remove('open');
+      statusMsg.textContent = '';
+      statusMsg.className = 'status-msg';
+    }
+
+    sendBtn.addEventListener('click', async () => {
+      const name = document.getElementById('sigName').value.trim();
+      const email = document.getElementById('sigEmail').value.trim();
+      const msg = document.getElementById('sigMsg').value.trim();
+
+      if (!name || !email || !msg) {
+        statusMsg.textContent = 'all fields required.';
+        statusMsg.className = 'status-msg err';
+        return;
+      }
+
+      sendBtn.disabled = true;
+      statusMsg.textContent = 'transmitting...';
+      statusMsg.className = 'status-msg';
+
+      const WEBHOOK = 'https://hooks.slack.com/services/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';
+
+      try {
+        await fetch(WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: `📡 *signal received*\n*name:* ${name}\n*email:* ${email}\n*message:* ${msg}`
+          })
+        });
+        statusMsg.textContent = 'signal sent.';
+        statusMsg.className = 'status-msg ok';
+        document.getElementById('sigName').value = '';
+        document.getElementById('sigEmail').value = '';
+        document.getElementById('sigMsg').value = '';
+      } catch {
+        statusMsg.textContent = 'transmission failed. try again.';
+        statusMsg.className = 'status-msg err';
+      }
+
+      sendBtn.disabled = false;
+    });
   </script>
+
 </body>
 </html>
