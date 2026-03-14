@@ -235,6 +235,30 @@
       line-height: 1.6;
       margin-top: 0.5rem;
     }
+
+    @media (max-width: 480px) {
+      .center-block {
+        gap: 2.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .inline-footer {
+        gap: 1.5rem;
+      }
+
+      .signal-form {
+        padding: 0 1.2rem;
+      }
+
+      .signal-form input,
+      .signal-form textarea {
+        font-size: 16px;
+      }
+
+      .signal-label {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -352,6 +376,7 @@
         document.getElementById('sigName').value = '';
         document.getElementById('sigEmail').value = '';
         document.getElementById('sigMsg').value = '';
+        setTimeout(() => close(), 2000);
       } catch {
         statusMsg.textContent = 'transmission failed. try again.';
         statusMsg.className = 'status-msg err';
