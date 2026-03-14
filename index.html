@@ -79,7 +79,7 @@
     }
 
     .inline-footer a, .signal-trigger {
-      color: var(--dim);
+      color: var(--fg);
       text-decoration: none;
       font-size: 0.7rem;
       letter-spacing: 0.12em;
@@ -92,7 +92,7 @@
       padding: 0;
     }
 
-    .inline-footer a:hover, .signal-trigger:hover { color: var(--fg); }
+    .inline-footer a:hover, .signal-trigger:hover { color: var(--accent); }
 
     /* ── SIGNAL OVERLAY ── */
     .overlay {
@@ -130,13 +130,12 @@
     }
 
     .signal-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      color: var(--dim);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--fg);
       text-transform: lowercase;
       margin-bottom: 0.35rem;
       display: block;
-      font-family: 'Courier New', Courier, monospace;
     }
 
     .signal-form input,
@@ -147,8 +146,7 @@
       border-bottom: 1px solid var(--border);
       color: var(--fg);
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
+      font-size: 0.85rem;
       padding: 0.5rem 0;
       outline: none;
       transition: border-color 0.2s;
@@ -170,7 +168,6 @@
     .signal-form textarea::placeholder {
       color: var(--dim);
       opacity: 0.5;
-      font-family: 'Courier New', Courier, monospace;
     }
 
     .form-actions {
@@ -182,9 +179,9 @@
 
     .close-btn {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.12em;
-      color: var(--dim);
+      color: var(--fg);
       background: none;
       border: none;
       cursor: pointer;
@@ -193,13 +190,13 @@
       text-transform: lowercase;
     }
 
-    .close-btn:hover { color: var(--fg); }
+    .close-btn:hover { color: var(--accent); }
 
     .send-btn {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      color: var(--dim);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      color: var(--fg);
       background: none;
       border: none;
       cursor: pointer;
@@ -208,16 +205,15 @@
       transition: color 0.2s;
     }
 
-    .send-btn:hover { color: var(--fg); }
+    .send-btn:hover { color: var(--accent); }
     .send-btn:disabled { opacity: 0.4; cursor: default; }
 
     .status-msg {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.1em;
       color: var(--dim);
       text-align: center;
       min-height: 1rem;
-      font-family: 'Courier New', Courier, monospace;
     }
 
     .status-msg.ok { color: var(--accent); }
