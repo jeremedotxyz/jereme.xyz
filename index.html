@@ -120,7 +120,7 @@
       padding: 0 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
+      gap: 0.9rem;
       transform: translateY(8px);
       transition: transform 0.25s;
     }
@@ -129,45 +129,53 @@
       transform: translateY(0);
     }
 
+    .signal-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .signal-row--msg {
+      align-items: flex-start;
+    }
+
     .signal-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       color: var(--fg);
       text-transform: lowercase;
-      margin-bottom: 0.35rem;
-      display: block;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: nowrap;
+      width: 2.5rem;
+      flex-shrink: 0;
+      padding: 0.5rem 0;
     }
 
     .signal-form input,
     .signal-form textarea {
-      width: 100%;
+      flex: 1;
       background: transparent;
       border: none;
-      border-bottom: 1px solid var(--border);
       color: var(--fg);
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.85rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       padding: 0.5rem 0;
       outline: none;
-      transition: border-color 0.2s;
-      border-radius: 0;
-    }
-
-    .signal-form input:focus,
-    .signal-form textarea:focus {
-      border-bottom-color: var(--dim);
+      width: 100%;
     }
 
     .signal-form textarea {
       resize: none;
-      height: 90px;
-      line-height: 1.5;
+      height: 80px;
+      line-height: 1.6;
     }
 
     .signal-form input::placeholder,
     .signal-form textarea::placeholder {
       color: var(--dim);
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
     .form-actions {
@@ -179,7 +187,7 @@
 
     .close-btn {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       letter-spacing: 0.12em;
       color: var(--fg);
       background: none;
@@ -194,8 +202,8 @@
 
     .send-btn {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       color: var(--fg);
       background: none;
       border: none;
@@ -209,8 +217,8 @@
     .send-btn:disabled { opacity: 0.4; cursor: default; }
 
     .status-msg {
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
       color: var(--dim);
       text-align: center;
       min-height: 1rem;
@@ -240,17 +248,17 @@
   <!-- Signal overlay -->
   <div class="overlay" id="overlay">
     <div class="signal-form">
-      <div>
+      <div class="signal-row">
         <label class="signal-label" for="sigName">name</label>
-        <input type="text" id="sigName" placeholder="—" autocomplete="off" />
+        <input type="text" id="sigName" autocomplete="off" />
       </div>
-      <div>
+      <div class="signal-row">
         <label class="signal-label" for="sigEmail">email</label>
-        <input type="email" id="sigEmail" placeholder="—" autocomplete="off" />
+        <input type="email" id="sigEmail" autocomplete="off" />
       </div>
-      <div>
-        <label class="signal-label" for="sigMsg">message</label>
-        <textarea id="sigMsg" placeholder="—"></textarea>
+      <div class="signal-row signal-row--msg">
+        <label class="signal-label" for="sigMsg">msg</label>
+        <textarea id="sigMsg"></textarea>
       </div>
       <div class="form-actions">
         <button class="close-btn" id="closeBtn">cancel</button>
