@@ -29,7 +29,6 @@
       min-height: 100vh;
     }
 
-    /* ── MAIN ── */
     main {
       flex: 1;
       display: flex;
@@ -69,7 +68,6 @@
 
     audio { display: none; }
 
-    /* ── FOOTER (inline under play button) ── */
     .inline-footer {
       display: flex;
       align-items: center;
@@ -78,7 +76,7 @@
       flex-wrap: wrap;
     }
 
-    .inline-footer a, .signal-trigger {
+    .inline-footer a, .signal-trigger, .footer-plain {
       color: var(--fg);
       text-decoration: none;
       font-size: 0.7rem;
@@ -94,7 +92,11 @@
 
     .inline-footer a:hover, .signal-trigger:hover { color: var(--accent); }
 
-    /* ── SIGNAL OVERLAY ── */
+    .footer-plain {
+      cursor: default;
+      opacity: 0.4;
+    }
+
     .overlay {
       position: fixed;
       inset: 0;
@@ -272,7 +274,7 @@
       <nav class="inline-footer">
         <a href="https://www.threads.com/@jeremedotxyz" target="_blank" rel="noopener">field notes</a>
         <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" rel="noopener">exposures</a>
-        <a href="/provisions" rel="noopener">provisions</a>
+        <span class="footer-plain">provisions</span>
         <a href="https://github.com/jeremedotxyz" target="_blank" rel="noopener">artifacts</a>
         <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c443d631d14b4484" target="_blank" rel="noopener">lat/long</a>
         <button class="signal-trigger" id="signalTrigger">signal</button>
