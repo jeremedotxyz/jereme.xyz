@@ -59,40 +59,44 @@
 
     .stage {
       width: 100%;
-      height: 1.3rem;
       overflow: hidden;
       position: relative;
       text-align: center;
+      min-height: 1.3rem;
     }
 
     .stage-text {
-      position: absolute;
       width: 100%;
-      left: 0;
-      top: 0;
       font-family: 'Courier New', Courier, monospace;
       text-transform: lowercase;
       letter-spacing: 0.12em;
       font-size: 0.7rem;
+      line-height: 1.6;
       transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s;
+      display: block;
     }
 
     .stage-text.active {
       transform: translateY(0);
       opacity: 1;
       color: var(--fg);
+      position: relative;
     }
 
     .stage-text.enter {
       transform: translateY(100%);
       opacity: 0;
       color: var(--fg);
+      position: absolute;
+      top: 0; left: 0;
     }
 
     .stage-text.exit {
       transform: translateY(-100%);
       opacity: 0;
       color: var(--fg);
+      position: absolute;
+      top: 0; left: 0;
     }
 
     .back {
@@ -139,7 +143,6 @@
 
       const stage = document.getElementById('stage');
       const current = stage.querySelector('.active');
-
       const next = document.createElement('div');
       next.className = 'stage-text enter';
       next.textContent = lines[lineIdx];
@@ -181,10 +184,8 @@
         const trackKey = data.track + data.artist;
         if (!currentData || currentData !== trackKey) {
           currentData = trackKey;
-          const newLines = [
-            data.track.toLowerCase(),
-            data.artist.toLowerCase(),
-          ];
+          const newLines = [data.track.toLowerCase()];
+          if (data.artist) newLines.push(data.artist.toLowerCase());
           if (data.album) newLines.push(data.album.toLowerCase());
           setLines(newLines);
         }
