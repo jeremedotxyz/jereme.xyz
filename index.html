@@ -331,7 +331,7 @@
 
     playBtn.addEventListener('click', () => {
       if (audio.paused) {
-        audio.play();
+        audio.play().catch(e => console.error('play error:', e));
         playIcon.innerHTML = pauseSVG;
         playBtn.classList.add('playing');
       } else {
@@ -359,11 +359,11 @@
     const statusMsg = document.getElementById('statusMsg');
 
     signalTrigger.addEventListener('click', () => overlay.classList.add('open'));
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    closeBtn.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
 
-    function close() {
+    function closeOverlay() {
       overlay.classList.remove('open');
       statusMsg.textContent = '';
       statusMsg.className = 'status-msg';
@@ -399,8 +399,15 @@
         document.getElementById('sigName').value = '';
         document.getElementById('sigEmail').value = '';
         document.getElementById('sigMsg').value = '';
-        setTimeout(() => close(), 2000);
+        setTimeout(() => closeOverlay(), 2000);
       } catch {
         statusMsg.textContent = 'transmission failed. try again.';
         statusMsg.className = 'status-msg err';
       }
+
+      sendBtn.disabled = false;
+    });
+  </script>
+
+</body>
+</html>
