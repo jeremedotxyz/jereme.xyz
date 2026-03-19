@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧭</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #d4d0c8;
+      --dim: #4a4845;
+      --accent: #c8b89a;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .center-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.2rem;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .np-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.6s ease-in-out infinite;
+      margin: 0 auto 0.5rem;
+    }
+    .np-dot.off { animation: none; opacity: 0.15; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .np-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      text-transform: lowercase;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .slot-wrap {
+      width: 100%;
+      overflow: hidden;
+      height: 1.3rem;
+      position: relative;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes rollIn  { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes rollOut { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
+    .roll-in   { position: absolute; width: 100%; animation: rollIn  0.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+    .roll-out  { position: absolute; width: 100%; animation: rollOut 0.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+    .roll-static { position: absolute; width: 100%; top: 0; left: 0; }
+
+    .t-track  { font-size: 0.7rem; letter-spacing: 0.12em; color: var(--fg);  text-transform: lowercase; display: block; }
+    .t-artist { font-size: 0.6rem; letter-spacing: 0.12em; color: var(--dim); text-transform: lowercase; display: block; }
+    .t-album  { font-size: 0.55rem; letter-spacing: 0.1em; color: #2e2d2b;   text-transform: lowercase; display: block; }
+
+    .back {
+      font-size: 0.45rem;
+      letter-spacing: 0.12em;
+      color: #2e2d2b;
+      font-family: 'Courier New', Courier, monospace;
+      text-transform: lowercase;
+      background: none;
+      border: none;
+      outline: none;
+      appearance: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .back:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <div class="center-block">
+    <div style="width:100%;">
+      <div class="np-dot" id="dot"></div>
+      <div class="np-label" id="npLabel">—</div>
+      <div class="slot-wrap" id="trackSlot">
+        <div class="roll-static"><span class="t-track"></span></div>
+      </div>
+      <div class="slot-wrap" id="artistSlot">
+        <div class="roll-static"><span class="t-artist"></span></div>
+      </div>
+      <div class="slot-wrap" id="albumSlot">
+        <div class="roll-static"><span class="t-album"></span></div>
+      </div>
+    </div>
+    <button class="back" onclick="window.location.href='index.html'">back</button>
+  </div>
+
+  <script>
+    const WORKER = 'https://jereme-latlong.jeremedotxyz.workers.dev/';
+    const DORMANT_THRESHOLD = 5;
+
+    let lastTrack = null;
+    let dormantCount = 0;
+
+    function rollSlot(slotId, newHTML, delay) {
+      setTimeout(() => {
+        const slot = document.getElementById(slotId);
+        const old = slot.querySelector('div');
+        const outEl = document.createElement('div');
+        outEl.className = 'roll-out';
+        outEl.innerHTML = old ? old.innerHTML : '';
+        const inEl = document.createElement('div');
+        inEl.className = 'roll-in';
+        inEl.innerHTML = newHTML;
+        slot.innerHTML = '';
+        slot.appendChild(outEl);
+        slot.appendChild(inEl);
+        setTimeout(() => {
+          slot.innerHTML = '';
+          const s = document.createElement('div');
+          s.className = 'roll-static';
+          s.innerHTML = newHTML;
+          slot.appendChild(s);
+        }, 460);
+      }, delay);
+    }
+
+    function update(data) {
+      const dot = document.getElementById('dot');
+      const label = document.getElementById('npLabel');
+
+      if (data.playing) {
+        dormantCount = 0;
+        dot.classList.remove('off');
+        label.textContent = 'now playing';
+
+        const trackKey = data.track + data.artist;
+        if (trackKey !== lastTrack) {
+          lastTrack = trackKey;
+          rollSlot('trackSlot',  `<span class="t-track">${data.track.toLowerCase()}</span>`, 0);
+          rollSlot('artistSlot', `<span class="t-artist">${data.artist.toLowerCase()}</span>`, 80);
+          rollSlot('albumSlot',  `<span class="t-album">${data.album ? data.album.toLowerCase() : ''}</span>`, 160);
+        }
+      } else {
+        dormantCount++;
+        dot.classList.add('off');
+
+        if (dormantCount >= DORMANT_THRESHOLD) {
+          label.textContent = 'no transmission';
+          rollSlot('trackSlot',  `<span class="t-track" style="color:#2e2d2b">—</span>`, 0);
+          rollSlot('artistSlot', `<span class="t-artist"></span>`, 80);
+          rollSlot('albumSlot',  `<span class="t-album"></span>`, 160);
+          lastTrack = null;
+        } else {
+          label.textContent = 'not listening';
+        }
+      }
+    }
+
+    async function poll() {
+      try {
+        const res = await fetch(WORKER);
+        const data = await res.json();
+        update(data);
+      } catch (e) {
+        console.error('poll failed', e);
+      }
+    }
+
+    poll();
+    setInterval(poll, 30000);
+  </script>
+
+</body>
+</html>
