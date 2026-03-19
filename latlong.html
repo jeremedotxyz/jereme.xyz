@@ -12,6 +12,7 @@
       --fg: #d4d0c8;
       --dim: #4a4845;
       --accent: #c8b89a;
+      --border: #1e1e1e;
     }
 
     html, body {
@@ -114,10 +115,8 @@
 
   <script>
     const WORKER = 'https://jereme-latlong.jeremedotxyz.workers.dev/';
-    const DORMANT_THRESHOLD = 5;
 
     let lastTrack = null;
-    let dormantCount = 0;
 
     function rollSlot(slotId, newHTML, delay) {
       setTimeout(() => {
@@ -147,7 +146,6 @@
       const label = document.getElementById('npLabel');
 
       if (data.playing) {
-        dormantCount = 0;
         dot.classList.remove('off');
         label.textContent = 'now playing';
 
@@ -159,17 +157,13 @@
           rollSlot('albumSlot',  `<span class="t-album">${data.album ? data.album.toLowerCase() : ''}</span>`, 160);
         }
       } else {
-        dormantCount++;
         dot.classList.add('off');
-
-        if (dormantCount >= DORMANT_THRESHOLD) {
-          label.textContent = 'no transmission';
+        label.textContent = 'no transmission';
+        if (lastTrack !== null) {
+          lastTrack = null;
           rollSlot('trackSlot',  `<span class="t-track" style="color:#2e2d2b">—</span>`, 0);
           rollSlot('artistSlot', `<span class="t-artist"></span>`, 80);
           rollSlot('albumSlot',  `<span class="t-album"></span>`, 160);
-          lastTrack = null;
-        } else {
-          label.textContent = 'not listening';
         }
       }
     }
