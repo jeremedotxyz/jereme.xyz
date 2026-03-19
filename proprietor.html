@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧭</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #d4d0c8;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .inline-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-plain {
+      color: var(--fg);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: lowercase;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    @media (max-width: 480px) {
+      .inline-footer {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="inline-footer">
+    <span class="footer-plain">fw/r</span>
+    <span class="footer-plain">pine</span>
+    <span class="footer-plain">moyogi</span>
+    <span class="footer-plain">nrthrn</span>
+    <span class="footer-plain">drift</span>
+  </nav>
+
+</body>
+</html>
