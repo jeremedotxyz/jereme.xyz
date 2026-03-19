@@ -4,7 +4,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-NTH4464X6R');
 </script>
 <!DOCTYPE html>
@@ -85,7 +84,7 @@
       flex-wrap: wrap;
     }
 
-    .inline-footer a, .signal-trigger, .footer-plain {
+    .inline-footer a, .signal-trigger, .proprietor-trigger {
       color: var(--fg);
       text-decoration: none;
       font-size: 0.7rem;
@@ -99,10 +98,16 @@
       padding: 0;
     }
 
-    .inline-footer a:hover, .signal-trigger:hover { color: var(--accent); }
+    .inline-footer a:hover, .signal-trigger:hover, .proprietor-trigger:hover { color: var(--accent); }
 
-    .footer-plain {
-      cursor: default;
+    .est {
+      text-align: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: #2e2d2b;
+      font-family: 'Courier New', Courier, monospace;
+      text-transform: lowercase;
+      margin-top: 0.6rem;
     }
 
     .overlay {
@@ -282,11 +287,12 @@
       <nav class="inline-footer">
         <a href="https://www.threads.com/@jeremedotxyz" target="_blank" rel="noopener">field notes</a>
         <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" rel="noopener">exposures</a>
-        <span class="footer-plain">proprietor</span>
+        <button class="proprietor-trigger" id="proprietorTrigger">proprietor</button>
         <a href="https://github.com/jeremedotxyz" target="_blank" rel="noopener">artifacts</a>
         <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=c443d631d14b4484" target="_blank" rel="noopener">lat/long</a>
         <button class="signal-trigger" id="signalTrigger">signal</button>
       </nav>
+      <p class="est">est. 2021</p>
     </div>
   </main>
 
@@ -338,6 +344,11 @@
     audio.addEventListener('ended', () => {
       playIcon.innerHTML = playSVG;
       playBtn.classList.remove('playing');
+    });
+
+    // ── Proprietor ──
+    document.getElementById('proprietorTrigger').addEventListener('click', () => {
+      window.location.href = 'proprietor.html';
     });
 
     // ── Signal form ──
