@@ -57,42 +57,43 @@
       margin-bottom: 1.2rem;
     }
 
-    .slot-wrap {
+    .stage {
       width: 100%;
       height: 1.3rem;
       overflow: hidden;
       position: relative;
       text-align: center;
-      margin-bottom: 0.5rem;
     }
 
-    .slot-text {
+    .stage-text {
       position: absolute;
       width: 100%;
       left: 0;
       top: 0;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+      font-family: 'Courier New', Courier, monospace;
+      text-transform: lowercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s;
     }
 
-    .slot-text.exit {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-
-    .slot-text.enter {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-
-    .slot-text.active {
+    .stage-text.active {
       transform: translateY(0);
       opacity: 1;
+      color: var(--fg);
     }
 
-    .t-track  { font-size: 0.7rem; letter-spacing: 0.12em; color: var(--fg);  text-transform: lowercase; display: block; }
-    .t-artist { font-size: 0.6rem; letter-spacing: 0.12em; color: var(--dim); text-transform: lowercase; display: block; }
-    .t-album  { font-size: 0.55rem; letter-spacing: 0.1em; color: #2e2d2b;   text-transform: lowercase; display: block; }
-    .t-dim    { font-size: 0.7rem; letter-spacing: 0.12em; color: #2e2d2b;   text-transform: lowercase; display: block; }
+    .stage-text.enter {
+      transform: translateY(100%);
+      opacity: 0;
+      color: var(--fg);
+    }
+
+    .stage-text.exit {
+      transform: translateY(-100%);
+      opacity: 0;
+      color: var(--fg);
+    }
 
     .back {
       font-size: 0.45rem;
@@ -117,14 +118,8 @@
     <div style="width:100%;">
       <div class="np-dot" id="dot"></div>
       <div class="np-label" id="npLabel">—</div>
-      <div class="slot-wrap" id="trackSlot">
-        <div class="slot-text active"><span class="t-dim">—</span></div>
-      </div>
-      <div class="slot-wrap" id="artistSlot">
-        <div class="slot-text active"><span class="t-artist"></span></div>
-      </div>
-      <div class="slot-wrap" id="albumSlot">
-        <div class="slot-text active"><span class="t-album"></span></div>
+      <div class="stage" id="stage">
+        <div class="stage-text active" id="currentLine">—</div>
       </div>
     </div>
     <button class="back" onclick="window.location.href='index.html'">back</button>
@@ -132,28 +127,47 @@
 
   <script>
     const WORKER = 'https://jereme-latlong.jeremedotxyz.workers.dev/';
-    let lastTrack = null;
 
-    function rollSlot(slotId, newHTML, delay) {
-      setTimeout(() => {
-        const slot = document.getElementById(slotId);
-        const current = slot.querySelector('.slot-text');
+    let lines = ['—'];
+    let lineIdx = 0;
+    let rollInterval = null;
+    let currentData = null;
 
-        const next = document.createElement('div');
-        next.className = 'slot-text enter';
-        next.innerHTML = newHTML;
-        slot.appendChild(next);
+    function rollNext() {
+      if (lines.length <= 1) return;
+      lineIdx = (lineIdx + 1) % lines.length;
 
+      const stage = document.getElementById('stage');
+      const current = stage.querySelector('.active');
+
+      const next = document.createElement('div');
+      next.className = 'stage-text enter';
+      next.textContent = lines[lineIdx];
+      stage.appendChild(next);
+
+      requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            current.classList.add('exit');
-            current.classList.remove('active');
-            next.classList.add('active');
-            next.classList.remove('enter');
-            setTimeout(() => current.remove(), 450);
-          });
+          current.classList.remove('active');
+          current.classList.add('exit');
+          next.classList.remove('enter');
+          next.classList.add('active');
+          setTimeout(() => current.remove(), 600);
         });
-      }, delay);
+      });
+    }
+
+    function setLines(newLines) {
+      lines = newLines;
+      lineIdx = 0;
+
+      const stage = document.getElementById('stage');
+      const current = stage.querySelector('.active');
+      if (current) current.textContent = lines[0];
+
+      if (rollInterval) clearInterval(rollInterval);
+      if (lines.length > 1) {
+        rollInterval = setInterval(rollNext, 2500);
+      }
     }
 
     function update(data) {
@@ -165,20 +179,21 @@
         label.textContent = 'now playing';
 
         const trackKey = data.track + data.artist;
-        if (trackKey !== lastTrack) {
-          lastTrack = trackKey;
-          rollSlot('trackSlot',  `<span class="t-track">${data.track.toLowerCase()}</span>`, 0);
-          rollSlot('artistSlot', `<span class="t-artist">${data.artist.toLowerCase()}</span>`, 80);
-          rollSlot('albumSlot',  `<span class="t-album">${data.album ? data.album.toLowerCase() : ''}</span>`, 160);
+        if (!currentData || currentData !== trackKey) {
+          currentData = trackKey;
+          const newLines = [
+            data.track.toLowerCase(),
+            data.artist.toLowerCase(),
+          ];
+          if (data.album) newLines.push(data.album.toLowerCase());
+          setLines(newLines);
         }
       } else {
         dot.classList.add('off');
         label.textContent = 'no transmission';
-        if (lastTrack !== null) {
-          lastTrack = null;
-          rollSlot('trackSlot',  `<span class="t-dim">—</span>`, 0);
-          rollSlot('artistSlot', `<span class="t-artist"></span>`, 80);
-          rollSlot('albumSlot',  `<span class="t-album"></span>`, 160);
+        if (currentData !== null) {
+          currentData = null;
+          setLines(['—']);
         }
       }
     }
