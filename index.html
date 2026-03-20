@@ -80,8 +80,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
+      gap: 2rem;
+      flex-wrap: nowrap;
     }
 
     .inline-footer a, .signal-trigger, .proprietor-trigger {
@@ -96,6 +96,7 @@
       cursor: pointer;
       font-family: 'Courier New', Courier, monospace;
       padding: 0;
+      white-space: nowrap;
     }
 
     .inline-footer a:hover, .signal-trigger:hover, .proprietor-trigger:hover { color: var(--accent); }
@@ -104,7 +105,7 @@
       text-align: center;
       font-size: 0.6rem;
       letter-spacing: 0.12em;
-      color: #2e2d2b;
+      color: #4a4845;
       font-family: 'Courier New', Courier, monospace;
       text-transform: lowercase;
       margin-top: 0.6rem;
@@ -258,7 +259,11 @@
       }
 
       .inline-footer {
-        gap: 1.5rem;
+        gap: 1.2rem;
+      }
+
+      .inline-footer a, .signal-trigger, .proprietor-trigger {
+        font-size: 0.6rem;
       }
 
       .signal-form {
@@ -296,7 +301,6 @@
     </div>
   </main>
 
-  <!-- Signal overlay -->
   <div class="overlay" id="overlay">
     <div class="signal-form">
       <div class="signal-row">
@@ -321,7 +325,6 @@
   </div>
 
   <script>
-    // ── Play/Pause ──
     const audio = document.getElementById('audio');
     const playBtn = document.getElementById('playBtn');
     const playIcon = document.getElementById('playIcon');
@@ -346,12 +349,10 @@
       playBtn.classList.remove('playing');
     });
 
-    // ── Proprietor ──
     document.getElementById('proprietorTrigger').addEventListener('click', () => {
       window.location.href = 'proprietor.html';
     });
 
-    // ── Signal form ──
     const overlay = document.getElementById('overlay');
     const signalTrigger = document.getElementById('signalTrigger');
     const closeBtn = document.getElementById('closeBtn');
