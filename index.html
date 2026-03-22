@@ -42,6 +42,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 2rem 1.5rem;
     }
 
     .center-block {
@@ -49,7 +50,8 @@
       flex-direction: column;
       align-items: center;
       gap: 3.5rem;
-      margin-bottom: 6rem;
+      width: 100%;
+      max-width: 480px;
     }
 
     .play-btn {
@@ -80,8 +82,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
-      flex-wrap: nowrap;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .inline-footer a, .signal-trigger, .proprietor-trigger {
@@ -108,7 +111,7 @@
       color: #4a4845;
       font-family: 'Courier New', Courier, monospace;
       text-transform: lowercase;
-      margin-top: 0.6rem;
+      margin-top: -2rem;
     }
 
     .overlay {
@@ -252,31 +255,52 @@
       margin-top: 0.5rem;
     }
 
+    /* ── Mobile ── */
     @media (max-width: 480px) {
+      main {
+        padding: 1.5rem 1rem;
+      }
+
       .center-block {
         gap: 2.5rem;
-        margin-bottom: 4rem;
       }
 
       .inline-footer {
-        gap: 1.2rem;
+        gap: 1rem 1.4rem;
+        /* allow two rows of 3 on small screens */
+        max-width: 280px;
       }
 
-      .inline-footer a, .signal-trigger, .proprietor-trigger {
-        font-size: 0.6rem;
+      .inline-footer a,
+      .signal-trigger,
+      .proprietor-trigger {
+        font-size: 0.65rem;
       }
 
       .signal-form {
-        padding: 0 1.2rem;
+        padding: 0 1rem;
       }
 
+      /* prevent iOS zoom on input focus */
       .signal-form input,
       .signal-form textarea {
         font-size: 16px;
+        letter-spacing: 0.08em;
       }
 
       .signal-label {
         font-size: 16px;
+      }
+
+      .est {
+        margin-top: -1.5rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .inline-footer {
+        max-width: 240px;
+        gap: 0.8rem 1rem;
       }
     }
   </style>
