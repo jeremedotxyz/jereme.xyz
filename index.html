@@ -20,8 +20,8 @@
       --fg: #d4d0c8;
       --dim: #4a4845;
       --accent: #c8b89a;
+      --accent-glow: rgba(200, 184, 154, 0.15);
       --border: #1e1e1e;
-      --input-bg: #0f0f0f;
     }
 
     html, body {
@@ -29,6 +29,45 @@
       background: var(--bg);
       color: var(--fg);
       font-family: 'Courier New', Courier, monospace;
+      cursor: none;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+      animation: grain 0.8s steps(2) infinite;
+    }
+
+    @keyframes grain {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(-2px, 1px); }
+      50%  { transform: translate(1px, -2px); }
+      75%  { transform: translate(2px, 1px); }
+      100% { transform: translate(-1px, 2px); }
+    }
+
+    /* ── Scanlines ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
     }
 
     body {
@@ -43,8 +82,37 @@
       align-items: center;
       justify-content: center;
       padding: 2rem 1.5rem;
+      position: relative;
+      z-index: 10;
     }
 
+    /* ── Custom cursor ── */
+    #cursor {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s, opacity 0.2s;
+      mix-blend-mode: screen;
+    }
+
+    #cursor-trail {
+      position: fixed;
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(200,184,154,0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: left 0.12s ease-out, top 0.12s ease-out;
+    }
+
+    /* ── Center block ── */
     .center-block {
       display: flex;
       flex-direction: column;
@@ -54,14 +122,32 @@
       max-width: 480px;
     }
 
+    /* ── Staggered fade-in ── */
+    .fade-in {
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.35s; }
+    .fade-in:nth-child(3) { animation-delay: 0.55s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Play button ── */
     .play-btn {
       background: transparent;
       border: none;
-      cursor: pointer;
+      cursor: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
+      padding: 1.2rem;
+      position: relative;
+      border-radius: 50%;
       transition: opacity 0.2s;
     }
 
@@ -72,12 +158,15 @@
       height: 18px;
       fill: var(--fg);
       transition: fill 0.2s;
+      position: relative;
+      z-index: 1;
     }
 
     .play-btn:hover svg { fill: var(--accent); }
 
     audio { display: none; }
 
+    /* ── Footer nav ── */
     .inline-footer {
       display: flex;
       align-items: center;
@@ -88,50 +177,71 @@
     }
 
     .inline-footer a, .signal-trigger, .proprietor-trigger {
-      color: var(--fg);
+      color: var(--dim);
       text-decoration: none;
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: lowercase;
-      transition: color 0.2s;
+      transition: color 0.2s, text-shadow 0.2s;
       background: none;
       border: none;
-      cursor: pointer;
+      cursor: none;
       font-family: 'Courier New', Courier, monospace;
       padding: 0;
       white-space: nowrap;
     }
 
-    .inline-footer a:hover, .signal-trigger:hover, .proprietor-trigger:hover { color: var(--accent); }
+    .inline-footer a:hover,
+    .signal-trigger:hover,
+    .proprietor-trigger:hover {
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(200,184,154,0.4);
+    }
 
     .est {
       text-align: center;
       font-size: 0.6rem;
       letter-spacing: 0.12em;
-      color: #4a4845;
+      color: #2a2826;
       font-family: 'Courier New', Courier, monospace;
       text-transform: lowercase;
       margin-top: -2rem;
     }
 
+    /* ── Overlay ── */
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(10,10,10,0.92);
+      background: rgba(10,10,10,0.94);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.25s;
+      transition: opacity 0.3s;
       z-index: 100;
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(4px);
     }
 
     .overlay.open {
       opacity: 1;
       pointer-events: all;
     }
+
+    /* thin accent line top */
+    .overlay::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s 0.15s;
+    }
+
+    .overlay.open::before { opacity: 0.4; }
 
     .signal-form {
       width: 100%;
@@ -140,8 +250,8 @@
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
-      transform: translateY(8px);
-      transition: transform 0.25s;
+      transform: translateY(12px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .overlay.open .signal-form {
@@ -153,6 +263,11 @@
       align-items: center;
       gap: 1.2rem;
       border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .signal-row:focus-within {
+      border-color: rgba(200,184,154,0.3);
     }
 
     .signal-row--msg {
@@ -162,13 +277,18 @@
     .signal-label {
       font-size: 0.7rem;
       letter-spacing: 0.12em;
-      color: var(--fg);
+      color: var(--dim);
       text-transform: lowercase;
       font-family: 'Courier New', Courier, monospace;
       white-space: nowrap;
       width: 2.5rem;
       flex-shrink: 0;
       padding: 0.5rem 0;
+      transition: color 0.2s;
+    }
+
+    .signal-row:focus-within .signal-label {
+      color: var(--accent);
     }
 
     .signal-form input,
@@ -183,6 +303,7 @@
       padding: 0.5rem 0;
       outline: none;
       width: 100%;
+      caret-color: var(--accent);
     }
 
     .signal-form textarea {
@@ -194,7 +315,7 @@
     .signal-form input::placeholder,
     .signal-form textarea::placeholder {
       color: var(--dim);
-      opacity: 0.4;
+      opacity: 0.3;
     }
 
     .form-actions {
@@ -208,16 +329,16 @@
       font-family: 'Courier New', Courier, monospace;
       font-size: 0.7rem;
       letter-spacing: 0.12em;
-      color: var(--fg);
+      color: var(--dim);
       background: none;
       border: none;
-      cursor: pointer;
+      cursor: none;
       transition: color 0.2s;
       padding: 0;
       text-transform: lowercase;
     }
 
-    .close-btn:hover { color: var(--accent); }
+    .close-btn:hover { color: var(--fg); }
 
     .send-btn {
       font-family: 'Courier New', Courier, monospace;
@@ -226,14 +347,18 @@
       color: var(--fg);
       background: none;
       border: none;
-      cursor: pointer;
+      cursor: none;
       padding: 0;
       text-transform: lowercase;
-      transition: color 0.2s;
+      transition: color 0.2s, text-shadow 0.2s;
     }
 
-    .send-btn:hover { color: var(--accent); }
-    .send-btn:disabled { opacity: 0.4; cursor: default; }
+    .send-btn:hover {
+      color: var(--accent);
+      text-shadow: 0 0 12px rgba(200,184,154,0.5);
+    }
+
+    .send-btn:disabled { opacity: 0.3; cursor: default; }
 
     .status-msg {
       font-size: 0.7rem;
@@ -249,71 +374,54 @@
     .form-disclaimer {
       font-size: 0.6rem;
       letter-spacing: 0.08em;
-      color: var(--fg);
+      color: #2e2c2a;
       text-align: center;
       line-height: 1.6;
       margin-top: 0.5rem;
     }
 
+    /* ── Transmit animation ── */
+    @keyframes transmitting {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    .transmitting { animation: transmitting 0.6s ease infinite; }
+
     /* ── Mobile ── */
     @media (max-width: 480px) {
-      main {
-        padding: 1.5rem 1rem;
-      }
+      #cursor, #cursor-trail { display: none; }
+      body { cursor: auto; }
+      .play-btn, .inline-footer a, .signal-trigger,
+      .proprietor-trigger, .close-btn, .send-btn { cursor: pointer; }
 
-      .center-block {
-        gap: 2.5rem;
-      }
-
-      .inline-footer {
-        gap: 1rem 1.4rem;
-        /* allow two rows of 3 on small screens */
-        max-width: 280px;
-      }
-
-      .inline-footer a,
-      .signal-trigger,
-      .proprietor-trigger {
-        font-size: 0.65rem;
-      }
-
-      .signal-form {
-        padding: 0 1rem;
-      }
-
-      /* prevent iOS zoom on input focus */
-      .signal-form input,
-      .signal-form textarea {
-        font-size: 16px;
-        letter-spacing: 0.08em;
-      }
-
-      .signal-label {
-        font-size: 16px;
-      }
-
-      .est {
-        margin-top: -1.5rem;
-      }
+      main { padding: 1.5rem 1rem; }
+      .center-block { gap: 2.5rem; }
+      .inline-footer { gap: 1rem 1.4rem; max-width: 280px; }
+      .inline-footer a, .signal-trigger, .proprietor-trigger { font-size: 0.65rem; }
+      .signal-form { padding: 0 1rem; }
+      .signal-form input, .signal-form textarea { font-size: 16px; letter-spacing: 0.08em; }
+      .signal-label { font-size: 16px; }
+      .est { margin-top: -1.5rem; }
     }
 
     @media (max-width: 360px) {
-      .inline-footer {
-        max-width: 240px;
-        gap: 0.8rem 1rem;
-      }
+      .inline-footer { max-width: 240px; gap: 0.8rem 1rem; }
     }
   </style>
 </head>
 <body>
 
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
   <main>
     <div class="center-block">
-      <button class="play-btn" id="playBtn" aria-label="Play">
+      <button class="play-btn fade-in" id="playBtn" aria-label="Play">
         <svg viewBox="0 0 16 16" id="playIcon"><polygon points="3,1 14,8 3,15"/></svg>
       </button>
       <audio id="audio" src="audio.mp3"></audio>
-      <nav class="inline-footer">
+      <nav class="inline-footer fade-in">
         <a href="https://www.threads.com/@jeremedotxyz" target="_blank" rel="noopener">field notes</a>
         <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" rel="noopener">exposures</a>
         <button class="proprietor-trigger" id="proprietorTrigger">proprietor</button>
@@ -321,7 +429,7 @@
         <a href="latlong.html">lat/long</a>
         <button class="signal-trigger" id="signalTrigger">signal</button>
       </nav>
-      <p class="est">est. 2021</p>
+      <p class="est fade-in">est. 2021</p>
     </div>
   </main>
 
@@ -349,12 +457,30 @@
   </div>
 
   <script>
-    const audio = document.getElementById('audio');
-    const playBtn = document.getElementById('playBtn');
+    /* ── Custom cursor ── */
+    const cursor = document.getElementById('cursor');
+    const trail  = document.getElementById('cursor-trail');
+    let mx = 0, my = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+    });
+
+    // trail lags behind via CSS transition, just update position
+    setInterval(() => {
+      trail.style.left = mx + 'px';
+      trail.style.top  = my + 'px';
+    }, 30);
+
+    /* ── Audio ── */
+    const audio    = document.getElementById('audio');
+    const playBtn  = document.getElementById('playBtn');
     const playIcon = document.getElementById('playIcon');
 
     const pauseSVG = `<rect x="3" y="2" width="4" height="12"/><rect x="9" y="2" width="4" height="12"/>`;
-    const playSVG = `<polygon points="3,1 14,8 3,15"/>`;
+    const playSVG  = `<polygon points="3,1 14,8 3,15"/>`;
 
     playBtn.addEventListener('click', () => {
       if (audio.paused) {
@@ -373,18 +499,18 @@
       playBtn.classList.remove('playing');
     });
 
+    /* ── Nav ── */
     document.getElementById('proprietorTrigger').addEventListener('click', () => {
       window.location.href = 'proprietor.html';
     });
 
-    const overlay = document.getElementById('overlay');
-    const signalTrigger = document.getElementById('signalTrigger');
-    const closeBtn = document.getElementById('closeBtn');
-    const sendBtn = document.getElementById('sendBtn');
-    const statusMsg = document.getElementById('statusMsg');
+    /* ── Signal overlay ── */
+    const overlay    = document.getElementById('overlay');
+    const sendBtn    = document.getElementById('sendBtn');
+    const statusMsg  = document.getElementById('statusMsg');
 
-    signalTrigger.addEventListener('click', () => overlay.classList.add('open'));
-    closeBtn.addEventListener('click', closeOverlay);
+    document.getElementById('signalTrigger').addEventListener('click', () => overlay.classList.add('open'));
+    document.getElementById('closeBtn').addEventListener('click', closeOverlay);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
 
@@ -395,9 +521,9 @@
     }
 
     sendBtn.addEventListener('click', async () => {
-      const name = document.getElementById('sigName').value.trim();
+      const name  = document.getElementById('sigName').value.trim();
       const email = document.getElementById('sigEmail').value.trim();
-      const msg = document.getElementById('sigMsg').value.trim();
+      const msg   = document.getElementById('sigMsg').value.trim();
 
       if (!name || !email || !msg) {
         statusMsg.textContent = 'all fields required.';
@@ -407,7 +533,8 @@
 
       sendBtn.disabled = true;
       statusMsg.textContent = 'transmitting...';
-      statusMsg.className = 'status-msg';
+      statusMsg.classList.add('transmitting');
+      statusMsg.className = 'status-msg transmitting';
 
       const WEBHOOK = 'https://jereme-signal.jeremedotxyz.workers.dev';
 
@@ -421,9 +548,9 @@
         });
         statusMsg.textContent = 'signal sent.';
         statusMsg.className = 'status-msg ok';
-        document.getElementById('sigName').value = '';
+        document.getElementById('sigName').value  = '';
         document.getElementById('sigEmail').value = '';
-        document.getElementById('sigMsg').value = '';
+        document.getElementById('sigMsg').value   = '';
         setTimeout(() => closeOverlay(), 2000);
       } catch {
         statusMsg.textContent = 'transmission failed. try again.';
