@@ -32,9 +32,14 @@
       cursor: none;
     }
 
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     /* ── Grain overlay ── */
-    body::before {
-      content: '';
+    #grain {
       position: fixed;
       inset: 0;
       z-index: 1;
@@ -55,8 +60,7 @@
     }
 
     /* ── Scanlines ── */
-    body::after {
-      content: '';
+    #scanlines {
       position: fixed;
       inset: 0;
       z-index: 2;
@@ -65,15 +69,9 @@
         to bottom,
         transparent 0px,
         transparent 2px,
-        rgba(0,0,0,0.08) 2px,
-        rgba(0,0,0,0.08) 4px
+        rgba(0,0,0,0.06) 2px,
+        rgba(0,0,0,0.06) 4px
       );
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
     }
 
     main {
@@ -398,11 +396,17 @@
       main { padding: 1.5rem 1rem; }
       .center-block { gap: 2.5rem; }
       .inline-footer { gap: 1rem 1.4rem; max-width: 280px; }
-      .inline-footer a, .signal-trigger, .proprietor-trigger { font-size: 0.65rem; }
+      .inline-footer a, .signal-trigger, .proprietor-trigger {
+        font-size: 0.65rem;
+        color: var(--fg); /* fully visible on mobile, no hover needed */
+      }
       .signal-form { padding: 0 1rem; }
       .signal-form input, .signal-form textarea { font-size: 16px; letter-spacing: 0.08em; }
       .signal-label { font-size: 16px; }
-      .est { margin-top: -1.5rem; }
+      .est {
+        margin-top: -1.5rem;
+        color: var(--dim); /* slightly more visible on mobile */
+      }
     }
 
     @media (max-width: 360px) {
@@ -412,6 +416,8 @@
 </head>
 <body>
 
+  <div id="grain"></div>
+  <div id="scanlines"></div>
   <div id="cursor"></div>
   <div id="cursor-trail"></div>
 
