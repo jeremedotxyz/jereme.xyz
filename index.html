@@ -29,7 +29,6 @@
       background: var(--bg);
       color: var(--fg);
       font-family: 'Courier New', Courier, monospace;
-      cursor: none;
     }
 
     body {
@@ -84,32 +83,6 @@
       z-index: 10;
     }
 
-    /* ── Custom cursor ── */
-    #cursor {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.05s, opacity 0.2s;
-      mix-blend-mode: screen;
-    }
-
-    #cursor-trail {
-      position: fixed;
-      width: 24px;
-      height: 24px;
-      border: 1px solid rgba(200,184,154,0.2);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: left 0.12s ease-out, top 0.12s ease-out;
-    }
-
     /* ── Center block ── */
     .center-block {
       display: flex;
@@ -139,7 +112,7 @@
     .play-btn {
       background: transparent;
       border: none;
-      cursor: none;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -183,7 +156,7 @@
       transition: color 0.2s, text-shadow 0.2s;
       background: none;
       border: none;
-      cursor: none;
+      cursor: pointer;
       font-family: 'Courier New', Courier, monospace;
       padding: 0;
       white-space: nowrap;
@@ -226,7 +199,6 @@
       pointer-events: all;
     }
 
-    /* thin accent line top */
     .overlay::before {
       content: '';
       position: absolute;
@@ -330,7 +302,7 @@
       color: var(--dim);
       background: none;
       border: none;
-      cursor: none;
+      cursor: pointer;
       transition: color 0.2s;
       padding: 0;
       text-transform: lowercase;
@@ -345,7 +317,7 @@
       color: var(--fg);
       background: none;
       border: none;
-      cursor: none;
+      cursor: pointer;
       padding: 0;
       text-transform: lowercase;
       transition: color 0.2s, text-shadow 0.2s;
@@ -388,24 +360,19 @@
 
     /* ── Mobile ── */
     @media (max-width: 480px) {
-      #cursor, #cursor-trail { display: none; }
-      body { cursor: auto; }
-      .play-btn, .inline-footer a, .signal-trigger,
-      .proprietor-trigger, .close-btn, .send-btn { cursor: pointer; }
-
       main { padding: 1.5rem 1rem; }
       .center-block { gap: 2.5rem; }
       .inline-footer { gap: 1rem 1.4rem; max-width: 280px; }
       .inline-footer a, .signal-trigger, .proprietor-trigger {
         font-size: 0.65rem;
-        color: var(--fg); /* fully visible on mobile, no hover needed */
+        color: var(--fg);
       }
       .signal-form { padding: 0 1rem; }
       .signal-form input, .signal-form textarea { font-size: 16px; letter-spacing: 0.08em; }
       .signal-label { font-size: 16px; }
       .est {
         margin-top: -1.5rem;
-        color: var(--dim); /* slightly more visible on mobile */
+        color: var(--dim);
       }
     }
 
@@ -418,8 +385,6 @@
 
   <div id="grain"></div>
   <div id="scanlines"></div>
-  <div id="cursor"></div>
-  <div id="cursor-trail"></div>
 
   <main>
     <div class="center-block">
@@ -463,23 +428,6 @@
   </div>
 
   <script>
-    /* ── Custom cursor ── */
-    const cursor = document.getElementById('cursor');
-    const trail  = document.getElementById('cursor-trail');
-    let mx = 0, my = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top  = my + 'px';
-    });
-
-    // trail lags behind via CSS transition, just update position
-    setInterval(() => {
-      trail.style.left = mx + 'px';
-      trail.style.top  = my + 'px';
-    }, 30);
-
     /* ── Audio ── */
     const audio    = document.getElementById('audio');
     const playBtn  = document.getElementById('playBtn');
@@ -539,7 +487,6 @@
 
       sendBtn.disabled = true;
       statusMsg.textContent = 'transmitting...';
-      statusMsg.classList.add('transmitting');
       statusMsg.className = 'status-msg transmitting';
 
       const WEBHOOK = 'https://jereme-signal.jeremedotxyz.workers.dev';
