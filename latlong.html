@@ -3,211 +3,405 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🧭</title>
+  <title>now playing — jereme.xyz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0a;
-      --fg: #d4d0c8;
-      --dim: #4a4845;
-      --accent: #c8b89a;
+      --bg: #f5f5f0;
+      --bg2: #eeeee8;
+      --fg: #111110;
+      --dim: #888882;
+      --accent: #111110;
+      --accent-2: #444440;
+      --border: #d4d4cc;
+      --amber: #b84010;
+      --scanline: rgba(0,0,0,0.012);
+      --px: 'Share Tech Mono', 'Courier New', monospace;
     }
 
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Courier New', Courier, monospace;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--px);
+      overflow-x: hidden;
       min-height: 100vh;
+      animation: flicker 10s infinite;
     }
 
-    .center-block {
-      display: flex;
-      flex-direction: column;
+    /* ── overlays ── */
+    #crt-vignette {
+      position: fixed; inset: 0; z-index: 3; pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.1) 100%);
+    }
+    #phosphor {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 40%, rgba(200,200,180,0.05) 0%, transparent 70%);
+    }
+    #scanlines {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom, transparent 0px, transparent 3px,
+        var(--scanline) 3px, var(--scanline) 4px
+      );
+    }
+    #grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      animation: grain 0.8s steps(2) infinite;
+    }
+
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      25%  { transform: translate(-2px,1px); }
+      50%  { transform: translate(1px,-2px); }
+      75%  { transform: translate(2px,1px); }
+      100% { transform: translate(-1px,2px); }
+    }
+    @keyframes flicker {
+      0%,94%,100% { opacity: 1; }
+      95% { opacity: 0.97; }
+      97% { opacity: 0.99; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse-bar {
+      0%,100% { transform: scaleY(0.3); }
+      50%     { transform: scaleY(1); }
+    }
+
+    /* ── nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.4s, background 0.4s;
+    }
+    nav.scrolled {
+      border-color: var(--border);
+      background: rgba(245,245,240,0.95);
+    }
+    .nav-logo {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-logo:hover { color: var(--amber); }
+    .nav-right {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--border);
+    }
+    .blink {
+      animation: blink 1.2s step-end infinite;
+      color: var(--amber);
+    }
+
+    /* ── main ── */
+    main {
+      position: relative; z-index: 10;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10rem 3rem 8rem;
+    }
+
+    .section-label {
+      font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--border); margin-bottom: 4rem;
+      opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .section-label::before { content: '// '; color: var(--amber); opacity: 0.6; }
+
+    /* ── now playing row ── */
+    .now-playing-wrap {
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .np-row {
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
       align-items: center;
-      gap: 2.2rem;
-      width: 100%;
-      max-width: 260px;
-      margin-bottom: 6rem;
+      gap: 2rem;
+      padding: 1.6rem 0;
+    }
+    .np-row:last-child { border-bottom: 1px solid var(--border); }
+
+    .np-art {
+      width: 56px; height: 56px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .np-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .np-art-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .np-dot {
-      width: 5px;
-      height: 5px;
+    .vinyl {
+      width: 32px; height: 32px;
       border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 1.6s ease-in-out infinite;
-      margin: 0 auto 0.5rem;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
     }
-    .np-dot.off { animation: none; opacity: 0.3; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-    .np-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      color: #8a8784;
-      text-transform: lowercase;
-      text-align: center;
-      margin-bottom: 1.2rem;
+    .vinyl::after {
+      content: ''; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--amber);
     }
+    .vinyl.spinning { animation: spin 2s linear infinite; }
 
-    .stage {
-      width: 100%;
-      position: relative;
-      text-align: center;
-      min-height: 1.3rem;
-    }
-
-    .stage-text {
-      width: 100%;
-      font-family: 'Courier New', Courier, monospace;
-      text-transform: lowercase;
-      letter-spacing: 0.12em;
-      font-size: 0.7rem;
-      line-height: 1.6;
-      display: block;
-      transition: opacity 0.5s;
-    }
-
-    .stage-text.active {
-      opacity: 1;
+    .np-meta { min-width: 0; }
+    .np-track {
+      font-size: clamp(1rem, 3vw, 1.8rem);
+      letter-spacing: 0.04em;
       color: var(--fg);
-      position: relative;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .np-artist {
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); margin-top: 0.4rem;
     }
 
-    .stage-text.enter {
+    .np-right { text-align: right; flex-shrink: 0; }
+
+    .bars {
+      display: flex; align-items: flex-end; gap: 3px; height: 18px;
+    }
+    .bar {
+      width: 3px; background: var(--amber);
+      transform-origin: bottom;
+    }
+    .bar:nth-child(1) { animation: pulse-bar 0.9s ease-in-out 0.0s infinite; }
+    .bar:nth-child(2) { animation: pulse-bar 0.9s ease-in-out 0.2s infinite; }
+    .bar:nth-child(3) { animation: pulse-bar 0.9s ease-in-out 0.1s infinite; }
+    .bar:nth-child(4) { animation: pulse-bar 0.9s ease-in-out 0.3s infinite; }
+
+    .np-status {
+      font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--border); margin-top: 0.5rem;
+    }
+
+    /* ── progress ── */
+    .np-progress-wrap {
+      margin-top: 2rem;
       opacity: 0;
-      color: var(--fg);
-      position: absolute;
-      top: 0; left: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+    .np-progress-label {
+      font-size: 0.5rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--border); margin-bottom: 0.6rem;
+    }
+    .np-progress-bar-bg {
+      height: 1px; background: var(--border); position: relative;
+    }
+    .np-progress-bar-fill {
+      height: 100%; background: var(--amber);
+      transition: width 0.5s linear;
+    }
+    .np-progress-times {
+      display: flex; justify-content: space-between;
+      font-size: 0.5rem; letter-spacing: 0.15em;
+      color: var(--border); margin-top: 0.4rem;
     }
 
-    .stage-text.exit {
-      opacity: 0;
-      color: var(--fg);
-      position: absolute;
-      top: 0; left: 0;
+    .error-msg {
+      font-size: 0.6rem; letter-spacing: 0.15em;
+      color: var(--dim); margin-top: 1rem;
     }
 
-    .back {
-      font-size: 0.55rem;
-      letter-spacing: 0.12em;
-      color: #4a4845;
-      font-family: 'Courier New', Courier, monospace;
-      text-transform: lowercase;
-      background: none;
-      border: none;
-      outline: none;
-      appearance: none;
-      cursor: pointer;
-      padding: 0;
-      transition: color 0.2s;
+    /* ── footer ── */
+    footer {
+      position: relative; z-index: 10;
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
-    .back:hover { color: var(--accent); }
+    footer span {
+      font-size: 0.52rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--border);
+    }
+
+    /* ── mobile ── */
+    @media (max-width: 640px) {
+      nav, main, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .np-row { grid-template-columns: 44px 1fr; gap: 1rem; }
+      .np-right { display: none; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="center-block">
-    <div style="width:100%;">
-      <div class="np-dot" id="dot"></div>
-      <div class="np-label" id="npLabel">—</div>
-      <div class="stage" id="stage">
-        <div class="stage-text active" id="currentLine">—</div>
+  <div id="grain"></div>
+  <div id="scanlines"></div>
+  <div id="phosphor"></div>
+  <div id="crt-vignette"></div>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">jereme.xyz</a>
+    <span class="nav-right">now playing<span class="blink">_</span></span>
+  </nav>
+
+  <main>
+    <div class="section-label">signal / audio</div>
+
+    <div class="now-playing-wrap">
+      <div class="np-row">
+        <div class="np-art" id="np-art">
+          <div class="np-art-placeholder">
+            <div class="vinyl spinning" id="vinyl"></div>
+          </div>
+        </div>
+        <div class="np-meta">
+          <div class="np-track" id="np-track">—</div>
+          <div class="np-artist" id="np-artist">loading signal</div>
+        </div>
+        <div class="np-right">
+          <div class="bars" id="np-bars">
+            <div class="bar" style="height:14px"></div>
+            <div class="bar" style="height:8px"></div>
+            <div class="bar" style="height:18px"></div>
+            <div class="bar" style="height:10px"></div>
+          </div>
+          <div class="np-status" id="np-status">fetching</div>
+        </div>
       </div>
     </div>
-    <button class="back" onclick="window.location.href='index.html'">back</button>
-  </div>
+
+    <div class="np-progress-wrap" id="np-progress-wrap" style="display:none">
+      <div class="np-progress-label">// progress</div>
+      <div class="np-progress-bar-bg">
+        <div class="np-progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="np-progress-times">
+        <span id="time-current">0:00</span>
+        <span id="time-total">0:00</span>
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg" style="display:none"></div>
+  </main>
+
+  <footer>
+    <span>jereme.xyz</span>
+    <span>always on<span class="blink">_</span></span>
+  </footer>
 
   <script>
-    const WORKER = 'https://jereme-latlong.jeremedotxyz.workers.dev/';
+    // nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
 
-    let lines = ['—'];
-    let lineIdx = 0;
-    let rollInterval = null;
-    let currentData = null;
+    // ── config ──
+    // swap this for your actual Spotify Cloudflare Worker URL
+    const WORKER_URL = 'https://jereme-now-playing.jereme.workers.dev';
 
-    function rollNext() {
-      if (lines.length <= 1) return;
-      lineIdx = (lineIdx + 1) % lines.length;
-
-      const stage = document.getElementById('stage');
-      const current = stage.querySelector('.active');
-      const next = document.createElement('div');
-      next.className = 'stage-text enter';
-      next.textContent = lines[lineIdx];
-      stage.appendChild(next);
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          current.classList.remove('active');
-          current.classList.add('exit');
-          next.classList.remove('enter');
-          next.classList.add('active');
-          setTimeout(() => current.remove(), 600);
-        });
-      });
+    function fmtTime(ms) {
+      const s = Math.floor(ms / 1000);
+      return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
     }
 
-    function setLines(newLines) {
-      lines = newLines;
-      lineIdx = 0;
+    let progressInterval = null;
+    let currentProgress = 0;
+    let currentDuration = 0;
+    let isPlaying = false;
 
-      const stage = document.getElementById('stage');
-      const current = stage.querySelector('.active');
-      if (current) current.textContent = lines[0];
-
-      if (rollInterval) clearInterval(rollInterval);
-      if (lines.length > 1) {
-        rollInterval = setInterval(rollNext, 2500);
-      }
+    function tickProgress() {
+      if (!isPlaying) return;
+      currentProgress = Math.min(currentProgress + 1000, currentDuration);
+      const pct = currentDuration > 0 ? (currentProgress / currentDuration) * 100 : 0;
+      document.getElementById('progress-fill').style.width = pct.toFixed(1) + '%';
+      document.getElementById('time-current').textContent = fmtTime(currentProgress);
     }
 
-    function update(data) {
-      const dot = document.getElementById('dot');
-      const label = document.getElementById('npLabel');
-
-      if (data.playing) {
-        dot.classList.remove('off');
-        label.textContent = 'now playing';
-
-        const trackKey = data.track + data.artist;
-        if (!currentData || currentData !== trackKey) {
-          currentData = trackKey;
-          const newLines = [data.track.toLowerCase()];
-          if (data.artist) newLines.push(data.artist.toLowerCase());
-          if (data.album) newLines.push(data.album.toLowerCase());
-          setLines(newLines);
-        }
-      } else {
-        dot.classList.add('off');
-        label.textContent = 'no transmission';
-        if (currentData !== null) {
-          currentData = null;
-          setLines(['—']);
-        }
-      }
-    }
-
-    async function poll() {
+    async function fetchNowPlaying() {
       try {
-        const res = await fetch(WORKER);
+        const res = await fetch(WORKER_URL);
+
+        if (res.status === 204) {
+          setIdle('nothing playing');
+          return;
+        }
+        if (!res.ok) throw new Error(`${res.status}`);
+
         const data = await res.json();
-        update(data);
+        isPlaying = data.is_playing;
+        currentProgress = data.progress_ms || 0;
+        currentDuration = data.item?.duration_ms || 0;
+
+        const track = data.item;
+        if (!track) { setIdle('no track data'); return; }
+
+        document.getElementById('np-track').textContent = track.name;
+        document.getElementById('np-artist').textContent =
+          track.artists?.map(a => a.name).join(', ') || '—';
+        document.getElementById('np-status').textContent =
+          isPlaying ? 'now playing' : 'paused';
+
+        // album art
+        const artUrl = track.album?.images?.[0]?.url;
+        const artEl = document.getElementById('np-art');
+        if (artUrl) {
+          artEl.innerHTML = `<img src="${artUrl}" alt="album art">`;
+        } else {
+          artEl.innerHTML = `<div class="np-art-placeholder"><div class="vinyl ${isPlaying ? 'spinning' : ''}"></div></div>`;
+        }
+
+        // bars
+        document.getElementById('np-bars').style.display = isPlaying ? 'flex' : 'none';
+
+        // progress
+        if (currentDuration > 0) {
+          document.getElementById('np-progress-wrap').style.display = 'block';
+          document.getElementById('time-total').textContent = fmtTime(currentDuration);
+          document.getElementById('time-current').textContent = fmtTime(currentProgress);
+          const pct = (currentProgress / currentDuration) * 100;
+          document.getElementById('progress-fill').style.width = pct.toFixed(1) + '%';
+        }
+
+        document.getElementById('error-msg').style.display = 'none';
+
+        // tick
+        if (progressInterval) clearInterval(progressInterval);
+        if (isPlaying) progressInterval = setInterval(tickProgress, 1000);
+
       } catch (e) {
-        console.error('poll failed', e);
+        document.getElementById('error-msg').textContent = `// signal lost — ${e.message}`;
+        document.getElementById('error-msg').style.display = 'block';
+        setIdle('signal lost');
       }
     }
 
-    poll();
-    setInterval(poll, 30000);
+    function setIdle(msg) {
+      document.getElementById('np-track').textContent = '—';
+      document.getElementById('np-artist').textContent = msg;
+      document.getElementById('np-status').textContent = 'offline';
+      document.getElementById('np-bars').style.display = 'none';
+      document.getElementById('np-progress-wrap').style.display = 'none';
+      document.getElementById('np-art').innerHTML =
+        `<div class="np-art-placeholder"><div class="vinyl"></div></div>`;
+      isPlaying = false;
+      if (progressInterval) clearInterval(progressInterval);
+    }
+
+    fetchNowPlaying();
+    setInterval(fetchNowPlaying, 30000);
   </script>
 
 </body>
