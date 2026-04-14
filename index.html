@@ -22,6 +22,7 @@
       --scanline: rgba(0,0,0,0.012);
       --px: 'Share Tech Mono', 'Courier New', monospace;
       --pad: clamp(1.25rem, 5vw, 3rem);
+      --green: #1DB954;
     }
 
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -174,21 +175,132 @@
       opacity: 0;
     }
 
-    .hero-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-bottom: 2rem;
+    /* ── NOW PLAYING ── */
+    #now-playing {
+      margin-top: clamp(2rem, 6vw, 3.5rem);
       opacity: 0;
+      animation: fadeUp 0.6s ease 3.8s forwards;
     }
 
-    .hero-location {
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
+    .np-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--border);
+      margin-bottom: 0.75rem;
     }
-    .hero-location::before { content: '↓ '; color: var(--amber); }
+    .np-label::before { content: '// '; color: var(--amber); opacity: 0.6; }
+
+    .np-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.02);
+      max-width: 340px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    /* subtle scan shimmer on the now-playing card */
+    .np-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom, transparent 0px, transparent 3px,
+        rgba(0,0,0,0.015) 3px, rgba(0,0,0,0.015) 4px
+      );
+      pointer-events: none;
+    }
+
+    .np-inner.playing {
+      border-color: rgba(29,185,84,0.3);
+    }
+
+    /* album art */
+    .np-art {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      background: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .np-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* equalizer bars overlay when playing */
+    .np-art .eq {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 2px;
+      padding: 6px 8px;
+      background: rgba(0,0,0,0.5);
+    }
+    .np-inner.playing .np-art .eq { display: flex; }
+    .eq-bar {
+      width: 3px;
+      background: var(--green);
+      border-radius: 1px;
+      transform-origin: bottom;
+      animation: eqPulse 0.6s ease-in-out infinite alternate;
+    }
+    .eq-bar:nth-child(1) { animation-delay: 0s;    animation-duration: 0.5s; }
+    .eq-bar:nth-child(2) { animation-delay: 0.15s; animation-duration: 0.7s; }
+    .eq-bar:nth-child(3) { animation-delay: 0.05s; animation-duration: 0.45s; }
+    @keyframes eqPulse {
+      from { height: 4px; }
+      to   { height: 18px; }
+    }
+
+    .np-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .np-track {
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      color: var(--fg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .np-artist {
+      font-size: 0.52rem;
+      letter-spacing: 0.1em;
+      color: var(--dim);
+      margin-top: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .np-status {
+      font-size: 0.48rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+    .np-status.live { color: var(--green); }
+    .np-status.recent { color: var(--border); }
+
+    .np-icon {
+      flex-shrink: 0;
+      color: var(--border);
+      transition: color 0.2s;
+    }
+    .np-inner.playing .np-icon { color: var(--green); }
+
+    /* offline / hidden */
+    #now-playing.hidden { display: none; }
 
     /* ── VENTURES ── */
     #ventures {
@@ -313,6 +425,8 @@
       #site-footer {
         padding: 0 var(--pad) clamp(1rem, 5vw, 1.5rem);
       }
+
+      .np-inner { max-width: 100%; }
     }
 
     @media (max-width: 360px) {
@@ -350,9 +464,30 @@
         always on, kinda.
       </p>
     </div>
+
+    <!-- NOW PLAYING -->
+    <div id="now-playing" class="hidden">
+      <div class="np-label">now playing</div>
+      <a class="np-inner" id="np-inner" href="#" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="np-art" id="np-art">
+          <img id="np-img" src="" alt="" />
+          <div class="eq">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+          </div>
+        </div>
+        <div class="np-meta">
+          <div class="np-track" id="np-track">—</div>
+          <div class="np-artist" id="np-artist">—</div>
+          <div class="np-status" id="np-status"></div>
+        </div>
+        <div class="np-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </div>
+      </a>
+    </div>
   </section>
-
-
 
   <footer id="site-footer">
     <div class="contact-socials" id="hero-socials">
@@ -376,14 +511,13 @@
   </footer>
 
   <script>
+    // ── NAME ANIMATION ──
     const nameEl = document.getElementById('hero-name');
-
     const groups = [
       { chars: 'jereme', amber: false, startDelay: 0.9,  step: 0.07 },
       { chars: '.',      amber: true,  startDelay: 2.2,  step: 0,    isDot: true },
       { chars: 'xyz',    amber: true,  startDelay: 0.4,  step: 0.07 },
     ];
-
     groups.forEach(group => {
       [...group.chars].forEach((char, i) => {
         const span = document.createElement('span');
@@ -398,11 +532,13 @@
     const tagline = document.getElementById('hero-tagline');
     tagline.style.animation = 'fadeUp 0.8s ease 3.4s forwards';
 
+    // ── NAV SCROLL ──
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
+    // ── VENTURE OBSERVER ──
     const items = document.querySelectorAll('.venture-item');
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
@@ -413,6 +549,54 @@
       });
     }, { threshold: 0.1 });
     items.forEach(el => io.observe(el));
+
+    // ── NOW PLAYING ──
+    async function fetchNowPlaying() {
+      const npEl    = document.getElementById('now-playing');
+      const npInner = document.getElementById('np-inner');
+      const npImg   = document.getElementById('np-img');
+      const npTrack = document.getElementById('np-track');
+      const npArtist= document.getElementById('np-artist');
+      const npStatus= document.getElementById('np-status');
+
+      try {
+        const res  = await fetch('https://jereme-now-playing.jeremedotxyz.workers.dev/');
+        if (!res.ok) return; // 401 or other error — stay hidden
+
+        const data = await res.json();
+
+        // worker should return: { isPlaying, title, artist, albumArt, songUrl, recentlyPlayed? }
+        if (!data || (!data.isPlaying && !data.title)) return;
+
+        npTrack.textContent  = data.title  || '—';
+        npArtist.textContent = data.artist || '—';
+
+        if (data.albumArt) {
+          npImg.src = data.albumArt;
+          npImg.alt = data.title || '';
+        }
+
+        if (data.songUrl) npInner.href = data.songUrl;
+
+        if (data.isPlaying) {
+          npInner.classList.add('playing');
+          npStatus.textContent = '▶ live';
+          npStatus.className   = 'np-status live';
+        } else {
+          npInner.classList.remove('playing');
+          npStatus.textContent = 'recently played';
+          npStatus.className   = 'np-status recent';
+        }
+
+        npEl.classList.remove('hidden');
+      } catch (e) {
+        // silently hide if worker is down
+      }
+    }
+
+    fetchNowPlaying();
+    // refresh every 30s
+    setInterval(fetchNowPlaying, 30000);
   </script>
 
 </body>
