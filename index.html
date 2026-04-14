@@ -204,7 +204,6 @@
       transition: border-color 0.2s;
     }
 
-    /* subtle scan shimmer on the now-playing card */
     .np-inner::after {
       content: '';
       position: absolute;
@@ -220,7 +219,6 @@
       border-color: rgba(29,185,84,0.3);
     }
 
-    /* album art */
     .np-art {
       width: 40px;
       height: 40px;
@@ -235,7 +233,6 @@
       object-fit: cover;
       display: block;
     }
-    /* equalizer bars overlay when playing */
     .np-art .eq {
       position: absolute;
       inset: 0;
@@ -299,7 +296,6 @@
     }
     .np-inner.playing .np-icon { color: var(--green); }
 
-    /* offline / hidden */
     #now-playing.hidden { display: none; }
 
     /* ── VENTURES ── */
@@ -390,9 +386,18 @@
     .hero-footer {
       border-top: 1px solid var(--border);
       padding: 1.5rem 0;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: space-between; align-items: flex-start;
     }
     .hero-footer span { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--border); }
+
+    .footer-disclaimer {
+      font-size: 0.42rem;
+      letter-spacing: 0.06em;
+      text-transform: none;
+      color: var(--border);
+      max-width: 300px;
+      line-height: 1.9;
+    }
 
     .blink { animation: blink 1.2s step-end infinite; color: var(--amber); }
     @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
@@ -420,6 +425,12 @@
 
       .hero-footer {
         padding: 1rem 0;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .footer-disclaimer {
+        max-width: 180px;
       }
 
       #site-footer {
@@ -505,7 +516,7 @@
       </a>
     </div>
     <div class="hero-footer">
-      <span></span>
+      <span class="footer-disclaimer">A personal corner of the internet for independent thought, projects, and experimentation — separate from any company, organization, board, or affiliated venture.</span>
       <span>fw/r · pine · nrthrn · drift</span>
     </div>
   </footer>
@@ -561,11 +572,10 @@
 
       try {
         const res  = await fetch('https://jereme-now-playing.jeremedotxyz.workers.dev/');
-        if (!res.ok) return; // 401 or other error — stay hidden
+        if (!res.ok) return;
 
         const data = await res.json();
 
-        // worker should return: { isPlaying, title, artist, albumArt, songUrl, recentlyPlayed? }
         if (!data || (!data.isPlaying && !data.title)) return;
 
         npTrack.textContent  = data.title  || '—';
@@ -595,7 +605,6 @@
     }
 
     fetchNowPlaying();
-    // refresh every 30s
     setInterval(fetchNowPlaying, 30000);
   </script>
 
