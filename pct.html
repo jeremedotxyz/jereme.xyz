@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pct — jereme.xyz</title>
+  <meta name="description" content="2,650 miles. campo to manning park. april 2027.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0b09;
+      --bg2: #111008;
+      --amber: #b84010;
+      --amber-dim: #7a2a0a;
+      --amber-glow: #d4500f;
+      --text: #c8b99a;
+      --text-dim: #6b5e4a;
+      --text-faint: #3a3228;
+      --mono: 'Share Tech Mono', monospace;
+      --journal: 'Special Elite', monospace;
+      --border: #2a2318;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Subtle paper grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    nav.scrolled {
+      border-color: var(--border);
+      background: rgba(12, 11, 9, 0.92);
+      backdrop-filter: blur(8px);
+    }
+    .nav-home {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-home:hover { color: var(--amber); }
+    .nav-label {
+      font-size: 12px;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
+      text-transform: lowercase;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(120px, 18vw, 240px);
+      font-family: var(--mono);
+      color: var(--text-faint);
+      opacity: 0.15;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--amber);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: var(--journal);
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title span {
+      color: var(--amber);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 48px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .hero-meta-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .hero-meta-value {
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      right: 48px;
+      font-size: 11px;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
+      writing-mode: vertical-rl;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.2s;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 900px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--amber-dim);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 120px;
+    }
+
+    /* PREMISE */
+    .premise-text {
+      font-family: var(--journal);
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+
+    .premise-sub {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .stat {
+      background: var(--bg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-value {
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--amber);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-faint);
+      letter-spacing: 0.15em;
+      text-transform: lowercase;
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    /* ROUTE */
+    .route-line {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 40px;
+    }
+
+    .route-point {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--text-faint);
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .route-point:hover { opacity: 1; }
+    .route-point.start { opacity: 1; }
+    .route-point.start .route-name { color: var(--amber); }
+
+    .route-marker {
+      font-size: 11px;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      padding-top: 2px;
+    }
+
+    .route-name {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .route-detail {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* GEAR */
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .gear-item {
+      background: var(--bg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .gear-category {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--amber-dim);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .gear-name {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .gear-note {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* LOG */
+    .log-empty {
+      padding: 48px 0;
+      font-family: var(--journal);
+      font-size: 20px;
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    .log-entry {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 32px;
+    }
+
+    .log-day {
+      font-size: 11px;
+      color: var(--amber-dim);
+      letter-spacing: 0.1em;
+      padding-top: 4px;
+    }
+
+    .log-content {
+      font-family: var(--journal);
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-dim);
+    }
+
+    .log-miles {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-top: 8px;
+    }
+
+    /* YOUTUBE CTA */
+    .cta-block {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 900px;
+    }
+
+    .cta-label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--amber-dim);
+    }
+
+    .cta-text {
+      font-family: var(--journal);
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--text);
+      line-height: 1.3;
+      max-width: 600px;
+    }
+
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--amber);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--amber-dim);
+      padding: 14px 28px;
+      width: fit-content;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      margin-top: 8px;
+    }
+    .cta-link:hover {
+      background: var(--amber);
+      color: var(--bg);
+      border-color: var(--amber);
+    }
+    .cta-link::after { content: '→'; }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-faint);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--amber); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 640px) {
+      nav, .hero, section, .cta-block, footer { padding-left: 24px; padding-right: 24px; }
+      .hero-meta { flex-wrap: wrap; gap: 24px; }
+      .route-point { grid-template-columns: 80px 1fr; gap: 16px; }
+      .log-entry { grid-template-columns: 1fr; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="/" class="nav-home">← jereme.xyz</a>
+    <span class="nav-label">pct / 2027</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-text">PCT</div>
+    <div class="hero-eyebrow">pacific crest trail — 2027</div>
+    <h1 class="hero-title">
+      campo to<br><span>manning park.</span>
+    </h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">distance</span>
+        <span class="hero-meta-value">2,653 miles</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">direction</span>
+        <span class="hero-meta-value">northbound</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">start</span>
+        <span class="hero-meta-value">april 2027</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">base</span>
+        <span class="hero-meta-value">pacific northwest</span>
+      </div>
+    </div>
+    <div class="hero-scroll">scroll</div>
+  </div>
+
+  <!-- PREMISE -->
+  <section class="reveal">
+    <div class="section-label">the premise</div>
+    <p class="premise-text">
+      a coming of age, again.<br>
+      2,653 miles on foot from the mexican border to canada.
+    </p>
+    <p class="premise-sub">
+      this isn't a fitness story. it's about what happens when you remove everything and just walk. 
+      documented in real time — drone footage, iphone, raw audio. no polish. 
+      a slow film made one day at a time.
+    </p>
+  </section>
+
+  <!-- STATS -->
+  <section class="reveal" style="padding-top: 0; max-width: 100%;">
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="stat-value">2,653</span>
+        <span class="stat-label">total miles</span>
+        <span class="stat-sub">campo, CA → manning park, BC</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">~130</span>
+        <span class="stat-label">days on trail</span>
+        <span class="stat-sub">~20 miles / day pace</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">57k+</span>
+        <span class="stat-label">elevation gain</span>
+        <span class="stat-sub">cumulative feet</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">3</span>
+        <span class="stat-label">states</span>
+        <span class="stat-sub">CA · OR · WA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTE -->
+  <section class="reveal">
+    <div class="section-label">the route</div>
+    <div class="route-line">
+      <div class="route-point start">
+        <span class="route-marker">mile 0</span>
+        <div>
+          <div class="route-name">campo, california</div>
+          <div class="route-detail">southern terminus — the monument</div>
+        </div>
+      </div>
+      <div class="route-point">
+        <span class="route-marker">mile 702</span>
+        <div>
+          <div class="route-name">kennedy meadows</div>
+          <div class="route-detail">end of the desert — sierra nevada begins</div>
+        </div>
+      </div>
+      <div class="route-point">
+        <span class="route-marker">mile 1,093</span>
+        <div>
+          <div class="route-name">south lake tahoe</div>
+          <div class="route-detail">major resupply — midpoint energy check</div>
+        </div>
+      </div>
+      <div class="route-point">
+        <span class="route-marker">mile 1,326</span>
+        <div>
+          <div class="route-name">old station, CA</div>
+          <div class="route-detail">lassen volcanic country</div>
+        </div>
+      </div>
+      <div class="route-point">
+        <span class="route-marker">mile 1,700</span>
+        <div>
+          <div class="route-name">crater lake, oregon</div>
+          <div class="route-detail">deepest lake in the US</div>
+        </div>
+      </div>
+      <div class="route-point">
+        <span class="route-marker">mile 2,147</span>
+        <div>
+          <div class="route-name">cascade locks</div>
+          <div class="route-detail">bridge of the gods — entering washington</div>
+        </div>
+      </div>
+      <div class="route-point">
+        <span class="route-marker">mile 2,653</span>
+        <div>
+          <div class="route-name">manning park, BC</div>
+          <div class="route-detail">northern terminus — done.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEAR -->
+  <section class="reveal">
+    <div class="section-label">the kit</div>
+    <div class="gear-grid">
+      <div class="gear-item">
+        <span class="gear-category">footwear</span>
+        <span class="gear-name">Hoka Speedgoat 6</span>
+        <span class="gear-note">max cushion, wide toe box</span>
+      </div>
+      <div class="gear-item">
+        <span class="gear-category">camera</span>
+        <span class="gear-name">iPhone + DJI Mini 5 Pro</span>
+        <span class="gear-note">fly more combo — documentary rig</span>
+      </div>
+      <div class="gear-item">
+        <span class="gear-category">connectivity</span>
+        <span class="gear-name">Starlink Mini</span>
+        <span class="gear-note">portable satellite — upload from trail</span>
+      </div>
+      <div class="gear-item">
+        <span class="gear-category">editing</span>
+        <span class="gear-name">Final Cut Pro</span>
+        <span class="gear-note">raw / personal cut — post hike</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAIL LOG -->
+  <section class="reveal">
+    <div class="section-label">trail log</div>
+    <div class="log-empty">
+      — nothing yet. check back april 2027.
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-block reveal">
+    <span class="cta-label">follow along</span>
+    <p class="cta-text">the whole thing gets documented. subscribe before it starts.</p>
+    <a href="https://www.youtube.com/@jeremedotxyz" target="_blank" rel="noopener" class="cta-link">
+      youtube / @jeremedotxyz
+    </a>
+  </div>
+
+  <footer>
+    <a href="/">jereme.xyz</a>
+    <span>campo → manning park · 2027</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
