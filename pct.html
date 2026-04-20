@@ -81,28 +81,12 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0 48px 80px;
+      justify-content: flex-start;
+      padding: 120px 48px 80px;
       position: relative;
       border-bottom: 1px solid var(--border);
-    }
-
-    .hero-bg-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: clamp(120px, 18vw, 240px);
-      font-family: var(--mono);
-      color: var(--text-faint);
-      opacity: 0.06;
-      letter-spacing: -0.05em;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
     }
 
     .hero-eyebrow {
@@ -572,7 +556,6 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-bg-text">PCT</div>
     <div class="hero-eyebrow">pacific crest trail — 2027</div>
     <h1 class="hero-title">
       campo to<br><span>manning park.</span>
