@@ -407,6 +407,24 @@
       line-height: 1.9;
     }
 
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.4rem;
+    }
+
+    .footer-pct-link {
+      font-family: var(--px);
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      color: var(--amber);
+      text-decoration: none;
+      text-transform: lowercase;
+      transition: opacity 0.2s;
+    }
+    .footer-pct-link:hover { opacity: 0.7; }
+
     .footer-email-row {
       padding: 0.6rem 0 0;
       border-top: 1px solid var(--border);
@@ -495,7 +513,6 @@
 
   <nav id="nav">
     <span></span>
-    <a href="/pct.html" style="font-family:var(--px);font-size:0.62rem;letter-spacing:0.15em;color:var(--amber);text-decoration:none;text-transform:lowercase;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">pct 2027</a>
   </nav>
 
   <section id="hero">
@@ -554,7 +571,10 @@
     </div>
     <div class="hero-footer">
       <span class="footer-disclaimer">A personal corner of the internet for independent thought, projects, and experimentation — separate from any company, organization, board, or affiliated venture.</span>
-      <span>fw/r · pine · nrthrn · drift</span>
+      <div class="footer-right">
+        <span>fw/r · pine · nrthrn · drift</span>
+        <a href="/pct.html" class="footer-pct-link">pct 2027</a>
+      </div>
     </div>
     <div class="footer-email-row">
       <span class="footer-email-prefix">//</span>
