@@ -35,7 +35,6 @@
       overflow-x: hidden;
     }
 
-    /* Subtle paper grain overlay */
     body::before {
       content: '';
       position: fixed;
@@ -125,9 +124,7 @@
       animation: fadeUp 0.8s ease forwards 0.4s;
     }
 
-    .hero-title span {
-      color: var(--amber);
-    }
+    .hero-title span { color: var(--amber); }
 
     .hero-meta {
       display: flex;
@@ -258,7 +255,7 @@
       gap: 24px;
       align-items: start;
       padding: 20px 0;
-      border-bottom: 1px solid var(--text-faint);
+      border-bottom: 1px solid var(--border);
       opacity: 0.5;
       transition: opacity 0.2s;
     }
@@ -284,39 +281,186 @@
       color: var(--text-dim);
     }
 
-    /* GEAR */
+    /* GEAR / KIT */
+    .kit-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+      max-width: 1200px;
+    }
+
+    .kit-filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .kit-filter-group {
+      display: flex;
+      gap: 0;
+    }
+
+    .kit-filter {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-faint);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-left: -1px;
+    }
+    .kit-filter:first-child { margin-left: 0; }
+    .kit-filter:hover {
+      color: var(--amber-dim);
+      border-color: var(--amber-dim);
+      z-index: 1;
+    }
+    .kit-filter.active {
+      background: var(--amber);
+      color: var(--bg);
+      border-color: var(--amber);
+      z-index: 2;
+    }
+    .kit-filter.active-must {
+      background: var(--amber);
+      color: var(--bg);
+      border-color: var(--amber);
+      z-index: 2;
+    }
+    .kit-filter.active-high {
+      background: var(--text-dim);
+      color: var(--bg);
+      border-color: var(--text-dim);
+      z-index: 2;
+    }
+    .kit-filter.active-opt {
+      background: var(--text-faint);
+      color: var(--bg);
+      border-color: var(--text-faint);
+      z-index: 2;
+    }
+
+    .kit-divider {
+      width: 1px;
+      background: var(--border);
+      margin: 0 8px;
+    }
+
+    .kit-count {
+      font-size: 11px;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      padding: 8px 0;
+      margin-left: auto;
+      align-self: center;
+    }
+
+    .gear-category-section {
+      margin-bottom: 0;
+    }
+
+    .gear-category-header {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      padding: 24px 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
     .gear-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px;
-      background: var(--border);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0;
+      background: var(--bg);
       border: 1px solid var(--border);
+      border-top: none;
+      margin-bottom: 0;
+    }
+
+    .gear-item {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .gear-item {
       background: var(--bg);
-      padding: 24px;
+      padding: 20px 24px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
+      transition: background 0.15s;
+      position: relative;
     }
+    .gear-item:hover { background: var(--bg2); }
 
-    .gear-category {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--amber-dim);
-      text-transform: uppercase;
-      margin-bottom: 4px;
+    .gear-item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
     }
 
     .gear-name {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text);
+      line-height: 1.4;
+      flex: 1;
     }
 
-    .gear-note {
-      font-size: 12px;
+    .gear-priority {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      padding: 3px 7px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .gear-priority.must {
+      color: var(--amber);
+      border: 1px solid var(--amber);
+    }
+    .gear-priority.high {
       color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+    .gear-priority.opt {
+      color: var(--text-faint);
+      border: 1px solid var(--border);
+    }
+
+    .gear-pick {
+      font-size: 11px;
+      color: var(--amber-dim);
+    }
+
+    .gear-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 2px;
+    }
+
+    .gear-weight {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    .gear-price {
+      font-size: 11px;
+      color: var(--text-faint);
+    }
+
+    /* no results */
+    .gear-empty {
+      padding: 48px 0;
+      font-family: var(--journal);
+      font-size: 18px;
+      color: var(--text-faint);
+      font-style: italic;
+      display: none;
     }
 
     /* LOG */
@@ -326,35 +470,6 @@
       font-size: 20px;
       color: var(--text-faint);
       font-style: italic;
-    }
-
-    .log-entry {
-      padding: 32px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 32px;
-    }
-
-    .log-day {
-      font-size: 11px;
-      color: var(--amber-dim);
-      letter-spacing: 0.1em;
-      padding-top: 4px;
-    }
-
-    .log-content {
-      font-family: var(--journal);
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--text-dim);
-    }
-
-    .log-miles {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text-faint);
-      margin-top: 8px;
     }
 
     /* YOUTUBE CTA */
@@ -440,10 +555,11 @@
     }
 
     @media (max-width: 640px) {
-      nav, .hero, section, .cta-block, footer { padding-left: 24px; padding-right: 24px; }
+      nav, .hero, section, .kit-section, .cta-block, footer { padding-left: 24px; padding-right: 24px; }
       .hero-meta { flex-wrap: wrap; gap: 24px; }
       .route-point { grid-template-columns: 80px 1fr; gap: 16px; }
-      .log-entry { grid-template-columns: 1fr; gap: 8px; }
+      .kit-filters { gap: 6px; }
+      .kit-count { display: none; }
     }
   </style>
 </head>
@@ -578,6 +694,38 @@
     </div>
   </section>
 
+  <!-- THE KIT -->
+  <div class="kit-section reveal" id="kit">
+    <div class="section-label">the kit</div>
+
+    <div class="kit-filters">
+      <div class="kit-filter-group">
+        <button class="kit-filter active" data-filter="all">all</button>
+        <button class="kit-filter" data-filter="must">must</button>
+        <button class="kit-filter" data-filter="high">high</button>
+        <button class="kit-filter" data-filter="opt">opt</button>
+      </div>
+      <div class="kit-divider"></div>
+      <div class="kit-filter-group">
+        <button class="kit-filter" data-cat="pack">pack</button>
+        <button class="kit-filter" data-cat="shelter">shelter</button>
+        <button class="kit-filter" data-cat="sleep">sleep</button>
+        <button class="kit-filter" data-cat="clothing">clothing</button>
+        <button class="kit-filter" data-cat="footwear">footwear</button>
+        <button class="kit-filter" data-cat="nav">nav</button>
+        <button class="kit-filter" data-cat="food">food</button>
+        <button class="kit-filter" data-cat="safety">safety</button>
+        <button class="kit-filter" data-cat="hygiene">hygiene</button>
+        <button class="kit-filter" data-cat="snow">snow</button>
+        <button class="kit-filter" data-cat="electronics">electronics</button>
+      </div>
+      <span class="kit-count" id="kit-count"></span>
+    </div>
+
+    <div id="kit-list"></div>
+    <p class="gear-empty" id="gear-empty">— nothing matches that filter.</p>
+  </div>
+
   <!-- TRAIL LOG -->
   <section class="reveal">
     <div class="section-label">trail log</div>
@@ -601,11 +749,13 @@
   </footer>
 
   <script>
+    // NAV SCROLL
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
+    // SCROLL REVEAL
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -614,8 +764,216 @@
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
     reveals.forEach(el => observer.observe(el));
+
+    // GEAR DATA
+    const gear = [
+      // PACK
+      { cat: 'pack', name: 'Backpack (50–60L)', pick: 'Osprey Exos 58', weight: '2 lb 11 oz', price: '$270', priority: 'must' },
+      { cat: 'pack', name: 'Pack rain cover', pick: 'REI Co-op Stuff Pack Rain Cover', weight: '2.5 oz', price: '$25', priority: 'high' },
+      { cat: 'pack', name: 'Pack liner / dry bag', pick: 'Sea to Summit Ultra-Sil Dry Sack', weight: '1 oz', price: '$18', priority: 'high' },
+      { cat: 'pack', name: 'Hip belt / fanny pack', pick: 'Osprey Ultralight Stuff Pack', weight: '2.9 oz', price: '$40', priority: 'opt' },
+
+      // SHELTER
+      { cat: 'shelter', name: 'Tent / shelter', pick: 'Big Agnes Copper Spur HV UL1', weight: '2 lb 1 oz', price: '$500', priority: 'must' },
+      { cat: 'shelter', name: 'Extra tent stakes (6-pack)', pick: 'MSR Groundhog Stake Kit', weight: '2.5 oz', price: '$30', priority: 'high' },
+      { cat: 'shelter', name: 'Tent footprint', pick: 'Big Agnes Copper Spur UL1 Footprint', weight: '3.3 oz', price: '$60', priority: 'opt' },
+
+      // SLEEP
+      { cat: 'sleep', name: 'Sleeping quilt (20°F)', pick: 'Therm-a-Rest Vesper 20 Quilt', weight: '1 lb 3 oz', price: '$420', priority: 'must' },
+      { cat: 'sleep', name: 'Sleeping pad', pick: 'NEMO Tensor All-Season Insulated', weight: '15 oz', price: '$200', priority: 'must' },
+      { cat: 'sleep', name: 'Pillow', pick: 'Therm-a-Rest Compressible Pillow', weight: '4 oz', price: '$25', priority: 'high' },
+      { cat: 'sleep', name: 'Sleeping bag liner', pick: 'Sea to Summit Reactor Thermolite Liner', weight: '8 oz', price: '$80', priority: 'opt' },
+
+      // CLOTHING
+      { cat: 'clothing', name: 'Hiking shorts (2 pair)', pick: 'Patagonia Strider Pro 5"', weight: '4.1 oz each', price: '$70 ea', priority: 'must' },
+      { cat: 'clothing', name: 'Sun hoodie / UPF shirt', pick: 'Outdoor Research Echo Sun Hoodie', weight: '5.5 oz', price: '$79', priority: 'must' },
+      { cat: 'clothing', name: 'Merino base layer top', pick: 'Smartwool Merino 150 Top', weight: '5.9 oz', price: '$100', priority: 'must' },
+      { cat: 'clothing', name: 'Merino base layer bottom', pick: 'Smartwool Merino 150 Bottom', weight: '4.6 oz', price: '$90', priority: 'must' },
+      { cat: 'clothing', name: 'Mid layer fleece', pick: 'Patagonia R1 Air Full-Zip Hoody', weight: '9 oz', price: '$165', priority: 'must' },
+      { cat: 'clothing', name: 'Down / insulated jacket', pick: 'Patagonia Down Sweater Hoody', weight: '13.7 oz', price: '$299', priority: 'must' },
+      { cat: 'clothing', name: 'Rain jacket (hardshell)', pick: 'Patagonia Torrentshell 3L', weight: '11.5 oz', price: '$199', priority: 'must' },
+      { cat: 'clothing', name: 'Rain pants', pick: 'REI Co-op Rainier Rain Pants', weight: '9 oz', price: '$79', priority: 'high' },
+      { cat: 'clothing', name: 'Hiking underwear (3x)', pick: 'ExOfficio Give-N-Go Sport Mesh Boxer', weight: '2.3 oz each', price: '$32 ea', priority: 'must' },
+      { cat: 'clothing', name: 'Insulated leggings', pick: 'REI Co-op Merino Base Layer Bottom', weight: '7 oz', price: '$65', priority: 'high' },
+      { cat: 'clothing', name: 'Beanie / warm hat', pick: 'Outdoor Research Trail Mix Beanie', weight: '2 oz', price: '$28', priority: 'must' },
+      { cat: 'clothing', name: 'Sun hat / brim hat', pick: 'REI Co-op Packable Trail Sun Hat', weight: '2.5 oz', price: '$40', priority: 'must' },
+      { cat: 'clothing', name: 'Lightweight gloves', pick: 'REI Co-op Lightweight Liner Gloves', weight: '1.4 oz', price: '$22', priority: 'high' },
+      { cat: 'clothing', name: 'Waterproof gloves', pick: 'Black Diamond Trail Gloves', weight: '2.8 oz', price: '$35', priority: 'opt' },
+      { cat: 'clothing', name: 'Neck gaiter / buff', pick: 'Outdoor Research Echo Sun Runner Cap', weight: '1 oz', price: '$30', priority: 'high' },
+      { cat: 'clothing', name: 'Camp shoes / sandals', pick: 'Teva Hurricane XLT2', weight: '10 oz', price: '$60', priority: 'high' },
+
+      // FOOTWEAR
+      { cat: 'footwear', name: 'Trail runners', pick: 'Hoka Speedgoat 6 (size up 0.5)', weight: '10.4 oz', price: '$155', priority: 'must' },
+      { cat: 'footwear', name: 'Hiking socks (4–6 pair)', pick: 'Darn Tough Hiker Micro Crew', weight: '2.6 oz each', price: '$28 ea', priority: 'must' },
+      { cat: 'footwear', name: 'Liner socks (blister prevention)', pick: 'Injinji Trail Midweight Mini-Crew', weight: '1.5 oz', price: '$22', priority: 'high' },
+      { cat: 'footwear', name: 'Trail gaiters (low)', pick: 'Dirty Girl Gaiters', weight: '0.7 oz', price: '$20', priority: 'high' },
+
+      // NAV
+      { cat: 'nav', name: 'Smartphone GPS (FarOut app)', pick: 'Use existing phone + FarOut app', weight: 'varies', price: '$35/yr', priority: 'must' },
+      { cat: 'nav', name: 'Satellite communicator', pick: 'Garmin inReach Mini 2', weight: '3.5 oz', price: '$350', priority: 'must' },
+      { cat: 'nav', name: 'Paper maps (backup)', pick: 'National Geographic PCT Topo Maps', weight: '4 oz', price: '$45', priority: 'high' },
+      { cat: 'nav', name: 'Compass', pick: 'Suunto A-10 Field Compass', weight: '0.9 oz', price: '$25', priority: 'high' },
+
+      // FOOD & WATER
+      { cat: 'food', name: 'Water filter', pick: 'Sawyer Squeeze Water Filter', weight: '3 oz', price: '$40', priority: 'must' },
+      { cat: 'food', name: 'Chemical backup (tabs)', pick: 'Aquatabs Water Purification Tablets', weight: '0.5 oz', price: '$10', priority: 'must' },
+      { cat: 'food', name: 'Water bottles / soft flasks (2x)', pick: 'Smartwater 1L bottles x2', weight: '1.2 oz each', price: '$4 ea', priority: 'must' },
+      { cat: 'food', name: 'Collapsible water reservoir', pick: 'Platypus Platy 2L', weight: '1.3 oz', price: '$15', priority: 'high' },
+      { cat: 'food', name: 'Backpacking stove', pick: 'MSR PocketRocket 2', weight: '2.6 oz', price: '$55', priority: 'must' },
+      { cat: 'food', name: 'Fuel canister (110g)', pick: 'MSR IsoPro Fuel 110g', weight: '4.1 oz', price: '$10', priority: 'must' },
+      { cat: 'food', name: 'Cook pot (0.9–1.1L)', pick: 'MSR Titan Kettle', weight: '3.1 oz', price: '$75', priority: 'must' },
+      { cat: 'food', name: 'Spork / utensil', pick: 'Sea to Summit Alpha Light Long Spoon', weight: '0.6 oz', price: '$12', priority: 'must' },
+      { cat: 'food', name: 'Bear canister (Sierra required)', pick: 'BearVault BV500 Journey', weight: '2 lb 1 oz', price: '$80', priority: 'must' },
+      { cat: 'food', name: 'Odor-proof food bags', pick: 'Loksak Opsak Bags', weight: '0.5 oz', price: '$15', priority: 'high' },
+
+      // SAFETY
+      { cat: 'safety', name: 'First aid kit', pick: 'Adventure Medical Ultralight .7 Kit', weight: '7 oz', price: '$45', priority: 'must' },
+      { cat: 'safety', name: 'Blister treatment', pick: 'Leukotape P Sport Tape', weight: '2 oz', price: '$12', priority: 'must' },
+      { cat: 'safety', name: 'Electrolytes + ibuprofen', pick: 'Nuun Sport Tablets + Ibuprofen', weight: '2 oz', price: '$18', priority: 'must' },
+      { cat: 'safety', name: 'Sunscreen SPF 50+', pick: 'Blue Lizard Sport SPF 50+', weight: '3 oz', price: '$16', priority: 'must' },
+      { cat: 'safety', name: 'Lip balm SPF', pick: 'Jack Black Intense Therapy SPF 25', weight: '0.25 oz', price: '$8', priority: 'must' },
+      { cat: 'safety', name: 'Insect repellent (DEET)', pick: 'Sawyer Maxi DEET Repellent', weight: '1.9 oz', price: '$10', priority: 'high' },
+      { cat: 'safety', name: 'Emergency bivy', pick: 'SOL Escape Lite Bivy', weight: '3.9 oz', price: '$40', priority: 'high' },
+      { cat: 'safety', name: 'Trekking poles', pick: 'Black Diamond Trail Ergo Cork Poles', weight: '1 lb', price: '$145', priority: 'must' },
+      { cat: 'safety', name: 'Whistle', pick: 'Fox 40 Micro Safety Whistle', weight: '0.2 oz', price: '$8', priority: 'must' },
+      { cat: 'safety', name: 'Headlamp', pick: 'Black Diamond Spot 400-R Rechargeable', weight: '3.2 oz', price: '$50', priority: 'must' },
+      { cat: 'safety', name: 'Headlamp backup batteries', pick: 'Energizer Ultimate Lithium AAA 4-pk', weight: '1.5 oz', price: '$9', priority: 'high' },
+      { cat: 'safety', name: 'Trowel (cat hole)', pick: 'Deuce of Spades UL Trowel', weight: '0.6 oz', price: '$18', priority: 'must' },
+      { cat: 'safety', name: 'WAG bags (high-use areas)', pick: 'Cleanwaste GO Anywhere Toilet Kit', weight: '1 oz each', price: '$18', priority: 'opt' },
+
+      // HYGIENE
+      { cat: 'hygiene', name: 'Biodegradable soap', pick: "Dr. Bronner's Pure Castile Soap 2oz", weight: '2 oz', price: '$5', priority: 'must' },
+      { cat: 'hygiene', name: 'Toothbrush + toothpaste', pick: 'Travel toothbrush + Bite toothpaste bits', weight: '1 oz', price: '$12', priority: 'must' },
+      { cat: 'hygiene', name: 'Hand sanitizer', pick: 'Purell 2 fl oz travel size', weight: '2 oz', price: '$5', priority: 'must' },
+      { cat: 'hygiene', name: 'Toilet paper', pick: 'REI Co-op Bamboo Toilet Paper 3-pk', weight: '3 oz', price: '$8', priority: 'must' },
+      { cat: 'hygiene', name: 'Microfiber pack towel', pick: 'Sea to Summit DryLite Towel S', weight: '1.4 oz', price: '$25', priority: 'high' },
+      { cat: 'hygiene', name: 'Sunglasses (polarized)', pick: 'Suncloud Zephyr Polarized', weight: '0.9 oz', price: '$50', priority: 'must' },
+      { cat: 'hygiene', name: 'Nail clippers + mirror', pick: 'Revlon Nail Clipper Set', weight: '0.5 oz', price: '$6', priority: 'high' },
+
+      // SNOW
+      { cat: 'snow', name: 'Microspikes / traction', pick: 'Kahtoola MICROspikes', weight: '11 oz', price: '$80', priority: 'high' },
+      { cat: 'snow', name: 'Ice axe', pick: 'Black Diamond Raven Ice Axe', weight: '15.2 oz', price: '$90', priority: 'opt' },
+      { cat: 'snow', name: 'Waterproof gaiters (high)', pick: 'Black Diamond Cirque Gaiters', weight: '7.9 oz', price: '$70', priority: 'opt' },
+      { cat: 'snow', name: 'Sun / ski goggles', pick: 'REI Co-op Traverse Goggles', weight: '6 oz', price: '$55', priority: 'opt' },
+
+      // ELECTRONICS
+      { cat: 'electronics', name: 'Power bank (10,000+ mAh)', pick: 'Anker PowerCore Essential 20,000', weight: '12.7 oz', price: '$50', priority: 'must' },
+      { cat: 'electronics', name: 'USB-C cables (2x)', pick: 'Anker 6ft USB-C Braided Cable', weight: '1 oz each', price: '$12 ea', priority: 'must' },
+      { cat: 'electronics', name: 'Bone conduction headphones', pick: 'Shokz OpenMove', weight: '1 oz', price: '$80', priority: 'opt' },
+      { cat: 'electronics', name: 'Waterproof phone case', pick: 'Loksak Opsak Phone Bag', weight: '0.5 oz', price: '$15', priority: 'high' },
+      { cat: 'electronics', name: 'Solar charger', pick: 'BioLite SolarPanel 5+', weight: '10.5 oz', price: '$80', priority: 'opt' },
+      { cat: 'electronics', name: 'Repair kit (tape + seam sealer)', pick: 'Gear Aid Tenacious Tape + McNett Seam Grip', weight: '2 oz', price: '$15', priority: 'must' },
+      { cat: 'electronics', name: 'Multi-tool / knife', pick: 'Leatherman Style PS (TSA-safe)', weight: '1.6 oz', price: '$30', priority: 'high' },
+      { cat: 'electronics', name: 'Zip ties + safety pins', pick: 'Assorted generic', weight: '0.5 oz', price: '$4', priority: 'high' },
+    ];
+
+    const catLabels = {
+      pack: 'pack',
+      shelter: 'shelter',
+      sleep: 'sleep system',
+      clothing: 'clothing',
+      footwear: 'footwear',
+      nav: 'navigation & comms',
+      food: 'food & water',
+      safety: 'safety & first aid',
+      hygiene: 'hygiene & personal',
+      snow: 'snow gear — sierra / WA',
+      electronics: 'electronics & extras',
+    };
+
+    const catOrder = ['pack','shelter','sleep','clothing','footwear','nav','food','safety','hygiene','snow','electronics'];
+
+    let activeFilter = 'all';
+    let activeCat = null;
+
+    function render() {
+      const list = document.getElementById('kit-list');
+      const empty = document.getElementById('gear-empty');
+      const count = document.getElementById('kit-count');
+      list.innerHTML = '';
+
+      let filtered = gear.filter(g => {
+        const priorityMatch = activeFilter === 'all' || g.priority === activeFilter;
+        const catMatch = !activeCat || g.cat === activeCat;
+        return priorityMatch && catMatch;
+      });
+
+      if (filtered.length === 0) {
+        empty.style.display = 'block';
+        count.textContent = '';
+        return;
+      }
+      empty.style.display = 'none';
+
+      const total = filtered.length;
+      count.textContent = `${total} item${total !== 1 ? 's' : ''}`;
+
+      const cats = activeCat ? [activeCat] : catOrder;
+
+      cats.forEach(cat => {
+        const items = filtered.filter(g => g.cat === cat);
+        if (!items.length) return;
+
+        const section = document.createElement('div');
+        section.className = 'gear-category-section';
+
+        const header = document.createElement('div');
+        header.className = 'gear-category-header';
+        header.textContent = catLabels[cat];
+        section.appendChild(header);
+
+        const grid = document.createElement('div');
+        grid.className = 'gear-grid';
+
+        items.forEach(g => {
+          const item = document.createElement('div');
+          item.className = 'gear-item';
+          item.innerHTML = `
+            <div class="gear-item-top">
+              <span class="gear-name">${g.name}</span>
+              <span class="gear-priority ${g.priority}">${g.priority}</span>
+            </div>
+            <span class="gear-pick">${g.pick}</span>
+            <div class="gear-meta">
+              <span class="gear-weight">${g.weight}</span>
+            </div>
+          `;
+          grid.appendChild(item);
+        });
+
+        section.appendChild(grid);
+        list.appendChild(section);
+      });
+    }
+
+    // FILTER BUTTONS
+    document.querySelectorAll('.kit-filter[data-filter]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.kit-filter[data-filter]').forEach(b => b.classList.remove('active', 'active-must', 'active-high', 'active-opt'));
+        activeFilter = btn.dataset.filter;
+        if (activeFilter === 'all') btn.classList.add('active');
+        else btn.classList.add(`active-${activeFilter}`);
+        render();
+      });
+    });
+
+    document.querySelectorAll('.kit-filter[data-cat]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (activeCat === btn.dataset.cat) {
+          activeCat = null;
+          btn.classList.remove('active');
+        } else {
+          document.querySelectorAll('.kit-filter[data-cat]').forEach(b => b.classList.remove('active'));
+          activeCat = btn.dataset.cat;
+          btn.classList.add('active');
+        }
+        render();
+      });
+    });
+
+    render();
   </script>
 </body>
 </html>
