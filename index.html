@@ -425,17 +425,12 @@
     }
     .footer-pct-link:hover { opacity: 0.7; }
 
-    <div class="footer-email-row">
-  <div style="display:flex;align-items:center;gap:0.4rem;">
-    <span class="footer-email-prefix">//</span>
-    <a href="mailto:loveletters@jereme.xyz" class="footer-email-link">loveletters@jereme.xyz</a>
-  </div>
-  <span class="footer-email-link" style="opacity:0.6;">915 Broadway St #100, Vancouver, WA 98660</span>
-</div>
+    .footer-email-row {
       padding: 0.6rem 0 0;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0.4rem;
     }
 
@@ -494,6 +489,12 @@
       }
 
       .np-inner { max-width: 100%; }
+
+      .footer-email-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
     }
 
     @media (max-width: 360px) {
@@ -582,8 +583,11 @@
       </div>
     </div>
     <div class="footer-email-row">
-      <span class="footer-email-prefix">//</span>
-      <a href="mailto:loveletters@jereme.xyz" class="footer-email-link">loveletters@jereme.xyz</a>
+      <div style="display:flex;align-items:center;gap:0.4rem;">
+        <span class="footer-email-prefix">//</span>
+        <a href="mailto:loveletters@jereme.xyz" class="footer-email-link">loveletters@jereme.xyz</a>
+      </div>
+      <span class="footer-email-link" style="opacity:0.6;">915 Broadway St #100, Vancouver, WA 98660</span>
     </div>
   </footer>
 
