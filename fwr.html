@@ -17,22 +17,18 @@
   :root {
     --bg: #080808;
     --bg2: #0f0f0f;
-    --bg3: #141414;
     --fg: #f0ece4;
     --fg2: rgba(240,236,228,0.55);
     --fg3: rgba(240,236,228,0.22);
     --acc: #00ff88;
-    --acc-dim: rgba(0,255,136,0.12);
     --hot: #ff3355;
-    --hot-dim: rgba(255,51,85,0.1);
     --border: rgba(240,236,228,0.09);
-    --border-md: rgba(240,236,228,0.18);
     --mono: 'JetBrains Mono', monospace;
     --display: 'Bebas Neue', sans-serif;
     --serif: 'DM Serif Display', serif;
   }
 
-  html { scroll-behavior: smooth; }
+  html, body { height: 100%; }
 
   body {
     background: var(--bg);
@@ -42,28 +38,22 @@
     line-height: 1.7;
     overflow-x: hidden;
     cursor: crosshair;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   a { color: inherit; text-decoration: none; }
-  button { cursor: pointer; }
 
-  /* ── texture ── */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.04) 2px,
-      rgba(0,0,0,0.04) 4px
-    );
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
     pointer-events: none;
     z-index: 9998;
   }
 
-  /* ── custom cursor dot ── */
   #cursor {
     position: fixed;
     width: 8px; height: 8px;
@@ -72,22 +62,17 @@
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%,-50%);
-    transition: transform 0.1s ease, opacity 0.2s;
     mix-blend-mode: difference;
   }
 
-  /* ── nav ── */
   nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 2.5rem;
-    background: rgba(8,8,8,0.92);
-    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 10;
   }
 
   .logo {
@@ -95,7 +80,6 @@
     font-size: 1.8rem;
     letter-spacing: 0.08em;
     line-height: 1;
-    color: var(--fg);
   }
   .logo .slash { color: var(--acc); }
 
@@ -123,6 +107,7 @@
     text-transform: uppercase;
     color: var(--fg3);
   }
+
   .pulse {
     width: 6px; height: 6px;
     background: var(--acc);
@@ -134,14 +119,12 @@
     50% { opacity: 0.3; transform: scale(0.6); }
   }
 
-  /* ── hero ── */
   #hero {
-    min-height: 90vh;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 5rem 2.5rem 3.5rem;
-    border-bottom: 1px solid var(--border);
     position: relative;
     overflow: hidden;
   }
@@ -165,9 +148,7 @@
     margin-bottom: 1.8rem;
     position: relative;
   }
-  .hero-eye::before {
-    content: '↳ ';
-  }
+  .hero-eye::before { content: '↳ '; }
 
   h1.hero-head {
     font-family: var(--display);
@@ -200,7 +181,6 @@
     text-transform: uppercase;
     color: var(--fg2);
     line-height: 2;
-    max-width: 420px;
   }
 
   .hero-coords {
@@ -212,467 +192,75 @@
     line-height: 2;
   }
 
-  /* ── section headers ── */
-  .section-header {
+  .teaser {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg2);
-  }
-  .section-tag {
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--hot);
-  }
-  .section-count {
-    font-size: 0.55rem;
-    color: var(--fg3);
-    letter-spacing: 0.12em;
-  }
-
-  /* ── brief engine ── */
-  #brief-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 400px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .brief-left {
-    padding: 2.5rem;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .brief-intro {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2rem;
-    line-height: 1.55;
-    color: var(--fg2);
-    margin-bottom: 2rem;
-    flex: 1;
-  }
-  .brief-intro strong { color: var(--fg); font-style: normal; font-weight: 400; }
-
-  .brief-examples {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  .brief-example {
-    font-size: 0.58rem;
-    color: var(--fg3);
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .brief-example::before { content: '→'; color: var(--acc); }
-  .brief-example:hover { color: var(--fg2); }
-
-  .brief-right {
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  textarea.brief-input {
-    width: 100%;
-    flex: 1;
-    background: rgba(240,236,228,0.03);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: var(--fg);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    padding: 1rem;
-    resize: none;
-    outline: none;
-    line-height: 1.8;
-    min-height: 100px;
-    transition: border-color 0.2s;
-  }
-  textarea.brief-input:focus { border-color: rgba(0,255,136,0.35); }
-  textarea.brief-input::placeholder { color: var(--fg3); }
-
-  .brief-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .btn-submit {
-    background: transparent;
-    border: 1px solid var(--acc);
-    color: var(--acc);
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.5rem;
-    border-radius: 2px;
-    transition: all 0.2s;
-  }
-  .btn-submit:hover:not(:disabled) { background: var(--acc); color: #080808; }
-  .btn-submit:disabled { opacity: 0.35; cursor: not-allowed; }
-
-  .brief-hint {
-    font-size: 0.55rem;
-    color: var(--fg3);
-    letter-spacing: 0.1em;
-  }
-
-  .response-area {
-    border-top: 1px solid var(--border);
-    padding-top: 1rem;
-    display: none;
-  }
-  .response-area.active { display: block; }
-  .response-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--acc);
-    margin-bottom: 0.6rem;
-  }
-  .response-text {
-    font-size: 0.72rem;
-    line-height: 1.8;
-    color: var(--fg2);
-    border-left: 2px solid var(--acc);
-    padding-left: 0.85rem;
-    min-height: 2rem;
-  }
-  .blink-cursor {
-    display: inline-block;
-    width: 1ch;
-    height: 1em;
-    background: var(--acc);
-    vertical-align: text-bottom;
-    animation: blink 0.9s step-end infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  /* ── work section ── */
-  #work-section {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .work-item {
-    padding: 2rem 2.5rem;
-    border-right: 1px solid var(--border);
-    cursor: pointer;
-    transition: background 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .work-item:last-child { border-right: none; }
-  .work-item:hover { background: rgba(240,236,228,0.03); }
-  .work-item.featured { background: var(--hot-dim); }
-  .work-item.featured::before {
-    content: 'featured';
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 0.5rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--hot);
-    border: 1px solid var(--hot);
-    padding: 0.15rem 0.5rem;
-    border-radius: 2px;
-  }
-
-  .work-num {
-    font-size: 0.55rem;
-    color: var(--fg3);
-    letter-spacing: 0.15em;
-    margin-bottom: 0.6rem;
-  }
-  .work-title {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-    color: var(--fg);
-  }
-  .work-desc {
-    font-size: 0.62rem;
-    color: var(--fg2);
-    line-height: 1.7;
-    margin-bottom: 0.9rem;
-  }
-  .work-tags {
-    display: flex;
+    gap: 2rem;
     flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-  .work-tag {
-    font-size: 0.5rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    border: 1px solid var(--border-md);
-    padding: 0.18rem 0.55rem;
-    border-radius: 2px;
-    color: var(--fg3);
   }
 
-  /* work detail panel */
-  .work-detail {
-    padding: 2.5rem;
-    background: var(--bg2);
-    display: none;
-    grid-column: 1 / -1;
+  .teaser-left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
   }
-  .work-detail.active { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
-  .detail-title {
-    font-family: var(--display);
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    letter-spacing: 0.04em;
+
+  .teaser-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
-  .detail-body {
-    font-size: 0.7rem;
-    color: var(--fg2);
-    line-height: 1.9;
-    max-width: 540px;
+
+  .teaser-dot {
+    width: 10px; height: 10px;
+    background: var(--acc);
+    border-radius: 50%;
+    animation: pulseAnim 2.2s ease-in-out infinite;
   }
-  .detail-meta { border-left: 1px solid var(--border); padding-left: 2rem; }
-  .detail-meta-item { margin-bottom: 1.2rem; }
-  .detail-meta-label {
-    font-size: 0.52rem;
-    color: var(--fg3);
+
+  .teaser-label {
+    font-size: 0.55rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    color: var(--acc);
     margin-bottom: 0.3rem;
   }
-  .detail-meta-val {
-    font-size: 0.7rem;
-    color: var(--fg);
-  }
 
-  /* ── manifesto ── */
-  #manifesto {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .manifesto-left {
-    padding: 4rem 2.5rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .manifesto-heading {
-    font-family: var(--display);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 0.92;
-    letter-spacing: 0.03em;
-    margin-bottom: 2.5rem;
-    color: var(--fg);
-  }
-
-  .manifesto-body {
+  .teaser-title {
     font-family: var(--serif);
     font-style: italic;
-    font-size: clamp(1rem, 1.5vw, 1.3rem);
-    line-height: 1.7;
-    color: rgba(240,236,228,0.65);
-    max-width: 460px;
-  }
-  .manifesto-body strong { color: var(--fg); font-style: normal; font-weight: 400; }
-  .manifesto-body em { color: var(--acc); }
-
-  .manifesto-right {
-    padding: 4rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .values-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .values-list li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.65rem;
-    color: var(--fg2);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .values-list li .vnum {
-    font-size: 1.8rem;
-    font-family: var(--display);
-    color: var(--fg3);
-    line-height: 1;
-    min-width: 2.5rem;
-  }
-
-  /* ── colophon ── */
-  #colophon {
-    padding: 3rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg2);
-  }
-
-  .colophon-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .colophon-group { }
-  .colophon-group-title {
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--acc);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--acc-dim);
-  }
-  .colophon-item {
-    font-size: 0.65rem;
-    color: var(--fg2);
-    line-height: 2;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .colophon-item::before { content: '—'; color: var(--fg3); }
-
-  /* ── contact ── */
-  #contact {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .contact-left {
-    padding: 4rem 2.5rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .contact-heading {
-    font-family: var(--display);
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 0.9;
-    letter-spacing: 0.03em;
-    margin-bottom: 2rem;
-  }
-  .contact-heading span { color: var(--acc); }
-
-  .contact-note {
-    font-size: 0.65rem;
-    color: var(--fg2);
-    line-height: 2;
-    letter-spacing: 0.08em;
-    max-width: 380px;
-  }
-
-  .contact-links {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--fg2);
-    transition: color 0.2s;
-    border: 1px solid transparent;
-    padding: 0.5rem 0;
-    width: fit-content;
-    border-bottom-color: var(--border);
-  }
-  .contact-link:hover { color: var(--fg); border-bottom-color: var(--fg3); }
-  .contact-link .arrow { color: var(--acc); }
-
-  .contact-right {
-    padding: 4rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .office-hours-box {
-    background: var(--acc-dim);
-    border: 1px solid rgba(0,255,136,0.2);
-    border-radius: 3px;
-    padding: 1.5rem;
-  }
-  .oh-label {
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--acc);
-    margin-bottom: 0.75rem;
-  }
-  .oh-title {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--fg);
-    margin-bottom: 0.75rem;
-    line-height: 1.4;
+    line-height: 1.2;
+    border-bottom: 1px solid rgba(0,255,136,0.25);
+    transition: border-color 0.2s;
   }
-  .oh-sub {
+  .teaser-title:hover { border-color: rgba(0,255,136,0.7); }
+
+  .teaser-right {
     font-size: 0.6rem;
-    color: var(--fg2);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-  .btn-oh {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--acc);
-    color: #080808;
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.18em;
+    color: var(--fg3);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 0.6rem 1.25rem;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: opacity 0.2s;
+    text-align: right;
+    line-height: 2;
   }
-  .btn-oh:hover { opacity: 0.85; }
+  .teaser-right span { color: var(--fg2); }
 
-  /* ── footer ── */
   footer {
     padding: 1.25rem 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-top: 1px solid var(--border);
     font-size: 0.55rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -682,39 +270,26 @@
   .footer-logo {
     font-family: var(--display);
     font-size: 1rem;
-    color: var(--fg3);
     letter-spacing: 0.1em;
   }
   .footer-logo .slash { color: var(--acc); opacity: 0.5; }
 
-  .footer-right { display: flex; align-items: center; gap: 2rem; }
-
-  /* ── fade in animations ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: none;
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 
-  /* ── responsive ── */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.25rem; }
     .nav-links { display: none; }
     #hero { padding: 3rem 1.25rem 2.5rem; }
-    #brief-section { grid-template-columns: 1fr; }
-    .brief-left { border-right: none; border-bottom: 1px solid var(--border); }
-    .work-grid { grid-template-columns: 1fr; }
-    .work-item { border-right: none; border-bottom: 1px solid var(--border); }
-    #manifesto { grid-template-columns: 1fr; }
-    .manifesto-left { border-right: none; border-bottom: 1px solid var(--border); }
-    .colophon-grid { grid-template-columns: 1fr 1fr; }
-    #contact { grid-template-columns: 1fr; }
-    .contact-left { border-right: none; border-bottom: 1px solid var(--border); }
-    .work-detail.active { grid-template-columns: 1fr; }
+    .hero-meta { flex-direction: column; align-items: flex-start; }
+    .hero-coords { text-align: left; }
+    footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    .footer-right { flex-direction: column; gap: 0.5rem; }
+    .teaser { flex-direction: column; }
+    .teaser-right { text-align: left; }
   }
 </style>
 </head>
@@ -722,14 +297,12 @@
 
 <div id="cursor"></div>
 
-<!-- NAV -->
 <nav>
-  <a href="#hero" class="logo">fw<span class="slash">/</span>r</a>
+  <a href="#" class="logo">fw<span class="slash">/</span>r</a>
   <ul class="nav-links">
-    <li><a href="#work-section">work</a></li>
-    <li><a href="#manifesto">about</a></li>
-    <li><a href="#brief-section">brief engine</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#">work</a></li>
+    <li><a href="#">about</a></li>
+    <li><a href="#">contact</a></li>
   </ul>
   <div class="nav-status">
     <span class="pulse"></span>
@@ -737,7 +310,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-eye">creative studio · humans + ai · est. now</div>
@@ -756,193 +328,27 @@
     <div class="hero-coords">
       45.6387° N, 122.6615° W<br>
       Vancouver, Washington<br>
-      Pacific Northwest<br>
-      <br>
-      ↓ scroll to brief engine
+      Pacific Northwest
     </div>
   </div>
 </section>
 
-<!-- BRIEF ENGINE -->
-<div class="section-header">
-  <span class="section-tag">// 01 — brief engine</span>
-  <span class="section-count">drop a brief. get a real response.</span>
-</div>
-<section id="brief-section">
-  <div class="brief-left">
-    <p class="brief-intro">
-      Most studios make you <strong>fill out a form</strong>.<br><br>
-      We built an engine.<br><br>
-      Type anything — a product name, a half-formed idea, a problem you can't articulate yet.
-      We'll tell you what we'd actually <strong>make with it</strong>.
-    </p>
-    <div class="brief-examples">
-      <span class="brief-example" onclick="fillBrief('rebrand a 40-year-old hardware store for gen z')">rebrand a 40-year-old hardware store for gen z</span>
-      <span class="brief-example" onclick="fillBrief('make a zine about insomnia and screen addiction')">make a zine about insomnia and screen addiction</span>
-      <span class="brief-example" onclick="fillBrief('coffee brand that doesn\'t take itself seriously')">coffee brand that doesn't take itself seriously</span>
-      <span class="brief-example" onclick="fillBrief('app for people who collect things')">app for people who collect things</span>
-      <span class="brief-example" onclick="fillBrief('a film poster for a documentary about the ocean')">a film poster for a documentary about the ocean</span>
+<div class="teaser">
+  <div class="teaser-left">
+    <div class="teaser-icon">
+      <div class="teaser-dot"></div>
     </div>
-  </div>
-  <div class="brief-right">
-    <textarea class="brief-input" id="brief-input" rows="5" placeholder="your brief here. any brief. we're listening."></textarea>
-    <div class="brief-actions">
-      <button class="btn-submit" id="brief-btn" onclick="submitBrief()">submit brief →</button>
-      <span class="brief-hint" id="brief-hint">⌘ + enter to submit</span>
-    </div>
-    <div class="response-area" id="response-area">
-      <div class="response-label">fw/r responds</div>
-      <div class="response-text" id="response-text"></div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<div class="section-header">
-  <span class="section-tag">// 02 — the work</span>
-  <span class="section-count">click any project</span>
-</div>
-<section id="work-section">
-  <div class="work-grid">
-    <div class="work-item featured" onclick="openWork(0)">
-      <div class="work-num">001</div>
-      <div class="work-title">pine — a cursor brand</div>
-      <div class="work-desc">When the logo is the interface metaphor. PNW roots, digital-native language.</div>
-      <div class="work-tags">
-        <span class="work-tag">identity</span>
-        <span class="work-tag">coffee</span>
-        <span class="work-tag">pnw</span>
-      </div>
-    </div>
-    <div class="work-item" onclick="openWork(1)">
-      <div class="work-num">002</div>
-      <div class="work-title">drift tidal arc</div>
-      <div class="work-desc">The sea doesn't need a slogan. A coastal wordmark built from the water's own geometry.</div>
-      <div class="work-tags">
-        <span class="work-tag">coastal</span>
-        <span class="work-tag">wordmark</span>
-        <span class="work-tag">type</span>
-      </div>
-    </div>
-    <div class="work-item" onclick="openWork(2)">
-      <div class="work-num">003</div>
-      <div class="work-title">moyogi slow scroll</div>
-      <div class="work-desc">Design that breathes at 2fps on purpose. A web experience built against urgency.</div>
-      <div class="work-tags">
-        <span class="work-tag">web</span>
-        <span class="work-tag">motion</span>
-        <span class="work-tag">slow design</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- detail panel -->
-  <div class="work-detail" id="work-detail">
     <div>
-      <div class="detail-title" id="detail-title"></div>
-      <div class="detail-body" id="detail-body"></div>
+      <div class="teaser-label">coming soon</div>
+      <a class="teaser-title" href="https://jereme.xyz/fwr.html">fw/r local — an intelligence that lives on your machine.</a>
     </div>
-    <div class="detail-meta" id="detail-meta"></div>
   </div>
-</section>
-
-<!-- MANIFESTO -->
-<div class="section-header">
-  <span class="section-tag">// 03 — about</span>
-  <span class="section-count">the fw/r worldview</span>
+  <div class="teaser-right">
+    no cloud. no latency. no middleman.<br>
+    <span>your data stays yours.</span>
+  </div>
 </div>
-<section id="manifesto">
-  <div class="manifesto-left">
-    <div class="manifesto-heading">
-      we don't<br>
-      use ai.<br>
-      we think<br>
-      <em style="font-family:var(--serif);font-style:italic;color:var(--acc)">with it.</em>
-    </div>
-    <p class="manifesto-body">
-      The old model was: <strong>human designs, machine executes.</strong><br><br>
-      The new model is: <em>neither leads.</em> Both collapse into something stranger than either could make alone.<br><br>
-      fw/r is not an agency. Not a lab. Not a consultancy.<br><br>
-      We're the thing that happens when you stop asking what's possible and start asking <strong>what's next.</strong>
-    </p>
-  </div>
-  <div class="manifesto-right">
-    <ul class="values-list">
-      <li><span class="vnum">01</span> we make things that mean something</li>
-      <li><span class="vnum">02</span> no templates. no shortcuts. no vibes-only</li>
-      <li><span class="vnum">03</span> the brief is a starting point, not a ceiling</li>
-      <li><span class="vnum">04</span> craft and code are the same thing</li>
-      <li><span class="vnum">05</span> the machine is a collaborator, not a replacement</li>
-      <li><span class="vnum">06</span> done beats perfect. shipping beats planning</li>
-    </ul>
-  </div>
-</section>
 
-<!-- COLOPHON -->
-<div class="section-header">
-  <span class="section-tag">// 04 — how we make things</span>
-  <span class="section-count">tools, stack, process</span>
-</div>
-<section id="colophon">
-  <div class="colophon-grid">
-    <div class="colophon-group">
-      <div class="colophon-group-title">design</div>
-      <div class="colophon-item">figma</div>
-      <div class="colophon-item">affinity suite</div>
-      <div class="colophon-item">svg / custom paths</div>
-      <div class="colophon-item">print-ready outputs</div>
-    </div>
-    <div class="colophon-group">
-      <div class="colophon-group-title">build</div>
-      <div class="colophon-item">html / css / js</div>
-      <div class="colophon-item">react / next.js</div>
-      <div class="colophon-item">cloudflare workers</div>
-      <div class="colophon-item">github pages</div>
-    </div>
-    <div class="colophon-group">
-      <div class="colophon-group-title">intelligence</div>
-      <div class="colophon-item">claude (anthropic)</div>
-      <div class="colophon-item">custom ai agents</div>
-      <div class="colophon-item">generative systems</div>
-      <div class="colophon-item">prompt engineering</div>
-    </div>
-    <div class="colophon-group">
-      <div class="colophon-group-title">process</div>
-      <div class="colophon-item">brief → concept (48h)</div>
-      <div class="colophon-item">concept → prototype</div>
-      <div class="colophon-item">iterate in public</div>
-      <div class="colophon-item">ship. then refine.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<div class="section-header">
-  <span class="section-tag">// 05 — work with us</span>
-  <span class="section-count">no forms. no decks. just talk.</span>
-</div>
-<section id="contact">
-  <div class="contact-left">
-    <h2 class="contact-heading">let's make<br>something<br><span>strange.</span></h2>
-    <p class="contact-note">
-      We work with founders, studios, and brands who want<br>
-      something that doesn't look like everything else.<br><br>
-      We don't do retainers. We do projects.<br>
-      We don't do decks. We do ideas.
-    </p>
-    <div class="contact-links">
-      <a class="contact-link" href="mailto:loveletters@jereme.xyz">
-        <span class="arrow">→</span> loveletters@jereme.xyz
-      </a>
-      <a class="contact-link" href="https://jereme.xyz" target="_blank">
-        <span class="arrow">→</span> jereme.xyz
-      </a>
-    </div>
-  </div>
-  <div class="contact-right"></div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">fw<span class="slash">/</span>r</div>
   <div>© 2026 fw/r · all rights reserved</div>
@@ -953,7 +359,6 @@
 </footer>
 
 <script>
-  // cursor
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
@@ -961,162 +366,6 @@
   });
   document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%,-50%) scale(2)');
   document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%,-50%) scale(1)');
-
-  // fade-up on scroll — add class first, then observe
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('section, .section-header').forEach(el => {
-    el.classList.add('fade-up');
-    observer.observe(el);
-  });
-
-  // brief engine
-  let streaming = false;
-
-  function fillBrief(text) {
-    document.getElementById('brief-input').value = text;
-    document.getElementById('brief-input').focus();
-  }
-
-  async function submitBrief() {
-    if (streaming) return;
-    const brief = document.getElementById('brief-input').value.trim();
-    if (!brief) return;
-
-    const btn = document.getElementById('brief-btn');
-    const area = document.getElementById('response-area');
-    const text = document.getElementById('response-text');
-    const hint = document.getElementById('brief-hint');
-
-    streaming = true;
-    btn.disabled = true;
-    btn.textContent = 'thinking...';
-    area.classList.add('active');
-    text.innerHTML = '<span class="blink-cursor"> </span>';
-    hint.textContent = '';
-
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 250,
-          system: `You are fw/r — a creative studio at the intersection of humans and AI. When someone drops a brief, respond as the creative director. Rules: terse and surprising, 3-5 sentences max. Start with what's unexpected or underexplored about the brief. Then say what you'd actually make — be specific. No "we would" — just state what it is. No fluff. Lowercase throughout. Punchy rhythm. End with one sharp sentence that reframes the whole thing. The work should feel like it couldn't come from anywhere else.`,
-          messages: [{ role: 'user', content: brief }]
-        })
-      });
-
-      const data = await res.json();
-      if (data.content && data.content[0]) {
-        const response = data.content[0].text;
-        text.textContent = '';
-        let i = 0;
-        function type() {
-          if (i < response.length) {
-            text.textContent += response[i++];
-            setTimeout(type, 16);
-          } else {
-            streaming = false;
-            btn.disabled = false;
-            btn.textContent = 'submit brief →';
-            hint.textContent = '⌘ + enter to submit';
-          }
-        }
-        type();
-      }
-    } catch(err) {
-      text.textContent = 'engine offline. email us directly.';
-      streaming = false;
-      btn.disabled = false;
-      btn.textContent = 'submit brief →';
-    }
-  }
-
-  document.getElementById('brief-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) submitBrief();
-  });
-
-  // work detail
-  const workData = [
-    {
-      title: 'pine — a cursor brand',
-      body: 'Pine is a PNW-rooted coffee brand built around a single unexpected premise: the logo is a cursor arrow. In an industry drowning in mountain silhouettes and kraft paper, pine speaks the language of people who live online. The brand system uses typographic restraint, deep forest greens, and UI vocabulary — making coffee feel like the most considered choice in your stack.',
-      meta: [
-        { label: 'deliverables', val: 'logo, color system, type system, packaging direction' },
-        { label: 'timeline', val: '3 weeks' },
-        { label: 'sector', val: 'food & beverage / retail' },
-        { label: 'status', val: 'active · ongoing' },
-      ]
-    },
-    {
-      title: 'drift tidal arc',
-      body: "Drift is a coastal boutique coffee concept where the brand mark is drawn from water itself — a tidal arc that functions as both logotype container and standalone icon. Helvetica Neue 300 grounds the wordmark in restraint while the arc mark carries all the movement. The result is a brand that feels like it was always there, found rather than designed.",
-      meta: [
-        { label: 'deliverables', val: 'wordmark, icon system, brand guidelines' },
-        { label: 'timeline', val: '2 weeks' },
-        { label: 'sector', val: 'hospitality / coastal retail' },
-        { label: 'status', val: 'identity complete' },
-      ]
-    },
-    {
-      title: 'moyogi slow scroll',
-      body: 'Moyogi is a web experience built as a counter-statement to the dopamine economy. Deliberately slow animations, generous whitespace, and transitions that breathe rather than snap. The concept: slow design as a value, not a bug. Built for a brand that believes the best things take time — bonsai, coffee, ideas.',
-      meta: [
-        { label: 'deliverables', val: 'web design, motion system, brand concept' },
-        { label: 'timeline', val: '4 weeks' },
-        { label: 'sector', val: 'lifestyle / slow consumer' },
-        { label: 'status', val: 'concept phase' },
-      ]
-    }
-  ];
-
-  let currentWork = null;
-
-  function openWork(idx) {
-    const detail = document.getElementById('work-detail');
-    const items = document.querySelectorAll('.work-item');
-
-    if (currentWork === idx) {
-      detail.classList.remove('active');
-      items[idx].style.borderColor = '';
-      currentWork = null;
-      return;
-    }
-
-    items.forEach((el, i) => {
-      el.style.borderColor = i === idx ? 'var(--hot)' : '';
-    });
-
-    const w = workData[idx];
-    document.getElementById('detail-title').textContent = w.title;
-    document.getElementById('detail-body').textContent = w.body;
-    document.getElementById('detail-meta').innerHTML = w.meta.map(m =>
-      `<div class="detail-meta-item"><div class="detail-meta-label">${m.label}</div><div class="detail-meta-val">${m.val}</div></div>`
-    ).join('');
-
-    detail.classList.add('active');
-    currentWork = idx;
-    detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
 </script>
-
-<div style="padding:2rem 2.5rem;border-top:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
-  <div style="display:flex;align-items:center;gap:1.25rem;">
-    <div style="width:36px;height:36px;border:1px solid rgba(0,255,136,0.3);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-      <div style="width:10px;height:10px;background:var(--acc);border-radius:50%;animation:pulseAnim 2.2s ease-in-out infinite;"></div>
-    </div>
-    <div>
-      <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--acc);margin-bottom:0.3rem;">coming soon</div>
-      <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:1.05rem;color:var(--fg);line-height:1.2;">fw/r local — an intelligence that lives on your machine.</div>
-    </div>
-  </div>
-  <div style="font-size:0.6rem;color:rgba(240,236,228,0.35);letter-spacing:0.12em;text-transform:uppercase;text-align:right;line-height:2;">
-    no cloud. no latency. no middleman.<br>
-    <span style="color:rgba(240,236,228,0.55);">your data stays yours.</span>
-  </div>
-</div>
-
 </body>
 </html>
