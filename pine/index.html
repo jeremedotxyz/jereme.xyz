@@ -1,1 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pine — coffee, PNW rooted</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0a08;
+      --fg: #e8dfd0;
+      --accent: #7a5c3a;
+      --accent-warm: #c47a3a;
+      --dim: #4a3f34;
+      --muted: #8a7a6a;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Share Tech Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.7;
+    }
+
+    /* warm vignette */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(12,10,8,0.85) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: 1.4rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(12,10,8,0.9);
+      border-bottom: 1px solid rgba(122,92,58,0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--accent-warm);
+      font-size: 1.4rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    nav a.back {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--dim);
+      font-size: 0.65rem;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a.back:hover { color: var(--fg); }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 2.5rem 4rem;
+      gap: 4rem;
+      max-width: 1100px;
+    }
+
+    .left {
+      opacity: 0;
+      animation: fadein 0.8s 0.2s forwards;
+    }
+
+    .eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1.1;
+      color: var(--fg);
+      margin-bottom: 2rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent-warm);
+    }
+
+    .body-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--fg);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-warm);
+      padding-bottom: 0.4rem;
+      transition: all 0.2s;
+    }
+    .cta:hover { color: var(--accent-warm); gap: 1.25rem; }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadein 0.8s 0.5s forwards;
+    }
+
+    .card {
+      border: 1px solid rgba(122,92,58,0.2);
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.015);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--accent-warm);
+      opacity: 0.4;
+    }
+
+    .card-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-size: 0.85rem;
+      color: var(--fg);
+      line-height: 1.6;
+    }
+
+    .card-value.highlight {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--accent-warm);
+    }
+
+    .footer-note {
+      position: fixed;
+      bottom: 2rem;
+      left: 2.5rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      z-index: 10;
+      opacity: 0;
+      animation: fadein 0.6s 1.2s forwards;
+    }
+
+    .blink {
+      animation: blink 1.4s step-end infinite;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 700px) {
+      main { grid-template-columns: 1fr; }
+      .right { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">pine</a>
+    <a href="index.html" class="back">← jereme.xyz</a>
+  </nav>
+
+  <main>
+    <div class="left">
+      <div class="eyebrow">PNW · Coffee · Community</div>
+      <h1>Four locations.<br/>None of them<br/><em>right.</em></h1>
+      <p class="body-copy">
+        Then number five happened. Pine is a PNW-rooted coffee brand built on a simple idea — a place that actually wants you there. Stay. Think. Collaborate. The coffee is good. The quiet is better. We weren't looking for home. We found it anyway.
+      </p>
+      <a href="mailto:loveletters@jereme.xyz" class="cta">Find us →</a>
+    </div>
+
+    <div class="right">
+      <div class="card">
+        <div class="card-label">The rule</div>
+        <div class="card-value highlight">"doesn't make you feel like we're waiting for you to leave"</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Locations</div>
+        <div class="card-value">Four known to a few.<br/>Number five is home.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">What we are</div>
+        <div class="card-value">Not a chain. Not a concept.<br/>Just coffee and a place to be.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Rooted in</div>
+        <div class="card-value">Pacific Northwest <span class="blink">_</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="footer-note">pine · pnw · est. whenever it felt right</div>
+
+</body>
+</html>
