@@ -1,1 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nrthrn — industrial & consumer design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060608;
+      --fg: #c8c8cc;
+      --accent: #4a7aaa;
+      --accent-cold: #2a4a6a;
+      --steel: #8a8a9a;
+      --dim: #2a2a30;
+      --muted: #5a5a6a;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Share Tech Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.65;
+    }
+
+    /* cold cross-hatch bg */
+    .hatch {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(74,122,170,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,122,170,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* diagonal accent line */
+    .diag {
+      position: fixed;
+      top: 0;
+      right: 20vw;
+      width: 1px;
+      height: 100vh;
+      background: linear-gradient(to bottom, transparent, rgba(74,122,170,0.1), transparent);
+      pointer-events: none;
+      z-index: 0;
+      transform: rotate(8deg);
+      transform-origin: top center;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(6,6,8,0.9);
+      border-bottom: 1px solid rgba(74,122,170,0.15);
+      backdrop-filter: blur(4px);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--fg);
+      font-size: 1.3rem;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+    }
+
+    nav a.back {
+      color: var(--dim);
+      font-size: 0.65rem;
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a.back:hover { color: var(--fg); }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      align-items: stretch;
+      padding-top: 60px;
+    }
+
+    .left-panel {
+      padding: 5rem 3rem 4rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid rgba(74,122,170,0.1);
+    }
+
+    .eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadein 0.6s 0.2s forwards;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 9vw, 7.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--fg);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadein 0.6s 0.35s forwards;
+    }
+
+    h1 .cold {
+      color: var(--accent);
+      display: block;
+    }
+
+    .body-copy {
+      font-size: 0.88rem;
+      line-height: 1.95;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadein 0.6s 0.55s forwards;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--accent);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--accent-cold);
+      padding: 0.9rem 2rem;
+      width: fit-content;
+      transition: all 0.25s;
+      opacity: 0;
+      animation: fadein 0.6s 0.7s forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-cold);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+    .cta:hover { color: var(--fg); }
+    .cta:hover::before { transform: translateX(0); }
+
+    /* right panel — specs */
+    .right-panel {
+      padding: 5rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      opacity: 0;
+      animation: fadein 0.6s 0.5s forwards;
+    }
+
+    .spec-row {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(74,122,170,0.1);
+    }
+
+    .spec-row:first-child {
+      border-top: 1px solid rgba(74,122,170,0.1);
+    }
+
+    .spec-num {
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: var(--accent-cold);
+      margin-bottom: 0.5rem;
+    }
+
+    .spec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      color: var(--fg);
+      margin-bottom: 0.35rem;
+    }
+
+    .spec-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .bottom-mark {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 2.5rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--dim);
+      text-transform: uppercase;
+      z-index: 10;
+      opacity: 0;
+      animation: fadein 0.6s 1.2s forwards;
+    }
+
+    .blink { animation: blink 1.2s step-end infinite; }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 700px) {
+      main { grid-template-columns: 1fr; }
+      .right-panel { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hatch"></div>
+  <div class="diag"></div>
+
+  <nav>
+    <a href="#" class="logo">NRTHRN</a>
+    <a href="index.html" class="back">← jereme.xyz</a>
+  </nav>
+
+  <main>
+    <div class="left-panel">
+      <div class="eyebrow">Industrial · Consumer · Tech Design</div>
+      <h1>Function<br/>is the<br/><span class="cold">brief.</span></h1>
+      <p class="body-copy">
+        Everything else is craft. nrthrn designs and builds tech and consumer industrial goods — prototypes, finished products, commissions — shaped by utility and refined by a human hand. Nothing gratuitous. Nothing wasted. Objects that work the way they look: intentional, considered, north of ordinary.
+      </p>
+      <a href="mailto:loveletters@jereme.xyz" class="cta">Commission something →</a>
+    </div>
+
+    <div class="right-panel">
+      <div class="spec-row">
+        <div class="spec-num">01 ——</div>
+        <div class="spec-title">Prototypes</div>
+        <div class="spec-desc">From concept to form. Rapid iteration, material-honest construction.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-num">02 ——</div>
+        <div class="spec-title">Finished Goods</div>
+        <div class="spec-desc">Production-ready objects built to last. No shortcuts. No filler.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-num">03 ——</div>
+        <div class="spec-title">Tech Products</div>
+        <div class="spec-desc">Hardware and digital-physical intersections. Utility-first, human finish.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-num">04 ——</div>
+        <div class="spec-title">Commissions</div>
+        <div class="spec-desc">You bring the problem. We bring the solution and the aesthetic discipline.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-num">05 ——</div>
+        <div class="spec-title">Based</div>
+        <div class="spec-desc">Pacific Northwest. Ships everywhere. <span class="blink">_</span></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="bottom-mark">nrthrn · utility first · human touch</div>
+
+</body>
+</html>
