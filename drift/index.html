@@ -4,274 +4,400 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>drift — coastal coffee</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Special+Elite&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #09090b;
-      --fg: #ccc8be;
-      --accent: #7a9a8a;
-      --accent-dim: #3a5a4a;
-      --salt: #a8b0a8;
-      --rust: #8a4a2a;
-      --dim: #3a3a3a;
-      --muted: #6a6a5a;
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper:       #ffffff;
+      --ink:         #10100e;
+      --ink-soft:    #3f3d37;
+      --muted:       #9a9690;
+      --line:        #e8e4dc;
+      --line-strong: #d0cbc0;
+      --ember:       #aa3c16;
+      --moss:        #5f7156;
+      --pad:         28px;
+      --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      --mono:        "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
 
-    html, body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Share Tech Mono', monospace;
-      min-height: 100vh;
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      min-height: 100svh;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(170, 60, 22, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(95, 113, 86, 0.07), transparent 32rem),
+        #ffffff;
+      color: var(--ink);
+      font-family: var(--sans);
       overflow-x: hidden;
     }
 
-    /* grain - heavier for the weathered vibe */
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 100;
-      opacity: 0.8;
+      z-index: 1;
+      background-image:
+        linear-gradient(rgba(16, 16, 14, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 16, 14, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
     }
 
-    /* horizontal bands like surf/tide */
-    .tide-lines {
+    body::after {
+      content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          transparent 0px,
-          transparent 80px,
-          rgba(122,154,138,0.015) 80px,
-          rgba(122,154,138,0.015) 81px
-        );
+      z-index: 2;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
     }
+
+    a { color: inherit; text-decoration: none; }
 
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 50;
-      padding: 1.4rem 2.5rem;
+      padding: 1.2rem var(--pad);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(9,9,11,0.9);
-      border-bottom: 1px solid rgba(122,154,138,0.15);
-      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
     }
 
     .logo {
-      font-family: 'Special Elite', cursive;
-      color: var(--salt);
-      font-size: 1.3rem;
-      text-decoration: none;
-      letter-spacing: 0.08em;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
     }
 
     nav a.back {
-      color: var(--dim);
-      font-size: 0.65rem;
-      text-decoration: none;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      transition: color 0.18s;
     }
-    nav a.back:hover { color: var(--fg); }
+    nav a.back:hover { color: var(--ink); }
 
-    main {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      padding: 7rem 2.5rem 4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 1000px;
+    .site-shell { position: relative; z-index: 3; }
+
+    .hero {
+      min-height: 86svh;
+      width: min(1180px, calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: clamp(80px, 12vh, 120px) 0 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.5fr);
+      align-items: end;
+      gap: 52px;
     }
+
+    .hero > * { min-width: 0; }
 
     .eyebrow {
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      position: relative;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      background: var(--ember);
+      display: inline-block;
+    }
+
+    .eyebrow-dot::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: var(--ember);
+      animation: beacon 2s ease-out infinite;
       opacity: 0;
-      animation: fadein 0.7s 0.2s forwards;
+    }
+
+    @keyframes beacon {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      100% { transform: scale(2.2); opacity: 0;   }
     }
 
     h1 {
-      font-family: 'Special Elite', cursive;
-      font-size: clamp(2.5rem, 6.5vw, 5.5rem);
-      line-height: 1.1;
-      color: var(--fg);
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadein 0.7s 0.35s forwards;
-      max-width: 700px;
+      font-size: clamp(3rem, 8vw, 7.2rem);
+      line-height: 0.92;
+      font-weight: 640;
+      letter-spacing: 0;
+      text-wrap: balance;
+      max-width: 850px;
     }
 
-    .sub {
-      font-family: 'Special Elite', cursive;
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      color: var(--rust);
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadein 0.7s 0.5s forwards;
+    .hero-lede {
+      margin-top: 34px;
+      font-size: clamp(1rem, 2vw, 1.32rem);
+      line-height: 1.45;
+      color: var(--ink-soft);
+      max-width: 560px;
+      text-wrap: pretty;
     }
 
-    .body-copy {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.88rem;
-      line-height: 2;
-      color: var(--muted);
-      max-width: 540px;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadein 0.7s 0.65s forwards;
+    .hero-lede strong {
+      color: var(--ink);
+      font-weight: 500;
     }
 
-    .body-copy strong {
-      color: var(--salt);
-      font-weight: 400;
-    }
-
-    .cta-row {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      opacity: 0;
-      animation: fadein 0.7s 0.8s forwards;
-    }
+    .cta-block { margin-top: 48px; }
 
     .cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      color: var(--accent);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid var(--accent-dim);
-      padding: 0.85rem 1.75rem;
-      transition: all 0.25s;
-      position: relative;
-      overflow: hidden;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ember);
+      border-bottom: 1px solid var(--ember);
+      padding-bottom: 2px;
+      letter-spacing: 0.04em;
+      transition: opacity 0.18s;
+    }
+    .cta:hover { opacity: 0.65; }
+
+    .side-panel {
+      align-self: stretch;
+      display: grid;
+      align-content: end;
     }
 
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--accent-dim);
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      z-index: -1;
+    .readout {
+      border-top: 1px solid var(--line-strong);
+      padding-top: 18px;
+      display: grid;
+      gap: 16px;
+      font-family: var(--mono);
     }
 
-    .cta:hover { color: var(--fg); }
-    .cta:hover::before { transform: translateX(0); }
-
-    .hint {
-      font-size: 0.65rem;
-      color: var(--dim);
-      letter-spacing: 0.15em;
+    .readout-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: 26px;
+      font-size: 0.72rem;
     }
 
-    /* bottom coords row */
-    .bottom-strip {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1rem 2.5rem;
+    .readout-key { color: var(--muted); }
+    .readout-val { color: var(--ink); text-align: right; }
+
+    .thesis {
+      width: min(1180px, calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 94px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+      gap: 52px;
+    }
+
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .thesis-line {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.06;
+      font-weight: 620;
+      max-width: 780px;
+      text-wrap: balance;
+    }
+
+    .thesis-note {
+      margin-top: 26px;
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--ink-soft);
+    }
+
+    footer {
+      width: min(1180px, calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 52px 0 42px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(122,154,138,0.1);
-      background: rgba(9,9,11,0.9);
-      z-index: 10;
-      opacity: 0;
-      animation: fadein 0.6s 1.2s forwards;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
     }
 
-    .coord {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      color: var(--dim);
-    }
+    .footer-coords { display: flex; gap: 2rem; align-items: center; }
 
-    .coord.redacted {
-      color: var(--dim);
-      position: relative;
-    }
+    .coord-status { display: flex; align-items: center; gap: 0.4rem; }
 
-    .coord.redacted::after {
-      content: '██████';
-      position: absolute;
-      inset: 0;
-      background: var(--bg);
-      color: var(--dim);
-      display: flex;
-      align-items: center;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
+    .coord-dot {
+      width: 5px; height: 5px;
       border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s ease-in-out infinite;
-      display: inline-block;
-      margin-right: 0.5rem;
+      background: var(--ember);
+      flex-shrink: 0;
+      animation: blink 2.4s ease-in-out infinite;
     }
 
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
+    @keyframes blink {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      50%       { opacity: 0.2; }
+    }
+
+    footer a { color: var(--muted); transition: color 0.16s; }
+    footer a:hover { color: var(--ink); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; align-items: start; }
+      .side-panel { align-self: auto; }
+      .readout { max-width: 520px; }
+      .thesis { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: auto; padding: 80px 0 60px; }
+      .thesis { padding: 70px 0; }
+      .readout-row { grid-template-columns: 1fr; gap: 6px; }
+      .readout-val { text-align: left; }
+      .footer-coords { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+      footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="tide-lines"></div>
-
   <nav>
-    <a href="#" class="logo">drift</a>
+    <span class="logo">drift</span>
     <a href="index.html" class="back">← jereme.xyz</a>
   </nav>
 
-  <main>
-    <div class="eyebrow">Coastal · Boutique Coffee · Somewhere</div>
-    <h1>You have to want<br/>to find it.</h1>
-    <div class="sub">rust meets community. ocean does the talking.</div>
-    <p class="body-copy">
-      Somewhere on the coast, where the rust is real and the community earned it, there's a coffee shop you have to want to find. <strong>No coordinates. No signage you'll spot from the harbor.</strong> Just good coffee, weathered walls, and people who actually live here. Built for the ones who belong. Discovered by the ones who look.
-    </p>
-    <div class="cta-row">
-      <a href="mailto:loveletters@jereme.xyz" class="cta">You'll find it →</a>
-      <span class="hint">location: [redacted]</span>
-    </div>
-  </main>
+  <div class="site-shell">
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Coastal</span>
+            <span>/</span>
+            <span>Boutique Coffee</span>
+            <span>/</span>
+            <span>Somewhere</span>
+          </div>
 
-  <div class="bottom-strip">
-    <span class="coord">LAT: ██.████° N</span>
-    <span class="coord"><span class="status-dot"></span>open · when it feels right</span>
-    <span class="coord">LNG: ███.████° W</span>
+          <h1 class="reveal">You have to want<br/>to find it.</h1>
+
+          <p class="hero-lede reveal">
+            Somewhere on the coast, where the rust is real and the community earned it, there's a coffee shop you have to want to find. <strong>No coordinates. No signage you'll spot from the harbor.</strong> Just good coffee, weathered walls, and people who actually live here. Built for the ones who belong. Discovered by the ones who look.
+          </p>
+
+          <div class="cta-block reveal">
+            <a href="mailto:loveletters@jereme.xyz" class="cta">You'll find it →</a>
+          </div>
+        </div>
+
+        <aside class="side-panel reveal">
+          <div class="readout">
+            <div class="readout-row">
+              <span class="readout-key">location</span>
+              <span class="readout-val">[redacted]</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">lat</span>
+              <span class="readout-val">██.████° N</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">lng</span>
+              <span class="readout-val">███.████° W</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">hours</span>
+              <span class="readout-val">when it feels right</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">status</span>
+              <span class="readout-val">open</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="thesis reveal">
+        <div class="section-kicker">the vibe</div>
+        <div>
+          <p class="thesis-line">rust meets community.<br/>ocean does the talking.</p>
+          <p class="thesis-note">
+            No easy coordinates. No signage you'll spot from the harbor. Just the coast, the community, and coffee worth the drive.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-coords">
+        <span>LAT: ██.████° N</span>
+        <span class="coord-status">
+          <span class="coord-dot"></span>
+          open · when it feels right
+        </span>
+        <span>LNG: ███.████° W</span>
+      </div>
+      <a href="mailto:loveletters@jereme.xyz">loveletters@jereme.xyz</a>
+    </footer>
   </div>
 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = Math.min(i * 60, 300) + 'ms';
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
