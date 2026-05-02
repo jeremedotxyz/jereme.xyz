@@ -895,8 +895,8 @@
       const py = pointerY * height;
 
       const gradient = ctx.createRadialGradient(px, py, 0, px, py, Math.max(width, height) * 0.62);
-      gradient.addColorStop(0, 'rgba(170, 60, 22, 0.13)');
-      gradient.addColorStop(0.34, 'rgba(95, 113, 86, 0.075)');
+      gradient.addColorStop(0, 'rgba(230, 50, 10, 0.28)');
+      gradient.addColorStop(0.34, 'rgba(45, 170, 55, 0.18)');
       gradient.addColorStop(1, 'rgba(16, 16, 14, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -915,11 +915,11 @@
         const dy = node.y - py;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const pull = Math.max(0, 1 - distance / 320);
-        const color = node.hue > 0.66 ? '82, 101, 116' : node.hue > 0.33 ? '95, 113, 86' : '170, 60, 22';
+        const color = node.hue > 0.66 ? '30, 100, 210' : node.hue > 0.33 ? '45, 170, 55' : '230, 50, 10';
 
         ctx.beginPath();
         ctx.arc(node.x + dx * pull * 0.018, node.y + dy * pull * 0.018, node.r + pull * 1.8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + color + ', ' + (0.18 + pull * 0.16) + ')';
+        ctx.fillStyle = 'rgba(' + color + ', ' + (0.55 + pull * 0.4) + ')';
         ctx.fill();
       });
 
