@@ -4,301 +4,448 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>nrthrn — industrial & consumer design</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #060608;
-      --fg: #c8c8cc;
-      --accent: #4a7aaa;
-      --accent-cold: #2a4a6a;
-      --steel: #8a8a9a;
-      --dim: #2a2a30;
-      --muted: #5a5a6a;
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper:       #ffffff;
+      --ink:         #10100e;
+      --ink-soft:    #3f3d37;
+      --muted:       #9a9690;
+      --line:        #e8e4dc;
+      --line-strong: #d0cbc0;
+      --ember:       #aa3c16;
+      --moss:        #5f7156;
+      --pad:         28px;
+      --sans:        ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      --mono:        "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
 
-    html, body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'Share Tech Mono', monospace;
-      min-height: 100vh;
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      min-height: 100svh;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(170, 60, 22, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(95, 113, 86, 0.07), transparent 32rem),
+        #ffffff;
+      color: var(--ink);
+      font-family: var(--sans);
       overflow-x: hidden;
     }
 
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.045'/%3E%3C/svg%3E");
       pointer-events: none;
-      z-index: 100;
-      opacity: 0.65;
-    }
-
-    /* cold cross-hatch bg */
-    .hatch {
-      position: fixed;
-      inset: 0;
+      z-index: 1;
       background-image:
-        linear-gradient(rgba(74,122,170,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(74,122,170,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
+        linear-gradient(rgba(16, 16, 14, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 16, 14, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
     }
 
-    /* diagonal accent line */
-    .diag {
+    body::after {
+      content: "";
       position: fixed;
-      top: 0;
-      right: 20vw;
-      width: 1px;
-      height: 100vh;
-      background: linear-gradient(to bottom, transparent, rgba(74,122,170,0.1), transparent);
+      inset: 0;
       pointer-events: none;
-      z-index: 0;
-      transform: rotate(8deg);
-      transform-origin: top center;
+      z-index: 2;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
     }
+
+    a { color: inherit; text-decoration: none; }
 
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 50;
-      padding: 1.2rem 2.5rem;
+      padding: 1.2rem var(--pad);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(6,6,8,0.9);
-      border-bottom: 1px solid rgba(74,122,170,0.15);
-      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
     }
 
     .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      color: var(--fg);
-      font-size: 1.3rem;
-      letter-spacing: 0.2em;
-      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
     }
 
     nav a.back {
-      color: var(--dim);
-      font-size: 0.65rem;
-      text-decoration: none;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      transition: color 0.18s;
     }
-    nav a.back:hover { color: var(--fg); }
+    nav a.back:hover { color: var(--ink); }
 
-    main {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
+    .site-shell { position: relative; z-index: 3; }
+
+    .hero {
+      min-height: 86svh;
+      width: min(1180px, calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: clamp(80px, 12vh, 120px) 0 72px;
       display: grid;
-      grid-template-columns: 1fr 340px;
-      align-items: stretch;
-      padding-top: 60px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.5fr);
+      align-items: end;
+      gap: 52px;
     }
 
-    .left-panel {
-      padding: 5rem 3rem 4rem 2.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-right: 1px solid rgba(74,122,170,0.1);
-    }
+    .hero > * { min-width: 0; }
 
     .eyebrow {
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      position: relative;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      background: var(--ember);
+      display: inline-block;
+    }
+
+    .eyebrow-dot::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: var(--ember);
+      animation: beacon 2s ease-out infinite;
       opacity: 0;
-      animation: fadein 0.6s 0.2s forwards;
+    }
+
+    @keyframes beacon {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      100% { transform: scale(2.2); opacity: 0;   }
     }
 
     h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 9vw, 7.5rem);
-      line-height: 0.9;
-      letter-spacing: 0.04em;
-      color: var(--fg);
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadein 0.6s 0.35s forwards;
+      font-size: clamp(3rem, 8vw, 7.2rem);
+      line-height: 0.92;
+      font-weight: 640;
+      letter-spacing: 0;
+      text-wrap: balance;
+      max-width: 850px;
     }
 
-    h1 .cold {
-      color: var(--accent);
-      display: block;
+    .hero-lede {
+      margin-top: 34px;
+      font-size: clamp(1rem, 2vw, 1.32rem);
+      line-height: 1.45;
+      color: var(--ink-soft);
+      max-width: 560px;
+      text-wrap: pretty;
     }
 
-    .body-copy {
-      font-size: 0.88rem;
-      line-height: 1.95;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadein 0.6s 0.55s forwards;
+    .hero-lede strong {
+      color: var(--ink);
+      font-weight: 500;
     }
+
+    .cta-block { margin-top: 48px; }
 
     .cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      color: var(--accent);
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid var(--accent-cold);
-      padding: 0.9rem 2rem;
-      width: fit-content;
-      transition: all 0.25s;
-      opacity: 0;
-      animation: fadein 0.6s 0.7s forwards;
-      position: relative;
-      overflow: hidden;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ember);
+      border-bottom: 1px solid var(--ember);
+      padding-bottom: 2px;
+      letter-spacing: 0.04em;
+      transition: opacity 0.18s;
+    }
+    .cta:hover { opacity: 0.65; }
+
+    .side-panel {
+      align-self: stretch;
+      display: grid;
+      align-content: end;
     }
 
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--accent-cold);
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      z-index: -1;
-    }
-    .cta:hover { color: var(--fg); }
-    .cta:hover::before { transform: translateX(0); }
-
-    /* right panel — specs */
-    .right-panel {
-      padding: 5rem 2rem 4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      opacity: 0;
-      animation: fadein 0.6s 0.5s forwards;
+    .readout {
+      border-top: 1px solid var(--line-strong);
+      padding-top: 18px;
+      display: grid;
+      gap: 16px;
+      font-family: var(--mono);
     }
 
-    .spec-row {
-      padding: 1.4rem 0;
-      border-bottom: 1px solid rgba(74,122,170,0.1);
+    .readout-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: 26px;
+      font-size: 0.72rem;
     }
 
-    .spec-row:first-child {
-      border-top: 1px solid rgba(74,122,170,0.1);
+    .readout-key { color: var(--muted); }
+    .readout-val { color: var(--ink); text-align: right; }
+
+    /* thesis / specs section */
+    .thesis {
+      width: min(1180px, calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 94px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+      gap: 52px;
     }
 
-    .spec-num {
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      color: var(--accent-cold);
-      margin-bottom: 0.5rem;
-    }
-
-    .spec-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.12em;
-      color: var(--fg);
-      margin-bottom: 0.35rem;
-    }
-
-    .spec-desc {
+    .section-kicker {
+      font-family: var(--mono);
       font-size: 0.72rem;
       color: var(--muted);
-      line-height: 1.6;
     }
 
-    .bottom-mark {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 2.5rem;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      color: var(--dim);
-      text-transform: uppercase;
-      z-index: 10;
-      opacity: 0;
-      animation: fadein 0.6s 1.2s forwards;
+    .thesis-line {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.06;
+      font-weight: 620;
+      max-width: 780px;
+      text-wrap: balance;
     }
 
-    .blink { animation: blink 1.2s step-end infinite; }
+    .thesis-note {
+      margin-top: 26px;
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--ink-soft);
+    }
 
-    @keyframes fadein {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* spec list */
+    .spec-list {
+      list-style: none;
+      border-top: 1px solid var(--line-strong);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      margin-top: 52px;
+      grid-column: 1 / -1;
+    }
+
+    .spec-list li {
+      display: grid;
+      grid-template-columns: 36px 160px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      border-bottom: 1px solid var(--line);
+      padding: 20px 0;
+      color: var(--ink);
+    }
+
+    .spec-num { color: var(--muted); font-size: 0.66rem; }
+    .spec-title { font-weight: 500; }
+    .spec-desc { color: var(--muted); line-height: 1.6; }
+
+    footer {
+      width: min(1180px, calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 52px 0 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-meta { display: flex; gap: 2.5rem; align-items: center; }
+
+    .blink-dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--ember);
+      margin-right: 5px;
+      vertical-align: middle;
+      animation: blink 1.4s step-end infinite;
     }
 
     @keyframes blink {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+      50%       { opacity: 0; }
     }
 
-    @media (max-width: 700px) {
-      main { grid-template-columns: 1fr; }
-      .right-panel { display: none; }
+    footer a { color: var(--muted); transition: color 0.16s; }
+    footer a:hover { color: var(--ink); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; align-items: start; }
+      .side-panel { align-self: auto; }
+      .readout { max-width: 520px; }
+      .thesis { grid-template-columns: 1fr; }
+      .spec-list li { grid-template-columns: 28px 1fr; }
+      .spec-desc { grid-column: 2; }
+    }
+
+    @media (max-width: 680px) {
+      .hero { min-height: auto; padding: 80px 0 60px; }
+      .thesis { padding: 70px 0; }
+      .readout-row { grid-template-columns: 1fr; gap: 6px; }
+      .readout-val { text-align: left; }
+      .spec-list li { grid-template-columns: 1fr; gap: 6px; }
+      .spec-num { display: none; }
+      .footer-meta { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+      footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
 
-  <div class="hatch"></div>
-  <div class="diag"></div>
-
   <nav>
-    <a href="#" class="logo">NRTHRN</a>
+    <span class="logo">nrthrn</span>
     <a href="index.html" class="back">← jereme.xyz</a>
   </nav>
 
-  <main>
-    <div class="left-panel">
-      <div class="eyebrow">Industrial · Consumer · Tech Design</div>
-      <h1>Function<br/>is the<br/><span class="cold">brief.</span></h1>
-      <p class="body-copy">
-        Everything else is craft. nrthrn designs and builds tech and consumer industrial goods — prototypes, finished products, commissions — shaped by utility and refined by a human hand. Nothing gratuitous. Nothing wasted. Objects that work the way they look: intentional, considered, north of ordinary.
-      </p>
-      <a href="mailto:loveletters@jereme.xyz" class="cta">Commission something →</a>
-    </div>
+  <div class="site-shell">
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Industrial</span>
+            <span>/</span>
+            <span>Consumer</span>
+            <span>/</span>
+            <span>Tech Design</span>
+          </div>
 
-    <div class="right-panel">
-      <div class="spec-row">
-        <div class="spec-num">01 ——</div>
-        <div class="spec-title">Prototypes</div>
-        <div class="spec-desc">From concept to form. Rapid iteration, material-honest construction.</div>
-      </div>
-      <div class="spec-row">
-        <div class="spec-num">02 ——</div>
-        <div class="spec-title">Finished Goods</div>
-        <div class="spec-desc">Production-ready objects built to last. No shortcuts. No filler.</div>
-      </div>
-      <div class="spec-row">
-        <div class="spec-num">03 ——</div>
-        <div class="spec-title">Technology</div>
-        <div class="spec-desc">Hardware and digital-physical intersections. Utility-first, human finish.</div>
-      </div>
-      <div class="spec-row">
-        <div class="spec-num">04 ——</div>
-        <div class="spec-title">Commissions</div>
-        <div class="spec-desc">You bring the problem. We bring the solution and the aesthetic discipline.</div>
-      </div>
-      <div class="spec-row">
-        <div class="spec-num">05 ——</div>
-        <div class="spec-title">Based</div>
-        <div class="spec-desc">Pacific Northwest. Ships everywhere. <span class="blink">_</span></div>
-      </div>
-    </div>
-  </main>
+          <h1 class="reveal">Function<br/>is the brief.</h1>
 
-  <div class="bottom-mark">nrthrn · utility first · human touch</div>
+          <p class="hero-lede reveal">
+            Everything else is craft. nrthrn designs and builds tech and consumer industrial goods — prototypes, finished products, commissions — shaped by utility and refined by a human hand. <strong>Nothing gratuitous. Nothing wasted.</strong> Objects that work the way they look: intentional, considered, north of ordinary.
+          </p>
 
+          <div class="cta-block reveal">
+            <a href="mailto:loveletters@jereme.xyz" class="cta">Commission something →</a>
+          </div>
+        </div>
+
+        <aside class="side-panel reveal">
+          <div class="readout">
+            <div class="readout-row">
+              <span class="readout-key">discipline</span>
+              <span class="readout-val">Industrial · Consumer</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">output</span>
+              <span class="readout-val">Prototypes · Goods</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">approach</span>
+              <span class="readout-val">utility first</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">finish</span>
+              <span class="readout-val">human touch</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">base</span>
+              <span class="readout-val">PNW · ships everywhere</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="thesis reveal">
+        <div class="section-kicker">working method</div>
+        <div>
+          <p class="thesis-line">Utility first.<br/>Human finish.</p>
+          <p class="thesis-note">
+            From concept to production-ready — we build objects that earn their place. No shortcuts, no filler, no gratuitous form. Just considered design shaped by how things are actually used.
+          </p>
+        </div>
+
+        <ul class="spec-list reveal">
+          <li>
+            <span class="spec-num">01</span>
+            <span class="spec-title">Prototypes</span>
+            <span class="spec-desc">From concept to form. Rapid iteration, material-honest construction.</span>
+          </li>
+          <li>
+            <span class="spec-num">02</span>
+            <span class="spec-title">Finished Goods</span>
+            <span class="spec-desc">Production-ready objects built to last. No shortcuts. No filler.</span>
+          </li>
+          <li>
+            <span class="spec-num">03</span>
+            <span class="spec-title">Technology</span>
+            <span class="spec-desc">Hardware and digital-physical intersections. Utility-first, human finish.</span>
+          </li>
+          <li>
+            <span class="spec-num">04</span>
+            <span class="spec-title">Commissions</span>
+            <span class="spec-desc">You bring the problem. We bring the solution and the aesthetic discipline.</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-meta">
+        <span><span class="blink-dot"></span>accepting commissions</span>
+        <span>PNW · ships everywhere</span>
+      </div>
+      <a href="mailto:loveletters@jereme.xyz">loveletters@jereme.xyz</a>
+    </footer>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = Math.min(i * 60, 300) + 'ms';
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
