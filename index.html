@@ -698,6 +698,10 @@
               <span class="readout-key">signal</span>
               <span class="readout-val">selective</span>
             </div>
+            <div class="readout-row">
+              <span class="readout-key">currently</span>
+              <span class="readout-val" id="currentlyValue">not available</span>
+            </div>
           </div>
         </aside>
       </section>
@@ -993,6 +997,20 @@
     resizeCanvas();
     drawField();
     window.setInterval(updateTime, 30000);
+
+    // currently cycler
+    const currentlyValues = ['not available', 'building', 'away from screens', 'somewhere coastal', 'low signal'];
+    let currentlyIndex = 0;
+    const currentlyEl = document.getElementById('currentlyValue');
+    setInterval(() => {
+      currentlyIndex = (currentlyIndex + 1) % currentlyValues.length;
+      currentlyEl.style.opacity = '0';
+      setTimeout(() => {
+        currentlyEl.textContent = currentlyValues[currentlyIndex];
+        currentlyEl.style.opacity = '1';
+      }, 300);
+    }, 4000);
+    currentlyEl.style.transition = 'opacity 300ms ease';
   </script>
 </body>
 </html>
