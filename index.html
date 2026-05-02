@@ -82,11 +82,17 @@
       text-decoration: none;
     }
 
+    /* Canvas: GPU-composited layer, isolated from scroll thread */
     .field {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .site-shell {
@@ -124,6 +130,17 @@
       margin-bottom: 28px;
     }
 
+    .eyebrow-dot {
+      position: relative;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      background: var(--ember);
+      display: inline-block;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
     .eyebrow-dot::after {
       content: "";
       position: absolute;
@@ -132,20 +149,12 @@
       background: var(--ember);
       animation: beacon 2s ease-out infinite;
       opacity: 0;
+      will-change: transform, opacity;
     }
 
     @keyframes beacon {
       0% { transform: scale(1); opacity: 0.7; }
       100% { transform: scale(2.2); opacity: 0; }
-    }
-
-    .eyebrow-dot {
-      position: relative;
-      flex-shrink: 0;
-      width: 5px;
-      height: 5px;
-      background: var(--ember);
-      display: inline-block;
     }
 
     .hero h1 {
@@ -282,6 +291,8 @@
       border-bottom: 1px solid var(--line);
       color: var(--ink);
       transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+      /* Ensure tap targets are large enough on mobile */
+      -webkit-tap-highlight-color: transparent;
     }
 
     .venture-link:hover,
@@ -392,6 +403,7 @@
       justify-content: center;
       border: 1px solid transparent;
       transition: color 160ms ease, border-color 160ms ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .footer-socials a:hover {
@@ -442,6 +454,7 @@
       transform: translateY(0);
     }
 
+    /* ── 980px ── */
     @media (max-width: 980px) {
       :root {
         --pad: 22px;
@@ -480,6 +493,7 @@
       }
     }
 
+    /* ── 680px ── */
     @media (max-width: 680px) {
       .hero {
         min-height: auto;
@@ -518,6 +532,7 @@
         padding: 18px 0;
       }
 
+      /* No translateX on touch — feels wrong on mobile */
       .venture-link:hover,
       .venture-link:focus-visible {
         transform: none;
@@ -574,6 +589,7 @@
         gap: 4px;
       }
 
+      /* Larger tap targets on mobile */
       .footer-socials a {
         width: 44px;
         height: 44px;
@@ -586,13 +602,8 @@
       }
     }
 
+    /* ── 520px: removed the broken max-width:300px constraint ── */
     @media (max-width: 520px) {
-      .hero {
-        width: min(calc(100% - (var(--pad) * 2)), 300px);
-        margin-left: var(--pad);
-        margin-right: auto;
-      }
-
       .hero h1 {
         font-size: 3rem;
       }
@@ -602,6 +613,7 @@
       }
     }
 
+    /* ── 420px ── */
     @media (max-width: 420px) {
       :root {
         --pad: 18px;
@@ -635,6 +647,7 @@
       }
     }
 
+    /* ── 340px ── */
     @media (max-width: 340px) {
       .hero h1 {
         font-size: 2.35rem;
@@ -795,63 +808,57 @@
   </div>
 
   <script>
-    const localTime = document.getElementById('localTime');
-    const localTemp = document.getElementById('localTemp');
+    const localTime  = document.getElementById('localTime');
+    const localTemp  = document.getElementById('localTemp');
     const tempDivider = document.getElementById('tempDivider');
-    const modeValue = document.getElementById('modeValue');
-    const focusWord = document.getElementById('focusWord');
+    const modeValue  = document.getElementById('modeValue');
+    const focusWord  = document.getElementById('focusWord');
     const focusDetail = document.getElementById('focusDetail');
-    const canvas = document.getElementById('field');
-    const ctx = canvas.getContext('2d');
+    const canvas     = document.getElementById('field');
+    const ctx        = canvas.getContext('2d');
 
-    let width = 0;
-    let height = 0;
-    let dpr = 1;
-    let pointerX = 0.62;
-    let pointerY = 0.28;
-    let targetX = pointerX;
-    let targetY = pointerY;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const isMobile = () => window.innerWidth <= 680;
+
+    let width = 0, height = 0, dpr = 1;
+    let pointerX = 0.62, pointerY = 0.28;
+    let targetX = pointerX, targetY = pointerY;
     let nodes = [];
     let animationFrame;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isScrolling = false;
+    let scrollTimer;
 
+    /* ── Time ── */
     function updateTime() {
       const now = new Date();
       const time = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/Los_Angeles',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
+        hour: '2-digit', minute: '2-digit', hour12: false
       }).format(now);
-
       const hour = Number(new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/Los_Angeles',
-        hour: '2-digit',
-        hour12: false
+        hour: '2-digit', hour12: false
       }).format(now));
-
       localTime.textContent = time + ' PT';
       modeValue.textContent = hour < 6 ? 'night pass' : hour < 12 ? 'early signal' : hour < 18 ? 'building' : 'low noise';
     }
 
+    /* ── Weather ── */
     async function fetchTemperature() {
       try {
         const url = 'https://api.open-meteo.com/v1/forecast?latitude=45.72921&longitude=-122.45615&current=temperature_2m&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles&forecast_days=1';
-        const response = await fetch(url);
-        if (!response.ok) return;
-
-        const data = await response.json();
-        const temp = data && data.current ? data.current.temperature_2m : null;
-
+        const res = await fetch(url);
+        if (!res.ok) return;
+        const data = await res.json();
+        const temp = data?.current?.temperature_2m;
         if (Number.isFinite(temp)) {
           localTemp.textContent = Math.round(temp) + '°';
           tempDivider.hidden = false;
         }
-      } catch (error) {
-        // Keep the header minimal if the weather service is unavailable.
-      }
+      } catch (_) {}
     }
 
+    /* ── Scroll reveal ── */
     function revealVisible() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -868,45 +875,51 @@
       });
     }
 
+    /* ── Ventures hover/focus ── */
     function setupVentures() {
       const links = document.querySelectorAll('.venture-link');
       links.forEach((link) => {
-        link.addEventListener('mouseenter', () => {
-          focusWord.textContent = link.dataset.word;
+        const set = () => {
+          focusWord.textContent  = link.dataset.word;
           focusDetail.textContent = link.dataset.detail;
-        });
-        link.addEventListener('focus', () => {
-          focusWord.textContent = link.dataset.word;
-          focusDetail.textContent = link.dataset.detail;
-        });
+        };
+        link.addEventListener('mouseenter', set);
+        link.addEventListener('focus', set);
+        /* touch: brief tap feedback without needing a second tap */
+        link.addEventListener('touchstart', set, { passive: true });
       });
     }
 
+    /* ── Canvas ── */
     function resizeCanvas() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
+      dpr    = Math.min(window.devicePixelRatio || 1, 2);
+      width  = window.innerWidth;
       height = window.innerHeight;
-      canvas.width = Math.floor(width * dpr);
+      canvas.width  = Math.floor(width  * dpr);
       canvas.height = Math.floor(height * dpr);
-      canvas.style.width = width + 'px';
+      canvas.style.width  = width  + 'px';
       canvas.style.height = height + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = width < 420 ? 18 : width < 720 ? 24 : 42;
-      nodes = Array.from({ length: count }, (_, index) => {
-        const band = index / count;
+      /* Fewer nodes on small screens → less GPU work during scroll */
+      const count = width < 420 ? 14 : width < 680 ? 18 : width < 980 ? 26 : 42;
+      nodes = Array.from({ length: count }, (_, i) => {
+        const band = i / count;
         return {
-          x: width * (0.46 + Math.random() * 0.5),
-          y: height * (0.08 + band * 0.88) + (Math.random() * 68 - 34),
-          r: 1.2 + Math.random() * 2.8,
-          vx: -0.08 + Math.random() * 0.16,
-          vy: -0.05 + Math.random() * 0.1,
+          x:   width  * (0.46 + Math.random() * 0.5),
+          y:   height * (0.08 + band * 0.88) + (Math.random() * 68 - 34),
+          r:   1.2 + Math.random() * 2.8,
+          vx:  -0.08 + Math.random() * 0.16,
+          vy:  -0.05 + Math.random() * 0.1,
           hue: Math.random()
         };
       });
     }
 
     function drawField() {
+      /* Don't draw while the user is actively scrolling on mobile */
+      if (isScrolling && isMobile()) return;
+
       pointerX += (targetX - pointerX) * 0.045;
       pointerY += (targetY - pointerY) * 0.045;
 
@@ -916,48 +929,54 @@
       const py = pointerY * height;
 
       const gradient = ctx.createRadialGradient(px, py, 0, px, py, Math.max(width, height) * 0.62);
-      gradient.addColorStop(0, 'rgba(230, 50, 10, 0.28)');
+      gradient.addColorStop(0,    'rgba(230, 50, 10, 0.28)');
       gradient.addColorStop(0.34, 'rgba(45, 170, 55, 0.18)');
-      gradient.addColorStop(1, 'rgba(16, 16, 14, 0)');
+      gradient.addColorStop(1,    'rgba(16, 16, 14, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
-      nodes.forEach((node, index) => {
-        const drift = Math.sin(Date.now() * 0.00032 + index) * 0.18;
+      nodes.forEach((node, i) => {
+        const drift = Math.sin(Date.now() * 0.00032 + i) * 0.18;
         node.x += node.vx + drift;
         node.y += node.vy;
 
-        if (node.x < width * 0.38) node.x = width * 0.96;
-        if (node.x > width * 1.02) node.x = width * 0.42;
-        if (node.y < -20) node.y = height + 20;
-        if (node.y > height + 20) node.y = -20;
+        if (node.x < width * 0.38)  node.x = width * 0.96;
+        if (node.x > width * 1.02)  node.x = width * 0.42;
+        if (node.y < -20)            node.y = height + 20;
+        if (node.y > height + 20)   node.y = -20;
 
         const dx = node.x - px;
         const dy = node.y - py;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const pull = Math.max(0, 1 - distance / 320);
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const pull  = Math.max(0, 1 - dist / 320);
         const color = node.hue > 0.66 ? '30, 100, 210' : node.hue > 0.33 ? '45, 170, 55' : '230, 50, 10';
 
         ctx.beginPath();
-        ctx.arc(node.x + dx * pull * 0.018, node.y + dy * pull * 0.018, node.r + pull * 1.8, 0, Math.PI * 2);
+        ctx.arc(
+          node.x + dx * pull * 0.018,
+          node.y + dy * pull * 0.018,
+          node.r + pull * 1.8,
+          0, Math.PI * 2
+        );
         ctx.fillStyle = 'rgba(' + color + ', ' + (0.55 + pull * 0.4) + ')';
         ctx.fill();
       });
 
-      for (let i = 0; i < nodes.length; i += 1) {
-        for (let j = i + 1; j < nodes.length; j += 1) {
-          const a = nodes[i];
-          const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 148) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = 'rgba(16, 16, 14, ' + (0.055 * (1 - distance / 148)) + ')';
-            ctx.lineWidth = 1;
-            ctx.stroke();
+      /* Connection lines — skip on small screens for perf */
+      if (!isMobile()) {
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 148) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = 'rgba(16, 16, 14, ' + (0.055 * (1 - dist / 148)) + ')';
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -974,10 +993,12 @@
       }
     }
 
+    /* ── Event listeners ── */
     window.addEventListener('resize', () => {
       resizeCanvas();
       if (reducedMotion.matches) drawField();
     });
+
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         cancelAnimationFrame(animationFrame);
@@ -985,11 +1006,28 @@
         drawField();
       }
     });
-    window.addEventListener('pointermove', (event) => {
-      targetX = event.clientX / Math.max(width, 1);
-      targetY = event.clientY / Math.max(height, 1);
+
+    window.addEventListener('pointermove', (e) => {
+      targetX = e.clientX / Math.max(width, 1);
+      targetY = e.clientY / Math.max(height, 1);
     }, { passive: true });
 
+    /* Pause RAF during scroll on mobile — eliminates the dot glitch */
+    window.addEventListener('scroll', () => {
+      if (isMobile()) {
+        isScrolling = true;
+        cancelAnimationFrame(animationFrame);
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          isScrolling = false;
+          if (!reducedMotion.matches && !document.hidden) {
+            drawField();
+          }
+        }, 120);
+      }
+    }, { passive: true });
+
+    /* ── Init ── */
     updateTime();
     fetchTemperature();
     revealVisible();
@@ -998,10 +1036,11 @@
     drawField();
     window.setInterval(updateTime, 30000);
 
-    // currently cycler
+    /* ── Currently cycler ── */
     const currentlyValues = ['not available', 'building', 'away from screens', 'somewhere coastal', 'low signal'];
     let currentlyIndex = 0;
     const currentlyEl = document.getElementById('currentlyValue');
+    currentlyEl.style.transition = 'opacity 300ms ease';
     setInterval(() => {
       currentlyIndex = (currentlyIndex + 1) % currentlyValues.length;
       currentlyEl.style.opacity = '0';
@@ -1010,7 +1049,6 @@
         currentlyEl.style.opacity = '1';
       }, 300);
     }, 18 * 60 * 60 * 1000);
-    currentlyEl.style.transition = 'opacity 300ms ease';
   </script>
 </body>
 </html>
