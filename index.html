@@ -1036,19 +1036,18 @@
     drawField();
     window.setInterval(updateTime, 30000);
 
-    /* ── Currently cycler ── */
+    /* ── Currently cycler (date-seeded, persists across reloads) ── */
     const currentlyValues = ['not available', 'building', 'away from screens', 'somewhere coastal', 'low signal'];
-    let currentlyIndex = 0;
     const currentlyEl = document.getElementById('currentlyValue');
-    currentlyEl.style.transition = 'opacity 300ms ease';
-    setInterval(() => {
-      currentlyIndex = (currentlyIndex + 1) % currentlyValues.length;
-      currentlyEl.style.opacity = '0';
-      setTimeout(() => {
-        currentlyEl.textContent = currentlyValues[currentlyIndex];
-        currentlyEl.style.opacity = '1';
-      }, 300);
-    }, 18 * 60 * 60 * 1000);
+    
+    function updateCurrently() {
+      const now = Date.now();
+      const eighteenHours = 18 * 60 * 60 * 1000;
+      const cycleIndex = Math.floor(now / eighteenHours) % currentlyValues.length;
+      currentlyEl.textContent = currentlyValues[cycleIndex];
+    }
+    
+    updateCurrently();
   </script>
 </body>
 </html>
