@@ -1,1 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>about — jereme.xyz</title>
+  <meta name="description" content="A longer letter from Jereme Abernathy. In lieu of a bio." />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NTH4464X6R');
+  </script>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
+    :root {
+      --paper: #ffffff;
+      --ink: #10100e;
+      --ink-soft: #2c2a25;
+      --muted: #9a9690;
+      --line: #e8e4dc;
+      --line-strong: #d0cbc0;
+      --ember: #aa3c16;
+      --moss: #5f7156;
+      --gold: #aa7c2e;
+      --max: 1180px;
+      --read: 720px;
+      --pad: 28px;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100svh;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(170, 60, 22, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(95, 113, 86, 0.07), transparent 32rem),
+        #ffffff;
+      color: var(--ink);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        linear-gradient(rgba(16, 16, 14, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 16, 14, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .field {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      opacity: 0.55;
+    }
+
+    .site-shell {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 36px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      transition: color 160ms ease, gap 200ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      color: var(--ink);
+      gap: 14px;
+      outline: 0;
+    }
+
+    .back-arrow {
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      position: relative;
+      background: currentColor;
+    }
+
+    .back-arrow::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -3px;
+      width: 6px;
+      height: 6px;
+      border-left: 1px solid currentColor;
+      border-top: 1px solid currentColor;
+      transform: rotate(-45deg);
+    }
+
+    .topbar-readout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .topbar-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--ember);
+      display: inline-block;
+    }
+
+    /* ── Letter ── */
+    .letter {
+      width: min(var(--read), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: clamp(56px, 10vh, 96px) 0 64px;
+    }
+
+    .eyebrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
+      position: relative;
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      background: var(--ember);
+      display: inline-block;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    .eyebrow-dot::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: var(--ember);
+      animation: beacon 2s ease-out infinite;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    @keyframes beacon {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    .letter h1 {
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      line-height: 0.94;
+      font-weight: 640;
+      letter-spacing: 0;
+      text-wrap: balance;
+      margin-bottom: 14px;
+    }
+
+    .letter-sub {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 56px;
+      letter-spacing: 0.02em;
+    }
+
+    .prose {
+      font-size: 1.18rem;
+      line-height: 1.74;
+      color: var(--ink-soft);
+      text-wrap: pretty;
+    }
+
+    .prose p {
+      margin-bottom: 1.5em;
+    }
+
+    .prose p:first-of-type::first-letter {
+      font-size: 3.4em;
+      line-height: 0.86;
+      font-weight: 640;
+      float: left;
+      padding: 6px 14px 0 0;
+      color: var(--ink);
+    }
+
+    .prose strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .prose em {
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* ── Sign-off ── */
+    .signoff {
+      margin: 88px 0 0;
+      padding-top: 40px;
+      border-top: 1px solid var(--line-strong);
+      display: grid;
+      gap: 28px;
+    }
+
+    .signoff-line {
+      font-size: 1.36rem;
+      font-style: italic;
+      color: var(--ink);
+      letter-spacing: 0;
+      line-height: 1.4;
+    }
+
+    .signature-wrap {
+      display: block;
+      max-width: 240px;
+    }
+
+    .signature {
+      width: 100%;
+      height: auto;
+      display: block;
+      mix-blend-mode: multiply;
+      opacity: 0.92;
+    }
+
+    .signature-fallback {
+      font-family: "Snell Roundhand", "Brush Script MT", "Lucida Handwriting", cursive;
+      font-size: 2.6rem;
+      color: var(--ink);
+      line-height: 1;
+      padding-top: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 80px auto 0;
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px 16px;
+      text-align: right;
+    }
+
+    .footer a {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--muted);
+      transition: color 160ms ease;
+    }
+
+    .footer a:hover { color: var(--ink); }
+
+    .footer-address {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--muted);
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Breakpoints ── */
+    @media (max-width: 980px) {
+      :root { --pad: 22px; }
+    }
+
+    @media (max-width: 680px) {
+      .letter { padding: 44px 0 56px; }
+      .prose { font-size: 1.04rem; line-height: 1.68; }
+      .prose p:first-of-type::first-letter { font-size: 2.8em; padding: 4px 10px 0 0; }
+      .signoff-line { font-size: 1.16rem; }
+      .footer { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+      .footer-contact { flex-direction: column; justify-content: flex-start; text-align: left; gap: 4px; }
+      .topbar { padding-top: 24px; }
+      .topbar-readout { justify-content: flex-start; }
+    }
+
+    @media (max-width: 420px) {
+      :root { --pad: 18px; }
+      .prose { font-size: 1rem; line-height: 1.64; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="field" id="field" aria-hidden="true"></canvas>
+
+  <div class="site-shell">
+    <nav class="topbar reveal" aria-label="Navigation">
+      <a class="back-link" href="/">
+        <span class="back-arrow" aria-hidden="true"></span>
+        <span>jereme.xyz</span>
+      </a>
+      <div class="topbar-readout">
+        <span class="topbar-dot" aria-hidden="true"></span>
+        <span>about</span>
+        <span>/</span>
+        <span id="localTime">--:--</span>
+      </div>
+    </nav>
+
+    <main class="letter">
+      <div class="eyebrow reveal">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>field note</span>
+        <span>/</span>
+        <span>long form</span>
+        <span>/</span>
+        <span>read at your own pace</span>
+      </div>
+
+      <h1 class="reveal">a longer letter.</h1>
+      <p class="letter-sub reveal">in lieu of a bio.</p>
+
+      <article class="prose reveal">
+        <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" — that word's for people who saw the place in a movie. Packed it all up in March of 2021 and traded the freeways for fir trees. Now I live in SW Washington, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think — which, depending on the day, is either the best or worst part.</p>
+
+        <p>Four ventures now, all running out of the same desk in downtown Vancouver. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other — where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. (Nothing against witches, by the way. Know a few. Haven't met a bad one yet.)</p>
+
+        <p><strong>fw/r</strong> is Robotics, LiDAR and AI — the studio I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
+
+        <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening. (Or that I've lost it. Both could be true.)</p>
+
+        <p><strong>nrthrn</strong> is the design studio — consumer goods, industrial goods, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. (Okay, fine — if you must know, the answer is still no.)</p>
+
+        <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
+
+        <p>Four bat-shit ideas, one guy stupid enough to run all of them. Different rooms, same work.</p>
+
+        <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Mogwai runs most of the evenings. Russian Circles when it's cold and gray. Godspeed when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task — and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
+
+        <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice — apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that. The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself — I've met that guy, he's fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts — and the honest people — show up. It's not a test for me. It's a test for everything and everyone else.</p>
+
+        <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house — full of vinyl, of course — a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet — partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
+
+        <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone — finally, mercifully — chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
+
+        <p>A few opinions for the record. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Most design reviews are status meetings in cosplay. Most "AI-powered" anything is a wrapper around a wrapper around a prompt somebody copy-pasted from Twitter. The web was better when sites were weird and didn't try to flatter you. A clear no will save you more runway than a polished maybe. AI is the most consequential technology of my lifetime and most people are going to use it to write slightly worse emails to each other. The best founders are quiet weirdos who shipped before they were ready. Most "innovation" is a quote on a wall. Most "vision" is a guess in a font. I don't think I'm right about everything. I just think most people aren't paying close enough attention to actually disagree.</p>
+
+        <p>I'm not chasing scale. I'm chasing a body of work — five things, ten things, twenty things, all made with the same team, all pointed at the same compass bearing. Some of it will be products. Some will be places. Some will be a trail, a camera, and a weird little indicator on this site that lights up when the Starlink dish is open and I've got signal. (Yes, that's a real thing I'm building. No, I will not be talked out of it.) It's all one thing in the end. If you read this far, we're probably already friends. You just don't know me yet.</p>
+      </article>
+
+      <div class="signoff reveal">
+        <p class="signoff-line">Don't let the wheels fall off.</p>
+        <div class="signature-wrap">
+          <!-- When you're ready to drop in your signature image, replace the fallback below with: -->
+          <!-- <img class="signature" src="/signature.png" alt="Jereme" /> -->
+          <p class="signature-fallback">— Jereme</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <a href="/">← back to jereme.xyz</a>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:loveletters@jereme.xyz">loveletters@jereme.xyz</a>
+        <span class="footer-address">915 Broadway St #100, Vancouver, WA 98660</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const localTime = document.getElementById('localTime');
+    const canvas = document.getElementById('field');
+    const ctx = canvas.getContext('2d');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const isMobile = () => window.innerWidth <= 680;
+
+    let width = 0, height = 0, dpr = 1;
+    let pointerX = 0.62, pointerY = 0.28;
+    let targetX = pointerX, targetY = pointerY;
+    let nodes = [];
+    let animationFrame;
+    let isScrolling = false;
+    let scrollTimer;
+
+    function updateTime() {
+      const now = new Date();
+      const time = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Los_Angeles',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).format(now);
+      localTime.textContent = time + ' PT';
+    }
+
+    function revealVisible() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      document.querySelectorAll('.reveal').forEach((item, index) => {
+        item.style.transitionDelay = Math.min(index * 50, 280) + 'ms';
+        observer.observe(item);
+      });
+    }
+
+    function resizeCanvas() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = width < 420 ? 10 : width < 680 ? 14 : width < 980 ? 20 : 32;
+      nodes = Array.from({ length: count }, (_, i) => {
+        const band = i / count;
+        return {
+          x: width * (0.46 + Math.random() * 0.5),
+          y: height * (0.08 + band * 0.88) + (Math.random() * 68 - 34),
+          r: 1.1 + Math.random() * 2.4,
+          vx: -0.06 + Math.random() * 0.12,
+          vy: -0.04 + Math.random() * 0.08,
+          hue: Math.random()
+        };
+      });
+    }
+
+    function drawField() {
+      if (isScrolling && isMobile()) return;
+
+      pointerX += (targetX - pointerX) * 0.045;
+      pointerY += (targetY - pointerY) * 0.045;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const px = pointerX * width;
+      const py = pointerY * height;
+
+      const gradient = ctx.createRadialGradient(px, py, 0, px, py, Math.max(width, height) * 0.62);
+      gradient.addColorStop(0, 'rgba(230, 50, 10, 0.22)');
+      gradient.addColorStop(0.34, 'rgba(45, 170, 55, 0.14)');
+      gradient.addColorStop(1, 'rgba(16, 16, 14, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      nodes.forEach((node, i) => {
+        const drift = Math.sin(Date.now() * 0.00028 + i) * 0.16;
+        node.x += node.vx + drift;
+        node.y += node.vy;
+
+        if (node.x < width * 0.38) node.x = width * 0.96;
+        if (node.x > width * 1.02) node.x = width * 0.42;
+        if (node.y < -20) node.y = height + 20;
+        if (node.y > height + 20) node.y = -20;
+
+        const dx = node.x - px;
+        const dy = node.y - py;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const pull = Math.max(0, 1 - dist / 320);
+        const color = node.hue > 0.66 ? '30, 100, 210' : node.hue > 0.33 ? '45, 170, 55' : '230, 50, 10';
+
+        ctx.beginPath();
+        ctx.arc(
+          node.x + dx * pull * 0.018,
+          node.y + dy * pull * 0.018,
+          node.r + pull * 1.4,
+          0, Math.PI * 2
+        );
+        ctx.fillStyle = 'rgba(' + color + ', ' + (0.45 + pull * 0.35) + ')';
+        ctx.fill();
+      });
+
+      if (!isMobile()) {
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const a = nodes[i], b = nodes[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 148) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = 'rgba(16, 16, 14, ' + (0.045 * (1 - dist / 148)) + ')';
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      if (!reducedMotion.matches && !document.hidden) {
+        animationFrame = requestAnimationFrame(drawField);
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      if (reducedMotion.matches) drawField();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame);
+      } else {
+        drawField();
+      }
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      targetX = e.clientX / Math.max(width, 1);
+      targetY = e.clientY / Math.max(height, 1);
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+      if (isMobile()) {
+        isScrolling = true;
+        cancelAnimationFrame(animationFrame);
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          isScrolling = false;
+          if (!reducedMotion.matches && !document.hidden) {
+            drawField();
+          }
+        }, 120);
+      }
+    }, { passive: true });
+
+    updateTime();
+    revealVisible();
+    resizeCanvas();
+    drawField();
+    window.setInterval(updateTime, 30000);
+  </script>
+</body>
+</html>
