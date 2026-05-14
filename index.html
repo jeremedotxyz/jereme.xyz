@@ -20,15 +20,10 @@
     }
 
     :root {
-      --paper: #f7f5ef;
-      --paper-2: #eeebe2;
       --paper: #ffffff;
       --paper-2: #ffffff;
       --ink: #10100e;
       --ink-soft: #3f3d37;
-      --muted: #817d70;
-      --line: #d8d2c5;
-      --line-strong: #bdb5a6;
       --muted: #8d887f;
       --line: #e8e4dc;
       --line-strong: #d0cbc0;
@@ -42,41 +37,56 @@
       --max: 1180px;
       --pad: 28px;
       --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
       min-height: 100svh;
       background:
-        radial-gradient(circle at 82% 18%, rgba(170, 60, 22, 0.08), transparent 28rem),
-        radial-gradient(circle at 12% 85%, rgba(95, 113, 86, 0.1), transparent 32rem),
-        linear-gradient(180deg, var(--paper), var(--paper-2));
         radial-gradient(circle at 82% 18%, rgba(var(--active-rgb), 0.07), transparent 28rem),
         radial-gradient(circle at 12% 85%, rgba(var(--active-soft-rgb), 0.08), transparent 32rem),
         #ffffff;
       color: var(--ink);
       font-family: var(--sans);
       overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
       pointer-events: none;
       z-index: 1;
       background-image:
-        linear-gradient(rgba(16, 16, 14, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 16, 14, 0.028) 1px, transparent 1px);
         linear-gradient(rgba(16, 16, 14, 0.022) 1px, transparent 1px),
         linear-gradient(90deg, rgba(16, 16, 14, 0.018) 1px, transparent 1px);
       background-size: 56px 56px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 78%);
-      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 78%);
       mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
       -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
     }
 
     body::after {
+      content: "";
+      position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.36;
       opacity: 0.18;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .field {
+      position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
@@ -85,10 +95,37 @@
     }
 
     .site-shell {
+      position: relative;
+      z-index: 3;
+    }
+
+    main {
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 86svh;
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: clamp(44px, 8vh, 76px) 0 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.55fr);
+      align-items: end;
+      gap: 52px;
+    }
+
+    .hero > * {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
       font-family: var(--mono);
       font-size: 0.72rem;
       color: var(--muted);
-      margin-bottom: 28px;
       margin-bottom: 0;
     }
 
@@ -97,4 +134,1016 @@
       flex-shrink: 0;
       width: 5px;
       height: 5px;
-      background: var(--ember);
+      background: var(--active);
+      display: inline-block;
+    }
+
+    .eyebrow-dot::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: var(--active);
+      animation: beacon 2.2s ease-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes beacon {
+      0% { transform: scale(1); opacity: 0.54; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    .topnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin: 10px 0 28px 15px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .topnav a {
+      min-height: 26px;
+      display: inline-flex;
+      align-items: center;
+      transition: color 160ms ease;
+    }
+
+    .topnav a:hover,
+    .topnav a:focus-visible {
+      color: var(--ink);
+      outline: 0;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      font-size: 7.2rem;
+      line-height: 0.92;
+      font-weight: 640;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .hero-lede {
+      width: 100%;
+      max-width: 620px;
+      margin-top: 34px;
+      font-size: 1.32rem;
+      line-height: 1.45;
+      color: var(--ink-soft);
+      text-wrap: pretty;
+      overflow-wrap: break-word;
+    }
+
+    .side-panel {
+      align-self: stretch;
+      display: grid;
+      align-content: end;
+      gap: 18px;
+      padding-top: 48px;
+    }
+
+    .readout {
+      position: relative;
+      border-top: 1px solid var(--line-strong);
+      padding-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      font-family: var(--mono);
+      overflow: hidden;
+    }
+
+    .readout::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 46%;
+      height: 1px;
+      background: var(--active);
+      box-shadow: 0 0 18px rgba(var(--active-rgb), 0.4);
+      animation: scanline 4.8s ease-in-out infinite;
+    }
+
+    @keyframes scanline {
+      0%, 100% { transform: translateX(-18%); opacity: 0.5; }
+      50% { transform: translateX(145%); opacity: 0.95; }
+    }
+
+    .readout-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: start;
+      min-height: 26px;
+      font-size: 0.72rem;
+    }
+
+    .readout-key {
+      color: var(--muted);
+    }
+
+    .readout-val {
+      color: var(--ink);
+      text-align: right;
+      transition: color 160ms ease;
+    }
+
+    #surfaceValue {
+      color: var(--active);
+    }
+
+    .thesis {
+      margin: 0 auto;
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      padding: 94px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+      gap: 52px;
+    }
+
+    .section-kicker {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .thesis-line {
+      font-size: 2.7rem;
+      line-height: 1.06;
+      font-weight: 620;
+      max-width: 780px;
+      text-wrap: balance;
+    }
+
+    .thesis-note {
+      margin-top: 26px;
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.72;
+      color: var(--ink-soft);
+    }
+
+    .ventures {
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 104px 0;
+      display: grid;
+      grid-template-columns: minmax(230px, 0.42fr) minmax(0, 1fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .venture-aside {
+      position: sticky;
+      top: 106px;
+    }
+
+    .focus-word {
+      margin-top: 28px;
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: 640;
+      min-height: 98px;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .focus-detail {
+      max-width: 280px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .venture-list {
+      list-style: none;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .venture-link {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr) minmax(150px, 0.38fr);
+      gap: 24px;
+      align-items: center;
+      min-height: 112px;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink);
+      position: relative;
+      transition: border-color 180ms ease, color 180ms ease, transform 180ms ease, background 180ms ease;
+    }
+
+    .venture-link::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 18px;
+      bottom: 18px;
+      width: 2px;
+      background: var(--active);
+      opacity: 0;
+      transform: scaleY(0.25);
+      transform-origin: center;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .venture-link:hover,
+    .venture-link:focus-visible {
+      color: var(--active);
+      border-color: var(--ink);
+      transform: translateX(8px);
+      outline: 0;
+      background: linear-gradient(90deg, rgba(var(--active-rgb), 0.055), transparent 56%);
+    }
+
+    .venture-link:hover::before,
+    .venture-link:focus-visible::before {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .venture-num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .venture-name {
+      font-size: 3.5rem;
+      line-height: 1;
+      font-weight: 610;
+      letter-spacing: 0;
+    }
+
+    .venture-meta {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      line-height: 1.75;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .proof {
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto 92px;
+      padding: 84px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .proof h2 {
+      font-size: 4.6rem;
+      line-height: 0.98;
+      font-weight: 640;
+      letter-spacing: 0;
+      text-wrap: balance;
+      max-width: 620px;
+    }
+
+    .proof-list {
+      list-style: none;
+      border-top: 1px solid var(--line-strong);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+    }
+
+    .proof-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding: 19px 0;
+      color: var(--ink);
+    }
+
+    .proof-list span:last-child {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .footer {
+      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      margin: 0 auto;
+      padding: 0 0 42px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer a {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--muted);
+      transition: color 160ms ease;
+    }
+
+    .footer a:hover {
+      color: var(--ink);
+    }
+
+    .footer-socials a {
+      width: 34px;
+      height: 34px;
+      min-height: 34px;
+      justify-content: center;
+      border: 1px solid transparent;
+      transition: color 160ms ease, border-color 160ms ease;
+    }
+
+    .footer-socials a:hover {
+      border-color: rgba(16, 16, 14, 0.14);
+    }
+
+    .footer-socials svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px 16px;
+      text-align: right;
+    }
+
+    .copy-email {
+      border: 0;
+      background: transparent;
+      padding: 0;
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--muted);
+      font: inherit;
+      cursor: pointer;
+      transition: color 160ms ease;
+    }
+
+    .copy-email:hover,
+    .copy-email:focus-visible {
+      color: var(--ink);
+      outline: 0;
+    }
+
+    .footer-address {
+      min-height: 32px;
+      display: inline-flex;
+      align-items: center;
+      color: var(--muted);
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .copy-state {
+      color: var(--moss);
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .copy-state.is-visible {
+      opacity: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      :root {
+        --pad: 22px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 52px;
+        align-items: start;
+      }
+
+      .hero h1 {
+        font-size: 5.4rem;
+      }
+
+      .side-panel {
+        align-self: auto;
+        padding-top: 0;
+      }
+
+      .readout {
+        max-width: 520px;
+      }
+
+      .thesis,
+      .ventures,
+      .proof {
+        grid-template-columns: 1fr;
+      }
+
+      .venture-aside {
+        position: static;
+      }
+
+      .focus-word {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        min-height: auto;
+        padding: 52px 0 66px;
+      }
+
+      .hero h1 {
+        font-size: 3.35rem;
+      }
+
+      .hero-lede {
+        font-size: 1.02rem;
+      }
+
+      .thesis {
+        padding: 70px 0;
+      }
+
+      .thesis-line {
+        font-size: 2.1rem;
+      }
+
+      .ventures {
+        padding: 74px 0;
+        gap: 34px;
+      }
+
+      .focus-word {
+        font-size: 2.2rem;
+      }
+
+      .venture-link {
+        grid-template-columns: 36px 1fr;
+        gap: 18px;
+        min-height: 112px;
+        padding: 18px 0;
+      }
+
+      .venture-link:hover,
+      .venture-link:focus-visible {
+        transform: none;
+      }
+
+      .readout-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .readout-val {
+        text-align: left;
+      }
+
+      .venture-name {
+        font-size: 2.5rem;
+      }
+
+      .venture-meta {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .proof {
+        padding: 66px 0;
+        margin-bottom: 58px;
+      }
+
+      .proof h2 {
+        font-size: 3.1rem;
+      }
+
+      .proof-list li {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .proof-list span:last-child {
+        text-align: left;
+      }
+
+      .footer {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .footer-contact {
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: left;
+        max-width: 100%;
+        gap: 4px;
+      }
+
+      .footer-socials a {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+      }
+
+      .footer-address {
+        display: block;
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        width: min(calc(100% - (var(--pad) * 2)), 300px);
+        margin-left: var(--pad);
+        margin-right: auto;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero-lede {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      :root {
+        --pad: 18px;
+      }
+
+      .eyebrow {
+        gap: 7px;
+        font-size: 0.66rem;
+        margin-bottom: 22px;
+      }
+
+      .topnav {
+        margin-left: 0;
+      }
+
+      .hero h1 {
+        font-size: 2.55rem;
+      }
+
+      .hero-lede {
+        font-size: 1rem;
+        text-wrap: wrap;
+      }
+
+      .venture-name {
+        font-size: 2.15rem;
+      }
+
+      .thesis-line {
+        font-size: 1.9rem;
+      }
+
+      .proof h2 {
+        font-size: 2.7rem;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .hero h1 {
+        font-size: 2.35rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="field" id="field" aria-hidden="true"></canvas>
+
+  <div class="site-shell">
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            <span>Pacific Northwest</span>
+            <span>/</span>
+            <span id="localTime">--:--</span>
+            <span id="tempDivider" hidden>/</span>
+            <span id="localTemp" aria-label="Current temperature for 98606"></span>
+          </div>
+          <nav class="topnav reveal" aria-label="Navigation">
+            <a href="#ventures">ventures</a>
+            <a href="#proof">signal</a>
+            <a href="https://jereme.xyz/about/">about</a>
+          </nav>
+          <h1 class="reveal" id="hero-title">jereme.xyz</h1>
+          <p class="hero-lede reveal">
+            Building the things that make the future feel less theoretical. Quietly, deliberately, and usually before anyone is looking.
+          </p>
+        </div>
+
+        <aside class="side-panel reveal" aria-label="Current signal">
+          <div class="readout">
+            <div class="readout-row">
+              <span class="readout-key">base</span>
+              <span class="readout-val">pacific northwest</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">mode</span>
+              <span class="readout-val" id="modeValue">low noise</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">surface</span>
+              <span class="readout-val" id="surfaceValue">four ventures</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">signal</span>
+              <span class="readout-val" id="signalValue">selective</span>
+            </div>
+            <div class="readout-row">
+              <span class="readout-key">currently</span>
+              <span class="readout-val" id="currentlyValue">low signal</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="thesis reveal" aria-label="Thesis">
+        <div class="section-kicker">working thesis</div>
+        <div>
+          <p class="thesis-line">The best things do not need to be loud. They need to be inevitable.</p>
+          <p class="thesis-note">
+            This is a small map of the work: things built with patience, taste, and enough ambiguity to stay interesting.
+          </p>
+        </div>
+      </section>
+
+      <section class="ventures" id="ventures" aria-labelledby="ventures-title">
+        <div class="venture-aside reveal">
+          <div class="section-kicker" id="ventures-title">current doors</div>
+          <div class="focus-word" id="focusWord">four ventures</div>
+          <p class="focus-detail" id="focusDetail">One operating system. Different surfaces.</p>
+        </div>
+
+        <ul class="venture-list">
+          <li class="reveal">
+            <a class="venture-link" href="/fwr" data-word="data clarity" data-detail="Boutique AI, robotics, and LiDAR studio for governments, enterprises, and startups asking hard questions." data-accent="170, 60, 22" data-soft="82, 101, 116" data-surface="fw/r" data-signal="lidar / systems">
+              <span class="venture-num">01</span>
+              <span class="venture-name">fw/r</span>
+              <span class="venture-meta">data<br>clarity</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="venture-link" href="/pine" data-word="second cup" data-detail="PNW-rooted coffee house built around staying, thinking, collaborating, and feeling at home." data-accent="95, 113, 86" data-soft="170, 124, 46" data-surface="pine" data-signal="coffee / place">
+              <span class="venture-num">02</span>
+              <span class="venture-name">pine</span>
+              <span class="venture-meta">pnw<br>roots</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="venture-link" href="/nrthrn" data-word="function first" data-detail="Industrial and consumer goods: prototypes, finished products, commissions, and human-finished utility." data-accent="82, 101, 116" data-soft="95, 113, 86" data-surface="nrthrn" data-signal="utility / material">
+              <span class="venture-num">03</span>
+              <span class="venture-name">nrthrn</span>
+              <span class="venture-meta">utility<br>refined</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="venture-link" href="/drift" data-word="hidden coast" data-detail="Coastal boutique coffee shop with no easy coordinates, built for people who know how to look." data-accent="170, 124, 46" data-soft="170, 60, 22" data-surface="drift" data-signal="coast / hidden">
+              <span class="venture-num">04</span>
+              <span class="venture-name">drift</span>
+              <span class="venture-meta">rust<br>real</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="proof reveal" id="proof" aria-labelledby="proof-title">
+        <h2 id="proof-title">Enough said. Not too much.</h2>
+        <ul class="proof-list">
+          <li><span>builds</span><span>precision, patience, intention</span></li>
+          <li><span>studies</span><span>place, leverage, media, memory</span></li>
+          <li><span>prefers</span><span>taste over noise</span></li>
+          <li><span>reachable</span><span>when the signal is good</span></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-socials">
+        <a href="https://www.threads.com/@jeremedotxyz" target="_blank" rel="noopener" aria-label="Threads" title="Threads">
+          <svg viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.248.054 14.473 2.452 18.502 7.13 2.932 3.405 4.893 8.11 5.864 14.05-7.314-1.244-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.742C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C56.954 24.425 74.204 17.11 97.013 16.94c22.975.17 40.526 7.52 52.171 21.847 5.71 7.026 10.015 15.86 12.853 26.162l16.147-4.308c-3.44-12.68-8.853-23.606-16.219-32.668C147.036 10.726 125.202 1.195 97.07 1h-.113C68.882 1.195 47.292 10.755 32.788 28.413 19.882 44.19 13.223 66.03 13.001 95.932v.136c.222 29.902 6.881 51.742 19.787 67.518C47.292 181.246 68.882 190.806 96.957 191h.113c24.96-.173 42.554-6.708 57.048-21.189 18.963-18.949 18.392-42.692 12.142-57.27-4.484-10.454-13.033-18.944-24.723-24.553ZM98.44 129.507c-10.44.588-21.286-4.098-21.82-14.135-.397-7.442 5.296-15.746 22.461-16.735 1.966-.113 3.895-.169 5.79-.169 6.235 0 12.068.606 17.371 1.765-1.978 24.702-13.58 28.713-23.802 29.274Z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.instagram.com/jeremedotxyz/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://github.com/jeremedotxyz" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@jeremedotxyz" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="currentColor"/></svg>
+        </a>
+        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </a>
+        <a href="https://substack.com/@jeremedotxyz" target="_blank" rel="noopener" aria-label="Substack" title="Substack">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <button class="copy-email" type="button" id="copyEmail">loveletters@jereme.xyz</button>
+        <span class="copy-state" id="copyState">copied</span>
+        <span class="footer-address">915 Broadway St #100, Vancouver, WA 98660</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const localTime = document.getElementById('localTime');
+    const localTemp = document.getElementById('localTemp');
+    const tempDivider = document.getElementById('tempDivider');
+    const modeValue = document.getElementById('modeValue');
+    const surfaceValue = document.getElementById('surfaceValue');
+    const signalValue = document.getElementById('signalValue');
+    const currentlyValue = document.getElementById('currentlyValue');
+    const focusWord = document.getElementById('focusWord');
+    const focusDetail = document.getElementById('focusDetail');
+    const copyEmail = document.getElementById('copyEmail');
+    const copyState = document.getElementById('copyState');
+    const canvas = document.getElementById('field');
+    const ctx = canvas.getContext('2d');
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let pointerX = 0.62;
+    let pointerY = 0.28;
+    let targetX = pointerX;
+    let targetY = pointerY;
+    let nodes = [];
+    let animationFrame;
+    let activeAccent = [170, 60, 22];
+    let activeSoft = [95, 113, 86];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const currentlyValues = ['not available', 'building', 'away from screens', 'somewhere coastal', 'low signal'];
+
+    function setActiveColor(accent, soft) {
+      activeAccent = accent.split(',').map((item) => Number(item.trim()));
+      activeSoft = soft.split(',').map((item) => Number(item.trim()));
+      document.documentElement.style.setProperty('--active-rgb', activeAccent.join(', '));
+      document.documentElement.style.setProperty('--active-soft-rgb', activeSoft.join(', '));
+      document.documentElement.style.setProperty('--active', 'rgb(' + activeAccent.join(', ') + ')');
+    }
+
+    function updateTime() {
+      const now = new Date();
+      const time = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Los_Angeles',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(now);
+
+      const hour = Number(new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Los_Angeles',
+        hour: '2-digit',
+        hour12: false
+      }).format(now));
+
+      localTime.textContent = time + ' PT';
+      modeValue.textContent = hour < 6 ? 'night pass' : hour < 12 ? 'early signal' : hour < 18 ? 'building' : 'low noise';
+    }
+
+    function updateCurrently() {
+      const eighteenHours = 18 * 60 * 60 * 1000;
+      const cycleIndex = Math.floor(Date.now() / eighteenHours) % currentlyValues.length;
+      currentlyValue.textContent = currentlyValues[cycleIndex];
+    }
+
+    async function fetchTemperature() {
+      try {
+        const url = 'https://api.open-meteo.com/v1/forecast?latitude=45.72921&longitude=-122.45615&current=temperature_2m&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles&forecast_days=1';
+        const response = await fetch(url);
+        if (!response.ok) return;
+
+        const data = await response.json();
+        const temp = data && data.current ? data.current.temperature_2m : null;
+
+        if (Number.isFinite(temp)) {
+          localTemp.textContent = Math.round(temp) + '°';
+          tempDivider.hidden = false;
+        }
+      } catch (error) {
+        // Keep the header minimal if the weather service is unavailable.
+      }
+    }
+
+    function revealVisible() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach((item, index) => {
+        item.style.transitionDelay = Math.min(index * 42, 260) + 'ms';
+        observer.observe(item);
+      });
+    }
+
+    function setupVentures() {
+      const links = document.querySelectorAll('.venture-link');
+      links.forEach((link) => {
+        const set = () => {
+          focusWord.textContent = link.dataset.word;
+          focusDetail.textContent = link.dataset.detail;
+          surfaceValue.textContent = link.dataset.surface;
+          signalValue.textContent = link.dataset.signal;
+          setActiveColor(link.dataset.accent, link.dataset.soft);
+        };
+        link.addEventListener('mouseenter', set);
+        link.addEventListener('focus', set);
+        link.addEventListener('touchstart', set, { passive: true });
+      });
+    }
+
+    function setupCopyEmail() {
+      if (!copyEmail) return;
+
+      copyEmail.addEventListener('click', async () => {
+        const email = 'loveletters@jereme.xyz';
+        try {
+          await navigator.clipboard.writeText(email);
+          copyState.classList.add('is-visible');
+          window.setTimeout(() => copyState.classList.remove('is-visible'), 1400);
+        } catch (error) {
+          window.location.href = 'mailto:' + email;
+        }
+      });
+    }
+
+    function resizeCanvas() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const count = width < 420 ? 18 : width < 720 ? 24 : 42;
+      nodes = Array.from({ length: count }, (_, index) => {
+        const band = index / count;
+        return {
+          x: width * (0.46 + Math.random() * 0.5),
+          y: height * (0.08 + band * 0.88) + (Math.random() * 68 - 34),
+          r: 1.2 + Math.random() * 2.8,
+          vx: -0.08 + Math.random() * 0.16,
+          vy: -0.05 + Math.random() * 0.1,
+          hue: Math.random()
+        };
+      });
+    }
+
+    function drawField() {
+      pointerX += (targetX - pointerX) * 0.045;
+      pointerY += (targetY - pointerY) * 0.045;
+
+      ctx.clearRect(0, 0, width, height);
+
+      const px = pointerX * width;
+      const py = pointerY * height;
+
+      const gradient = ctx.createRadialGradient(px, py, 0, px, py, Math.max(width, height) * 0.62);
+      gradient.addColorStop(0, 'rgba(' + activeAccent.join(', ') + ', 0.15)');
+      gradient.addColorStop(0.34, 'rgba(' + activeSoft.join(', ') + ', 0.08)');
+      gradient.addColorStop(1, 'rgba(16, 16, 14, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      nodes.forEach((node, index) => {
+        const drift = Math.sin(Date.now() * 0.00032 + index) * 0.18;
+        node.x += node.vx + drift;
+        node.y += node.vy;
+
+        if (node.x < width * 0.38) node.x = width * 0.96;
+        if (node.x > width * 1.02) node.x = width * 0.42;
+        if (node.y < -20) node.y = height + 20;
+        if (node.y > height + 20) node.y = -20;
+
+        const dx = node.x - px;
+        const dy = node.y - py;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const pull = Math.max(0, 1 - distance / 320);
+        const color = node.hue > 0.66 ? activeSoft.join(', ') : node.hue > 0.33 ? '95, 113, 86' : activeAccent.join(', ');
+
+        ctx.beginPath();
+        ctx.arc(node.x + dx * pull * 0.018, node.y + dy * pull * 0.018, node.r + pull * 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + color + ', ' + (0.18 + pull * 0.16) + ')';
+        ctx.fill();
+      });
+
+      for (let i = 0; i < nodes.length; i += 1) {
+        for (let j = i + 1; j < nodes.length; j += 1) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 148) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = 'rgba(16, 16, 14, ' + (0.055 * (1 - distance / 148)) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(width * 0.52, height * 0.2);
+      ctx.bezierCurveTo(width * 0.64, height * 0.12, width * 0.8, height * 0.42, width * 0.92, height * 0.28);
+      ctx.strokeStyle = 'rgba(' + activeAccent.join(', ') + ', 0.18)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      if (!reducedMotion.matches && !document.hidden) {
+        animationFrame = requestAnimationFrame(drawField);
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      if (reducedMotion.matches) drawField();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame);
+      } else {
+        drawField();
+      }
+    });
+    window.addEventListener('pointermove', (event) => {
+      targetX = event.clientX / Math.max(width, 1);
+      targetY = event.clientY / Math.max(height, 1);
+    }, { passive: true });
+
+    updateTime();
+    updateCurrently();
+    fetchTemperature();
+    revealVisible();
+    setupVentures();
+    setupCopyEmail();
+    resizeCanvas();
+    drawField();
+    window.setInterval(updateTime, 30000);
+  </script>
+</body>
+</html>
