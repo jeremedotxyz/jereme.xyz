@@ -5,6 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>jereme.xyz</title>
   <meta name="description" content="Jereme Abernathy. Independent operator in the Pacific Northwest." />
+  <link rel="canonical" href="https://jereme.xyz/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="jereme.xyz" />
+  <meta property="og:title" content="jereme.xyz" />
+  <meta property="og:description" content="Jereme Abernathy. Independent operator in the Pacific Northwest, building AI systems, coffee spaces, and physical goods." />
+  <meta property="og:url" content="https://jereme.xyz/" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="jereme.xyz" />
+  <meta name="twitter:description" content="Jereme Abernathy. Independent operator in the Pacific Northwest, building AI systems, coffee spaces, and physical goods." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://jereme.xyz/#website",
+          "name": "jereme.xyz",
+          "url": "https://jereme.xyz/",
+          "description": "Jereme Abernathy. Independent operator in the Pacific Northwest."
+        },
+        {
+          "@type": "Person",
+          "@id": "https://jereme.xyz/#person",
+          "name": "Jereme Abernathy",
+          "alternateName": "jereme.xyz",
+          "url": "https://jereme.xyz/",
+          "email": "mailto:loveletters@jereme.xyz",
+          "description": "Independent operator in the Pacific Northwest building AI systems, coffee spaces, and physical goods.",
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Pacific Northwest"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "915 Broadway St #100",
+            "addressLocality": "Vancouver",
+            "addressRegion": "WA",
+            "postalCode": "98660",
+            "addressCountry": "US"
+          },
+          "knowsAbout": [
+            "AI systems",
+            "robotics",
+            "coffee spaces",
+            "industrial design",
+            "physical goods"
+          ],
+          "sameAs": [
+            "https://www.threads.com/@jeremedotxyz",
+            "https://www.instagram.com/jeremedotxyz/",
+            "https://github.com/jeremedotxyz",
+            "https://www.youtube.com/@jeremedotxyz",
+            "https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9",
+            "https://substack.com/@jeremedotxyz"
+          ],
+          "mainEntityOfPage": {
+            "@id": "https://jereme.xyz/#website"
+          }
+        }
+      ]
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,20 +83,17 @@
     }
 
     :root {
-      --paper: #ffffff;
-      --paper-2: #ffffff;
+      --paper: #f7f5ef;
+      --paper-2: #eeebe2;
       --ink: #10100e;
       --ink-soft: #3f3d37;
-      --muted: #8d887f;
-      --line: #e8e4dc;
-      --line-strong: #d0cbc0;
+      --muted: #817d70;
+      --line: #d8d2c5;
+      --line-strong: #bdb5a6;
       --ember: #aa3c16;
       --moss: #5f7156;
       --steel: #526574;
       --gold: #aa7c2e;
-      --active: var(--ember);
-      --active-rgb: 170, 60, 22;
-      --active-soft-rgb: 95, 113, 86;
       --max: 1180px;
       --pad: 28px;
       --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
@@ -48,9 +108,9 @@
     body {
       min-height: 100svh;
       background:
-        radial-gradient(circle at 82% 18%, rgba(var(--active-rgb), 0.07), transparent 28rem),
-        radial-gradient(circle at 12% 85%, rgba(var(--active-soft-rgb), 0.08), transparent 32rem),
-        #ffffff;
+        radial-gradient(circle at 82% 18%, rgba(170, 60, 22, 0.08), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(95, 113, 86, 0.1), transparent 32rem),
+        linear-gradient(180deg, var(--paper), var(--paper-2));
       color: var(--ink);
       font-family: var(--sans);
       overflow-x: hidden;
@@ -63,11 +123,11 @@
       pointer-events: none;
       z-index: 1;
       background-image:
-        linear-gradient(rgba(16, 16, 14, 0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 16, 14, 0.018) 1px, transparent 1px);
+        linear-gradient(rgba(16, 16, 14, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 16, 14, 0.028) 1px, transparent 1px);
       background-size: 56px 56px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
-      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 78%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 78%);
     }
 
     body::after {
@@ -76,7 +136,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      opacity: 0.18;
+      opacity: 0.36;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
     }
 
@@ -90,8 +150,6 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      transform: translateZ(0);
-      will-change: transform;
     }
 
     .site-shell {
@@ -126,55 +184,14 @@
       font-family: var(--mono);
       font-size: 0.72rem;
       color: var(--muted);
-      margin-bottom: 0;
+      margin-bottom: 28px;
     }
 
     .eyebrow-dot {
-      position: relative;
-      flex-shrink: 0;
       width: 5px;
       height: 5px;
-      background: var(--active);
+      background: var(--ember);
       display: inline-block;
-    }
-
-    .eyebrow-dot::after {
-      content: "";
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      background: var(--active);
-      animation: beacon 2.2s ease-out infinite;
-      opacity: 0;
-    }
-
-    @keyframes beacon {
-      0% { transform: scale(1); opacity: 0.54; }
-      100% { transform: scale(2.4); opacity: 0; }
-    }
-
-    .topnav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      margin: 10px 0 28px 15px;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    .topnav a {
-      min-height: 26px;
-      display: inline-flex;
-      align-items: center;
-      transition: color 160ms ease;
-    }
-
-    .topnav a:hover,
-    .topnav a:focus-visible {
-      color: var(--ink);
-      outline: 0;
     }
 
     .hero h1 {
@@ -202,35 +219,15 @@
       display: grid;
       align-content: end;
       gap: 18px;
-      padding-top: 48px;
     }
 
     .readout {
-      position: relative;
       border-top: 1px solid var(--line-strong);
       padding-top: 18px;
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
       font-family: var(--mono);
-      overflow: hidden;
-    }
-
-    .readout::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 46%;
-      height: 1px;
-      background: var(--active);
-      box-shadow: 0 0 18px rgba(var(--active-rgb), 0.4);
-      animation: scanline 4.8s ease-in-out infinite;
-    }
-
-    @keyframes scanline {
-      0%, 100% { transform: translateX(-18%); opacity: 0.5; }
-      50% { transform: translateX(145%); opacity: 0.95; }
     }
 
     .readout-row {
@@ -249,11 +246,6 @@
     .readout-val {
       color: var(--ink);
       text-align: right;
-      transition: color 160ms ease;
-    }
-
-    #surfaceValue {
-      color: var(--active);
     }
 
     .thesis {
@@ -335,37 +327,15 @@
       min-height: 112px;
       border-bottom: 1px solid var(--line);
       color: var(--ink);
-      position: relative;
-      transition: border-color 180ms ease, color 180ms ease, transform 180ms ease, background 180ms ease;
-    }
-
-    .venture-link::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 18px;
-      bottom: 18px;
-      width: 2px;
-      background: var(--active);
-      opacity: 0;
-      transform: scaleY(0.25);
-      transform-origin: center;
-      transition: opacity 180ms ease, transform 180ms ease;
+      transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
     }
 
     .venture-link:hover,
     .venture-link:focus-visible {
-      color: var(--active);
+      color: var(--ember);
       border-color: var(--ink);
       transform: translateX(8px);
       outline: 0;
-      background: linear-gradient(90deg, rgba(var(--active-rgb), 0.055), transparent 56%);
-    }
-
-    .venture-link:hover::before,
-    .venture-link:focus-visible::before {
-      opacity: 1;
-      transform: scaleY(1);
     }
 
     .venture-num {
@@ -488,25 +458,6 @@
       text-align: right;
     }
 
-    .copy-email {
-      border: 0;
-      background: transparent;
-      padding: 0;
-      min-height: 32px;
-      display: inline-flex;
-      align-items: center;
-      color: var(--muted);
-      font: inherit;
-      cursor: pointer;
-      transition: color 160ms ease;
-    }
-
-    .copy-email:hover,
-    .copy-email:focus-visible {
-      color: var(--ink);
-      outline: 0;
-    }
-
     .footer-address {
       min-height: 32px;
       display: inline-flex;
@@ -554,7 +505,6 @@
 
       .side-panel {
         align-self: auto;
-        padding-top: 0;
       }
 
       .readout {
@@ -709,10 +659,6 @@
         margin-bottom: 22px;
       }
 
-      .topnav {
-        margin-left: 0;
-      }
-
       .hero h1 {
         font-size: 2.55rem;
       }
@@ -774,11 +720,6 @@
             <span id="tempDivider" hidden>/</span>
             <span id="localTemp" aria-label="Current temperature for 98606"></span>
           </div>
-          <nav class="topnav reveal" aria-label="Navigation">
-            <a href="#ventures">ventures</a>
-            <a href="#proof">signal</a>
-            <a href="https://jereme.xyz/about/">about</a>
-          </nav>
           <h1 class="reveal" id="hero-title">jereme.xyz</h1>
           <p class="hero-lede reveal">
             Building the things that make the future feel less theoretical. Quietly, deliberately, and usually before anyone is looking.
@@ -797,15 +738,11 @@
             </div>
             <div class="readout-row">
               <span class="readout-key">surface</span>
-              <span class="readout-val" id="surfaceValue">four ventures</span>
+              <span class="readout-val">four ventures</span>
             </div>
             <div class="readout-row">
               <span class="readout-key">signal</span>
-              <span class="readout-val" id="signalValue">selective</span>
-            </div>
-            <div class="readout-row">
-              <span class="readout-key">currently</span>
-              <span class="readout-val" id="currentlyValue">low signal</span>
+              <span class="readout-val">selective</span>
             </div>
           </div>
         </aside>
@@ -830,31 +767,31 @@
 
         <ul class="venture-list">
           <li class="reveal">
-            <a class="venture-link" href="/fwr" data-word="data clarity" data-detail="Boutique AI, robotics, and LiDAR studio for governments, enterprises, and startups asking hard questions." data-accent="170, 60, 22" data-soft="82, 101, 116" data-surface="fw/r" data-signal="lidar / systems">
+            <a class="venture-link" href="/fwr" data-word="data clarity" data-detail="A boutique AI and robotics studio for governments, enterprises, and startups asking hard questions.">
               <span class="venture-num">01</span>
               <span class="venture-name">fw/r</span>
-              <span class="venture-meta">data<br>clarity</span>
+              <span class="venture-meta">AI<br>robotics</span>
             </a>
           </li>
           <li class="reveal">
-            <a class="venture-link" href="/pine" data-word="second cup" data-detail="PNW-rooted coffee house built around staying, thinking, collaborating, and feeling at home." data-accent="95, 113, 86" data-soft="170, 124, 46" data-surface="pine" data-signal="coffee / place">
+            <a class="venture-link" href="/pine" data-word="second cup" data-detail="A PNW-rooted coffee brand built around staying, thinking, collaborating, and feeling at home.">
               <span class="venture-num">02</span>
               <span class="venture-name">pine</span>
-              <span class="venture-meta">pnw<br>roots</span>
+              <span class="venture-meta">coffee<br>community</span>
             </a>
           </li>
           <li class="reveal">
-            <a class="venture-link" href="/nrthrn" data-word="function first" data-detail="Industrial and consumer goods: prototypes, finished products, commissions, and human-finished utility." data-accent="82, 101, 116" data-soft="95, 113, 86" data-surface="nrthrn" data-signal="utility / material">
+            <a class="venture-link" href="/nrthrn" data-word="function first" data-detail="Industrial and consumer goods: prototypes, finished products, commissions, and human-finished utility.">
               <span class="venture-num">03</span>
               <span class="venture-name">nrthrn</span>
-              <span class="venture-meta">utility<br>refined</span>
+              <span class="venture-meta">industrial<br>design</span>
             </a>
           </li>
           <li class="reveal">
-            <a class="venture-link" href="/drift" data-word="hidden coast" data-detail="Coastal boutique coffee shop with no easy coordinates, built for people who know how to look." data-accent="170, 124, 46" data-soft="170, 60, 22" data-surface="drift" data-signal="coast / hidden">
+            <a class="venture-link" href="/drift" data-word="hidden coast" data-detail="A coastal boutique coffee shop with no easy coordinates, built for people who know how to look.">
               <span class="venture-num">04</span>
               <span class="venture-name">drift</span>
-              <span class="venture-meta">rust<br>real</span>
+              <span class="venture-meta">coastal<br>coffee</span>
             </a>
           </li>
         </ul>
@@ -863,7 +800,7 @@
       <section class="proof reveal" id="proof" aria-labelledby="proof-title">
         <h2 id="proof-title">Enough said. Not too much.</h2>
         <ul class="proof-list">
-          <li><span>builds</span><span>precision, patience, intention</span></li>
+          <li><span>builds</span><span>AI systems, coffee spaces, physical goods</span></li>
           <li><span>studies</span><span>place, leverage, media, memory</span></li>
           <li><span>prefers</span><span>taste over noise</span></li>
           <li><span>reachable</span><span>when the signal is good</span></li>
@@ -893,8 +830,7 @@
         </a>
       </div>
       <div class="footer-contact">
-        <button class="copy-email" type="button" id="copyEmail">loveletters@jereme.xyz</button>
-        <span class="copy-state" id="copyState">copied</span>
+        <a href="mailto:loveletters@jereme.xyz">loveletters@jereme.xyz</a>
         <span class="footer-address">915 Broadway St #100, Vancouver, WA 98660</span>
       </div>
     </footer>
@@ -905,13 +841,8 @@
     const localTemp = document.getElementById('localTemp');
     const tempDivider = document.getElementById('tempDivider');
     const modeValue = document.getElementById('modeValue');
-    const surfaceValue = document.getElementById('surfaceValue');
-    const signalValue = document.getElementById('signalValue');
-    const currentlyValue = document.getElementById('currentlyValue');
     const focusWord = document.getElementById('focusWord');
     const focusDetail = document.getElementById('focusDetail');
-    const copyEmail = document.getElementById('copyEmail');
-    const copyState = document.getElementById('copyState');
     const canvas = document.getElementById('field');
     const ctx = canvas.getContext('2d');
 
@@ -924,18 +855,7 @@
     let targetY = pointerY;
     let nodes = [];
     let animationFrame;
-    let activeAccent = [170, 60, 22];
-    let activeSoft = [95, 113, 86];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const currentlyValues = ['not available', 'building', 'away from screens', 'somewhere coastal', 'low signal'];
-
-    function setActiveColor(accent, soft) {
-      activeAccent = accent.split(',').map((item) => Number(item.trim()));
-      activeSoft = soft.split(',').map((item) => Number(item.trim()));
-      document.documentElement.style.setProperty('--active-rgb', activeAccent.join(', '));
-      document.documentElement.style.setProperty('--active-soft-rgb', activeSoft.join(', '));
-      document.documentElement.style.setProperty('--active', 'rgb(' + activeAccent.join(', ') + ')');
-    }
 
     function updateTime() {
       const now = new Date();
@@ -954,12 +874,6 @@
 
       localTime.textContent = time + ' PT';
       modeValue.textContent = hour < 6 ? 'night pass' : hour < 12 ? 'early signal' : hour < 18 ? 'building' : 'low noise';
-    }
-
-    function updateCurrently() {
-      const eighteenHours = 18 * 60 * 60 * 1000;
-      const cycleIndex = Math.floor(Date.now() / eighteenHours) % currentlyValues.length;
-      currentlyValue.textContent = currentlyValues[cycleIndex];
     }
 
     async function fetchTemperature() {
@@ -999,31 +913,14 @@
     function setupVentures() {
       const links = document.querySelectorAll('.venture-link');
       links.forEach((link) => {
-        const set = () => {
+        link.addEventListener('mouseenter', () => {
           focusWord.textContent = link.dataset.word;
           focusDetail.textContent = link.dataset.detail;
-          surfaceValue.textContent = link.dataset.surface;
-          signalValue.textContent = link.dataset.signal;
-          setActiveColor(link.dataset.accent, link.dataset.soft);
-        };
-        link.addEventListener('mouseenter', set);
-        link.addEventListener('focus', set);
-        link.addEventListener('touchstart', set, { passive: true });
-      });
-    }
-
-    function setupCopyEmail() {
-      if (!copyEmail) return;
-
-      copyEmail.addEventListener('click', async () => {
-        const email = 'loveletters@jereme.xyz';
-        try {
-          await navigator.clipboard.writeText(email);
-          copyState.classList.add('is-visible');
-          window.setTimeout(() => copyState.classList.remove('is-visible'), 1400);
-        } catch (error) {
-          window.location.href = 'mailto:' + email;
-        }
+        });
+        link.addEventListener('focus', () => {
+          focusWord.textContent = link.dataset.word;
+          focusDetail.textContent = link.dataset.detail;
+        });
       });
     }
 
@@ -1061,8 +958,8 @@
       const py = pointerY * height;
 
       const gradient = ctx.createRadialGradient(px, py, 0, px, py, Math.max(width, height) * 0.62);
-      gradient.addColorStop(0, 'rgba(' + activeAccent.join(', ') + ', 0.15)');
-      gradient.addColorStop(0.34, 'rgba(' + activeSoft.join(', ') + ', 0.08)');
+      gradient.addColorStop(0, 'rgba(170, 60, 22, 0.13)');
+      gradient.addColorStop(0.34, 'rgba(95, 113, 86, 0.075)');
       gradient.addColorStop(1, 'rgba(16, 16, 14, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -1081,7 +978,7 @@
         const dy = node.y - py;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const pull = Math.max(0, 1 - distance / 320);
-        const color = node.hue > 0.66 ? activeSoft.join(', ') : node.hue > 0.33 ? '95, 113, 86' : activeAccent.join(', ');
+        const color = node.hue > 0.66 ? '82, 101, 116' : node.hue > 0.33 ? '95, 113, 86' : '170, 60, 22';
 
         ctx.beginPath();
         ctx.arc(node.x + dx * pull * 0.018, node.y + dy * pull * 0.018, node.r + pull * 1.8, 0, Math.PI * 2);
@@ -1110,7 +1007,7 @@
       ctx.beginPath();
       ctx.moveTo(width * 0.52, height * 0.2);
       ctx.bezierCurveTo(width * 0.64, height * 0.12, width * 0.8, height * 0.42, width * 0.92, height * 0.28);
-      ctx.strokeStyle = 'rgba(' + activeAccent.join(', ') + ', 0.18)';
+      ctx.strokeStyle = 'rgba(170, 60, 22, 0.18)';
       ctx.lineWidth = 1;
       ctx.stroke();
 
@@ -1136,11 +1033,9 @@
     }, { passive: true });
 
     updateTime();
-    updateCurrently();
     fetchTemperature();
     revealVisible();
     setupVentures();
-    setupCopyEmail();
     resizeCanvas();
     drawField();
     window.setInterval(updateTime, 30000);
