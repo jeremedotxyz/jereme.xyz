@@ -1,3 +1,6 @@
+Here’s the full HTML as text, with the Google Analytics code included:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,6 +195,30 @@
       height: 5px;
       background: var(--ember);
       display: inline-block;
+    }
+
+    .topnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin: 10px 0 28px 15px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .topnav a {
+      min-height: 26px;
+      display: inline-flex;
+      align-items: center;
+      transition: color 160ms ease;
+    }
+
+    .topnav a:hover,
+    .topnav a:focus-visible {
+      color: var(--ink);
+      outline: 0;
     }
 
     .hero h1 {
@@ -633,7 +660,10 @@
     }
 
     @media (max-width: 520px) {
-      .hero {
+      .hero,
+      .thesis,
+      .ventures,
+      .proof {
         width: min(calc(100% - (var(--pad) * 2)), 300px);
         margin-left: var(--pad);
         margin-right: auto;
@@ -657,6 +687,10 @@
         gap: 7px;
         font-size: 0.66rem;
         margin-bottom: 22px;
+      }
+
+      .topnav {
+        margin-left: 0;
       }
 
       .hero h1 {
@@ -720,6 +754,11 @@
             <span id="tempDivider" hidden>/</span>
             <span id="localTemp" aria-label="Current temperature for 98606"></span>
           </div>
+          <nav class="topnav reveal" aria-label="Navigation">
+            <a href="#ventures">ventures</a>
+            <a href="https://jereme.xyz/about/">about</a>
+            <a href="#proof">signal</a>
+          </nav>
           <h1 class="reveal" id="hero-title">jereme.xyz</h1>
           <p class="hero-lede reveal">
             Building the things that make the future feel less theoretical. Quietly, deliberately, and usually before anyone is looking.
