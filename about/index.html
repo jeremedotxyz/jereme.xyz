@@ -1,10 +1,87 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>about — jereme.xyz</title>
-  <meta name="description" content="A longer letter from Jereme Abernathy. In lieu of a bio." />
+  <title>about - jereme.xyz</title>
+  <meta name="description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions." />
+  <link rel="canonical" href="https://jereme.xyz/about/" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="jereme.xyz" />
+  <meta property="og:title" content="about - jereme.xyz" />
+  <meta property="og:description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions." />
+  <meta property="og:url" content="https://jereme.xyz/about/" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="about - jereme.xyz" />
+  <meta name="twitter:description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://jereme.xyz/#website",
+          "name": "jereme.xyz",
+          "url": "https://jereme.xyz/",
+          "description": "Jereme Abernathy. Independent operator in the Pacific Northwest."
+        },
+        {
+          "@type": "Person",
+          "@id": "https://jereme.xyz/#person",
+          "name": "Jereme Abernathy",
+          "alternateName": "jereme.xyz",
+          "url": "https://jereme.xyz/",
+          "email": "mailto:loveletters@jereme.xyz",
+          "description": "Independent operator in the Pacific Northwest building AI systems, coffee spaces, and physical goods.",
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Pacific Northwest"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "915 Broadway St #100",
+            "addressLocality": "Vancouver",
+            "addressRegion": "WA",
+            "postalCode": "98660",
+            "addressCountry": "US"
+          },
+          "knowsAbout": [
+            "AI systems",
+            "robotics",
+            "coffee spaces",
+            "industrial design",
+            "physical goods"
+          ],
+          "sameAs": [
+            "https://www.threads.com/@jeremedotxyz",
+            "https://www.instagram.com/jeremedotxyz/",
+            "https://github.com/jeremedotxyz",
+            "https://www.youtube.com/@jeremedotxyz",
+            "https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9",
+            "https://substack.com/@jeremedotxyz"
+          ],
+          "mainEntityOfPage": {
+            "@id": "https://jereme.xyz/about/#about-page"
+          }
+        },
+        {
+          "@type": "AboutPage",
+          "@id": "https://jereme.xyz/about/#about-page",
+          "name": "about - jereme.xyz",
+          "url": "https://jereme.xyz/about/",
+          "description": "A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.",
+          "isPartOf": {
+            "@id": "https://jereme.xyz/#website"
+          },
+          "about": {
+            "@id": "https://jereme.xyz/#person"
+          }
+        }
+      ]
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -99,11 +176,10 @@
       z-index: 3;
     }
 
-    /* ── Top bar ── */
     .topbar {
-      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      width: min(var(--max), 100%);
       margin: 0 auto;
-      padding: 36px 0 0;
+      padding: 36px var(--pad) 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -165,11 +241,10 @@
       display: inline-block;
     }
 
-    /* ── Letter ── */
     .letter {
-      width: min(var(--read), calc(100% - (var(--pad) * 2)));
+      width: min(var(--read), 100%);
       margin: 0 auto;
-      padding: clamp(56px, 10vh, 96px) 0 64px;
+      padding: clamp(56px, 10vh, 96px) var(--pad) 64px;
     }
 
     .eyebrow {
@@ -248,7 +323,6 @@
       color: var(--ink);
     }
 
-    /* ── Sign-off ── */
     .signoff {
       margin: 88px 0 0;
       padding-top: 40px;
@@ -304,11 +378,10 @@
       letter-spacing: 0.02em;
     }
 
-    /* ── Footer ── */
     .footer {
-      width: min(var(--max), calc(100% - (var(--pad) * 2)));
+      width: min(var(--max), 100%);
       margin: 80px auto 0;
-      padding: 28px 0 42px;
+      padding: 28px var(--pad) 42px;
       border-top: 1px solid var(--line);
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -335,7 +408,9 @@
       transition: color 160ms ease;
     }
 
-    .footer a:hover { color: var(--ink); }
+    .footer a:hover {
+      color: var(--ink);
+    }
 
     .footer-address {
       min-height: 32px;
@@ -357,7 +432,6 @@
       transform: translateY(0);
     }
 
-    /* ── Breakpoints ── */
     @media (max-width: 980px) {
       :root { --pad: 22px; }
     }
@@ -419,37 +493,37 @@
       <p class="letter-sub reveal">in lieu of a bio.</p>
 
       <article class="prose reveal">
-        <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" — that word's for people who saw the place in a movie. Packed it all up in March of 2021 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think — which is the best part.</p>
+        <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2021 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
 
-        <p>Four ventures now, all running out of the same desk in downtown Vancouver. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other — where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. (Nothing against witches, by the way. Know a few. Haven't met a bad one yet.)</p>
+        <p>Four ventures now, all running out of the same desk in downtown Vancouver. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. (Nothing against witches, by the way. Know a few. Haven't met a bad one yet.)</p>
 
-        <p><strong>fw/r</strong> is Robotics, LiDAR and AI — the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
+        <p><strong>fw/r</strong> is Robotics, LiDAR and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
 
         <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. (Or that I've lost it. Both could be true.)</p>
 
-        <p><strong>nrthrn</strong> is the product design studio — consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. (Okay, fine — if you must know, the answer is still no.)</p>
+        <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. (Okay, fine - if you must know, the answer is still no.)</p>
 
         <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
 
         <p>Four bat-shit ideas, one guy stupid enough to run all of them. Different rooms, same work.</p>
 
-        <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task — and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
+        <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
 
-        <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice — apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that. The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself — I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts — and the honest people — show up. It's not a test for me. It's a test for everything and everyone else.</p>
+        <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that. The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
 
-        <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house — full of vinyl, of course — a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet — partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
+        <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
 
-        <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone — finally, mercifully — chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
+        <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
 
         <p>A few opinions for the record. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Most design reviews are status meetings in cosplay. Most "AI-powered" anything is a wrapper around a wrapper around a prompt somebody copy-pasted from Twitter. The web was better when sites were weird and didn't try to flatter you. A clear no will save you more runway than a polished maybe. AI is the most consequential technology of my lifetime and most people are going to use it to write slightly worse emails to each other. The best founders are quiet weirdos who shipped before they were ready. Most "innovation" is a quote on a wall. Most "vision" is a guess in a font. I don't think I'm right about everything. I just think most people aren't paying close enough attention to actually disagree.</p>
 
-        <p>I'm not chasing scale. I'm chasing a body of work. Same small team, same compass bearing. A couple additions soon. Most of what I do is help other people ship the thing they've been trying to ship. Products they can't get over the line. Light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Models that read the room before the room knows it's being read. Some of it is mine — fw/r, pine, drift, the trail, the toaster. Most of it isn't. That's the job. I don't have a good reason for any of this. I just know I'm not done.</p>
+        <p>I'm not chasing scale. I'm chasing a body of work. Same small team, same compass bearing. A couple additions soon. Most of what I do is help other people ship the thing they've been trying to ship. Products they can't get over the line. Light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Models that read the room before the room knows it's being read. Some of it is mine - fw/r, pine, drift, the trail, the toaster. Most of it isn't. That's the job. I don't have a good reason for any of this. I just know I'm not done.</p>
       </article>
 
       <div class="signoff reveal">
         <p class="signoff-line">Don't let the wheels fall off.</p>
         <div class="signature-wrap">
-          <img class="signature" src="signature.png" alt="Jereme signature" />
+          <img class="signature" src="signature.png" alt="Jereme signature" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'signature-fallback', textContent: 'Jereme' }))" />
         </div>
         <p class="signoff-stage">(Ethel Cain's "American Teenager" plays. Fade to black.)</p>
         <p class="signoff-wink">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative, it still worked.</p>
@@ -458,7 +532,7 @@
 
     <footer class="footer">
       <div>
-        <a href="/">← back to jereme.xyz</a>
+        <a href="/">back to jereme.xyz</a>
       </div>
       <div class="footer-contact">
         <a href="mailto:loveletters@jereme.xyz">loveletters@jereme.xyz</a>
@@ -543,8 +617,8 @@
       const py = pointerY * height;
 
       const gradient = ctx.createRadialGradient(px, py, 0, px, py, Math.max(width, height) * 0.62);
-      gradient.addColorStop(0, 'rgba(230, 50, 10, 0.22)');
-      gradient.addColorStop(0.34, 'rgba(45, 170, 55, 0.14)');
+      gradient.addColorStop(0, 'rgba(170, 60, 22, 0.13)');
+      gradient.addColorStop(0.34, 'rgba(95, 113, 86, 0.075)');
       gradient.addColorStop(1, 'rgba(16, 16, 14, 0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -563,7 +637,7 @@
         const dy = node.y - py;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const pull = Math.max(0, 1 - dist / 320);
-        const color = node.hue > 0.66 ? '30, 100, 210' : node.hue > 0.33 ? '45, 170, 55' : '230, 50, 10';
+        const color = node.hue > 0.66 ? '82, 101, 116' : node.hue > 0.33 ? '95, 113, 86' : '170, 60, 22';
 
         ctx.beginPath();
         ctx.arc(
@@ -572,7 +646,7 @@
           node.r + pull * 1.4,
           0, Math.PI * 2
         );
-        ctx.fillStyle = 'rgba(' + color + ', ' + (0.45 + pull * 0.35) + ')';
+        ctx.fillStyle = 'rgba(' + color + ', ' + (0.22 + pull * 0.22) + ')';
         ctx.fill();
       });
 
@@ -639,3 +713,4 @@
   </script>
 </body>
 </html>
+```
