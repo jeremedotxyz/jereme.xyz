@@ -1567,22 +1567,9 @@
             }
 
             // ------------------------------------------
-            // SOCIAL ICONS — Stagger fade-in
+            // SOCIAL ICONS — Visible by default via CSS
+            // (Hover effect handles the polish; no entrance animation needed)
             // ------------------------------------------
-            const socialIcons = gsap.utils.toArray('.footer-social a');
-            if (socialIcons.length) {
-                gsap.from(socialIcons, {
-                    y: 15,
-                    opacity: 0,
-                    duration: 0.6,
-                    stagger: 0.05,
-                    scrollTrigger: {
-                        trigger: 'footer',
-                        start: 'top 90%',
-                        toggleActions: 'play none none none',
-                    }
-                });
-            }
 
             // ------------------------------------------
             // Refresh ScrollTrigger after fonts load
