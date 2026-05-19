@@ -221,6 +221,52 @@
             .hero-cta {
                 opacity: 1 !important;
             }
+            
+            .word {
+                transform: translateY(0) !important;
+            }
+            
+            .capability-item::before {
+                transform: scaleY(1) !important;
+            }
+        }
+
+        /* Word-by-word reveal masks */
+        .word-mask {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            line-height: inherit;
+            padding-bottom: 0.15em;
+            margin-bottom: -0.15em;
+        }
+
+        .word {
+            display: inline-block;
+            will-change: transform;
+        }
+
+        /* Scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            z-index: 1002;
+            transform-origin: left center;
+            transform: scaleX(0);
+            opacity: 0.6;
+        }
+
+        /* Nav scrolled state — more opaque backdrop */
+        nav.scrolled {
+            background: rgba(10, 10, 15, 0.98);
+        }
+
+        body.light-mode nav.scrolled {
+            background: rgba(250, 249, 247, 1);
         }
 
         /* Section Base */
@@ -375,13 +421,29 @@
         }
 
         .capability-item {
-            border-left: 2px solid var(--border);
             padding-left: 1.5rem;
-            transition: border-color 0.3s ease;
+            position: relative;
         }
 
-        .capability-item:hover {
-            border-color: var(--accent);
+        .capability-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+            transform: scaleY(0);
+            transform-origin: top center;
+            transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), background-color 0.3s ease;
+        }
+
+        .capability-item.is-revealed::before {
+            transform: scaleY(1);
+        }
+
+        .capability-item:hover::before {
+            background: var(--accent);
         }
 
         .capability-title {
@@ -767,6 +829,8 @@
     </style>
 </head>
 <body>
+    <div class="scroll-progress"></div>
+    
     <button class="theme-toggle" aria-label="Toggle dark/light mode">
         <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -1088,7 +1152,54 @@
             });
 
             // ------------------------------------------
-            // HERO ENTRANCE — Orchestrated timeline
+            // UTILITY — Split text into word-wrapped spans for masked reveals
+            // ------------------------------------------
+            function splitTextIntoWords(element) {
+                const text = element.textContent.trim();
+                const words = text.split(/\s+/);
+                element.innerHTML = words.map(word => 
+                    `<span class="word-mask"><span class="word">${word}</span></span>`
+                ).join(' ');
+                return element.querySelectorAll('.word');
+            }
+
+            // Pre-split hero title and all section titles
+            const heroTitle = document.querySelector('.hero-title');
+            const heroTitleWords = heroTitle ? splitTextIntoWords(heroTitle) : [];
+
+            const sectionTitleWordSets = [];
+            document.querySelectorAll('.section-title').forEach(title => {
+                sectionTitleWordSets.push(splitTextIntoWords(title));
+            });
+
+            // Set initial state — all words hidden below their mask
+            gsap.set('.word', { yPercent: 110 });
+            gsap.set('.hero-title, .section-title', { opacity: 1 });
+
+            // ------------------------------------------
+            // SCROLL PROGRESS — Animated bar at top of viewport
+            // ------------------------------------------
+            gsap.to('.scroll-progress', {
+                scaleX: 1,
+                ease: 'none',
+                scrollTrigger: {
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 0.3,
+                }
+            });
+
+            // ------------------------------------------
+            // NAV BACKDROP — More opaque as user scrolls
+            // ------------------------------------------
+            ScrollTrigger.create({
+                start: 'top -80',
+                end: 'max',
+                toggleClass: { className: 'scrolled', targets: 'nav' }
+            });
+
+            // ------------------------------------------
+            // HERO ENTRANCE — Word-by-word title reveal
             // ------------------------------------------
             const heroTL = gsap.timeline({
                 defaults: { ease: 'power3.out' }
@@ -1100,20 +1211,21 @@
                     { y: 0, opacity: 1, duration: 0.8 },
                     0.2
                 )
-                .fromTo('.hero-title',
-                    { y: 50, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1.1, ease: 'power4.out' },
-                    0.35
-                )
+                .to(heroTitleWords, {
+                    yPercent: 0,
+                    duration: 1.1,
+                    stagger: 0.07,
+                    ease: 'power4.out',
+                }, 0.35)
                 .fromTo('.hero-description',
                     { y: 30, opacity: 0 },
                     { y: 0, opacity: 1, duration: 0.9 },
-                    0.65
+                    0.85
                 )
                 .fromTo('.hero-cta',
                     { y: 20, opacity: 0, scale: 0.92 },
                     { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.4)' },
-                    0.9
+                    1.1
                 );
 
             // ------------------------------------------
@@ -1165,7 +1277,7 @@
             });
 
             // ------------------------------------------
-            // SECTION HEADERS — Eyebrow, title, description reveal
+            // SECTION HEADERS — Word-by-word title reveal + eyebrow/description
             // ------------------------------------------
             gsap.utils.toArray('section').forEach((section) => {
                 const eyebrow = section.querySelector('.section-eyebrow');
@@ -1173,6 +1285,8 @@
                 const description = section.querySelector('.section-description');
 
                 if (eyebrow && title) {
+                    const titleWords = title.querySelectorAll('.word');
+                    
                     const tl = gsap.timeline({
                         scrollTrigger: {
                             trigger: section,
@@ -1182,8 +1296,16 @@
                     });
                     
                     tl.from(eyebrow, { y: 20, opacity: 0, duration: 0.7 })
-                      .from(title, { y: 30, opacity: 0, duration: 0.9 }, '-=0.5')
-                      .from(description, { y: 20, opacity: 0, duration: 0.8 }, '-=0.6');
+                      .to(titleWords, {
+                          yPercent: 0,
+                          duration: 0.9,
+                          stagger: 0.05,
+                          ease: 'power4.out',
+                      }, '-=0.4');
+                    
+                    if (description) {
+                        tl.from(description, { y: 20, opacity: 0, duration: 0.8 }, '-=0.5');
+                    }
                 }
             });
 
@@ -1206,35 +1328,53 @@
             }
 
             // ------------------------------------------
-            // VENTURE CARDS — Mask-style reveal with stagger
+            // VENTURE CARDS — Clip-path mask reveal (curtain pull from bottom)
             // ------------------------------------------
             const ventureCards = gsap.utils.toArray('.venture-card');
             if (ventureCards.length) {
-                gsap.from(ventureCards, {
-                    y: 60,
-                    opacity: 0,
-                    scale: 0.97,
-                    duration: 1,
-                    stagger: 0.15,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.ventures-grid',
-                        start: 'top 80%',
-                        toggleActions: 'play none none none',
+                gsap.fromTo(ventureCards,
+                    {
+                        clipPath: 'inset(0 0 100% 0)',
+                        y: 30,
+                    },
+                    {
+                        clipPath: 'inset(0 0 0% 0)',
+                        y: 0,
+                        duration: 1.2,
+                        stagger: 0.15,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: '.ventures-grid',
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        }
                     }
-                });
+                );
             }
 
             // ------------------------------------------
-            // CAPABILITY ITEMS — Slide in from left, staggered
+            // CAPABILITY ITEMS — Border draws + content slides in
             // ------------------------------------------
             const capabilityItems = gsap.utils.toArray('.capability-item');
             if (capabilityItems.length) {
+                capabilityItems.forEach((item, i) => {
+                    ScrollTrigger.create({
+                        trigger: item,
+                        start: 'top 85%',
+                        onEnter: () => {
+                            setTimeout(() => {
+                                item.classList.add('is-revealed');
+                            }, i * 80);
+                        }
+                    });
+                });
+                
                 gsap.from(capabilityItems, {
-                    x: -30,
+                    x: -20,
                     opacity: 0,
                     duration: 0.8,
                     stagger: 0.08,
+                    delay: 0.2,
                     scrollTrigger: {
                         trigger: '.capabilities-grid',
                         start: 'top 80%',
