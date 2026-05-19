@@ -443,30 +443,179 @@
                 display: none;
             }
 
+            .nav-container {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
             .hero {
-                padding: 10rem 1.5rem 4rem;
+                padding: 9rem 1.5rem 4rem;
+                min-height: auto;
+            }
+
+            .hero-eyebrow {
+                font-size: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 10vw, 3.5rem);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-cta {
+                width: 100%;
+                justify-content: center;
+                padding: 1.15rem 2rem;
+                font-size: 1rem;
             }
 
             section {
                 padding: 4rem 1.5rem;
             }
 
+            .section-eyebrow {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+
+            .section-description {
+                font-size: 1rem;
+            }
+
             .work-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .work-card {
+                padding: 2rem;
+            }
+
+            .work-card-title {
+                font-size: 1.25rem;
+            }
+
+            .work-card-description {
+                font-size: 0.9rem;
+            }
+
+            .ventures-grid {
+                gap: 1.5rem;
+            }
+
+            .venture-card {
+                padding: 2rem;
+            }
+
+            .venture-tag {
+                font-size: 0.7rem;
+                margin-bottom: 1rem;
+            }
+
+            .venture-name {
+                font-size: 2rem;
+            }
+
+            .venture-tagline {
+                font-size: 1rem;
+            }
+
+            .venture-description {
+                font-size: 0.9rem;
             }
 
             .capabilities-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .capability-item {
+                padding-left: 1.25rem;
+            }
+
+            .capability-title {
+                font-size: 1.1rem;
+            }
+
+            .capability-description {
+                font-size: 0.875rem;
             }
 
             .contact {
-                padding: 4rem 2rem;
+                padding: 3.5rem 1.5rem;
+            }
+
+            .contact-title {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+                margin-bottom: 1rem;
+            }
+
+            .contact-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
+                padding: 1.15rem 2rem;
+                font-size: 1rem;
             }
 
             footer {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
                 text-align: center;
+                padding: 2.5rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .footer-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 8rem 1.25rem 3rem;
+            }
+
+            .hero-title {
+                font-size: clamp(1.75rem, 11vw, 2.5rem);
+            }
+
+            .section-title {
+                font-size: clamp(1.5rem, 9vw, 2rem);
+            }
+
+            .venture-name {
+                font-size: 1.75rem;
+            }
+
+            .venture-card {
+                padding: 1.75rem;
+            }
+
+            .work-card {
+                padding: 1.75rem;
             }
         }
     </style>
