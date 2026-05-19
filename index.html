@@ -479,6 +479,21 @@
             color: var(--accent);
         }
 
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-address {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
         .footer-social {
             display: flex;
             gap: 1.25rem;
@@ -694,6 +709,15 @@
 
             .footer-links {
                 gap: 1.5rem;
+            }
+
+            .footer-info {
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-address {
+                font-size: 0.85rem;
             }
         }
 
@@ -935,7 +959,10 @@
     </section>
 
     <footer>
-        <div>&copy; 2026 jereme.xyz</div>
+        <div class="footer-info">
+            <div>&copy; 2026 jereme.xyz</div>
+            <div class="footer-address">915 Broadway St #100, Vancouver, WA 98660</div>
+        </div>
         <div class="footer-social">
             <a href="https://github.com/jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
