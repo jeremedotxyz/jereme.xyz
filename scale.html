@@ -333,6 +333,21 @@
             position: relative;
         }
 
+        /* View Transitions API — smooth theme morph in supporting browsers */
+        @supports (view-transition-name: root) {
+            ::view-transition-old(root),
+            ::view-transition-new(root) {
+                animation-duration: 0.5s;
+                animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+            }
+        }
+
+        /* Card 3D tilt prep — preserve 3D for child elements */
+        .venture-card,
+        .work-card {
+            transform-style: preserve-3d;
+        }
+
         /* Section Base */
         section {
             max-width: 1400px;
@@ -652,12 +667,13 @@
             height: 20px;
             color: var(--text-secondary);
             opacity: 0.6;
-            transition: opacity 0.2s ease, color 0.2s ease;
+            transition: opacity 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .footer-social a:hover {
             opacity: 1;
             color: var(--accent);
+            transform: rotate(-8deg) scale(1.15);
         }
 
         .footer-social svg {
@@ -1168,14 +1184,23 @@
             body.classList.add('light-mode');
         }
         
-        // Toggle theme on button click
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
+        // Toggle theme function — uses View Transitions API if supported
+        function toggleTheme() {
+            const applyToggle = () => {
+                body.classList.toggle('light-mode');
+                const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+                localStorage.setItem('theme', theme);
+            };
             
-            // Save preference to localStorage
-            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
-            localStorage.setItem('theme', theme);
-        });
+            // Progressive enhancement: smooth crossfade in supporting browsers
+            if (document.startViewTransition) {
+                document.startViewTransition(applyToggle);
+            } else {
+                applyToggle();
+            }
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
     </script>
 
     <script>
@@ -1567,6 +1592,101 @@
                 document.fonts.ready.then(() => {
                     ScrollTrigger.refresh();
                 });
+            }
+
+            // ============================================
+            // DAY 5 — MICRO-INTERACTIONS
+            // Magnetic buttons, 3D tilts, hover effects
+            // ============================================
+
+            // ------------------------------------------
+            // MAGNETIC EFFECT — Element tracks cursor subtly
+            // ------------------------------------------
+            function makeMagnetic(element, strength = 0.3, returnEase = 'elastic.out(1, 0.4)') {
+                if (!element) return;
+                
+                let isHovering = false;
+                
+                element.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                });
+                
+                element.addEventListener('mousemove', (e) => {
+                    if (!isHovering) return;
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(element, {
+                        x: x * strength,
+                        y: y * strength,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    gsap.to(element, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.8,
+                        ease: returnEase
+                    });
+                });
+            }
+
+            // Apply magnetic effect to interactive elements
+            makeMagnetic(document.querySelector('.hero-cta'), 0.25);
+            makeMagnetic(document.querySelector('.theme-toggle'), 0.4, 'power2.out');
+            
+            const contactLinks = document.querySelectorAll('.contact-link');
+            contactLinks.forEach(link => makeMagnetic(link, 0.3));
+
+            // ------------------------------------------
+            // 3D TILT EFFECT — Cards tilt based on cursor position
+            // ------------------------------------------
+            function make3DTilt(card, maxTilt = 4) {
+                if (!card) return;
+                
+                let isHovering = false;
+                
+                card.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                });
+                
+                card.addEventListener('mousemove', (e) => {
+                    if (!isHovering) return;
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                    
+                    gsap.to(card, {
+                        rotationY: x * maxTilt,
+                        rotationX: -y * maxTilt,
+                        duration: 0.5,
+                        ease: 'power2.out',
+                        transformPerspective: 1200,
+                        transformOrigin: 'center center'
+                    });
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    gsap.to(card, {
+                        rotationY: 0,
+                        rotationX: 0,
+                        duration: 0.8,
+                        ease: 'power3.out'
+                    });
+                });
+            }
+
+            // Apply 3D tilt to cards (desktop only — touch devices don't have hover)
+            const isTouchDevice = window.matchMedia('(hover: none)').matches;
+            if (!isTouchDevice) {
+                gsap.utils.toArray('.venture-card').forEach(card => make3DTilt(card, 3));
+                gsap.utils.toArray('.work-card').forEach(card => make3DTilt(card, 2.5));
             }
         }
     </script>
