@@ -270,6 +270,69 @@
             background: rgba(250, 249, 247, 1);
         }
 
+        /* Counter number — emphasized in hero description */
+        .counter-number {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            display: inline-block;
+        }
+
+        /* Hero scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-indicator-text {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .scroll-indicator-line {
+            width: 1px;
+            height: 40px;
+            background: var(--text-secondary);
+            opacity: 0.3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-indicator-line::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(180deg, transparent, var(--accent));
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0% { transform: translateY(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(60px); opacity: 0; }
+        }
+
+        /* Hero needs relative positioning for scroll indicator */
+        .hero {
+            position: relative;
+        }
+
         /* Section Base */
         section {
             max-width: 1400px;
@@ -864,10 +927,15 @@
         <div class="hero-eyebrow">Field Transmission // Pacific Northwest</div>
         <h1 class="hero-title">AI systems for the decisions that matter.</h1>
         <p class="hero-description">
-            18 years building product systems at scale. Prompt engineering, LLM evaluation, red teaming. 
+            <span class="counter-number" data-target="18">18</span> years building product systems at scale. Prompt engineering, LLM evaluation, red teaming. 
             Big Tech hardware to frontier model deployment. The kind of work where "it mostly works" isn't good enough.
         </p>
         <a href="#contact" class="hero-cta">Get in touch →</a>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-indicator-line"></div>
+            <div class="scroll-indicator-text">Scroll</div>
+        </div>
     </div>
 
     <section id="work">
@@ -1242,7 +1310,44 @@
                     { y: 20, opacity: 0, scale: 0.92 },
                     { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.4)' },
                     1.1
-                );
+                )
+                .to('.scroll-indicator', {
+                    opacity: 1,
+                    duration: 0.8,
+                }, 1.4);
+
+            // ------------------------------------------
+            // NUMBER COUNTER — "18 years" animates from 0 to 18
+            // ------------------------------------------
+            const counterEl = document.querySelector('.counter-number');
+            if (counterEl) {
+                const target = parseInt(counterEl.dataset.target, 10) || 18;
+                const counter = { value: 0 };
+                
+                gsap.to(counter, {
+                    value: target,
+                    duration: 1.8,
+                    delay: 0.95,
+                    ease: 'power2.out',
+                    onUpdate: () => {
+                        counterEl.textContent = Math.round(counter.value);
+                    }
+                });
+            }
+
+            // ------------------------------------------
+            // SCROLL INDICATOR — Fade out as user scrolls
+            // ------------------------------------------
+            gsap.to('.scroll-indicator', {
+                opacity: 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: '+=200',
+                    scrub: 0.5,
+                }
+            });
 
             // ------------------------------------------
             // HERO PARALLAX — Layered scroll-driven movement
@@ -1340,6 +1445,25 @@
                         start: 'top 80%',
                         toggleActions: 'play none none none',
                     }
+                });
+            }
+
+            // ------------------------------------------
+            // WORK SECTION PIN — Header anchors while cards scroll
+            // Only on desktop (mobile gets natural flow for performance)
+            // ------------------------------------------
+            const workSection = document.querySelector('#work');
+            const workHeader = document.querySelector('#work .section-header');
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            
+            if (workSection && workHeader && !isMobile) {
+                ScrollTrigger.create({
+                    trigger: workSection,
+                    start: 'top 15%',
+                    end: 'bottom 65%',
+                    pin: workHeader,
+                    pinSpacing: false,
+                    pinType: 'fixed',
                 });
             }
 
