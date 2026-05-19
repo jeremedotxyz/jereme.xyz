@@ -18,7 +18,8 @@
     <!-- Animation libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
     
     <style>
         :root {
@@ -1111,14 +1112,29 @@
 
     <script>
         // ============================================
-        // SCALE-TIER ANIMATIONS — Day 1 Foundation
+        // SCALE-TIER ANIMATIONS — Day 1-3 Implementation
         // GSAP + ScrollTrigger + Lenis
         // ============================================
         
         // Respect user motion preferences
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
-        if (!prefersReducedMotion) {
+        // Safety check: ensure all libraries loaded
+        const librariesLoaded = typeof gsap !== 'undefined' && 
+                                typeof ScrollTrigger !== 'undefined' && 
+                                typeof Lenis !== 'undefined';
+        
+        if (!librariesLoaded) {
+            console.warn('Animation libraries failed to load. Falling back to static display.');
+            // Make hero visible immediately as fallback
+            document.querySelectorAll('.hero-eyebrow, .hero-title, .hero-description, .hero-cta').forEach(el => {
+                el.style.opacity = '1';
+            });
+            // Show capability borders as fallback
+            document.querySelectorAll('.capability-item').forEach(el => el.classList.add('is-revealed'));
+        }
+        
+        if (!prefersReducedMotion && librariesLoaded) {
             // ------------------------------------------
             // LENIS — Smooth momentum scroll
             // ------------------------------------------
