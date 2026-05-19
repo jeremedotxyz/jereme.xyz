@@ -958,11 +958,17 @@
             }
 
             footer {
-                flex-direction: column;
-                gap: 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 1.75rem;
                 text-align: center;
                 padding: 2.5rem 1.5rem;
                 font-size: 0.85rem;
+            }
+
+            .footer-info,
+            .footer-social,
+            .footer-links {
+                justify-self: center;
             }
 
             .footer-links {
@@ -972,6 +978,10 @@
             .footer-info {
                 align-items: center;
                 text-align: center;
+            }
+
+            .footer-social {
+                gap: 1.5rem;
             }
 
             .footer-address {
@@ -1321,12 +1331,10 @@
                                 typeof Lenis !== 'undefined';
         
         if (!librariesLoaded) {
-            console.warn('Animation libraries failed to load. Falling back to static display.');
-            // Make hero visible immediately as fallback
+            // Graceful fallback — make hero visible and show capability borders
             document.querySelectorAll('.hero-eyebrow, .hero-title, .hero-description, .hero-cta').forEach(el => {
                 el.style.opacity = '1';
             });
-            // Show capability borders as fallback
             document.querySelectorAll('.capability-item').forEach(el => el.classList.add('is-revealed'));
         }
         
