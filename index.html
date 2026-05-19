@@ -92,6 +92,234 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* ===========================================
+           LOADER — Initial page entrance
+           =========================================== */
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.8s;
+        }
+
+        .loader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-terminal {
+            font-family: 'IBM Plex Mono', 'SF Mono', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 640px;
+            padding: 0 2rem;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: loaderFadeIn 0.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+
+        @keyframes loaderFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+
+        .terminal-prompt {
+            color: var(--accent);
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .terminal-text {
+            color: var(--text-primary);
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .terminal-cursor {
+            color: var(--accent);
+            font-weight: 500;
+            display: inline-block;
+            animation: cursorBlink 0.9s steps(2) infinite;
+        }
+
+        .terminal-cursor.is-done {
+            display: none;
+        }
+
+        @keyframes cursorBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .terminal-output {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .output-line {
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .output-line.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .output-line .check {
+            color: #5f9670;
+            margin-right: 0.4rem;
+        }
+
+        .output-line .accent {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .loader-terminal {
+                font-size: 0.85rem;
+                padding: 0 1.5rem;
+            }
+            .output-line {
+                font-size: 0.75rem;
+            }
+        }
+
+        @keyframes loaderMark {
+            /* deprecated — kept empty for backward compat */
+        }
+
+        /* ===========================================
+           GRADIENT MESH — Atmospheric background
+           =========================================== */
+        .gradient-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            will-change: transform;
+        }
+
+        .gradient-blob-1 {
+            width: 600px;
+            height: 600px;
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, #2d4a6b, transparent 70%);
+            animation: drift1 22s ease-in-out infinite;
+        }
+
+        .gradient-blob-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -15%;
+            right: -10%;
+            background: radial-gradient(circle, #3a4a52, transparent 70%);
+            opacity: 0.15;
+            animation: drift2 28s ease-in-out infinite;
+        }
+
+        .gradient-blob-3 {
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 50%;
+            background: radial-gradient(circle, #2a3548, transparent 70%);
+            opacity: 0.18;
+            animation: drift3 35s ease-in-out infinite;
+        }
+
+        body.light-mode .gradient-blob {
+            opacity: 0.08;
+        }
+
+        body.light-mode .gradient-blob-2 {
+            opacity: 0.06;
+        }
+
+        body.light-mode .gradient-blob-3 {
+            opacity: 0.05;
+        }
+
+        @keyframes drift1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(15vw, 20vh) scale(1.1); }
+            66% { transform: translate(-10vw, 30vh) scale(0.95); }
+        }
+
+        @keyframes drift2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-20vw, -15vh) scale(1.15); }
+            66% { transform: translate(10vw, -25vh) scale(0.9); }
+        }
+
+        @keyframes drift3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-30%, -70%) scale(1.2); }
+        }
+
+        /* ===========================================
+           PARTICLE FIELD — Subtle atmospheric dots
+           =========================================== */
+        .particle-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        body.light-mode .particle-canvas {
+            opacity: 0.25;
+        }
+
+        /* Ensure hero content sits above particles */
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Reduced motion overrides for new effects */
+        @media (prefers-reduced-motion: reduce) {
+            .gradient-blob {
+                animation: none !important;
+            }
+            .particle-canvas {
+                display: none;
+            }
+            .loader {
+                display: none;
+            }
+        }
+
         body.light-mode {
             --bg-primary: #faf9f7;
             --bg-secondary: #ffffff;
@@ -1017,6 +1245,24 @@
     </style>
 </head>
 <body>
+    <!-- Loading screen — AI prompt being typed, then agent output -->
+    <div class="loader" aria-hidden="true">
+        <div class="loader-terminal">
+            <div class="terminal-line">
+                <span class="terminal-prompt">›</span>
+                <span class="terminal-text" id="prompt-text"></span><span class="terminal-cursor" id="prompt-cursor">_</span>
+            </div>
+            <div class="terminal-output" id="output-lines"></div>
+        </div>
+    </div>
+    
+    <!-- Atmospheric gradient mesh — fixed background -->
+    <div class="gradient-mesh" aria-hidden="true">
+        <div class="gradient-blob gradient-blob-1"></div>
+        <div class="gradient-blob gradient-blob-2"></div>
+        <div class="gradient-blob gradient-blob-3"></div>
+    </div>
+    
     <a href="#main-content" class="skip-link">Skip to content</a>
     
     <div class="scroll-progress"></div>
@@ -1051,6 +1297,7 @@
 
     <main id="main-content">
     <div class="hero">
+        <canvas class="particle-canvas" aria-hidden="true"></canvas>
         <div class="hero-eyebrow">Field Transmission // Pacific Northwest</div>
         <h1 class="hero-title">AI systems for the decisions that matter.</h1>
         <p class="hero-description">
@@ -1285,6 +1532,176 @@
             <a href="#">Terms</a>
         </div>
     </footer>
+
+    <script>
+        // ============================================
+        // LOADER — AI prompt typed + agent output stream
+        // ============================================
+        const loader = document.querySelector('.loader');
+        const promptEl = document.getElementById('prompt-text');
+        const promptCursor = document.getElementById('prompt-cursor');
+        const outputEl = document.getElementById('output-lines');
+        
+        const promptText = "build me jereme.xyz\nai systems operator running four ventures in the pnw.\ni want top-tier polish with the emotional stability of a unix terminal.\nno startup bullshit. no \"disrupting industries.\"\nif the site looks like it owns a ring light, start over.";
+        
+        // AI agent output — feels like Claude/Cursor building the site
+        const outputLines = [
+            { html: '<span class="accent">›</span> parsing intent...', delay: 350 },
+            { html: '<span class="accent">›</span> noted: no ring light energy', delay: 240 },
+            { html: '<span class="accent">›</span> analyzing voice profile: terse, expedition-themed, profanity-comfortable', delay: 280 },
+            { html: '<span class="check">✓</span> initialized project structure', delay: 180 },
+            { html: '<span class="check">✓</span> scaffolding hero with word-by-word reveals', delay: 180 },
+            { html: '<span class="check">✓</span> wiring GSAP + ScrollTrigger + Lenis', delay: 180 },
+            { html: '<span class="check">✓</span> generating parallax layers (4x depth)', delay: 180 },
+            { html: '<span class="check">✓</span> rendering ventures: fw/r · pine · nrthrn · drift', delay: 200 },
+            { html: '<span class="check">✓</span> scrubbed corporate vocabulary (-127 instances)', delay: 220 },
+            { html: '<span class="check">✓</span> compiling clip-path mask animations', delay: 180 },
+            { html: '<span class="check">✓</span> applying mobile breakpoints (1024 / 768 / 480)', delay: 180 },
+            { html: '<span class="check">✓</span> accessibility layer set', delay: 180 },
+            { html: '<span class="accent">›</span> running final QA...', delay: 350 },
+            { html: '<span class="accent">›</span> build complete. ring light: not detected.', delay: 500 },
+        ];
+
+        function typePrompt(callback) {
+            let i = 0;
+            function step() {
+                if (i < promptText.length) {
+                    promptEl.textContent += promptText.charAt(i);
+                    i++;
+                    // Variable typing speed for realism (faster on longer prompt)
+                    const char = promptText.charAt(i - 1);
+                    let delay = 14 + Math.random() * 22;
+                    // Slight pause after punctuation/newlines for natural rhythm
+                    if (char === '.' || char === '\n') delay += 80;
+                    setTimeout(step, delay);
+                } else {
+                    setTimeout(callback, 500);
+                }
+            }
+            step();
+        }
+
+        function streamOutput(callback) {
+            let idx = 0;
+            function next() {
+                if (idx < outputLines.length) {
+                    const lineData = outputLines[idx];
+                    const line = document.createElement('div');
+                    line.className = 'output-line';
+                    line.innerHTML = lineData.html;
+                    outputEl.appendChild(line);
+                    requestAnimationFrame(() => line.classList.add('visible'));
+                    idx++;
+                    setTimeout(next, lineData.delay);
+                } else {
+                    setTimeout(callback, 600);
+                }
+            }
+            next();
+        }
+
+        function hideLoader() {
+            if (!loader) return;
+            loader.classList.add('is-hidden');
+            setTimeout(() => loader.remove(), 900);
+        }
+
+        // Start sequence after page loads
+        if (loader && promptEl) {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    typePrompt(() => {
+                        // Hide cursor on prompt line, start output stream
+                        if (promptCursor) promptCursor.classList.add('is-done');
+                        streamOutput(hideLoader);
+                    });
+                }, 600); // Wait for terminal fade-in
+            });
+        }
+        
+        // ============================================
+        // PARTICLE FIELD — Atmospheric drifting dots
+        // ============================================
+        (function initParticles() {
+            const canvas = document.querySelector('.particle-canvas');
+            if (!canvas) return;
+            
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReducedMotion) return;
+            
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId;
+            
+            function resizeCanvas() {
+                const hero = canvas.parentElement;
+                canvas.width = hero.offsetWidth;
+                canvas.height = hero.offsetHeight;
+            }
+            
+            function createParticles() {
+                particles = [];
+                const count = Math.floor((canvas.width * canvas.height) / 25000);
+                
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 1.5 + 0.5,
+                        vx: (Math.random() - 0.5) * 0.15,
+                        vy: (Math.random() - 0.5) * 0.15,
+                        opacity: Math.random() * 0.5 + 0.3
+                    });
+                }
+            }
+            
+            function getParticleColor() {
+                return document.body.classList.contains('light-mode') 
+                    ? 'rgba(26, 24, 22, '
+                    : 'rgba(232, 230, 227, ';
+            }
+            
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const colorPrefix = getParticleColor();
+                
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    
+                    // Wrap around edges
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+                    
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = colorPrefix + p.opacity + ')';
+                    ctx.fill();
+                });
+                
+                animationId = requestAnimationFrame(draw);
+            }
+            
+            function init() {
+                resizeCanvas();
+                createParticles();
+                if (animationId) cancelAnimationFrame(animationId);
+                draw();
+            }
+            
+            // Wait for layout to settle before initializing
+            window.addEventListener('load', init);
+            
+            // Debounced resize handler
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(init, 200);
+            });
+        })();
+    </script>
 
     <script>
         // Theme toggle functionality
