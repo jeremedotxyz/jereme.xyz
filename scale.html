@@ -3,10 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a0f">
     <title>Jereme Abernathy — AI Systems & Product Development</title>
+    
+    <!-- SEO -->
+    <meta name="description" content="AI systems for the decisions that matter. 18 years building product systems at scale. Prompt engineering, LLM evaluation, red teaming. Independent operator running fw/r, pine, nrthrn, and drift.">
+    <meta name="author" content="Jereme Abernathy">
+    <meta name="keywords" content="AI systems, prompt engineering, LLM evaluation, red teaming, RLHF, training data, Pacific Northwest, robotics, LiDAR">
+    
+    <!-- Open Graph (Facebook, LinkedIn, etc) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jereme.xyz">
+    <meta property="og:title" content="Jereme Abernathy — AI Systems & Product Development">
+    <meta property="og:description" content="AI systems for the decisions that matter. 18 years building product systems at scale. Independent operator running fw/r, pine, nrthrn, and drift.">
+    <meta property="og:site_name" content="jereme.xyz">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jeremedotxyz">
+    <meta name="twitter:creator" content="@jeremedotxyz">
+    <meta name="twitter:title" content="Jereme Abernathy — AI Systems & Product Development">
+    <meta name="twitter:description" content="AI systems for the decisions that matter. 18 years building product systems at scale.">
+    
+    <!-- Favicon (inline SVG, no external file needed) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0f'/%3E%3Ctext x='50' y='68' font-family='system-ui' font-weight='600' font-size='60' fill='%23d97846' text-anchor='middle'%3Ej%3C/text%3E%3C/svg%3E">
+    
+    <!-- Performance: preconnect to CDNs -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <noscript>
+        <style>
+            .hero-eyebrow,
+            .hero-title,
+            .hero-description,
+            .hero-cta {
+                opacity: 1 !important;
+            }
+            .capability-item::before {
+                transform: scaleY(1) !important;
+            }
+            .scroll-indicator { display: none; }
+        </style>
+    </noscript>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -216,11 +259,25 @@
 
         /* Accessibility: show hero immediately for reduced motion users */
         @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            
             .hero-eyebrow,
             .hero-title,
             .hero-description,
-            .hero-cta {
+            .hero-cta,
+            .scroll-indicator {
                 opacity: 1 !important;
+            }
+            
+            .scroll-indicator {
+                display: none;
             }
             
             .word {
@@ -230,6 +287,47 @@
             .capability-item::before {
                 transform: scaleY(1) !important;
             }
+            
+            .venture-card {
+                clip-path: none !important;
+            }
+        }
+        
+        /* Skip-to-content link — hidden until focused */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 1rem;
+            z-index: 9999;
+            background: var(--accent);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: top 0.3s ease;
+        }
+        
+        .skip-link:focus {
+            top: 1rem;
+            outline: 2px solid var(--text-primary);
+            outline-offset: 2px;
+        }
+        
+        /* Focus-visible styles for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        
+        /* Remove focus styles for mouse users (only show on keyboard) */
+        a:focus:not(:focus-visible),
+        button:focus:not(:focus-visible) {
+            outline: none;
         }
 
         /* Word-by-word reveal masks */
@@ -909,6 +1007,8 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
     <div class="scroll-progress"></div>
     
     <button class="theme-toggle" aria-label="Toggle dark/light mode">
@@ -939,6 +1039,7 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <div class="hero">
         <div class="hero-eyebrow">Field Transmission // Pacific Northwest</div>
         <h1 class="hero-title">AI systems for the decisions that matter.</h1>
@@ -967,7 +1068,7 @@
 
         <div class="work-grid">
             <div class="work-card">
-                <div class="work-card-title">Prompt Engineering</div>
+                <h3 class="work-card-title">Prompt Engineering</h3>
                 <div class="work-card-description">
                     System prompt design, chain-of-thought patterns, instruction tuning, context window optimization. 
                     Building prompts that hold under adversarial conditions.
@@ -975,7 +1076,7 @@
             </div>
 
             <div class="work-card">
-                <div class="work-card-title">LLM Evaluation</div>
+                <h3 class="work-card-title">LLM Evaluation</h3>
                 <div class="work-card-description">
                     RLHF preference ranking, comparative output scoring, hallucination detection, safety red teaming. 
                     Stress-testing models for edge cases and alignment failures. Finding where models break before users do.
@@ -983,7 +1084,7 @@
             </div>
 
             <div class="work-card">
-                <div class="work-card-title">Training Data</div>
+                <h3 class="work-card-title">Training Data</h3>
                 <div class="work-card-description">
                     Human feedback annotation, response rewriting, task instruction authoring, rubric design. 
                     Quality assurance for datasets feeding production models.
@@ -1006,7 +1107,7 @@
         <div class="ventures-grid">
             <div class="venture-card">
                 <div class="venture-tag">AI · Robotics · LiDAR</div>
-                <div class="venture-name">fw/r</div>
+                <h3 class="venture-name">fw/r</h3>
                 <div class="venture-tagline">Complexity needs clarity.</div>
                 <div class="venture-description">
                     The world generates more data than it knows what to do with. We build the systems that make sense of it. 
@@ -1017,7 +1118,7 @@
 
             <div class="venture-card">
                 <div class="venture-tag">Coffee & Community</div>
-                <div class="venture-name">pine</div>
+                <h3 class="venture-name">pine</h3>
                 <div class="venture-tagline">Four locations. None of them right.</div>
                 <div class="venture-description">
                     Then number five happened. PNW-rooted coffee built on a simple idea — a place that actually wants you there. 
@@ -1027,7 +1128,7 @@
 
             <div class="venture-card">
                 <div class="venture-tag">Product Design</div>
-                <div class="venture-name">nrthrn</div>
+                <h3 class="venture-name">nrthrn</h3>
                 <div class="venture-tagline">Function is the brief.</div>
                 <div class="venture-description">
                     Everything else is craft. Tech and industrial goods designed for utility, refined by human judgment. 
@@ -1038,7 +1139,7 @@
 
             <div class="venture-card">
                 <div class="venture-tag">Coastal Concept</div>
-                <div class="venture-name">drift</div>
+                <h3 class="venture-name">drift</h3>
                 <div class="venture-tagline">Coastal coffee, earned discovery</div>
                 <div class="venture-description">
                     Somewhere on the coast where rust is real and community's earned. No coordinates, no signage 
@@ -1057,7 +1158,7 @@
 
         <div class="capabilities-grid">
             <div class="capability-item">
-                <div class="capability-title">Foundation Models</div>
+                <h3 class="capability-title">Foundation Models</h3>
                 <div class="capability-description">
                     Active deployment across GPT-4o/4-turbo, Claude 3.5 Sonnet/Opus (100k+ context), 
                     Gemini 1.5 Pro, Llama 3.1 (8B-405B), Mistral Large/Codestral. Architectural familiarity 
@@ -1066,7 +1167,7 @@
             </div>
 
             <div class="capability-item">
-                <div class="capability-title">Annotation Platforms</div>
+                <h3 class="capability-title">Annotation Platforms</h3>
                 <div class="capability-description">
                     Production-scale human feedback workflows via Outlier, Scale, Appen, Remotasks. 
                     Specialization in RLHF preference labeling, comparative ranking, constitutional AI 
@@ -1075,7 +1176,7 @@
             </div>
 
             <div class="capability-item">
-                <div class="capability-title">Systems Architecture</div>
+                <h3 class="capability-title">Systems Architecture</h3>
                 <div class="capability-description">
                     Python (asyncio, multiprocessing), TypeScript/Node.js runtime environments, React/Next.js 
                     SSR frameworks. Cloudflare Workers edge compute, LangChain orchestration, vector store 
@@ -1084,7 +1185,7 @@
             </div>
 
             <div class="capability-item">
-                <div class="capability-title">Model Evaluation</div>
+                <h3 class="capability-title">Model Evaluation</h3>
                 <div class="capability-description">
                     Automated hallucination detection via claim decomposition and entailment verification. 
                     Factuality benchmarking against knowledge graphs. Instruction-following adherence scoring. 
@@ -1093,7 +1194,7 @@
             </div>
 
             <div class="capability-item">
-                <div class="capability-title">Adversarial Testing</div>
+                <h3 class="capability-title">Adversarial Testing</h3>
                 <div class="capability-description">
                     Systematic red teaming across jailbreak taxonomies (prompt injection, context manipulation, 
                     role-play exploits). Safety evaluation frameworks for toxicity, bias amplification, 
@@ -1102,7 +1203,7 @@
             </div>
 
             <div class="capability-item">
-                <div class="capability-title">Data Engineering</div>
+                <h3 class="capability-title">Data Engineering</h3>
                 <div class="capability-description">
                     Task instruction ontology design for supervised fine-tuning datasets. Inter-annotator 
                     agreement protocols (Fleiss' kappa, Cohen's κ). Annotation guideline formalization. 
@@ -1124,6 +1225,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <footer>
         <div class="footer-info">
