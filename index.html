@@ -167,13 +167,20 @@
             object-position: center;
             z-index: 0;
             pointer-events: none;
-            /* Kill native video UI on all browsers */
-            -webkit-media-controls: none;
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
         }
-        /* Nuke the native play button / controls on webkit/iOS */
-        .hero-video::-webkit-media-controls { display: none !important; }
-        .hero-video::-webkit-media-controls-enclosure { display: none !important; }
-        .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
+        /* Suppress ALL native video chrome — play button, controls, cast button */
+        .hero-video::-webkit-media-controls,
+        .hero-video::-webkit-media-controls-panel,
+        .hero-video::-webkit-media-controls-play-button,
+        .hero-video::-webkit-media-controls-start-playback-button,
+        .hero-video::-webkit-media-controls-overlay-play-button,
+        .hero-video::-webkit-media-controls-enclosure,
+        .hero-video::-webkit-media-controls-overlay-enclosure {
+            display: none !important;
+            -webkit-appearance: none;
+            opacity: 0 !important;
+        }
         /* Dark overlay — lets text breathe, keeps the video atmospheric */
         .hero-overlay {
             position: absolute;
@@ -379,7 +386,7 @@
             loop
             playsinline
             webkit-playsinline
-            preload="auto"
+            preload="metadata"
             aria-hidden="true"
         >
             <source src="hero-bg.mp4" type="video/mp4">
@@ -404,95 +411,128 @@
         </div>
     </div>
 
-    <section id="work">
-        <div class="section-header">
-            <div class="section-eyebrow">Current Work</div>
-            <h2 class="section-title">Platform AI & Independent Systems</h2>
-            <p class="section-description">
-                Active contributor to training data pipelines and evaluation frameworks for frontier models. 
-                Building prompt systems, annotation rubrics, and red-teaming protocols across GPT-4, Claude, Gemini, and open-source deployments. 
-                Turns out "jailbreak the model" is a job description now.
-            </p>
-        </div>
-        <div class="work-grid">
-            <div class="work-card">
-                <h3 class="work-card-title">Prompt Engineering</h3>
-                <div class="work-card-description">System prompt design, chain-of-thought patterns, instruction tuning, context window optimization. Building prompts that hold under adversarial conditions.</div>
+    <!-- ============================================
+         SECTION 1 — AI SYSTEMS
+         Video: drop rain-window or dark-room clip here
+         <video class="section-video" ...><source src="ai-bg.mp4"></video>
+         ============================================ -->
+    <section id="ai" class="section-with-video">
+        <div class="section-video-placeholder"></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">AI Systems // fw/r</div>
+                <h2 class="section-title">Where the model breaks is where the work starts.</h2>
+                <p class="section-description">Active contributor to training pipelines and evaluation frameworks for frontier models. Building prompt systems, annotation rubrics, and red-teaming protocols across GPT-4, Claude, Gemini, and open-source deployments. Turns out "jailbreak the model" is a job description now.</p>
             </div>
-            <div class="work-card">
-                <h3 class="work-card-title">LLM Evaluation</h3>
-                <div class="work-card-description">RLHF preference ranking, comparative output scoring, hallucination detection, safety red teaming. Stress-testing models for edge cases and alignment failures. Finding where models break before users do.</div>
-            </div>
-            <div class="work-card">
-                <h3 class="work-card-title">Training Data</h3>
-                <div class="work-card-description">Human feedback annotation, response rewriting, task instruction authoring, rubric design. Quality assurance for datasets feeding production models.</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ventures">
-        <div class="section-header">
-            <div class="section-eyebrow">Active Ventures</div>
-            <h2 class="section-title">Four builds running in parallel.</h2>
-            <p class="section-description">Independent operator model. AI systems, coffee spaces, physical goods, coastal operations. Each venture runs autonomously with overlapping technical and creative infrastructure. Four different problems. Same discipline.</p>
-        </div>
-        <div class="ventures-grid">
-            <div class="venture-card">
-                <div class="venture-tag">AI · Robotics · LiDAR</div>
-                <h3 class="venture-name">fw/r</h3>
-                <div class="venture-tagline">Complexity needs clarity.</div>
-                <div class="venture-description">The world generates more data than it knows what to do with. We build the systems that make sense of it. Boutique AI, robotics, and LiDAR studio working with governments, enterprises, and startups willing to ask difficult questions. Precise sensor integration, spatial intelligence, autonomous systems. No bloat. Just clarity.</div>
-            </div>
-            <div class="venture-card">
-                <div class="venture-tag">Coffee & Community</div>
-                <h3 class="venture-name">pine</h3>
-                <div class="venture-tagline">Four locations. None of them right.</div>
-                <div class="venture-description">Then number five happened. PNW-rooted coffee built on a simple idea — a place that actually wants you there. Stay. Think. Collaborate. The coffee is good. The quiet is better. Your second cup is on your schedule, not ours.</div>
-            </div>
-            <div class="venture-card">
-                <div class="venture-tag">Product Design</div>
-                <h3 class="venture-name">nrthrn</h3>
-                <div class="venture-tagline">Function is the brief.</div>
-                <div class="venture-description">Everything else is craft. Tech and industrial goods designed for utility, refined by human judgment. Prototypes to production. Consumer hardware to tooling. Nothing gratuitous, nothing wasted. Objects built to work exactly the way they look: intentional, considered, north of ordinary.</div>
-            </div>
-            <div class="venture-card">
-                <div class="venture-tag">Coastal Concept</div>
-                <h3 class="venture-name">drift</h3>
-                <div class="venture-tagline">Coastal coffee, earned discovery</div>
-                <div class="venture-description">Somewhere on the coast where rust is real and community's earned. No coordinates, no signage you'll spot from the harbor. Just good coffee, weathered walls, people who actually live here. Built for the ones who belong. Discovered by the ones who look.</div>
+            <div class="work-grid">
+                <div class="work-card">
+                    <h3 class="work-card-title">Prompt Engineering</h3>
+                    <div class="work-card-description">System prompt design, chain-of-thought patterns, instruction tuning, context window optimization. Building prompts that hold under adversarial conditions and don't collapse on edge cases.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">LLM Evaluation</h3>
+                    <div class="work-card-description">RLHF preference ranking, comparative output scoring, hallucination detection, safety red teaming. Finding where models break before your users do.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Red Teaming</h3>
+                    <div class="work-card-description">Systematic adversarial testing across jailbreak taxonomies — prompt injection, context manipulation, role-play exploits. Safety evaluation for toxicity, bias, and out-of-distribution behavior.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Training Data</h3>
+                    <div class="work-card-description">Human feedback annotation, response rewriting, task instruction authoring, rubric design. Quality assurance for datasets feeding production models at scale.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Robotics & LiDAR</h3>
+                    <div class="work-card-description">Precise sensor integration, spatial intelligence, autonomous systems. Governments, enterprises, and startups willing to ask difficult questions about what their data actually means.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Systems Architecture</h3>
+                    <div class="work-card-description">Cloudflare Workers edge compute, LangChain orchestration, vector store integration, semantic caching. Python, TypeScript, React. Infrastructure that doesn't become a liability.</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="capabilities">
-        <div class="section-header">
-            <div class="section-eyebrow">Technical Stack</div>
-            <h2 class="section-title">Capabilities across the AI pipeline.</h2>
+    <!-- ============================================
+         SECTION 2 — DESIGN & PRODUCT
+         Video: drop industrial/hands/hardware clip here
+         <video class="section-video" ...><source src="design-bg.mp4"></video>
+         ============================================ -->
+    <section id="design" class="section-with-video section-alt">
+        <div class="section-video-placeholder"></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">Design & Product // nrthrn</div>
+                <h2 class="section-title">Function is the brief. Everything else is craft.</h2>
+                <p class="section-description">Tech and industrial goods designed for utility, refined by human judgment. Prototypes to production. Consumer hardware to tooling. Nothing gratuitous, nothing wasted. Objects built to work exactly the way they look.</p>
+            </div>
+            <div class="work-grid">
+                <div class="work-card">
+                    <h3 class="work-card-title">Industrial Design</h3>
+                    <div class="work-card-description">Form follows function, then gets refined until there's nothing left to remove. Consumer goods, tools, and hardware designed for the way people actually use things — not the way presentations say they do.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Prototyping</h3>
+                    <div class="work-card-description">From concept to physical object. Iterative builds, material selection, tolerance testing. The gap between a good idea and a manufacturable product is where most things die. We close it.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Hardware Development</h3>
+                    <div class="work-card-description">Consumer electronics, embedded systems, peripheral devices. 18 years includes Meta Portal — hardware that ships to millions is a different discipline than hardware that ships to a client. Both matter here.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Product Strategy</h3>
+                    <div class="work-card-description">PM background across Big Tech and independent builds. Roadmapping, prioritization, stakeholder alignment. Knowing what to build is harder than knowing how. Usually both are needed.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Brand & Identity</h3>
+                    <div class="work-card-description">Visual systems, typography, naming. nrthrn, pine, drift, and fw/r are each distinct worlds with distinct voices. Building a brand that doesn't look like it was assembled from a template.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">UI & Digital Product</h3>
+                    <div class="work-card-description">Interface design, interaction patterns, design systems. Physical and digital objects share the same discipline — both require intention at every decision point, or they show it.</div>
+                </div>
+            </div>
         </div>
-        <div class="capabilities-grid">
-            <div class="capability-item">
-                <h3 class="capability-title">Foundation Models</h3>
-                <div class="capability-description">Active deployment across GPT-4o/4-turbo, Claude 3.5 Sonnet/Opus (100k+ context), Gemini 1.5 Pro, Llama 3.1 (8B-405B), Mistral Large/Codestral. Architectural familiarity with transformer variants, mixture-of-experts, and retrieval-augmented generation topologies.</div>
+    </section>
+
+    <!-- ============================================
+         SECTION 3 — COFFEE & HOSPITALITY
+         Video: drop rain-cafe or coffee-steam clip here
+         <video class="section-video" ...><source src="coffee-bg.mp4"></video>
+         ============================================ -->
+    <section id="coffee" class="section-with-video">
+        <div class="section-video-placeholder"></div>
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">Coffee & Hospitality // pine · drift</div>
+                <h2 class="section-title">A place that actually wants you there.</h2>
+                <p class="section-description">PNW-rooted coffee across five locations and a coastal concept in Ilwaco. Built on a simple idea — stay, think, collaborate. The coffee is good. The quiet is better. Your second cup is on your schedule, not ours.</p>
             </div>
-            <div class="capability-item">
-                <h3 class="capability-title">Annotation Platforms</h3>
-                <div class="capability-description">Production-scale human feedback workflows via Outlier, Scale, Appen, Remotasks. Specialization in RLHF preference labeling, comparative ranking, constitutional AI alignment, and multi-objective reward modeling for post-training optimization.</div>
-            </div>
-            <div class="capability-item">
-                <h3 class="capability-title">Systems Architecture</h3>
-                <div class="capability-description">Python (asyncio, multiprocessing), TypeScript/Node.js runtime environments, React/Next.js SSR frameworks. Cloudflare Workers edge compute, LangChain orchestration, vector store integration (Pinecone/Weaviate), semantic caching, function calling schemas.</div>
-            </div>
-            <div class="capability-item">
-                <h3 class="capability-title">Model Evaluation</h3>
-                <div class="capability-description">Automated hallucination detection via claim decomposition and entailment verification. Factuality benchmarking against knowledge graphs. Instruction-following adherence scoring. RLHF preference data generation for Bradley-Terry reward model training.</div>
-            </div>
-            <div class="capability-item">
-                <h3 class="capability-title">Adversarial Testing</h3>
-                <div class="capability-description">Systematic red teaming across jailbreak taxonomies (prompt injection, context manipulation, role-play exploits). Safety evaluation frameworks for toxicity, bias amplification, misinformation propagation. Out-of-distribution behavioral analysis.</div>
-            </div>
-            <div class="capability-item">
-                <h3 class="capability-title">Data Engineering</h3>
-                <div class="capability-description">Task instruction ontology design for supervised fine-tuning datasets. Inter-annotator agreement protocols (Fleiss' kappa, Cohen's κ). Annotation guideline formalization. Quality control pipeline development for distributed human-in-the-loop systems.</div>
+            <div class="work-grid">
+                <div class="work-card">
+                    <h3 class="work-card-title">Sourcing & Roasting</h3>
+                    <div class="work-card-description">Direct relationships with farms, careful selection, roast profiles that don't bury the bean. Coffee that tastes like it came from somewhere specific — because it did.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Space Design</h3>
+                    <div class="work-card-description">Five locations, none of them accidental. Every pine is built for the neighborhood it's in — not the neighborhood someone wishes it was. Materials that age well. Light that doesn't lie.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Community & Culture</h3>
+                    <div class="work-card-description">A coffee shop that actually wants regulars. Collaborative workspace, slow mornings, people who work on real things. The culture is the product as much as the espresso.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Operations</h3>
+                    <div class="work-card-description">Multi-location logistics, staffing, supply chain, cost structure. Running five locations as an independent operator without a corporate infrastructure behind it is a systems problem. Solved the same way.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Coastal Concept</h3>
+                    <div class="work-card-description">drift — No coordinates, no signage you'll spot from the harbor. Weathered walls, people who actually live here. Built for the ones who belong. Discovered by the ones who look.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Wonderment</h3>
+                    <div class="work-card-description">Four locations. None of them right. Then number five happened. The model is slow, deliberate, and only moves when the right space finds us. Not the other way around.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -670,14 +710,14 @@
 
     <script>
         // ============================================
-        // VIDEO AUTOPLAY — aggressive mobile fix
+        // VIDEO AUTOPLAY
+        // Keep it simple: muted + playsinline + play()
+        // on DOMContentLoaded. IntersectionObserver was
+        // causing "doesn't play until scroll" — removed.
         // ============================================
-        (function initHeroVideo() {
+        (function () {
             const video = document.querySelector('.hero-video');
             if (!video) return;
-
-            // Force all required attributes via JS — some mobile browsers
-            // only trust JS-set properties, not HTML attributes
             video.muted = true;
             video.loop = true;
             video.playsInline = true;
@@ -685,44 +725,20 @@
             video.setAttribute('webkit-playsinline', '');
             video.setAttribute('muted', '');
             video.removeAttribute('controls');
-            if ('disableRemotePlayback' in video) video.disableRemotePlayback = true;
 
             function tryPlay() {
-                // load() resets the media element — required on some Android
-                // browsers before play() will succeed
-                video.load();
-                const p = video.play();
-                if (p !== undefined) {
-                    p.catch(() => {
-                        // Still blocked — fire on first user interaction
-                        const unlock = () => {
-                            video.play().catch(() => {});
-                        };
-                        document.addEventListener('touchstart', unlock, { once: true });
-                        document.addEventListener('click', unlock, { once: true });
-                    });
-                }
+                video.play().catch(() => {
+                    // Last resort: unlock on first touch/click
+                    const unlock = () => video.play().catch(() => {});
+                    document.addEventListener('touchstart', unlock, { once: true });
+                    document.addEventListener('click', unlock, { once: true });
+                });
             }
 
-            // IntersectionObserver: some mobile browsers require the element
-            // to be visible before play() is allowed
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            tryPlay();
-                        } else {
-                            video.pause();
-                        }
-                    });
-                }, { threshold: 0.1 });
-                observer.observe(video);
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', tryPlay);
             } else {
-                if (document.readyState === 'complete') {
-                    tryPlay();
-                } else {
-                    window.addEventListener('load', tryPlay);
-                }
+                tryPlay();
             }
         })();
     </script>
