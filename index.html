@@ -167,7 +167,13 @@
             object-position: center;
             z-index: 0;
             pointer-events: none;
+            /* Kill native video UI on all browsers */
+            -webkit-media-controls: none;
         }
+        /* Nuke the native play button / controls on webkit/iOS */
+        .hero-video::-webkit-media-controls { display: none !important; }
+        .hero-video::-webkit-media-controls-enclosure { display: none !important; }
+        .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
         /* Dark overlay — lets text breathe, keeps the video atmospheric */
         .hero-overlay {
             position: absolute;
@@ -664,33 +670,59 @@
 
     <script>
         // ============================================
-        // VIDEO AUTOPLAY — mobile browsers block the
-        // autoplay attribute; calling .play() via JS
-        // after a user gesture (or on load) works on
-        // iOS Safari, Chrome Android, etc.
+        // VIDEO AUTOPLAY — aggressive mobile fix
         // ============================================
         (function initHeroVideo() {
             const video = document.querySelector('.hero-video');
             if (!video) return;
 
-            // Ensure required attributes are set
+            // Force all required attributes via JS — some mobile browsers
+            // only trust JS-set properties, not HTML attributes
             video.muted = true;
+            video.loop = true;
             video.playsInline = true;
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            video.setAttribute('muted', '');
+            video.removeAttribute('controls');
+            if ('disableRemotePlayback' in video) video.disableRemotePlayback = true;
 
             function tryPlay() {
+                // load() resets the media element — required on some Android
+                // browsers before play() will succeed
+                video.load();
                 const p = video.play();
                 if (p !== undefined) {
                     p.catch(() => {
-                        // Autoplay still blocked (rare) — attach to first touch
-                        document.addEventListener('touchstart', () => video.play(), { once: true });
+                        // Still blocked — fire on first user interaction
+                        const unlock = () => {
+                            video.play().catch(() => {});
+                        };
+                        document.addEventListener('touchstart', unlock, { once: true });
+                        document.addEventListener('click', unlock, { once: true });
                     });
                 }
             }
 
-            if (document.readyState === 'complete') {
-                tryPlay();
+            // IntersectionObserver: some mobile browsers require the element
+            // to be visible before play() is allowed
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            tryPlay();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.1 });
+                observer.observe(video);
             } else {
-                window.addEventListener('load', tryPlay);
+                if (document.readyState === 'complete') {
+                    tryPlay();
+                } else {
+                    window.addEventListener('load', tryPlay);
+                }
             }
         })();
     </script>
