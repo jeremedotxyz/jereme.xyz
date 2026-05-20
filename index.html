@@ -252,7 +252,8 @@
         .section-alt { background: var(--bg-secondary); }
 
         /* video element — wired in when clips arrive */
-        .section-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; pointer-events: none; }
+        .section-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; pointer-events: none; }
+        @media (max-width: 768px) { .section-video { object-position: center top; } }
         .section-video::-webkit-media-controls,
         .section-video::-webkit-media-controls-overlay-play-button,
         .section-video::-webkit-media-controls-enclosure { display: none !important; }
@@ -381,10 +382,15 @@
         }
         @media (max-width: 480px) {
             .hero { padding: 4rem 1.25rem 2.5rem; }
-            .hero-title { font-size: clamp(1.75rem,11vw,2.5rem); }
-            .section-title { font-size: clamp(1.5rem,9vw,2rem); }
-            .venture-name { font-size: 1.75rem; }
-            .venture-card, .work-card { padding: 1.75rem; }
+            .hero-title { font-size: clamp(1.75rem, 11vw, 2.5rem); }
+            .hero-description { font-size: 1rem; line-height: 1.6; }
+            .section-title { font-size: clamp(1.5rem, 9vw, 2rem); }
+            .section-inner { padding: 3rem 1.25rem; }
+            .work-card { padding: 1.5rem; }
+            .work-card-title { font-size: 1.15rem; }
+            .detail-item { padding-left: 1.25rem; }
+            .detail-title { font-size: 1.1rem; }
+            .contact { padding: 3rem 1.25rem; }
         }
     </style>
 </head>
