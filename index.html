@@ -372,6 +372,7 @@
             muted
             loop
             playsinline
+            webkit-playsinline
             preload="auto"
             aria-hidden="true"
         >
@@ -658,6 +659,39 @@
             function init() { resizeCanvas(); createParticles(); if (animationId) cancelAnimationFrame(animationId); draw(); }
             window.addEventListener('load', init);
             let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(init, 200); });
+        })();
+    </script>
+
+    <script>
+        // ============================================
+        // VIDEO AUTOPLAY — mobile browsers block the
+        // autoplay attribute; calling .play() via JS
+        // after a user gesture (or on load) works on
+        // iOS Safari, Chrome Android, etc.
+        // ============================================
+        (function initHeroVideo() {
+            const video = document.querySelector('.hero-video');
+            if (!video) return;
+
+            // Ensure required attributes are set
+            video.muted = true;
+            video.playsInline = true;
+
+            function tryPlay() {
+                const p = video.play();
+                if (p !== undefined) {
+                    p.catch(() => {
+                        // Autoplay still blocked (rare) — attach to first touch
+                        document.addEventListener('touchstart', () => video.play(), { once: true });
+                    });
+                }
+            }
+
+            if (document.readyState === 'complete') {
+                tryPlay();
+            } else {
+                window.addEventListener('load', tryPlay);
+            }
         })();
     </script>
 
