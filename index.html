@@ -1053,8 +1053,12 @@
             }
 
             .hero {
-                padding: 7rem 1.5rem 3rem;
+                padding: 5rem 1.5rem 3rem;
                 min-height: auto;
+            }
+
+            .scroll-indicator {
+                display: none;
             }
 
             .hero-eyebrow {
@@ -1215,7 +1219,7 @@
 
         @media (max-width: 480px) {
             .hero {
-                padding: 6rem 1.25rem 2.5rem;
+                padding: 4rem 1.25rem 2.5rem;
             }
 
             .hero-title {
@@ -1413,7 +1417,7 @@
             <div class="capability-item">
                 <h3 class="capability-title">Foundation Models</h3>
                 <div class="capability-description">
-                    Active deployment across GPT-4o/4-turbo+, Claude 3.5 Sonnet/Opus (100k+ context), 
+                    Active deployment across GPT-4o/4-turbo, Claude 3.5 Sonnet/Opus (100k+ context), 
                     Gemini 1.5 Pro, Llama 3.1 (8B-405B), Mistral Large/Codestral. Architectural familiarity 
                     with transformer variants, mixture-of-experts, and retrieval-augmented generation topologies.
                 </div>
@@ -1538,7 +1542,7 @@
         const promptCursor = document.getElementById('prompt-cursor');
         const outputEl = document.getElementById('output-lines');
         
-        const promptText = "build me jereme.xyz\nai systems operator in the pnw.\ni want top-tier polish with the emotional stability of a unix terminal.\nno startup bullsh*t. no \"disrupting industries.\"\nif the site looks like it owns a ring light, start over.";
+        const promptText = "build me jereme.xyz\nai systems operator running four ventures in the pnw.\ni want top-tier polish with the emotional stability of a unix terminal.\nno startup bullshit. no \"disrupting industries.\"\nif the site looks like it owns a ring light, start over.";
         
         // AI agent output — feels like Claude/Cursor building the site
         const outputLines = [
@@ -1752,31 +1756,41 @@
         }
         
         if (!prefersReducedMotion && librariesLoaded) {
+            // Detect mobile/touch devices for performance optimizations
+            const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || 
+                                   window.matchMedia('(hover: none)').matches;
+            
             // ------------------------------------------
-            // LENIS — Smooth momentum scroll
+            // LENIS — Smooth momentum scroll (desktop only)
+            // Native scroll on mobile for performance & to prevent jank
             // ------------------------------------------
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smoothWheel: true,
-                smoothTouch: false, // Native scroll on mobile for performance
-            });
+            let lenis = null;
+            if (!isMobileDevice) {
+                lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    smoothWheel: true,
+                    smoothTouch: false,
+                });
 
-            function raf(time) {
-                lenis.raf(time);
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
                 requestAnimationFrame(raf);
             }
-            requestAnimationFrame(raf);
 
             // ------------------------------------------
             // GSAP — Register plugins and set defaults
             // ------------------------------------------
             gsap.registerPlugin(ScrollTrigger);
 
-            // Sync Lenis with ScrollTrigger for buttery smooth scroll-driven animations
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-            gsap.ticker.lagSmoothing(0);
+            // Sync Lenis with ScrollTrigger (only if Lenis is active)
+            if (lenis) {
+                lenis.on('scroll', ScrollTrigger.update);
+                gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+                gsap.ticker.lagSmoothing(0);
+            }
 
             // Global animation defaults
             gsap.defaults({
@@ -1899,52 +1913,54 @@
             });
 
             // ------------------------------------------
-            // HERO PARALLAX — Layered scroll-driven movement
-            // Each element moves at a different rate, creating depth
+            // HERO PARALLAX — Layered scroll-driven movement (desktop only)
+            // Disabled on mobile to prevent scroll jank
             // ------------------------------------------
-            gsap.to('.hero-eyebrow', {
-                y: -100,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.5,
-                }
-            });
+            if (!isMobileDevice) {
+                gsap.to('.hero-eyebrow', {
+                    y: -100,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.5,
+                    }
+                });
 
-            gsap.to('.hero-title', {
-                y: -60,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.8,
-                }
-            });
+                gsap.to('.hero-title', {
+                    y: -60,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 0.8,
+                    }
+                });
 
-            gsap.to('.hero-description', {
-                y: -35,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1,
-                }
-            });
+                gsap.to('.hero-description', {
+                    y: -35,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1,
+                    }
+                });
 
-            gsap.to('.hero-cta', {
-                y: -15,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1.2,
-                }
-            });
+                gsap.to('.hero-cta', {
+                    y: -15,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: 1.2,
+                    }
+                });
+            }
 
             // ------------------------------------------
             // SECTION HEADERS — Word-by-word title reveal + eyebrow/description
