@@ -109,9 +109,9 @@
         @keyframes drift1 { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(15vw,20vh) scale(1.1); } 66% { transform: translate(-10vw,30vh) scale(0.95); } }
         @keyframes drift2 { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-20vw,-15vh) scale(1.15); } 66% { transform: translate(10vw,-25vh) scale(0.9); } }
         @keyframes drift3 { 0%, 100% { transform: translate(-50%,-50%) scale(1); } 50% { transform: translate(-30%,-70%) scale(1.2); } }
-        .particle-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4; }
-        body.light-mode .particle-canvas { opacity: 0.25; }
-        .hero > * { position: relative; z-index: 1; }
+        .particle-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.25; }
+        body.light-mode .particle-canvas { opacity: 0.15; }
+        .hero-content > * { position: relative; z-index: 1; }
         @media (prefers-reduced-motion: reduce) {
             .gradient-blob { animation: none !important; }
             .particle-canvas { display: none; }
@@ -141,11 +141,58 @@
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: color 0.2s ease; }
         .nav-links a:hover { color: var(--accent); }
+        /* Hero is fullscreen when video is present */
         .hero {
             position: relative;
-            max-width: 1400px; margin: 0 auto;
+            width: 100%;
             padding: 8rem 2rem 4rem;
-            min-height: 80vh; display: flex; flex-direction: column; justify-content: center;
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            overflow: hidden;
+        }
+        /* Inner content wrapper keeps max-width constraint */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        /* Fullscreen background video */
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Dark overlay — lets text breathe, keeps the video atmospheric */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(10, 10, 15, 0.55) 0%,
+                rgba(10, 10, 15, 0.45) 50%,
+                rgba(10, 10, 15, 0.85) 100%
+            );
+            pointer-events: none;
+        }
+        /* Light mode overlay — slightly warmer */
+        body.light-mode .hero-overlay {
+            background: linear-gradient(
+                180deg,
+                rgba(250, 249, 247, 0.6) 0%,
+                rgba(250, 249, 247, 0.5) 50%,
+                rgba(250, 249, 247, 0.88) 100%
+            );
+        }
+        /* Reduce motion: hide video, show static bg */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-video { display: none; }
         }
         .hero-eyebrow { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; opacity: 0; }
         .hero-title { font-family: var(--font-display); font-size: clamp(3rem,8vw,6rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 2rem; max-width: 1100px; opacity: 0; }
@@ -228,7 +275,8 @@
             .theme-toggle svg { width: 18px; height: 18px; }
             .nav-links { display: none; }
             .nav-container { padding: 1.25rem 1.5rem; }
-            .hero { padding: 5rem 1.5rem 3rem; min-height: auto; }
+            .hero { padding: 5rem 1.5rem 3rem; min-height: 100svh; }
+            .hero-content { padding: 0; }
             .scroll-indicator { display: none; }
             .hero-eyebrow { font-size: 0.75rem; margin-bottom: 1rem; }
             .hero-title { font-size: clamp(2rem,10vw,3.5rem); margin-bottom: 1.5rem; }
@@ -317,14 +365,32 @@
 
     <main id="main-content">
     <div class="hero">
+        <!-- Background video — autoplay, muted, loop, no controls -->
+        <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+        >
+            <source src="hero-bg.mp4" type="video/mp4">
+        </video>
+        <!-- Dark gradient overlay -->
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <!-- Atmospheric particles sit above overlay -->
         <canvas class="particle-canvas" aria-hidden="true"></canvas>
-        <div class="hero-eyebrow">Field Transmission // Pacific Northwest</div>
-        <h1 class="hero-title">AI systems for the decisions that matter.</h1>
-        <p class="hero-description">
-            <span class="counter-number" data-target="18">18</span> years building product systems at scale. Prompt engineering, LLM evaluation, red teaming. 
-            Big Tech hardware to frontier model deployment. The kind of work where "it mostly works" isn't good enough.
-        </p>
-        <a href="#contact" class="hero-cta">Get in touch →</a>
+        <!-- All hero content in a max-width wrapper -->
+        <div class="hero-content">
+            <div class="hero-eyebrow">Field Transmission // Pacific Northwest</div>
+            <h1 class="hero-title">AI systems for the decisions that matter.</h1>
+            <p class="hero-description">
+                <span class="counter-number" data-target="18">18</span> years building product systems at scale. Prompt engineering, LLM evaluation, red teaming. 
+                Big Tech hardware to frontier model deployment. The kind of work where "it mostly works" isn't good enough.
+            </p>
+            <a href="#contact" class="hero-cta">Get in touch →</a>
+        </div>
         <div class="scroll-indicator">
             <div class="scroll-indicator-line"></div>
             <div class="scroll-indicator-text">Scroll</div>
@@ -399,7 +465,7 @@
         <div class="capabilities-grid">
             <div class="capability-item">
                 <h3 class="capability-title">Foundation Models</h3>
-                <div class="capability-description">Active deployment across GPT-4o/4-turbo+, Claude 3.5 Sonnet/Opus (100k+ context), Gemini 1.5 Pro, Llama 3.1 (8B-405B), Mistral Large/Codestral. Architectural familiarity with transformer variants, mixture-of-experts, and retrieval-augmented generation topologies.</div>
+                <div class="capability-description">Active deployment across GPT-4o/4-turbo, Claude 3.5 Sonnet/Opus (100k+ context), Gemini 1.5 Pro, Llama 3.1 (8B-405B), Mistral Large/Codestral. Architectural familiarity with transformer variants, mixture-of-experts, and retrieval-augmented generation topologies.</div>
             </div>
             <div class="capability-item">
                 <h3 class="capability-title">Annotation Platforms</h3>
@@ -478,7 +544,7 @@
         const promptCursor = document.getElementById('prompt-cursor');
         const outputEl = document.getElementById('output-lines');
         
-        const promptText = "build me jereme.xyz\nai systems architect in the pnw.\ni want top-tier polish with the emotional stability of a unix terminal.\nno startup bullshit. no \"disrupting industries.\"\nif the site looks like it owns a ring light, start over.";
+        const promptText = "build me jereme.xyz\nai systems operator running four ventures in the pnw.\ni want top-tier polish with the emotional stability of a unix terminal.\nno startup bullshit. no \"disrupting industries.\"\nif the site looks like it owns a ring light, start over.";
         
         const outputLines = [
             { html: '<span class="accent">›</span> parsing intent...', delay: 350 },
