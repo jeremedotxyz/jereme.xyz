@@ -1,1 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — jereme.xyz</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500&display=swap');
 
+  :root {
+    --bg: #0a0a0f;
+    --ink: #e8e4dc;
+    --ink-dim: #7a7670;
+    --ember: #aa3c16;
+    --ember-glow: rgba(170,60,22,0.12);
+    --moss: #5f7156;
+    --border: rgba(255,255,255,0.07);
+    --mono: 'Share Tech Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -20%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(ellipse at center, rgba(95,113,86,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .nav-logo:hover { opacity: 1; }
+
+  .nav-back {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-back:hover { color: var(--ember); }
+  .nav-back::before { content: '←'; }
+
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 10rem 2rem 6rem;
+  }
+
+  .page-header {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .page-tag::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 3rem;
+    background: var(--ember);
+    opacity: 0.5;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .page-meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+  .section:nth-child(5) { animation-delay: 0.5s; }
+  .section:nth-child(6) { animation-delay: 0.6s; }
+  .section:nth-child(7) { animation-delay: 0.7s; }
+  .section:nth-child(8) { animation-delay: 0.8s; }
+  .section:nth-child(9) { animation-delay: 0.9s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h2 {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  h2 .section-num {
+    color: var(--ink-dim);
+    font-size: 0.65rem;
+  }
+
+  p {
+    font-size: 0.97rem;
+    color: rgba(232,228,220,0.8);
+    margin-bottom: 1rem;
+  }
+
+  .callout {
+    border-left: 2px solid var(--ember);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: var(--ember-glow);
+    border-radius: 0 4px 4px 0;
+  }
+  .callout p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(232,228,220,0.9);
+  }
+
+  .disclaimer-box {
+    border: 1px solid rgba(95,113,86,0.3);
+    background: rgba(95,113,86,0.06);
+    border-radius: 6px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .disclaimer-box h3 {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 0.75rem;
+  }
+  .disclaimer-box p {
+    font-size: 0.88rem;
+    margin: 0;
+    color: rgba(232,228,220,0.75);
+  }
+
+  .big-no {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-dim);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .big-no::before { content: '×'; color: var(--ember); }
+  .big-no-list { margin: 1rem 0 1.5rem; }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  footer span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.05em;
+  }
+  footer a {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--ember); }
+
+  @media (max-width: 640px) {
+    nav { padding: 1.25rem 1.5rem; }
+    main { padding: 8rem 1.5rem 4rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">jereme.xyz</a>
+  <a class="nav-back" href="/">home</a>
+</nav>
+
+<main>
+  <div class="page-header">
+    <div class="page-tag">legal</div>
+    <h1>Terms of Service</h1>
+    <p class="page-meta">by being here, you've already agreed · no cap</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">01 /</span> Let's Be Clear About What This Is</h2>
+    <p>jereme.xyz is a personal website. It is not a product. It does not have a free tier, a Pro plan, or an enterprise offering. There is nothing to subscribe to, upgrade from, or cancel. It's a website about a person — that person being me, Jereme Abernathy — and what I'm working on.</p>
+    <div class="callout">
+      <p>If you came here looking for a EULA, you're going to be very disappointed and also possibly lost.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">02 /</span> Acceptance of Terms</h2>
+    <p>By visiting this site you agree to these terms. If you disagree with these terms, the door is right there — it's the back button, top left, you know where it is. No hard feelings. Truly.</p>
+    <p>If you're a bot: same rules apply. Behave yourself or get blocked at the edge.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">03 /</span> What You Can Do Here</h2>
+    <p>Read stuff. Look at projects I'm building. Appreciate the design choices. Send me a message through the contact form if you have something worth saying. Link to the site if you want — no need to ask permission, just don't be weird about it.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">04 /</span> What You Cannot Do Here</h2>
+    <div class="big-no-list">
+      <div class="big-no">Scrape the site to train your model without asking</div>
+      <div class="big-no">Impersonate me anywhere online (I'm already doing a great job of that)</div>
+      <div class="big-no">Use my name, likeness, or content to imply endorsement of anything</div>
+      <div class="big-no">DDoS this site — it's just a blog, relax</div>
+      <div class="big-no">Be weird in the contact form</div>
+    </div>
+    <p>Basically: don't be a jerk. This is not a legally complex concept.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">05 /</span> Content Ownership</h2>
+    <p>Everything on this site — writing, design, code, ideas, opinions — is mine unless otherwise noted. You can quote me (with credit), share links, and reference my work for normal human purposes. You cannot republish it wholesale, put your name on it, or sell it. That would be rude and also probably illegal.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">06 /</span> Accuracy & Opinions</h2>
+    <p>I try to keep things accurate but I'm not a journalist and this isn't a publication. Things I write reflect my perspective at the time I wrote them. I may update them, retract them, or completely change my mind later — that's called being a person.</p>
+    <p>Anything resembling advice on this site (tech, business, coffee, gear, trail conditions) is informational at best. I'm not your consultant. Hire me if you want that.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">07 /</span> External Links</h2>
+    <p>This site links out to other places — projects I'm building, social profiles, things I find interesting. I don't control those destinations and I'm not responsible for what happens when you get there. Use your judgment. You have it.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="section-num">08 /</span> Limitation of Liability</h2>
+    <p>If somehow this personal website causes you damages, losses, or emotional distress — I'm genuinely sorry but also deeply confused about how that happened. This site is provided as-is, for free, with no warranties expressed or implied. If something breaks or a page doesn't load, refresh. That's probably it.</p>
+  </div>
+
+  <div class="section">
+    <div class="disclaimer-box">
+      <h3>⚠ Personal Views Disclaimer — This One Matters</h3>
+      <p>Everything on this site and across all social media accounts linked from jereme.xyz — every post, thread, take, rant, opinion, project announcement, photo, meme, or passing thought — represents my personal views and mine alone. They do not represent, reflect, imply, or in any way constitute the position of any company, organization, board of directors, advisory board, investor group, or professional body I am or have ever been associated with. My socials are mine. My opinions are mine. If you have a problem with something I said personally, come talk to me personally. There is no communications department. There is no PR team. There is no official statement forthcoming. There's just me.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>© jereme abernathy · jereme.xyz</span>
+  <a href="/privacy.html">privacy policy →</a>
+</footer>
+
+</body>
+</html>
