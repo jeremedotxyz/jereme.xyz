@@ -125,7 +125,7 @@
         body.light-mode .section-video-overlay{background:linear-gradient(180deg,rgba(250,249,247,.88) 0%,rgba(250,249,247,.82) 50%,rgba(250,249,247,.92) 100%)}
         .section-video-placeholder{display:none}
         .section-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:6rem 2rem}
-        .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+        .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
         .work-card{background:var(--bg-secondary);border:1px solid var(--accent);border-radius:8px;padding:2.5rem;transition:all .3s ease}
         .work-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 0 24px rgba(217,120,70,0.15)}
         .work-card-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:var(--text-primary)}
@@ -247,18 +247,6 @@
                     <h3 class="work-card-title">Systems Architecture</h3>
                     <div class="work-card-description">Cloudflare Workers edge compute, LangChain orchestration, vector store integration, semantic caching. Python, TypeScript, React. Infrastructure that doesn't become a liability.</div>
                 </div>
-                <div class="work-card">
-                    <h3 class="work-card-title">Foundation Stack</h3>
-                    <div class="work-card-description">GPT-4o, Claude, Gemini, Llama, Mistral — active across every major frontier model. Not theoretical. Production deployments across annotation platforms, evaluation pipelines, and client-facing systems.</div>
-                </div>
-                <div class="work-card">
-                    <h3 class="work-card-title">Evaluation & Feedback</h3>
-                    <div class="work-card-description">RLHF preference labeling, comparative ranking, constitutional AI alignment. Rubric design that holds up under edge cases. The dataset is only as good as the judgment behind it.</div>
-                </div>
-                <div class="work-card">
-                    <h3 class="work-card-title">Adversarial Testing</h3>
-                    <div class="work-card-description">Systematic red teaming across jailbreak taxonomies: prompt injection, context manipulation, role-play exploits. Finding the failure modes in a controlled environment instead of a production incident.</div>
-                </div>
             </div>
             <div class="detail-grid">
                 <div class="detail-item">
@@ -305,9 +293,6 @@
                 <div class="work-card"><h3 class="work-card-title">Industrial Design</h3><div class="work-card-description">Form follows function, then gets refined until there's nothing left to remove. Consumer goods, tools, and hardware designed for the way people actually use things.</div></div>
                 <div class="work-card"><h3 class="work-card-title">Prototyping</h3><div class="work-card-description">From concept to physical object. Iterative builds, material selection, tolerance testing. The gap between a good idea and a manufacturable product is where most things die.</div></div>
                 <div class="work-card"><h3 class="work-card-title">Hardware Development</h3><div class="work-card-description">Consumer electronics, embedded systems, peripheral devices. Hardware that ships to millions is a different discipline than hardware that ships to one client. Both matter here.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Product Strategy</h3><div class="work-card-description">PM background across Big Tech and independent builds. Roadmapping, prioritization, stakeholder alignment. Knowing what to build is harder than knowing how.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Brand & Identity</h3><div class="work-card-description">Visual systems, typography, naming. nrthrn, pine, drift, and fw/r are each distinct worlds with distinct voices. Building brands that don't look assembled from a template.</div></div>
-                <div class="work-card"><h3 class="work-card-title">UI & Digital Product</h3><div class="work-card-description">Interface design, interaction patterns, design systems. Physical and digital objects share the same discipline — both require intention at every decision point, or they show it.</div></div>
             </div>
             <div class="detail-grid">
                 <div class="detail-item">
@@ -354,9 +339,6 @@
                 <div class="work-card"><h3 class="work-card-title">Sourcing & Roasting</h3><div class="work-card-description">Direct relationships with farms, careful selection, roast profiles that don't bury the bean. Coffee that tastes like it came from somewhere specific — because it did.</div></div>
                 <div class="work-card"><h3 class="work-card-title">Space Design</h3><div class="work-card-description">Built for the neighborhood it's in, not the neighborhood someone wishes it was. Materials that age well. Light that doesn't lie. Nothing in the space is accidental.</div></div>
                 <div class="work-card"><h3 class="work-card-title">Community & Culture</h3><div class="work-card-description">A coffee shop that actually wants regulars. Collaborative workspace, slow mornings, people who work on real things. The culture is the product as much as the espresso.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Operations</h3><div class="work-card-description">Good wifi. Comfortable chairs. Power at every seat. A space where people who build things can actually get work done — and still want to come back tomorrow.</div></div>
-                <div class="work-card"><h3 class="work-card-title">pine — coming soon</h3><div class="work-card-description">PNW coffee rooted in a single location. A place you come back to. Stay, think, collaborate. Your second cup is on your schedule, not ours.</div></div>
-                <div class="work-card"><h3 class="work-card-title">drift — coming fall 2027</h3><div class="work-card-description">Coastal Washington. No coordinates, no signage you'll spot from the harbor. Weathered walls, people who actually live here. Built for the ones who belong. Discovered by the ones who look.</div></div>
             </div>
             <div class="detail-grid">
                 <div class="detail-item">
@@ -488,7 +470,7 @@
             gsap.to('.scroll-indicator',{opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'+=200',scrub:.5}});
             if(!isMobileDevice){[{t:'.hero-eyebrow',y:-100,s:.5},{t:'.hero-title',y:-60,s:.8},{t:'.hero-description',y:-35,s:1},{t:'.hero-cta',y:-15,s:1.2}].forEach(({t,y,s})=>{gsap.to(t,{y,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:s}});});}
             gsap.utils.toArray('section').forEach(section=>{const eyebrow=section.querySelector('.section-eyebrow'),title=section.querySelector('.section-title'),description=section.querySelector('.section-description');if(eyebrow&&title){const tl=gsap.timeline({scrollTrigger:{trigger:section,start:'top 75%',toggleActions:'play none none none'}});tl.from(eyebrow,{y:20,opacity:0,duration:.7}).to(title.querySelectorAll('.word'),{yPercent:0,duration:.9,stagger:.05,ease:'power4.out'},'-=.4');if(description)tl.from(description,{y:20,opacity:0,duration:.8},'-=.5');}});
-            gsap.utils.toArray('.work-grid').forEach(grid=>{gsap.from(grid.querySelectorAll('.work-card'),{y:50,opacity:0,duration:.9,stagger:.08,scrollTrigger:{trigger:grid,start:'top 80%',toggleActions:'play none none none'}});});
+            gsap.utils.toArray('.work-grid').forEach(grid=>{gsap.from(grid.querySelectorAll('.work-card'),{y:30,opacity:0,duration:.8,stagger:0,scrollTrigger:{trigger:grid,start:'top 80%',toggleActions:'play none none none'}});});
             gsap.utils.toArray('.detail-grid').forEach(grid=>{const items=grid.querySelectorAll('.detail-item');items.forEach((item,i)=>{ScrollTrigger.create({trigger:item,start:'top 88%',onEnter:()=>setTimeout(()=>item.classList.add('is-revealed'),i*100)});});gsap.from(items,{x:-24,opacity:0,duration:.8,stagger:.1,scrollTrigger:{trigger:grid,start:'top 82%',toggleActions:'play none none none'}});});
             document.querySelectorAll('.section-video').forEach(vid=>{if(!vid.querySelector('source[src]')?.getAttribute('src'))return;vid.muted=true;vid.loop=true;vid.playsInline=true;vid.setAttribute('playsinline','');vid.setAttribute('muted','');vid.play().catch(()=>{document.addEventListener('touchstart',()=>vid.play().catch(()=>{}),{once:true});});});
             const contact=document.querySelector('.contact');if(contact)gsap.from(contact,{scale:.96,opacity:0,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:contact,start:'top 85%',toggleActions:'play none none none'}});
