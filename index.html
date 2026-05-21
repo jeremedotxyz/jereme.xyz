@@ -126,8 +126,9 @@
         .section-video-placeholder{display:none}
         .section-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:6rem 2rem}
         .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
-        .work-card{background:var(--bg-secondary);border:1px solid var(--accent);border-radius:8px;padding:2.5rem;transition:all .3s ease}
+        .work-card{background:rgba(18,18,26,0.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--accent);border-radius:8px;padding:2.5rem;transition:all .3s ease}
         .work-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 0 24px rgba(217,120,70,0.15)}
+        body.light-mode .work-card{background:rgba(250,249,247,0.25)}
         .work-card-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:var(--text-primary)}
         .work-card-description{color:var(--text-secondary);font-size:.95rem;line-height:1.6}
         @media(max-width:1024px){.work-grid{grid-template-columns:repeat(2,1fr)}}
