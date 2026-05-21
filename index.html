@@ -126,8 +126,8 @@
         .section-video-placeholder{display:none}
         .section-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:6rem 2rem}
         .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
-        .work-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:2.5rem;transition:all .3s ease}
-        .work-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+        .work-card{background:var(--bg-secondary);border:1px solid var(--accent);border-radius:8px;padding:2.5rem;transition:all .3s ease}
+        .work-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 0 24px rgba(217,120,70,0.15)}
         .work-card-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:var(--text-primary)}
         .work-card-description{color:var(--text-secondary);font-size:.95rem;line-height:1.6}
         @media(max-width:1024px){.work-grid{grid-template-columns:repeat(2,1fr)}}
@@ -149,7 +149,7 @@
         .footer-social a{display:flex;align-items:center;justify-content:center;width:20px;height:20px;color:var(--text-secondary);opacity:.6;transition:opacity .3s ease,color .3s ease,transform .4s cubic-bezier(.34,1.56,.64,1)}
         .footer-social a:hover{opacity:1;color:var(--accent);transform:rotate(-8deg) scale(1.15)}
         .footer-social svg{width:100%;height:100%;fill:currentColor}
-        .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:5rem;padding-top:4rem;border-top:1px solid rgba(255,255,255,.08)}
+        .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:4rem;padding-top:4rem;border-top:1px solid rgba(255,255,255,.08)}
         body.light-mode .detail-grid{border-top-color:var(--border)}
         .detail-item{padding-left:1.75rem;position:relative}
         .detail-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);transform:scaleY(0);transform-origin:top center;transition:transform .9s cubic-bezier(.65,0,.35,1),background-color .3s ease}
@@ -246,6 +246,18 @@
                 <div class="work-card">
                     <h3 class="work-card-title">Systems Architecture</h3>
                     <div class="work-card-description">Cloudflare Workers edge compute, LangChain orchestration, vector store integration, semantic caching. Python, TypeScript, React. Infrastructure that doesn't become a liability.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Foundation Stack</h3>
+                    <div class="work-card-description">GPT-4o, Claude, Gemini, Llama, Mistral — active across every major frontier model. Not theoretical. Production deployments across annotation platforms, evaluation pipelines, and client-facing systems.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Evaluation & Feedback</h3>
+                    <div class="work-card-description">RLHF preference labeling, comparative ranking, constitutional AI alignment. Rubric design that holds up under edge cases. The dataset is only as good as the judgment behind it.</div>
+                </div>
+                <div class="work-card">
+                    <h3 class="work-card-title">Adversarial Testing</h3>
+                    <div class="work-card-description">Systematic red teaming across jailbreak taxonomies: prompt injection, context manipulation, role-play exploits. Finding the failure modes in a controlled environment instead of a production incident.</div>
                 </div>
             </div>
             <div class="detail-grid">
@@ -447,7 +459,7 @@
     <script>
         const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
         const librariesLoaded=typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'&&typeof Lenis!=='undefined';
-        if(!librariesLoaded){document.querySelectorAll('.hero-eyebrow,.hero-title,.hero-description,.hero-cta').forEach(el=>el.style.opacity='1');document.querySelectorAll('.capability-item').forEach(el=>el.classList.add('is-revealed'));}
+        if(!librariesLoaded){document.querySelectorAll('.hero-eyebrow,.hero-title,.hero-description,.hero-cta,.work-card,.detail-item,.section-eyebrow,.section-title,.section-description,.contact').forEach(el=>{el.style.opacity='1';el.style.transform='none';});document.querySelectorAll('.capability-item,.detail-item').forEach(el=>el.classList.add('is-revealed'));}
         if(!prefersReducedMotion&&librariesLoaded){
             const isMobileDevice=window.matchMedia('(max-width:768px)').matches||window.matchMedia('(hover:none)').matches;
             let lenis=null;
