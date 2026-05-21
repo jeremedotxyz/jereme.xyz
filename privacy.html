@@ -20,10 +20,8 @@
     --font-body: 'IBM Plex Sans', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg-primary);
     color: var(--text-primary);
@@ -33,7 +31,6 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
   body::before {
     content: '';
     position: fixed;
@@ -43,7 +40,6 @@
     z-index: 1000;
     opacity: 0.5;
   }
-
   body::after {
     content: '';
     position: fixed;
@@ -55,7 +51,6 @@
     pointer-events: none;
     z-index: 0;
   }
-
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -68,125 +63,24 @@
     background: rgba(10,10,15,0.9);
     backdrop-filter: blur(12px);
   }
-
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
+  .nav-logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-primary); text-decoration: none; letter-spacing: 0.05em; opacity: 0.8; transition: opacity 0.2s; }
   .nav-logo:hover { opacity: 1; color: var(--accent); }
-
-  .nav-back {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
+  .nav-back { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
   .nav-back:hover { color: var(--accent); }
   .nav-back::before { content: '←'; }
-
-  main {
-    position: relative;
-    z-index: 1;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 10rem 2rem 8rem;
-  }
-
-  .page-header {
-    margin-bottom: 5rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .doc-label {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .doc-label::after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 4rem;
-    background: var(--accent);
-    opacity: 0.4;
-  }
-
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .doc-meta {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-    line-height: 2;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    margin-top: 1.5rem;
-  }
+  main { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 10rem 2rem 8rem; }
+  .page-header { margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+  .doc-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+  .doc-label::after { content: ''; display: block; height: 1px; width: 4rem; background: var(--accent); opacity: 0.4; }
+  h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 1.5rem; }
+  .doc-meta { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 0.05em; line-height: 2; border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 1.5rem; }
   .doc-meta span { color: var(--accent); }
-
-  .toc {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--accent);
-    border-radius: 0 6px 6px 0;
-    padding: 2rem 2.5rem;
-    margin-bottom: 5rem;
-  }
-  .toc-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-  .toc a {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-    padding: 0.3rem 0;
-    border-bottom: 1px solid transparent;
-    transition: color 0.2s;
-  }
+  .toc { background: var(--bg-secondary); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 0 6px 6px 0; padding: 2rem 2.5rem; margin-bottom: 5rem; }
+  .toc-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; }
+  .toc a { display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.03em; padding: 0.3rem 0; transition: color 0.2s; }
   .toc a:hover { color: var(--accent); }
   .toc a span { color: var(--text-secondary); opacity: 0.5; margin-right: 0.75rem; }
-
-  .article {
-    margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.5s ease forwards;
-  }
+  .article { margin-bottom: 4rem; opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
   .article:nth-child(1) { animation-delay: 0.05s; }
   .article:nth-child(2) { animation-delay: 0.1s; }
   .article:nth-child(3) { animation-delay: 0.15s; }
@@ -197,168 +91,28 @@
   .article:nth-child(8) { animation-delay: 0.4s; }
   .article:nth-child(9) { animation-delay: 0.45s; }
   .article:nth-child(10) { animation-delay: 0.5s; }
-
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-  .article-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section-sym {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-
-  h2 {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.01em;
-  }
-
-  h3 {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 2rem 0 0.75rem;
-  }
-
-  p {
-    font-size: 0.96rem;
-    color: rgba(232,230,227,0.78);
-    margin-bottom: 1rem;
-    line-height: 1.8;
-  }
-
-  .subsection {
-    margin: 1.75rem 0;
-    padding-left: 1.5rem;
-    border-left: 1px solid var(--border);
-  }
-
-  .subsection-id {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  ul.legal-list {
-    list-style: none;
-    margin: 1rem 0 1.5rem;
-    padding: 0;
-  }
-  ul.legal-list li {
-    font-size: 0.93rem;
-    color: rgba(232,230,227,0.75);
-    padding: 0.6rem 0 0.6rem 1.75rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    line-height: 1.7;
-  }
-  ul.legal-list li::before {
-    content: '§';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    opacity: 0.7;
-  }
-
-  .callout {
-    border-left: 2px solid var(--accent);
-    padding: 1.25rem 1.75rem;
-    margin: 2rem 0;
-    background: rgba(217,120,70,0.06);
-    border-radius: 0 6px 6px 0;
-  }
-  .callout p {
-    margin: 0;
-    font-size: 0.9rem;
-    font-style: italic;
-    color: rgba(232,230,227,0.88);
-  }
-
-  .disclaimer-box {
-    border: 1px solid rgba(217,120,70,0.25);
-    background: rgba(217,120,70,0.04);
-    border-radius: 8px;
-    padding: 2rem 2.5rem;
-    margin: 2.5rem 0;
-  }
-  .disclaimer-box .box-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    display: block;
-  }
-  .disclaimer-box p {
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
-    color: rgba(232,230,227,0.8);
-  }
+  .article-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+  .section-sym { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.05em; white-space: nowrap; }
+  h2 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--text-primary); letter-spacing: -0.01em; }
+  p { font-size: 0.96rem; color: rgba(232,230,227,0.78); margin-bottom: 1rem; line-height: 1.8; }
+  .subsection { margin: 1.75rem 0; padding-left: 1.5rem; border-left: 1px solid var(--border); }
+  .subsection-id { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.5rem; display: block; }
+  ul.legal-list { list-style: none; margin: 1rem 0 1.5rem; padding: 0; }
+  ul.legal-list li { font-size: 0.93rem; color: rgba(232,230,227,0.75); padding: 0.6rem 0 0.6rem 1.75rem; border-bottom: 1px solid var(--border); position: relative; line-height: 1.7; }
+  ul.legal-list li::before { content: '§'; position: absolute; left: 0; color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.7; }
+  .callout { border-left: 2px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2rem 0; background: rgba(217,120,70,0.06); border-radius: 0 6px 6px 0; }
+  .callout p { margin: 0; font-size: 0.9rem; font-style: italic; color: rgba(232,230,227,0.88); }
+  .disclaimer-box { border: 1px solid rgba(217,120,70,0.25); background: rgba(217,120,70,0.04); border-radius: 8px; padding: 2rem 2.5rem; margin: 2.5rem 0; }
+  .disclaimer-box .box-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+  .disclaimer-box p { font-size: 0.9rem; margin-bottom: 0.75rem; color: rgba(232,230,227,0.8); }
   .disclaimer-box p:last-child { margin-bottom: 0; }
-
-  .xref {
-    font-family: var(--font-mono);
-    font-size: 0.78em;
-    color: var(--accent);
-    border-bottom: 1px dotted rgba(217,120,70,0.4);
-    cursor: default;
-  }
-
-  .defined {
-    font-weight: 500;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.02em;
-  }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 780px;
-    margin: 0 auto;
-  }
-  footer span {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-  }
-  footer a {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
+  .xref { font-family: var(--font-mono); font-size: 0.78em; color: var(--accent); border-bottom: 1px dotted rgba(217,120,70,0.4); cursor: default; }
+  .defined { font-weight: 500; color: var(--text-primary); text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.02em; }
+  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2.5rem 2rem; display: flex; justify-content: space-between; align-items: center; max-width: 780px; margin: 0 auto; }
+  footer span { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 0.05em; }
+  footer a { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
   footer a:hover { color: var(--accent); }
-
   @media (max-width: 640px) {
     nav { padding: 1.25rem 1.5rem; }
     main { padding: 8rem 1.5rem 5rem; }
@@ -370,37 +124,36 @@
 </style>
 </head>
 <body>
-
 <nav>
   <a class="nav-logo" href="/">jereme.xyz</a>
   <a class="nav-back" href="/">home</a>
 </nav>
-
 <main>
   <div class="page-header">
     <div class="doc-label">Legal Documentation</div>
     <h1>Privacy Policy</h1>
     <div class="doc-meta">
       <div>Document Reference: <span>JXYZ-PRIV-2026-001</span></div>
-      <div>Jurisdiction: <span>The Pacific Northwest, spiritually. Cloudflare's edge, technically.</span></div>
-      <div>Effective Date: <span>Whenever you loaded this page</span></div>
-      <div>Last Amended: <span>More recently than you'd expect for a personal site</span></div>
-      <div>Governing Body: <span>Jereme Abernathy, operating alone, with coffee</span></div>
+      <div>Jurisdiction: <span>The Pacific Northwest, spiritually. Cloudflare's edge, technically. Your browser, practically.</span></div>
+      <div>Effective Date: <span>Retroactively, from whenever you first typed this URL</span></div>
+      <div>Last Amended: <span>More recently than you'd expect, less recently than lawyers would recommend</span></div>
+      <div>Data Protection Officer: <span>Jereme Abernathy. Also the CEO, CTO, intern, and person who fixed the nav last Tuesday.</span></div>
+      <div>Privacy Team Size: <span>One (1). He has strong opinions about both privacy and coffee.</span></div>
     </div>
   </div>
 
   <div class="toc">
-    <div class="toc-label">Table of Contents</div>
-    <a href="#s1"><span>§1</span> Definitions and Interpretive Framework</a>
-    <a href="#s2"><span>§2</span> Nature and Scope of This Document</a>
-    <a href="#s3"><span>§3</span> Information Collected</a>
-    <a href="#s4"><span>§4</span> Information Not Collected</a>
-    <a href="#s5"><span>§5</span> Third-Party Services and External Destinations</a>
-    <a href="#s6"><span>§6</span> Cookies and Tracking Technologies</a>
-    <a href="#s7"><span>§7</span> Data Subject Rights</a>
-    <a href="#s8"><span>§8</span> Affiliated Ventures — Scope Limitation</a>
-    <a href="#s9"><span>§9</span> Personal Views and Opinions Disclaimer</a>
-    <a href="#s10"><span>§10</span> Amendments and Notification Protocol</a>
+    <div class="toc-label">Table of Contents — Yes, This Has One</div>
+    <a href="#s1"><span>§1</span> Definitions (Required by Law and Also Helpful)</a>
+    <a href="#s2"><span>§2</span> What This Document Actually Is</a>
+    <a href="#s3"><span>§3</span> Information Collected (Spoiler: Not Much)</a>
+    <a href="#s4"><span>§4</span> Information Not Collected (This List Is Longer)</a>
+    <a href="#s5"><span>§5</span> Third-Party Services and Where Your Tab Goes Next</a>
+    <a href="#s6"><span>§6</span> Cookies, Technically Speaking</a>
+    <a href="#s7"><span>§7</span> Your Rights, Which Are Real and Exercisable</a>
+    <a href="#s8"><span>§8</span> The Ventures — Scope Limitation (Important, Not Filler)</a>
+    <a href="#s9"><span>§9</span> The Personal Views Disclaimer (Read This One)</a>
+    <a href="#s10"><span>§10</span> Updates, Amendments, and The Notification System</a>
   </div>
 
   <div class="article" id="s1">
@@ -408,52 +161,61 @@
       <span class="section-sym">§ 1</span>
       <h2>Definitions and Interpretive Framework</h2>
     </div>
-    <p>For the purposes of this Privacy Policy, the following terms shall have the meanings ascribed to them herein, unless context otherwise dictates, common sense prevails, or the reader is a lawyer in which case: hello, there is nothing here for you.</p>
+    <p>The following terms shall have the meanings set forth below. They are presented in plain English because <span class="defined">The Operator</span> writes AI evaluation rubrics for a living and has therefore lost the ability to tolerate unnecessary complexity. If context makes a definition obviously wrong, use context. You are an adult. You can figure it out.</p>
 
     <div class="subsection">
       <span class="subsection-id">§ 1.1 — "The Site"</span>
-      <p><span class="defined">The Site</span> refers to jereme.xyz, a personal website. Not a platform. Not a marketplace. Not a SaaS product with a free tier and an aggressive upgrade prompt. A website. About a person.</p>
+      <p><span class="defined">The Site</span> means jereme.xyz. It is a personal website. It has never been, is not currently, and will not become: a SaaS product, a social network, an e-commerce platform, a DAO, a community, or any other category of internet property that has a dedicated section in a venture capital pitch deck. It is a website. About a person. This definition will not expand.</p>
     </div>
 
     <div class="subsection">
       <span class="subsection-id">§ 1.2 — "The Operator"</span>
-      <p><span class="defined">The Operator</span> refers to Jereme Abernathy, a human being located somewhere in the Pacific Northwest, operating this site on a single domain, with no venture funding, no data team, and no privacy officer on retainer.</p>
+      <p><span class="defined">The Operator</span> is Jereme Abernathy — independent AI practitioner, product designer, coffee person, and the individual responsible for every pixel on this site including the ones that aren't quite right on mobile yet. He does not have a data team. He has a laptop, a standing desk he keeps meaning to adjust, and an inbox that he actually reads.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 1.3 — "You" or "The User"</span>
-      <p><span class="defined">You</span> refers to any person, entity, automated system, or aggressively curious bot that has navigated to this URL. Welcome. Please behave.</p>
+      <span class="subsection-id">§ 1.3 — "You" / "The User"</span>
+      <p><span class="defined">You</span> means any person, company, government entity, automated system, language model, or inexplicably well-funded bot that has accessed <span class="defined">The Site</span> for any purpose. If you are a crawler trained to extract personal data from privacy policies specifically: hello. The irony is noted. The data you're looking for is in <span class="xref">§ 3</span> and it is going to be a disappointing read.</p>
     </div>
 
     <div class="subsection">
       <span class="subsection-id">§ 1.4 — "Personal Data"</span>
-      <p><span class="defined">Personal Data</span> means any information that could identify you as a specific individual. On this site, that is largely limited to whatever you voluntarily type into the contact form, because there is nothing else that would generate it.</p>
+      <p><span class="defined">Personal Data</span> means information that could identify You as a specific individual, as opposed to, say, a category of person, a demographic, or an abstract concept. On this site, Personal Data is limited almost entirely to whatever you voluntarily type and submit. The Site is not in the business of inferring your identity from your typing speed or the font size you set. That is a different kind of website. This is not that.</p>
     </div>
 
     <div class="subsection">
       <span class="subsection-id">§ 1.5 — "The Ventures"</span>
-      <p><span class="defined">The Ventures</span> refers collectively to fw/r, pine, nrthrn, and drift — independent commercial and creative entities linked from <span class="defined">The Site</span> but operating under entirely separate governance, infrastructure, and legal standing. See <span class="xref">§ 8</span> for the full scope limitation on this, which is important and not just filler.</p>
+      <p><span class="defined">The Ventures</span> means fw/r, pine, nrthrn, and drift — four independently operated commercial entities that are linked from this site because <span class="defined">The Operator</span> built them and this is his personal site. They appear here as hyperlinks. Hyperlinks are not mergers. The Ventures maintain separate governance, separate infrastructure, and separate legal exposure from this document. See <span class="xref">§ 8</span>, which exists specifically because this distinction keeps needing to be made.</p>
+    </div>
+
+    <div class="callout">
+      <p>A brief note on reading legal definitions: you do not have to enjoy it. No one does. The Operator has written approximately eight hundred pages of AI evaluation rubrics and still finds defined terms sections to be a genre that could stand to evolve. Alas.</p>
     </div>
   </div>
 
   <div class="article" id="s2">
     <div class="article-header">
       <span class="section-sym">§ 2</span>
-      <h2>Nature and Scope of This Document</h2>
+      <h2>What This Document Actually Is</h2>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 2.1 — What This Is</span>
-      <p>This is a Privacy Policy for a personal website. It exists because the internet decided that every website, regardless of whether it collects a single byte of personal data, must have one of these. The Operator respects that convention while also noting, for the record, that it is a lot of words for "I don't really collect your data."</p>
+      <span class="subsection-id">§ 2.1 — The Reason This Exists</span>
+      <p>This Privacy Policy exists because at some point the internet decided that every website — regardless of whether it collects a single byte of personal data from a single user — must publish a Privacy Policy or be treated as legally suspect. <span class="defined">The Operator</span> has complied. You are reading the result. It took longer to write than the actual data infrastructure it describes, which should tell you something about where we are as a civilization.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 2.2 — What This Is Not</span>
-      <p>This document is not a data processing agreement. It is not a GDPR Article 30 record of processing activities. It is not a BAA. It is not applicable to any commercial transaction, because there are no commercial transactions available on this site. If you are looking for a privacy policy for one of <span class="defined">The Ventures</span>, you are on the wrong page. Those entities maintain their own documentation. See <span class="xref">§ 8</span>.</p>
+      <span class="subsection-id">§ 2.2 — What It Is Not</span>
+      <p>This is not a GDPR Article 30 record of processing activities. It is not a data processing agreement. It is not a BAA. It is not a DPIA. It is not applicable to any commercial transaction because there are no commercial transactions here. If you are looking for a privacy policy that governs an actual product with actual users who are actually generating meaningful data: this is the wrong URL and also probably the wrong industry for whatever you're building.</p>
+    </div>
+
+    <div class="subsection">
+      <span class="subsection-id">§ 2.3 — Scope of This Policy</span>
+      <p>This policy covers data handling on jereme.xyz only. It does not govern <span class="defined">The Ventures</span> (see <span class="xref">§ 8</span>). It does not govern social media platforms linked from this site (see <span class="xref">§ 5.3</span>). It does not govern your own browser, your ISP, your employer's network, or whatever other parties are observing your internet traffic for reasons that have nothing to do with <span class="defined">The Operator</span> and everything to do with the general surveillance infrastructure of the modern internet, which is a separate and much longer document.</p>
     </div>
 
     <div class="callout">
-      <p>In summary: this is a personal website. The Operator is not Meta. The data infrastructure is not Meta's. The budget is also not Meta's. Manage expectations accordingly.</p>
+      <p>Executive summary of this entire policy: it's a personal website. He doesn't sell data. He doesn't have a data team. He has Google Analytics and a contact form. That is the entire data operation. You may now close this tab.</p>
     </div>
   </div>
 
@@ -462,27 +224,26 @@
       <span class="section-sym">§ 3</span>
       <h2>Information Collected</h2>
     </div>
-    <p>The following categories of information may be collected through use of <span class="defined">The Site</span>, enumerated here with full transparency and a certain amount of resignation that this requires enumeration at all:</p>
+    <p>The following is an exhaustive list of information collected through use of <span class="defined">The Site</span>. It is presented with the same thoroughness applied to a much more invasive operation, which is a deliberate choice intended to demonstrate that thoroughness and invasiveness are not the same thing.</p>
 
     <div class="subsection">
       <span class="subsection-id">§ 3.1 — Contact Form Submissions</span>
-      <p>If You complete and submit the contact form (referred to on the site as the "signal" section), <span class="defined">The Operator</span> receives: your name, your email address, and the content of your message. This information is transmitted to <span class="defined">The Operator's</span> inbox via Resend, a transactional email service, and to a designated Slack channel for response tracking.</p>
-      <p>This data is used exclusively for the purpose of responding to you. It is not sold. It is not passed to advertisers. It is not used to build a profile. It is used to write you back, possibly within the same business day, probably with fewer words than you might expect.</p>
+      <p>If You fill out and submit the contact form on <span class="defined">The Site</span> — labeled "signal" because "contact form" felt too 2009 — <span class="defined">The Operator</span> receives your name, your email address, and the content of your message. This is transmitted via Resend to <span class="defined">The Operator's</span> inbox and a Slack channel so he notices it. This information is used exclusively to respond to you. It is not sold, aggregated, added to a list, used to build a profile, or fed into any pipeline. <span class="defined">The Operator</span> will simply read it and write back. Like a person.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 3.2 — Analytics and Traffic Data</span>
-      <p><span class="defined">The Site</span> uses Google Analytics (GA4) to collect aggregate, anonymized traffic data including page views, session durations, geographic regions at the country or city level, device types, and referral sources. This data does not include your name, your email, or any individually identifying information. It tells <span class="defined">The Operator</span> things like "someone from Vancouver, WA spent four minutes on the site," not "that was Derek and here is his home address."</p>
+      <span class="subsection-id">§ 3.2 — Google Analytics</span>
+      <p><span class="defined">The Site</span> uses Google Analytics (GA4) to collect anonymous, aggregate traffic data. This means <span class="defined">The Operator</span> can see things like "seventy people visited this week, most of them from the US, many of them on iPhones, and one of them spent forty-five minutes on the about page." He cannot see who those people are. He cannot see their names. He genuinely cannot tell if his mom is included in that number, though statistically she probably is at least once a week.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 3.3 — Server and Edge Logs</span>
-      <p><span class="defined">The Site</span> is served through Cloudflare's infrastructure. Cloudflare may log standard server request data including IP addresses, request timestamps, and browser user agents as part of its normal operation. This is governed by Cloudflare's own Privacy Policy, not this one. The Operator has access to aggregate Cloudflare analytics but does not actively monitor individual request logs.</p>
+      <span class="subsection-id">§ 3.3 — Cloudflare Edge Logs</span>
+      <p><span class="defined">The Site</span> runs through Cloudflare. Cloudflare logs standard server request data — IP addresses, request timestamps, user agents — as part of its normal and completely reasonable infrastructure operation. This is governed by Cloudflare's own privacy documentation, not this one. <span class="defined">The Operator</span> has access to aggregate Cloudflare analytics dashboards. He does not review individual request logs because doing so would be both invasive and extraordinarily boring.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 3.4 — User Preference Data</span>
-      <p><span class="defined">The Site</span> stores your light/dark mode preference in your browser's local storage. This data never leaves your device. It is not transmitted anywhere. It exists solely so the site does not forget you prefer dark mode every time you close a tab, which would be annoying for everyone.</p>
+      <span class="subsection-id">§ 3.4 — Theme Preference</span>
+      <p>If You switch between dark and light mode, <span class="defined">The Site</span> stores your preference in your browser's local storage. This data lives in your browser. It does not leave your device. It does not go anywhere. It exists so the site does not reset to dark mode every time you open a new tab, which would be annoying and also kind of rude. This is the least interesting item in this entire document.</p>
     </div>
   </div>
 
@@ -491,175 +252,179 @@
       <span class="section-sym">§ 4</span>
       <h2>Information Not Collected</h2>
     </div>
-    <p>For the avoidance of doubt, and because this seems to comfort people, the following categories of information are explicitly not collected by <span class="defined">The Site</span>:</p>
+    <p>For the avoidance of doubt, and because people find comfort in explicit lists of things that are not happening to them, the following is a comprehensive account of data <span class="defined">The Site</span> does not collect. Some of these items are obvious. They are included anyway because obvious things being obvious has never stopped anyone from asking about them.</p>
 
     <ul class="legal-list">
-      <li>Passwords — there is no login system. There is nothing to log into. This is a website, not an app.</li>
-      <li>Payment information — there is nothing to purchase. Please do not attempt to give this site money.</li>
-      <li>Biometric data — there are no cameras embedded in the website. This is not a Marvel villain origin story.</li>
-      <li>Health or medical information — not applicable. The Operator is not a healthcare provider.</li>
-      <li>Social Security numbers, government identification, or financial account details — what are you doing here.</li>
-      <li>Your precise geolocation — the site knows what country you're probably in. That is the end of its geographic ambition.</li>
-      <li>Your browsing history outside of this domain — The Operator is not interested. Please stop visiting weird sites.</li>
-      <li>Your contacts, photos, microphone input, or camera feed — see note above re: Marvel villain.</li>
-      <li>Your startup idea — although honestly you should be more protective of it elsewhere on the internet.</li>
+      <li>Passwords — there is no login system. There is no account. There is nothing requiring authentication. If you are trying to log in to jereme.xyz, something has gone quite wrong and it is not something The Operator did.</li>
+      <li>Payment information — there is nothing to pay for. If someone is asking for your credit card on this website, you are being scammed and it is not by The Operator.</li>
+      <li>Biometric data — no cameras, no fingerprint readers, no voice analysis, no facial recognition, no gait detection. The website cannot see you. This should be reassuring.</li>
+      <li>Health or medical information — not applicable. The Operator is not a healthcare provider. If you are using a personal website to manage health information, this is the gentlest possible suggestion to reconsider your system.</li>
+      <li>Social Security numbers, government IDs, or financial account numbers — what are you doing here. Seriously. Go somewhere else with those.</li>
+      <li>Your precise geolocation — The Site knows approximately what country you are in, in the same way that a postcard knows where it was sent from. That is the end of its geographic ambition.</li>
+      <li>Your browsing history outside this domain — The Operator is not interested and also does not have the infrastructure to collect it even if he were, which he is not.</li>
+      <li>Your microphone, camera, contacts, photos, or any other device capability — the website is not an app. It cannot request permissions. It is a website.</li>
+      <li>Your startup idea — you should be more protective of that elsewhere, honestly. The internet is full of people who would like it.</li>
+      <li>Your childhood traumas, relationship status, dietary restrictions, or general inner life — all of this is safe from jereme.xyz, which is doing its best to just show you some information about a person and let you contact him if you want to.</li>
     </ul>
   </div>
 
   <div class="article" id="s5">
     <div class="article-header">
       <span class="section-sym">§ 5</span>
-      <h2>Third-Party Services and External Destinations</h2>
+      <h2>Third-Party Services and Where Your Tab Goes Next</h2>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 5.1 — External Links Generally</span>
-      <p><span class="defined">The Site</span> contains hyperlinks to external websites including but not limited to social media profiles, project repositories, affiliated venture websites (see <span class="xref">§ 8</span>), and other destinations deemed interesting by <span class="defined">The Operator</span> at the time of publication. Upon clicking such links, You are no longer on this site and this Privacy Policy no longer governs your experience. The rules of whatever site you've arrived on now apply. Read those. Or don't. The Operator is not your guardian.</p>
-    </div>
-
-    <div class="subsection">
-      <span class="subsection-id">§ 5.2 — Third-Party Infrastructure</span>
-      <p><span class="defined">The Site</span> uses the following third-party services in its normal operation, each of which has its own privacy documentation that The Operator recommends You review if you are the kind of person who reads privacy policies for fun, which, respect:</p>
+      <span class="subsection-id">§ 5.1 — Third-Party Infrastructure in Use</span>
+      <p><span class="defined">The Site</span> uses the following third-party services. Each has its own privacy documentation that <span class="defined">The Operator</span> recommends reviewing if you are the kind of person who reads privacy policies for recreation, in which case: you are already here, so hello and welcome, and also please consider a hobby with more natural light.</p>
       <ul class="legal-list">
-        <li>Cloudflare — DNS, CDN, edge compute, DDoS protection, and Workers infrastructure</li>
-        <li>Google Analytics — aggregate, anonymized traffic measurement as described in <span class="xref">§ 3.2</span></li>
-        <li>Google Fonts — typeface delivery (Outfit, IBM Plex Sans) loaded from Google's servers</li>
-        <li>Resend — transactional email delivery for contact form submissions per <span class="xref">§ 3.1</span></li>
-        <li>Spotify — now-playing widget integration, if active</li>
-        <li>GSAP / cdnjs — JavaScript animation libraries loaded from Cloudflare's CDN</li>
+        <li>Cloudflare — DNS, CDN, edge compute, Workers, DDoS protection. The internet's most competent bouncer.</li>
+        <li>Google Analytics (GA4) — anonymous traffic measurement per § 3.2. The Operator uses it to confirm the site exists to people other than himself.</li>
+        <li>Google Fonts — Outfit and IBM Plex Sans are loaded from Google's servers. Yes, this means Google knows you visited a page that uses these fonts. Yes, this is true of approximately 60% of the web. Welcome to the internet.</li>
+        <li>Resend — transactional email delivery for contact form submissions. A very good email API that The Operator uses because it works and has a reasonable free tier.</li>
+        <li>Spotify — now-playing widget integration, when active. Spotify knows what The Operator is listening to. This is by design. He has no shame about his playlist.</li>
+        <li>GSAP / cdnjs — JavaScript animation libraries. The reason the scroll animations work. Loaded from Cloudflare's CDN, which you will notice is already on this list.</li>
       </ul>
     </div>
 
     <div class="subsection">
+      <span class="subsection-id">§ 5.2 — Outbound Links Generally</span>
+      <p>When You click a link on <span class="defined">The Site</span> and leave, You are no longer on this site and this Privacy Policy no longer applies to your experience. The destination site has its own rules. Those rules may be more invasive than these rules, which — given that these rules are "he has Google Analytics and a contact form" — is a low bar that most destinations will easily clear. Please read destination privacy policies accordingly or, alternatively, accept that the internet collects data and decide how much that bothers you on a personal level.</p>
+    </div>
+
+    <div class="subsection">
       <span class="subsection-id">§ 5.3 — Social Media Platforms</span>
-      <p>Links to <span class="defined">The Operator's</span> social media profiles (X/Twitter, Instagram, Threads, YouTube, Substack, Spotify, GitHub) are present on <span class="defined">The Site</span>. These platforms collect data under their own terms. That data collection begins when You arrive on their platforms. It does not begin here. The Operator has no control over, and accepts no responsibility for, the data practices of any social media platform. This includes the ones The Operator personally finds troubling.</p>
+      <p>Links to <span class="defined">The Operator's</span> personal social media profiles appear on <span class="defined">The Site</span>. These platforms — X, Instagram, Threads, YouTube, Substack, Spotify, GitHub — each have their own data collection practices, and those practices are not described here because describing them would require a separate document that is longer than anything <span class="defined">The Operator</span> is willing to produce for a personal website. The platforms collect data when you interact with them. This begins when you arrive on their platforms, not before. <span class="defined">The Operator</span> has no control over what they do and is not responsible for it, which is a strange thing to have to say about companies worth more than most countries.</p>
     </div>
   </div>
 
   <div class="article" id="s6">
     <div class="article-header">
       <span class="section-sym">§ 6</span>
-      <h2>Cookies and Tracking Technologies</h2>
+      <h2>Cookies, Technically Speaking</h2>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 6.1 — First-Party Storage</span>
-      <p><span class="defined">The Site</span> uses browser local storage (not cookies, technically, but worth mentioning) to retain your theme preference (light or dark mode) between sessions. This is described in <span class="xref">§ 3.4</span>. This data does not leave your device and The Operator cannot access it.</p>
+      <span class="subsection-id">§ 6.1 — The Cookie Situation</span>
+      <p>There is no aggressive cookie banner on this site. You will not be confronted with a modal asking you to manage your preferences, accept all, decline all, or choose between seventeen categories of tracking technology with ominous names. This is a personal website. The cookie infrastructure is minimal. The absence of a consent banner is not negligence. It reflects the actual absence of the kind of tracking apparatus that requires one.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 6.2 — Analytics Cookies</span>
-      <p>Google Analytics sets cookies to measure aggregate site usage as described in <span class="xref">§ 3.2</span>. These are measurement cookies, not advertising cookies. They are used to count visits, not to follow You around the internet showing You ads for things you looked at one time six months ago.</p>
+      <span class="subsection-id">§ 6.2 — Local Storage</span>
+      <p>Your theme preference (dark or light mode) is stored in your browser's local storage. This is technically not a cookie. It is mentioned here because the "cookies" section is where people expect to find this information, and <span class="defined">The Operator</span> is committed to meeting people where they are. The data lives in your browser. It never leaves. It is, objectively, the most harmless data structure on this entire page.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 6.3 — Cookie Blocking</span>
-      <p>You may block, delete, or otherwise interfere with cookies at the browser level using any number of freely available tools and browser settings. Doing so will not break this site. The site will continue to function normally. The only consequence is that The Operator will have slightly less aggregate traffic data, which is fine.</p>
+      <span class="subsection-id">§ 6.3 — Analytics Cookies</span>
+      <p>Google Analytics sets cookies to measure aggregate traffic as described in <span class="xref">§ 3.2</span>. These are measurement cookies, not advertising cookies. They tell <span class="defined">The Operator</span> how many people visited, not who they are or where they are going next. If you would like to block them, you may do so at the browser level using any number of freely available extensions. The site will continue to function normally. <span class="defined">The Operator</span> will simply have slightly less aggregate data, which is fine, because he was going to do the same thing with it either way: glance at it occasionally and feel vaguely good about the numbers.</p>
+    </div>
+
+    <div class="subsection">
+      <span class="subsection-id">§ 6.4 — Third-Party Cookies</span>
+      <p>Third-party services embedded in <span class="defined">The Site</span> — particularly the Spotify widget — may set their own cookies when active. These are governed by those services' own cookie policies. <span class="defined">The Operator</span> has limited control over this and is not going to pretend otherwise. If cookie minimalism is important to you, a browser extension like uBlock Origin will handle it. <span class="defined">The Operator</span> uses one himself, which should tell you something about his personal position on the matter.</p>
     </div>
   </div>
 
   <div class="article" id="s7">
     <div class="article-header">
       <span class="section-sym">§ 7</span>
-      <h2>Data Subject Rights</h2>
+      <h2>Your Rights, Which Are Real and Exercisable</h2>
     </div>
-    <p>If You are covered by the GDPR, CCPA, or any other data protection regulation that grants you rights with respect to your personal data, those rights are acknowledged here. Specifically:</p>
+    <p>If you are covered by GDPR, CCPA, or any other data protection framework that grants you rights over your personal data, those rights are acknowledged here in full and with genuine respect for the regulatory regimes that produced them, even the ones that generated ninety-page compliance documents that nobody actually reads.</p>
 
     <div class="subsection">
       <span class="subsection-id">§ 7.1 — Right of Access</span>
-      <p>You may request to know what personal data <span class="defined">The Operator</span> holds about you. The answer is likely: your email address and a message you sent at some point. The Operator will confirm this within a reasonable timeframe, defined here as "before the heat death of the universe, probably much sooner."</p>
+      <p>You have the right to know what personal data <span class="defined">The Operator</span> holds about you. You may request this at any time. The answer is almost certainly: your email address and a message you sent, possibly with a name attached. <span class="defined">The Operator</span> will confirm this in writing within a timeframe that is "reasonable" in the plain English sense of the word, not the legal sense, which tends toward ninety days for reasons that have never been satisfactorily explained.</p>
     </div>
 
     <div class="subsection">
       <span class="subsection-id">§ 7.2 — Right to Erasure</span>
-      <p>You may request deletion of any personal data The Operator holds. This request will be honored. Email and request it. The Operator will delete it. There will be no argument. There is no retention policy to cite as justification for keeping it.</p>
+      <p>You have the right to request deletion of any personal data <span class="defined">The Operator</span> holds. This request will be honored without argument, without requiring you to justify it, and without invoking retention schedules or legitimate interest exceptions, because this is a personal website and none of that applies. Email and ask. It will be deleted. That is the entire process.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 7.3 — Right to Object</span>
-      <p>You may object to any processing of your data. Given the minimal processing described in <span class="xref">§ 3</span>, this right will be very easy to exercise and very easy to honor.</p>
+      <span class="subsection-id">§ 7.3 — Right to Object and Correct</span>
+      <p>You have the right to object to processing of your data or request correction of inaccurate data. Given that the only personal data <span class="defined">The Operator</span> holds is what you submitted, the most likely inaccuracy is a typo in your own email address, which you can simply resend correctly. The right exists. It is yours. Exercising it on a personal website contact form response is one of the more low-stakes instances of GDPR compliance in recorded history, but the right is no less real for that.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 7.4 — How to Exercise These Rights</span>
-      <p>Email <span class="defined">The Operator</span> at the address found in the contact section of <span class="defined">The Site</span>. State what you want. The Operator will respond. This is the entire process. There is no ticket system. There is no data protection officer portal. There is email.</p>
+      <span class="subsection-id">§ 7.4 — How to Exercise Any of These Rights</span>
+      <p>Email <span class="defined">The Operator</span>. The contact form is on the homepage. State what you want. He will do it. There is no ticket system. There is no case number. There is no portal to log into. There is a human being who built the site, operates the site, and manages all data inquiries personally. It is, in some respects, the most direct data rights process on the internet.</p>
     </div>
   </div>
 
   <div class="article" id="s8">
     <div class="article-header">
       <span class="section-sym">§ 8</span>
-      <h2>Affiliated Ventures — Scope Limitation</h2>
+      <h2>The Ventures — Scope Limitation</h2>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 8.1 — Relationship of Ventures to This Site</span>
-      <p>jereme.xyz is a personal landing page operated by <span class="defined">The Operator</span> as an individual. It contains references and links to four independent ventures: <strong>fw/r</strong> (AI, robotics, and LiDAR studio), <strong>pine</strong> (PNW coffee brand), <strong>nrthrn</strong> (industrial and consumer design studio), and <strong>drift</strong> (coastal coffee concept). These ventures are linked from <span class="defined">The Site</span> for informational and navigational purposes only.</p>
+      <span class="subsection-id">§ 8.1 — jereme.xyz Is a Personal Landing Page, Full Stop</span>
+      <p>jereme.xyz is a personal introduction page. It introduces <span class="defined">The Operator</span> as an individual and provides links to four ventures he is building: fw/r, pine, nrthrn, and drift. The presence of these links on this page does not merge their legal identities with this page. A hyperlink is not an acquisition. It is not a joint venture. It is not an implication of shared governance. It is a hyperlink. They are entities. This is a personal website. Everyone is doing their own thing.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 8.2 — Separate Governance</span>
-      <p>Each of <span class="defined">The Ventures</span> operates independently with its own infrastructure, data handling practices, and legal standing. This Privacy Policy does not govern, and makes no representations about, the data practices of fw/r, pine, nrthrn, or drift. If you interact with those entities directly — through their own websites, products, or services — their own policies apply.</p>
+      <span class="subsection-id">§ 8.2 — Ventures Operate Independently</span>
+      <p>Each of <span class="defined">The Ventures</span> operates with its own infrastructure and its own data practices. This Privacy Policy does not govern, does not speak for, and makes no representations about fw/r, pine, nrthrn, or drift. If you interact with those entities directly — through their own sites, their products, their services — their own policies apply. Attempting to invoke this Privacy Policy in a dispute with one of those ventures would be a creative legal argument that <span class="defined">The Operator</span> would find genuinely interesting and also entirely unsuccessful.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 8.3 — Social Media Separation</span>
-      <p>Any statements, opinions, posts, or communications made by <span class="defined">The Operator</span> on personal social media accounts linked from <span class="defined">The Site</span> represent the personal views of <span class="defined">The Operator</span> as an individual and do not constitute official communications from fw/r, pine, nrthrn, drift, or any other professional entity <span class="defined">The Operator</span> is or has been associated with. See <span class="xref">§ 9</span> for the full disclaimer on this, which is the part the lawyers actually care about.</p>
+      <span class="subsection-id">§ 8.3 — Social Media Is Personal, Not Venture Communications</span>
+      <p>Any statement made by <span class="defined">The Operator</span> on any personal social media account linked from this site represents his personal views as an individual and does not constitute official communication from fw/r, pine, nrthrn, drift, or any other professional entity he is or has been associated with. This is stated here and also in <span class="xref">§ 9</span> and again with emphasis in the big box at the end of this document, because it is important and because apparently it needs to be said in multiple formats.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 8.4 — No Implied Endorsement</span>
-      <p>The presence of venture links on <span class="defined">The Site</span> does not imply that those ventures endorse the personal views of <span class="defined">The Operator</span> as expressed on social media or elsewhere. They are entities. They are not making endorsements. They are trying to make good coffee and build good products. Different job.</p>
+      <span class="subsection-id">§ 8.4 — No Implied Endorsement Running Either Direction</span>
+      <p>fw/r, pine, nrthrn, and drift have not endorsed the personal views expressed on this site or on any linked social account. They are not in the business of endorsing personal opinions. They are in the business of AI work, coffee, design, and coastal hospitality, respectively. If their founder has opinions on the internet, that is his own affair and theirs only insofar as they are aware of it, which varies.</p>
     </div>
   </div>
 
   <div class="article" id="s9">
     <div class="article-header">
       <span class="section-sym">§ 9</span>
-      <h2>Personal Views and Opinions Disclaimer</h2>
+      <h2>The Personal Views Disclaimer</h2>
     </div>
 
     <div class="disclaimer-box">
-      <span class="box-label">⚠ Notice — This Section Is Not Ironic</span>
-      <p>The views, opinions, statements, takes, rants, threads, posts, reposts, quote-tweets, long-form essays, short-form essays, stories, reels, voice notes, comment section contributions, and general online presence of Jereme Abernathy — across jereme.xyz and all linked social media accounts — are personal. They belong to him as an individual.</p>
-      <p>They do not represent, reflect, speak for, imply the position of, or constitute any official communication from any company, startup, brand, venture, advisory board, investor relationship, board of directors, former employer, current client, future client, or any other professional affiliation <span class="defined">The Operator</span> has ever had or will ever have.</p>
-      <p>This specifically includes but is not limited to: fw/r, pine, nrthrn, and drift, which are ventures linked from this site and are governed entirely separately per <span class="xref">§ 8</span>.</p>
-      <p>If something posted on a personal social account generates a concern, the appropriate contact is <span class="defined">The Operator</span> directly. There is no communications department. There is no spokesperson. There is no PR firm on retainer. There is one person with a laptop and an opinion. Direct accordingly.</p>
+      <span class="box-label">⚠ Notice — The One Section You Should Actually Read</span>
+      <p>Everything Jereme Abernathy says, writes, posts, threads, replies to, quote-posts, essays about, rants about, or casually mentions in any public forum — on jereme.xyz and across every social media account linked from it — is his personal opinion, formed on his own time, expressed in his own voice, without input or approval from any other party.</p>
+      <p>These views do not represent fw/r. They do not represent pine. They do not represent nrthrn. They do not represent drift. They do not represent any former employer (including any large technology company where he previously held a senior product role). They do not represent any current client, advisory board, investor, partner, or anyone else who has ever given him money, a title, or a business card.</p>
+      <p>There is no communications department. There is no PR firm. There is no official statement that is forthcoming or pending. There is one person with a laptop and a Substack and a habit of having opinions about things, and he is exercising that habit as a private citizen.</p>
+      <p>If something he posted online causes you concern, the appropriate contact is him, directly, as a human being. The contact form is on the homepage. It goes to his inbox. He reads it. This is the entire escalation path. Act accordingly.</p>
     </div>
   </div>
 
   <div class="article" id="s10">
     <div class="article-header">
       <span class="section-sym">§ 10</span>
-      <h2>Amendments and Notification Protocol</h2>
+      <h2>Updates, Amendments, and The Notification System</h2>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 10.1 — Right to Amend</span>
-      <p><span class="defined">The Operator</span> reserves the right to update this Privacy Policy at any time for any reason including but not limited to: regulatory changes, new third-party services, lessons learned, or simply deciding that a previous section was poorly worded and could be funnier.</p>
+      <span class="subsection-id">§ 10.1 — Right to Update</span>
+      <p><span class="defined">The Operator</span> may update this Privacy Policy at any time for any reason — regulatory changes, new third-party services, new features, corrections, or the discovery that a previous section was less clear than intended. Changes take effect when published. This is how websites have worked since the beginning of websites. It has never been a satisfying answer to "but when will you tell me" and it remains unsatisfying now.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 10.2 — Notification Method</span>
-      <p>Updates to this policy will be reflected in the document metadata at the top of this page. <span class="defined">The Operator</span> will not send you an email notification of changes because <span class="defined">The Operator</span> almost certainly does not have your email address. If this changes, the notification method will be updated accordingly in a future amendment to <span class="xref">§ 10.2</span>, which is a deeply recursive problem.</p>
+      <span class="subsection-id">§ 10.2 — The Notification System, Described Honestly</span>
+      <p>When this policy is updated, the document metadata at the top of this page will change. That is it. That is the notification system. <span class="defined">The Operator</span> will not email you because he almost certainly does not have your email address. He will not post about it on social media because it would be a deeply boring post. If this policy changes in a way that materially affects you and you would like to know about it, you may bookmark this page and check it occasionally. That is the entire available mechanism. <span class="defined">The Operator</span> is sorry. The GDPR would like a word with the general convention of how websites handle this and so would he.</p>
     </div>
 
     <div class="subsection">
-      <span class="subsection-id">§ 10.3 — Continued Use</span>
-      <p>Continued use of <span class="defined">The Site</span> following any amendment constitutes acceptance of the revised policy. If You do not agree with the revised policy, you may stop visiting the site. The Operator will survive this.</p>
+      <span class="subsection-id">§ 10.3 — Continued Use as Acceptance</span>
+      <p>Continued use of <span class="defined">The Site</span> after any update constitutes acceptance of the updated policy. If you find this unacceptable, you may stop visiting. <span class="defined">The Operator</span> genuinely hopes you don't, because traffic makes the analytics dashboard look better, but he respects the decision. He has made his peace with it. He will survive.</p>
     </div>
 
     <div class="callout">
-      <p>If you read this entire document: thank you. You have more patience than most people. The Operator hopes it was at least mildly entertaining. The legal obligations it describes are entirely real. The tone in which they are described is a choice.</p>
+      <p>You have reached the end of the Privacy Policy. If you read the whole thing: impressive commitment. The document describes a contact form, Google Analytics, and a theme preference stored locally. Thank you for your thorough diligence. Please go outside.</p>
     </div>
   </div>
 
 </main>
-
 <footer>
   <span>© 2026 jereme abernathy · jereme.xyz</span>
   <a href="/terms.html">terms of service →</a>
 </footer>
-
 </body>
 </html>
