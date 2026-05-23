@@ -172,7 +172,25 @@
         .detail-body{color:var(--text-secondary);font-size:.9rem;line-height:1.75}
         .detail-body p+p{margin-top:.75rem}
         @media(max-width:1024px){.work-grid{grid-template-columns:repeat(2,1fr)}.detail-grid{grid-template-columns:repeat(2,1fr);gap:2.5rem}}
-        @media(max-width:768px){.theme-toggle{top:1.25rem;left:1.5rem;width:44px;height:44px}.theme-toggle svg{width:18px;height:18px}.nav-links{display:none}.nav-container{padding:1.25rem 1.5rem}.hero{padding:5rem 1.5rem 3rem;min-height:100svh}.hero-content{padding:0}.scroll-indicator{display:none}.hero-eyebrow{font-size:.75rem;margin-bottom:1rem}.hero-title{font-size:clamp(2rem,10vw,3.5rem);margin-bottom:1.5rem}.hero-description{font-size:1.05rem;margin-bottom:2rem;line-height:1.65}.hero-cta{width:100%;justify-content:center;padding:1.15rem 2rem;font-size:1rem;min-height:44px}section{padding:4rem 1.5rem}.section-eyebrow{font-size:.75rem}.section-title{font-size:clamp(1.75rem,8vw,2.5rem);margin-bottom:1rem}.section-description{font-size:1rem}.work-grid{grid-template-columns:1fr;gap:1.25rem}.work-card{padding:1.75rem}.work-card-title{font-size:1.2rem}.work-card-description{font-size:.9rem}.detail-grid{grid-template-columns:1fr;gap:2rem;margin-top:3rem;padding-top:3rem}.detail-item{padding-left:1.5rem}.section-inner{padding:4rem 1.5rem}.contact{padding:3.5rem 1.5rem}.contact-title{font-size:clamp(1.75rem,8vw,2.5rem);margin-bottom:1rem}.contact-description{font-size:1rem;margin-bottom:2rem}.contact-links{flex-direction:column;width:100%}.contact-link{width:100%;justify-content:center;padding:1.15rem 2rem;font-size:1rem;min-height:44px}footer{grid-template-columns:1fr;gap:1.75rem;text-align:center;padding:2.5rem 1.5rem;font-size:.85rem}.footer-info,.footer-social,.footer-links{justify-self:center}.footer-links{gap:1.5rem}.footer-links a{min-height:44px;display:inline-flex;align-items:center}.footer-info{align-items:center;text-align:center}.footer-social{gap:1rem}.footer-social a{width:44px;height:44px;opacity:.7}.footer-social svg{width:20px;height:20px}.footer-address{font-size:.85rem}}
+        .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent;flex-direction:column;gap:5px}
+        .hamburger span{display:block;width:22px;height:2px;background:var(--text-primary);border-radius:1px;transition:all .3s ease}
+        .hamburger.is-active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+        .hamburger.is-active span:nth-child(2){opacity:0}
+        .hamburger.is-active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+        .mobile-nav{position:fixed;inset:0;z-index:999;background:var(--bg-primary);padding:5rem 2rem 2rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;overflow-y:auto;display:none}
+        body.light-mode .mobile-nav{background:var(--bg-primary)}
+        .mobile-nav.is-open{opacity:1;visibility:visible;pointer-events:auto}
+        .mobile-nav-links{list-style:none;display:flex;flex-direction:column}
+        .mobile-nav-links>li{border-bottom:1px solid var(--border)}
+        .mobile-nav-links>li>a,.mobile-nav-toggle{display:block;padding:1.15rem 0;font-size:1.1rem;color:var(--text-primary);text-decoration:none;font-weight:500;background:none;border:none;font-family:inherit;cursor:pointer;width:100%;text-align:left}
+        .mobile-nav-toggle{display:flex;align-items:center;justify-content:space-between}
+        .mobile-nav-toggle .chevron{font-size:.7rem;color:var(--text-secondary);transition:transform .25s ease}
+        .mobile-nav-toggle.is-open .chevron{transform:rotate(180deg);color:var(--accent)}
+        .mobile-sub{max-height:0;overflow:hidden;transition:max-height .3s ease}
+        .mobile-sub.is-open{max-height:300px}
+        .mobile-sub a{display:block;padding:.7rem 0 .7rem 1.25rem;font-size:.95rem;color:var(--text-secondary);text-decoration:none;transition:color .15s ease}
+        .mobile-sub a:active{color:var(--accent)}
+        @media(max-width:768px){.hamburger{display:flex}.mobile-nav{display:block}.theme-toggle{top:1.25rem;left:1.5rem;width:44px;height:44px}.theme-toggle svg{width:18px;height:18px}.nav-links{display:none}.nav-container{padding:1.25rem 1.5rem}.hero{padding:5rem 1.5rem 3rem;min-height:100svh}.hero-content{padding:0}.scroll-indicator{display:none}.hero-eyebrow{font-size:.75rem;margin-bottom:1rem}.hero-title{font-size:clamp(2rem,10vw,3.5rem);margin-bottom:1.5rem}.hero-description{font-size:1.05rem;margin-bottom:2rem;line-height:1.65}.hero-cta{width:100%;justify-content:center;padding:1.15rem 2rem;font-size:1rem;min-height:44px}section{padding:4rem 1.5rem}.section-eyebrow{font-size:.75rem}.section-title{font-size:clamp(1.75rem,8vw,2.5rem);margin-bottom:1rem}.section-description{font-size:1rem}.work-grid{grid-template-columns:1fr;gap:1.25rem}.work-card{padding:1.75rem}.work-card-title{font-size:1.2rem}.work-card-description{font-size:.9rem}.detail-grid{grid-template-columns:1fr;gap:2rem;margin-top:3rem;padding-top:3rem}.detail-item{padding-left:1.5rem}.section-inner{padding:4rem 1.5rem}.contact{padding:3.5rem 1.5rem}.contact-title{font-size:clamp(1.75rem,8vw,2.5rem);margin-bottom:1rem}.contact-description{font-size:1rem;margin-bottom:2rem}.contact-links{flex-direction:column;width:100%}.contact-link{width:100%;justify-content:center;padding:1.15rem 2rem;font-size:1rem;min-height:44px}footer{grid-template-columns:1fr;gap:1.75rem;text-align:center;padding:2.5rem 1.5rem;font-size:.85rem}.footer-info,.footer-social,.footer-links{justify-self:center}.footer-links{gap:1.5rem}.footer-links a{min-height:44px;display:inline-flex;align-items:center}.footer-info{align-items:center;text-align:center}.footer-social{gap:1rem}.footer-social a{width:44px;height:44px;opacity:.7}.footer-social svg{width:20px;height:20px}.footer-address{font-size:.85rem}}
         @media(max-width:480px){.hero{padding:4rem 1.25rem 2.5rem}.hero-title{font-size:clamp(1.75rem,11vw,2.5rem)}.hero-description{font-size:.95rem;line-height:1.6}.hero-eyebrow{letter-spacing:.08em}.section-title{font-size:clamp(1.5rem,9vw,2rem)}.section-inner{padding:3rem 1.25rem}.work-card{padding:1.5rem}.work-card-title{font-size:1.1rem}.work-card-description{font-size:.88rem}.detail-item{padding-left:1.25rem}.detail-title{font-size:1.05rem}.detail-body{font-size:.88rem}.contact{padding:3rem 1.25rem}.contact-description{font-size:.95rem}.footer-social a{width:44px;height:44px}}
     </style>
 </head>
@@ -225,8 +243,38 @@
                 <li><a href="#coffee">Coffee</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+    <div class="mobile-nav" id="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li>
+                <button class="mobile-nav-toggle" aria-expanded="false">
+                    <span>Technology</span>
+                    <span class="chevron">▾</span>
+                </button>
+                <div class="mobile-sub">
+                    <a href="/ai/">AI</a>
+                    <a href="/robotics/">Robotics</a>
+                    <a href="/lidar/">LiDAR</a>
+                </div>
+            </li>
+            <li>
+                <button class="mobile-nav-toggle" aria-expanded="false">
+                    <span>Design</span>
+                    <span class="chevron">▾</span>
+                </button>
+                <div class="mobile-sub">
+                    <a href="#design">Overview</a>
+                    <a href="/projects.html">Completed Projects</a>
+                </div>
+            </li>
+            <li><a href="#coffee">Coffee</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
     <main id="main-content">
     <div class="hero">
         <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-hidden="true">
@@ -506,6 +554,38 @@
             function make3DTilt(card,maxTilt=4){if(!card)return;let hovering=false;card.addEventListener('mouseenter',()=>{hovering=true;});card.addEventListener('mousemove',e=>{if(!hovering)return;const r=card.getBoundingClientRect();gsap.to(card,{rotationY:((e.clientX-r.left)/r.width-.5)*2*maxTilt,rotationX:-((e.clientY-r.top)/r.height-.5)*2*maxTilt,duration:.5,ease:'power2.out',transformPerspective:1200,transformOrigin:'center center'});});card.addEventListener('mouseleave',()=>{hovering=false;gsap.to(card,{rotationY:0,rotationX:0,duration:.8,ease:'power3.out'});});}
             if(!window.matchMedia('(hover:none)').matches){gsap.utils.toArray('.work-card').forEach(c=>make3DTilt(c,2.5));}
         }
+    </script>
+    <script>
+        (function(){
+            const hamburger=document.getElementById('hamburger');
+            const mobileNav=document.getElementById('mobile-nav');
+            if(!hamburger||!mobileNav)return;
+
+            hamburger.addEventListener('click',function(){
+                const isOpen=this.classList.toggle('is-active');
+                mobileNav.classList.toggle('is-open',isOpen);
+                this.setAttribute('aria-expanded',isOpen);
+                document.body.style.overflow=isOpen?'hidden':'';
+            });
+
+            mobileNav.querySelectorAll('.mobile-nav-toggle').forEach(btn=>{
+                btn.addEventListener('click',function(){
+                    const sub=this.nextElementSibling;
+                    const isOpen=this.classList.toggle('is-open');
+                    sub.classList.toggle('is-open',isOpen);
+                    this.setAttribute('aria-expanded',isOpen);
+                });
+            });
+
+            mobileNav.querySelectorAll('a').forEach(link=>{
+                link.addEventListener('click',function(){
+                    hamburger.classList.remove('is-active');
+                    mobileNav.classList.remove('is-open');
+                    hamburger.setAttribute('aria-expanded','false');
+                    document.body.style.overflow='';
+                });
+            });
+        })();
     </script>
 </body>
 </html>
