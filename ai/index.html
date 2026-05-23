@@ -212,8 +212,15 @@
     .prose em { font-style: italic; }
     .prose strong { color: var(--ink); font-weight: 600; }
 
-    .download-card {
+    /* ── Download cards stack ── */
+    .download-stack {
       margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .download-card {
       padding: 28px 30px 30px;
       border: 1px solid var(--line-strong);
       border-radius: 12px;
@@ -240,6 +247,10 @@
       height: 5px;
       border-radius: 50%;
       background: var(--ember);
+    }
+
+    .download-card.card-poc .card-label::before {
+      background: var(--moss);
     }
 
     .download-card .doc-title {
@@ -340,8 +351,8 @@
         linear-gradient(rgba(232, 230, 227, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(232, 230, 227, 0.015) 1px, transparent 1px);
     }
-
-
+    body.dark-mode .download-card { background: rgba(20, 20, 25, 0.55); }
+    body.dark-mode .download-btn:hover { background: var(--ink); color: var(--paper); }
   </style>
 </head>
 <body>
@@ -376,6 +387,18 @@
         <p>Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. Boutique by design.</p>
         <p>More to follow.</p>
       </article>
+
+      <div class="download-stack">
+        <aside class="download-card card-poc" aria-label="Downloadable proof of concept">
+          <div class="card-label">Proof of Concept</div>
+          <div class="doc-title">Sadie LLM Harness — Q1 2026</div>
+          <div class="doc-meta">PDF · jereme abernathy · fw/r · January 2026</div>
+          <a class="download-btn" href="/ai/sadie_llm_harness_poc.pdf" download>
+            <span>Download PDF</span>
+            <span class="arrow" aria-hidden="true">↓</span>
+          </a>
+        </aside>
+      </div>
     </main>
 
     <footer>
