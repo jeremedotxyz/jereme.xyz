@@ -80,9 +80,14 @@
   footer a { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
   footer a:hover { color: var(--accent); }
   @media (max-width: 640px) { nav { padding: 1.25rem 1.5rem; } main { padding: 8rem 1.5rem 5rem; } h1 { font-size: clamp(2rem, 10vw, 3rem); } .toc { padding: 1.5rem; } footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; } .disclaimer-box { padding: 1.5rem; } }
+
+  /* ── Light mode ── */
+  body.light-mode{--bg-primary:#faf9f7;--bg-secondary:#ffffff;--text-primary:#1a1816;--text-secondary:#5a5550;--border:#e8e6e3}
+  body.light-mode nav{background:rgba(250,249,247,.95)}
 </style>
 </head>
 <body>
+<script>if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode')</script>
 <nav>
   <a class="nav-logo" href="/">jereme.xyz</a>
   <a class="nav-back" href="/">home</a>
