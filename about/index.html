@@ -459,9 +459,34 @@
       }
       .reveal { opacity: 1; transform: none; }
     }
+
+    /* ── Dark mode ── */
+    body.dark-mode {
+      --paper: #0a0a0f;
+      --ink: #e8e6e3;
+      --ink-soft: #b0ada8;
+      --muted: #6a6660;
+      --line: #2a2825;
+      --line-strong: #3a3835;
+      --ember: #d4601e;
+      --moss: #7a9470;
+      --gold: #c49a3e;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(212, 96, 30, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(122, 148, 112, 0.07), transparent 32rem),
+        #0a0a0f;
+    }
+    body.dark-mode::before {
+      background-image:
+        linear-gradient(rgba(232, 230, 227, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 230, 227, 0.015) 1px, transparent 1px);
+    }
+
+
   </style>
 </head>
 <body>
+  <script>if(localStorage.getItem('theme')!=='light')document.body.classList.add('dark-mode')</script>
   <canvas class="field" id="field" aria-hidden="true"></canvas>
 
   <div class="site-shell">
@@ -659,7 +684,8 @@
               ctx.beginPath();
               ctx.moveTo(a.x, a.y);
               ctx.lineTo(b.x, b.y);
-              ctx.strokeStyle = 'rgba(16, 16, 14, ' + (0.045 * (1 - dist / 148)) + ')';
+              const lineColor = document.body.classList.contains('dark-mode') ? '232, 230, 227' : '16, 16, 14';
+              ctx.strokeStyle = 'rgba(' + lineColor + ', ' + (0.045 * (1 - dist / 148)) + ')';
               ctx.lineWidth = 1;
               ctx.stroke();
             }
