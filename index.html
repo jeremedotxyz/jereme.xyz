@@ -186,6 +186,7 @@
             <div class="terminal-output" id="output-lines"></div>
         </div>
     </div>
+    <script>if(sessionStorage.getItem('intro-seen'))document.querySelector('.loader').remove()</script>
     <div class="gradient-mesh" aria-hidden="true">
         <div class="gradient-blob gradient-blob-1"></div>
         <div class="gradient-blob gradient-blob-2"></div>
@@ -446,7 +447,7 @@
         ];
         function typePrompt(cb){let i=0;function step(){if(i<promptText.length){promptEl.textContent+=promptText.charAt(i);i++;const c=promptText.charAt(i-1);let d=14+Math.random()*22;if(c==='.'||c==='\n')d+=80;setTimeout(step,d);}else setTimeout(cb,500);}step();}
         function streamOutput(cb){let idx=0;function next(){if(idx<outputLines.length){const ld=outputLines[idx],line=document.createElement('div');line.className='output-line';line.innerHTML=ld.html;outputEl.appendChild(line);requestAnimationFrame(()=>line.classList.add('visible'));idx++;setTimeout(next,ld.delay);}else setTimeout(cb,600);}next();}
-        function hideLoader(){if(!loader)return;loader.classList.add('is-hidden');setTimeout(()=>{loader.remove();window.dispatchEvent(new Event('loaderDone'));},900);}
+        function hideLoader(){if(!loader)return;sessionStorage.setItem('intro-seen','1');loader.classList.add('is-hidden');setTimeout(()=>{loader.remove();window.dispatchEvent(new Event('loaderDone'));},900);}
         if(loader&&promptEl){window.addEventListener('load',()=>{setTimeout(()=>{typePrompt(()=>{if(promptCursor)promptCursor.classList.add('is-done');streamOutput(hideLoader);});},600);});}
     </script>
     <script>
