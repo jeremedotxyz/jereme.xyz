@@ -130,9 +130,14 @@
     footer { padding: 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
     .disclaimer-box { padding: 1.5rem; }
   }
+
+  /* ── Light mode ── */
+  body.light-mode{--bg-primary:#faf9f7;--bg-secondary:#ffffff;--text-primary:#1a1816;--text-secondary:#5a5550;--border:#e8e6e3}
+  body.light-mode nav{background:rgba(250,249,247,.95)}
 </style>
 </head>
 <body>
+<script>if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode')</script>
 <nav>
   <a class="nav-logo" href="/">jereme.xyz</a>
   <a class="nav-back" href="/">home</a>
