@@ -318,9 +318,34 @@
       footer { grid-template-columns: 1fr; }
       .footer-contact { text-align: left; }
     }
+
+    /* ── Dark mode ── */
+    body.dark-mode {
+      --paper: #0a0a0f;
+      --ink: #e8e6e3;
+      --ink-soft: #b0ada8;
+      --muted: #6a6660;
+      --line: #2a2825;
+      --line-strong: #3a3835;
+      --ember: #d4601e;
+      --moss: #7a9470;
+      --gold: #c49a3e;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(212, 96, 30, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(122, 148, 112, 0.07), transparent 32rem),
+        #0a0a0f;
+    }
+    body.dark-mode::before {
+      background-image:
+        linear-gradient(rgba(232, 230, 227, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 230, 227, 0.015) 1px, transparent 1px);
+    }
+
+
   </style>
 </head>
 <body>
+  <script>if(localStorage.getItem('theme')!=='light')document.body.classList.add('dark-mode')</script>
   <div class="site-shell">
     <nav class="topbar" aria-label="Navigation">
       <a class="back-link" href="/">
@@ -358,7 +383,6 @@
         <a href="/">back to jereme.xyz</a>
       </div>
       <div class="footer-contact">
-        <a href="mailto:loveletters@jereme.xyz">loveletters@jereme.xyz</a>
         <span class="footer-address">915 Broadway St #100, Vancouver, WA 98660</span>
       </div>
     </footer>
