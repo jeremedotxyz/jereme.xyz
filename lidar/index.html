@@ -212,8 +212,15 @@
     .prose em { font-style: italic; }
     .prose strong { color: var(--ink); font-weight: 600; }
 
-    .download-card {
+    /* ── Download cards stack ── */
+    .download-stack {
       margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .download-card {
       padding: 28px 30px 30px;
       border: 1px solid var(--line-strong);
       border-radius: 12px;
@@ -240,6 +247,10 @@
       height: 5px;
       border-radius: 50%;
       background: var(--ember);
+    }
+
+    .download-card.card-poc .card-label::before {
+      background: var(--moss);
     }
 
     .download-card .doc-title {
@@ -342,8 +353,6 @@
     }
     body.dark-mode .download-card { background: rgba(20, 20, 25, 0.55); }
     body.dark-mode .download-btn:hover { background: var(--ink); color: var(--paper); }
-
-
   </style>
 </head>
 <body>
@@ -378,15 +387,29 @@
         <p>Deployments span infrastructure, terrain capture, robotics perception, and field environments where GPS is unreliable and the answer still has to hold. Boutique by design. Called in when the obvious has been tried.</p>
       </article>
 
-      <aside class="download-card" aria-label="Downloadable abstract">
-        <div class="card-label">Abstract</div>
-        <div class="doc-title">LiDAR Abstract (LRV) Q1 2020</div>
-        <div class="doc-meta">PDF · jereme abernathy · fw/r</div>
-        <a class="download-btn" href="/lidar/abstract.pdf" download>
-          <span>Download PDF</span>
-          <span class="arrow" aria-hidden="true">↓</span>
-        </a>
-      </aside>
+      <div class="download-stack">
+
+        <aside class="download-card" aria-label="Downloadable abstract">
+          <div class="card-label">Abstract</div>
+          <div class="doc-title">LiDAR Abstract (LRV) Q1 2020</div>
+          <div class="doc-meta">PDF · jereme abernathy · fw/r</div>
+          <a class="download-btn" href="/lidar/abstract.pdf" download>
+            <span>Download PDF</span>
+            <span class="arrow" aria-hidden="true">↓</span>
+          </a>
+        </aside>
+
+        <aside class="download-card card-poc" aria-label="Downloadable proof of concept">
+          <div class="card-label">Proof of Concept</div>
+          <div class="doc-title">LiDAR Light Rail PoC — Seattle / King County, WA Q1 2026</div>
+          <div class="doc-meta">PDF · jereme abernathy · fw/r · January 2026</div>
+          <a class="download-btn" href="/lidar/lidar_seattle_poc.pdf" download>
+            <span>Download PDF</span>
+            <span class="arrow" aria-hidden="true">↓</span>
+          </a>
+        </aside>
+
+      </div>
     </main>
 
     <footer>
