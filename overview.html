@@ -1,1 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>design - jereme.xyz</title>
+  <meta name="description" content="nrthrn — product and industrial design. Objects built from the material out, interfaces built from behavior in." />
+  <link rel="canonical" href="https://jereme.xyz/design.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="jereme.xyz" />
+  <meta property="og:title" content="design - jereme.xyz" />
+  <meta property="og:description" content="nrthrn — product and industrial design. Objects built from the material out, interfaces built from behavior in." />
+  <meta property="og:url" content="https://jereme.xyz/design.html" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NTH4464X6R');
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --paper: #ffffff;
+      --ink: #10100e;
+      --ink-soft: #2c2a25;
+      --muted: #9a9690;
+      --line: #e8e4dc;
+      --line-strong: #d0cbc0;
+      --ember: #aa3c16;
+      --moss: #5f7156;
+      --gold: #aa7c2e;
+      --max: 1180px;
+      --read: 720px;
+      --pad: 28px;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      min-height: 100svh;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(170, 60, 22, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(95, 113, 86, 0.07), transparent 32rem),
+        #ffffff;
+      color: var(--ink);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        linear-gradient(rgba(16, 16, 14, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 16, 14, 0.018) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.45), transparent 78%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-shell { position: relative; z-index: 3; }
+
+    .topbar {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: 36px var(--pad) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      transition: color 160ms ease, gap 200ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .back-link:hover, .back-link:focus-visible {
+      color: var(--ink);
+      gap: 14px;
+      outline: 0;
+    }
+
+    .back-arrow {
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      position: relative;
+      background: currentColor;
+    }
+
+    .back-arrow::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -3px;
+      width: 6px;
+      height: 1px;
+      background: currentColor;
+      transform: rotate(-45deg);
+      transform-origin: left center;
+    }
+
+    .back-arrow::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 6px;
+      height: 1px;
+      background: currentColor;
+      transform: rotate(45deg);
+      transform-origin: left center;
+    }
+
+    .topbar-readout {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .topbar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ember);
+      display: inline-block;
+    }
+
+    main {
+      width: min(var(--read), 100%);
+      margin: 0 auto;
+      padding: 80px var(--pad) 60px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--moss);
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.2rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .lede {
+      font-size: 1.18rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 48px;
+      max-width: 620px;
+    }
+
+    .prose p {
+      font-size: 1.04rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 22px;
+    }
+
+    .prose em { font-style: italic; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    footer {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: 40px var(--pad) 60px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      position: relative;
+      z-index: 3;
+    }
+
+    footer a { color: var(--muted); transition: color 160ms ease; }
+    footer a:hover { color: var(--ink); }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
+    }
+
+    @media (max-width: 680px) {
+      main { padding: 56px var(--pad) 40px; }
+      h1 { font-size: 2.1rem; }
+      .lede { font-size: 1.05rem; }
+      footer { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
+    }
+
+    body.dark-mode {
+      --paper: #0a0a0f;
+      --ink: #e8e6e3;
+      --ink-soft: #b0ada8;
+      --muted: #6a6660;
+      --line: #2a2825;
+      --line-strong: #3a3835;
+      --ember: #d4601e;
+      --moss: #7a9470;
+      --gold: #c49a3e;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(212, 96, 30, 0.06), transparent 28rem),
+        radial-gradient(circle at 12% 85%, rgba(122, 148, 112, 0.07), transparent 32rem),
+        #0a0a0f;
+    }
+    body.dark-mode::before {
+      background-image:
+        linear-gradient(rgba(232, 230, 227, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232, 230, 227, 0.015) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body>
+  <script>if(localStorage.getItem('theme')!=='light')document.body.classList.add('dark-mode')</script>
+  <div class="site-shell">
+    <nav class="topbar" aria-label="Navigation">
+      <a class="back-link" href="/">
+        <span class="back-arrow" aria-hidden="true"></span>
+        <span>jereme.xyz</span>
+      </a>
+      <div class="topbar-readout">
+        <span class="topbar-dot" aria-hidden="true"></span>
+        <span>design</span>
+        <span>/</span>
+        <span>overview</span>
+      </div>
+    </nav>
+
+    <main>
+      <div class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span>nrthrn</span>
+        <span>/</span>
+        <span>overview</span>
+      </div>
+
+      <h1>Design.</h1>
+      <p class="lede">Client-facing product and industrial design. Physical goods, digital interfaces, brand systems — built under one discipline, not three separate ones.</p>
+
+      <article class="prose">
+        <p>nrthrn is a product design studio operating out of the Pacific Northwest. It handles the kind of work that doesn't fit cleanly into a single category — a hardware product that also needs a software interface, a brand identity that has to hold on a physical package and a screen simultaneously, a prototype that has to be manufacturable before the client will believe it's real. The studio is deliberately small, which means every project gets the full weight of eighteen years of building things that actually ship. Specialization is a trap when the problem cuts across disciplines. The medium changes. The questions don't. Every engagement starts with what the person needs to happen and works backward from there until the answer is a made thing, not a deck about a made thing.</p>
+        <p>The industrial design work runs from early concept through production-ready specification. That means material selection, tolerance modeling, surfacing decisions, and an understanding of what a manufacturing partner actually needs from a drawing package — not just what looks correct in a render. Consumer goods, tools, embedded hardware, and physical goods that sit at the edge of categories are all in scope. The history here includes shipping hardware at consumer scale inside a large technology company, which means the difference between a prototype that impresses and a product that survives a supply chain is something nrthrn understands in a way that most studios don't. A good object isn't one that photographs well. It's one that holds up after a year of daily use and still feels like it was made on purpose.</p>
+        <p>Brand and visual systems work at nrthrn is built on the same logic as the physical work — nothing decorative, everything structural. A mark has to survive reduction to a single color on a label before it earns the right to look good in a full-bleed print execution. Type systems get chosen for legibility under real conditions, not optimal conditions. Identity programs are built to be run by the people who own the brand, not maintained indefinitely by the studio that designed it. The clients tend to be independent operators, manufacturers, and founders building something that didn't exist before — people who need design that does a job, not design that signals that design was done. That's the brief nrthrn was built around. Everything here is made to work exactly the way it looks.</p>
+      </article>
+    </main>
+
+    <footer>
+      <div>
+        <a href="/">back to jereme.xyz</a>
+      </div>
+      <div class="footer-contact">
+        <span class="footer-address">915 Broadway St #100, Vancouver, WA 98660</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
