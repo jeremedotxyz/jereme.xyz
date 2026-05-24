@@ -1,1 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monoblock Aluminum Toaster Schematic</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #171717;
+      --muted: #686868;
+      --rule: #c8c8c8;
+      --panel: #f4f2ed;
+      --paper: #fbfaf6;
+      --accent: #0e7c86;
+      --heat: #c4542f;
+      --metal: #d5d6d2;
+      --metal-dark: #a9aaa6;
+      --shadow: rgba(18, 18, 18, 0.12);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #e8e5dc;
+      color: var(--ink);
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 28px auto;
+      background: var(--paper);
+      border: 1px solid #d7d3c7;
+      box-shadow: 0 18px 55px var(--shadow);
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      padding: 28px 32px 18px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 0.96;
+      font-weight: 680;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .stamp {
+      border: 1px solid var(--ink);
+      padding: 10px 12px;
+      min-width: 180px;
+      text-transform: uppercase;
+      font-size: 11px;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+    }
+
+    .sheet {
+      display: grid;
+      grid-template-columns: 1.5fr 0.9fr;
+      gap: 0;
+      min-height: 760px;
+    }
+
+    .drawing {
+      padding: 24px 26px 28px 32px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .notes {
+      padding: 24px 28px 28px;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .caption {
+      margin: 16px 0 0;
+      display: grid;
