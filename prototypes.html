@@ -404,15 +404,13 @@
     footer {
       width: min(var(--max), 100%);
       margin: 0 auto;
-      padding: 32px var(--pad) 60px;
+      padding: 40px var(--pad) 60px;
       border-top: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       color: var(--muted);
       position: relative;
       z-index: 3;
@@ -420,10 +418,11 @@
     footer a { color: var(--muted); transition: color 160ms ease; }
     footer a:hover { color: var(--ink); }
 
-    .footer-right {
+    .footer-contact {
       display: flex;
-      align-items: center;
-      gap: 24px;
+      flex-direction: column;
+      gap: 4px;
+      text-align: right;
     }
 
     /* ── entrance animation ── */
@@ -473,8 +472,8 @@
       .ghost-card { padding: 28px 24px; }
       .spec-row { grid-template-columns: 1fr; gap: 4px; }
       .hero h1 { font-size: 2.4rem; }
-      footer { flex-direction: column; align-items: flex-start; }
-      .footer-right { gap: 16px; }
+      footer { grid-template-columns: 1fr; }
+      .footer-contact { text-align: left; }
     }
   </style>
 </head>
@@ -785,9 +784,11 @@
     </main>
 
     <footer>
-      <a href="/">← jereme.xyz</a>
-      <div class="footer-right">
-        <span>nrthrn · Vancouver, WA</span>
+      <div>
+        <a href="/">back to jereme.xyz</a>
+      </div>
+      <div class="footer-contact">
+        <span class="footer-address">915 Broadway St #100, Vancouver, WA 98660</span>
       </div>
     </footer>
   </div>
