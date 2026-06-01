@@ -1,556 +1,625 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0a0a0f">
-    <title>Jereme Abernathy — AI Systems & Product Development</title>
-    <meta name="description" content="Everything specialized. Everything deliberate. 18 years building systems across AI, robotics, LiDAR, sensing, design, and physical environments. Independent operator running fw/r, pine, nrthrn, and drift.">
-    <meta name="author" content="Jereme Abernathy">
-    <meta name="keywords" content="AI systems, prompt engineering, LLM evaluation, red teaming, RLHF, training data, Pacific Northwest, robotics, LiDAR">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jereme.xyz">
-    <meta property="og:title" content="Jereme Abernathy — Everything specialized. Everything deliberate.">
-    <meta property="og:description" content="Independent operator. AI systems, robotics, LiDAR, design, and coffee. Running fw/r, pine, nrthrn, and drift out of the PNW.">
-    <meta property="og:site_name" content="jereme.xyz">
-    <meta property="og:image" content="https://jereme.xyz/robot.jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@jeremedotxyz">
-    <meta name="twitter:creator" content="@jeremedotxyz">
-    <meta name="twitter:title" content="Jereme Abernathy — Everything specialized. Everything deliberate.">
-    <meta name="twitter:description" content="Independent operator. AI systems, robotics, design, and coffee. PNW.">
-    <meta name="twitter:image" content="https://jereme.xyz/robot.jpeg">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzBhMGEwZiIgcng9IjE4Ii8+PHJlY3QgeD0iNDUiIHk9IjgiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNCIgcng9IjMiIGZpbGw9IiNhYTVjM2EiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjciIHI9IjYiIGZpbGw9IiNmNWE5NmEiLz48cmVjdCB4PSIxMCIgeT0iMjYiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MiIgcng9IjE0IiBmaWxsPSIjZDk3ODQ2Ii8+PHJlY3QgeD0iMSIgeT0iNDAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNhYTVjM2EiLz48cmVjdCB4PSI4OSIgeT0iNDAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNhYTVjM2EiLz48cmVjdCB4PSIxNiIgeT0iMzYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjUiIGZpbGw9IiMwYTBhMGYiLz48Y2lyY2xlIGN4PSIyOSIgY3k9IjQ3IiByPSI3IiBmaWxsPSIjZjVjODQyIi8+PGNpcmNsZSBjeD0iMjkiIGN5PSI0NyIgcj0iMyIgZmlsbD0iIzBhMGEwZiIvPjxjaXJjbGUgY3g9IjMyIiBjeT0iNDQiIHI9IjIiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjU4IiB5PSIzNiIgd2lkdGg9IjI2IiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iIzBhMGEwZiIvPjxjaXJjbGUgY3g9IjcxIiBjeT0iNDciIHI9IjciIGZpbGw9IiNmNWM4NDIiLz48Y2lyY2xlIGN4PSI3MSIgY3k9IjQ3IiByPSIzIiBmaWxsPSIjMGEwYTBmIi8+PGNpcmNsZSBjeD0iNzQiIGN5PSI0NCIgcj0iMiIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI2NiIgcj0iMyIgZmlsbD0iI2FhNWMzYSIvPjxyZWN0IHg9IjE4IiB5PSI3NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjE4IiByeD0iNiIgZmlsbD0iIzBhMGEwZiIvPjxyZWN0IHg9IjIyIiB5PSI3OCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjgiIHJ4PSIyIiBmaWxsPSIjM2FhYTZhIi8+PHJlY3QgeD0iMzYiIHk9Ijc4IiB3aWR0aD0iMTAiIGhlaWdodD0iOCIgcng9IjIiIGZpbGw9IiMzYWFhNmEiLz48cmVjdCB4PSI1MCIgeT0iNzgiIHdpZHRoPSIxMCIgaGVpZ2h0PSI4IiByeD0iMiIgZmlsbD0iIzNhYWE2YSIvPjxyZWN0IHg9IjY0IiB5PSI3OCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjgiIHJ4PSIyIiBmaWxsPSIjM2FhYTZhIi8+PC9zdmc+">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://unpkg.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <noscript><style>.hero-eyebrow,.hero-title,.hero-description,.hero-cta{opacity:1!important}.capability-item::before{transform:scaleY(1)!important}.scroll-indicator{display:none}</style></noscript>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-NTH4464X6R');</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
-    <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
-    <style>
-        :root{--bg-primary:#0a0a0f;--bg-secondary:#12121a;--text-primary:#e8e6e3;--text-secondary:#a19b94;--accent:#d97846;--accent-dim:#aa5c3a;--border:#1f1f2e;--font-display:'Outfit',sans-serif;--font-body:'IBM Plex Sans',sans-serif}
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:var(--font-body);background:var(--bg-primary);color:var(--text-primary);line-height:1.6;overflow-x:hidden;transition:background-color .3s ease,color .3s ease}
-        .gradient-mesh{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
-        .gradient-blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.2;will-change:transform}
-        .gradient-blob-1{width:600px;height:600px;top:-10%;left:-10%;background:radial-gradient(circle,#2d4a6b,transparent 70%);animation:drift1 22s ease-in-out infinite}
-        .gradient-blob-2{width:500px;height:500px;bottom:-15%;right:-10%;background:radial-gradient(circle,#3a4a52,transparent 70%);opacity:.15;animation:drift2 28s ease-in-out infinite}
-        .gradient-blob-3{width:400px;height:400px;top:40%;left:50%;background:radial-gradient(circle,#2a3548,transparent 70%);opacity:.18;animation:drift3 35s ease-in-out infinite}
-        body.light-mode .gradient-blob{opacity:.08}body.light-mode .gradient-blob-2{opacity:.06}body.light-mode .gradient-blob-3{opacity:.05}
-        @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(15vw,20vh) scale(1.1)}66%{transform:translate(-10vw,30vh) scale(.95)}}
-        @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-20vw,-15vh) scale(1.15)}66%{transform:translate(10vw,-25vh) scale(.9)}}
-        @keyframes drift3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-30%,-70%) scale(1.2)}}
-        .particle-canvas{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.25}
-        body.light-mode .particle-canvas{opacity:.15}
-        .hero-content>*{position:relative;z-index:1}
-        @media(prefers-reduced-motion:reduce){.gradient-blob{animation:none!important}.particle-canvas{display:none}}
-        body.light-mode{--bg-primary:#faf9f7;--bg-secondary:#ffffff;--text-primary:#1a1816;--text-secondary:#5a5550;--border:#e8e6e3}
-        .theme-toggle{position:fixed;top:1.5rem;left:2rem;z-index:1001;width:40px;height:40px;background:transparent;border:none;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
-        .theme-toggle:hover{transform:translateY(-2px);opacity:.7}
-        .theme-toggle svg{width:20px;height:20px;fill:var(--text-primary);stroke:var(--text-primary);transition:all .3s ease}
-        .theme-toggle .moon-icon{display:none}
-        body.light-mode .theme-toggle .sun-icon{display:none}
-        body.light-mode .theme-toggle .moon-icon{display:block}
-        nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,15,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background-color .3s ease,border-color .3s ease}
-        body.light-mode nav{background:rgba(250,249,247,.95)}
-        .nav-container{max-width:1400px;margin:0 auto;padding:1.5rem 2rem;display:flex;justify-content:flex-end;align-items:center}
-        .nav-links{display:flex;gap:2.5rem;list-style:none}
-        .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:.9rem;font-weight:400;transition:color .2s ease}
-        .nav-links a:hover{color:var(--accent)}
-        .nav-links>li{position:relative;padding-bottom:1rem;margin-bottom:-1rem}
-        .nav-dropdown-toggle{cursor:pointer;display:flex;align-items:center;gap:.35rem}
-        .nav-dropdown-toggle::after{content:'';display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid var(--text-secondary);transition:transform .2s ease,border-color .2s ease;margin-top:1px}
-        .nav-links>li:hover .nav-dropdown-toggle::after{border-top-color:var(--accent);transform:rotate(180deg)}
-        .nav-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:.5rem 0;min-width:180px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,visibility .2s ease,transform .2s ease;transform:translateX(-50%) translateY(8px);backdrop-filter:blur(16px);z-index:1001}
-        .nav-links>li:hover .nav-dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-        .nav-dropdown a{display:block;padding:.65rem 1.25rem;font-size:.8rem;color:var(--text-secondary);white-space:nowrap;transition:color .2s ease,background .2s ease}
-        .nav-dropdown a:hover{color:var(--accent);background:rgba(217,120,70,0.06)}
-        body.light-mode .nav-dropdown{background:var(--bg-secondary);border-color:var(--border)}
-        .hero{position:relative;width:100%;padding:8rem 2rem 4rem;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-        .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
-        .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none;-webkit-mask-image:-webkit-radial-gradient(white,black)}
-        .hero-video::-webkit-media-controls,.hero-video::-webkit-media-controls-panel,.hero-video::-webkit-media-controls-play-button,.hero-video::-webkit-media-controls-start-playback-button,.hero-video::-webkit-media-controls-overlay-play-button,.hero-video::-webkit-media-controls-enclosure,.hero-video::-webkit-media-controls-overlay-enclosure{display:none!important;-webkit-appearance:none;opacity:0!important}
-        .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,15,.55) 0%,rgba(10,10,15,.45) 50%,rgba(10,10,15,.85) 100%);pointer-events:none}
-        body.light-mode .hero-overlay{background:linear-gradient(180deg,rgba(250,249,247,.6) 0%,rgba(250,249,247,.5) 50%,rgba(250,249,247,.88) 100%)}
-        @media(prefers-reduced-motion:reduce){.hero-video{display:none}}
-        .hero-eyebrow{font-size:.85rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;opacity:0}
-        .hero-title{font-family:var(--font-display);font-size:clamp(3rem,8vw,6rem);font-weight:600;line-height:1.1;letter-spacing:-.03em;margin-bottom:2rem;max-width:1100px;opacity:0}
-        .hero-description{font-size:1.35rem;line-height:1.7;color:var(--text-secondary);max-width:720px;margin-bottom:3rem;font-weight:300;opacity:0}
-        .hero-cta{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:var(--accent);color:var(--bg-primary);text-decoration:none;font-weight:500;border-radius:6px;transition:background .3s ease,transform .3s ease;opacity:0}
-        .hero-cta:hover{background:var(--accent-dim);transform:translateY(-2px)}
-        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.hero-eyebrow,.hero-title,.hero-description,.hero-cta,.scroll-indicator{opacity:1!important}.scroll-indicator{display:none}.word{transform:translateY(0)!important}.capability-item::before{transform:scaleY(1)!important}.venture-card{clip-path:none!important}}
-        .skip-link{position:absolute;top:-100px;left:1rem;z-index:9999;background:var(--accent);color:#fff;padding:.75rem 1.5rem;border-radius:6px;font-family:var(--font-body);font-size:.9rem;font-weight:500;text-decoration:none;transition:top .3s ease}
-        .skip-link:focus{top:1rem;outline:2px solid var(--text-primary);outline-offset:2px}
-        a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-        a:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none}
-        .word-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:inherit;padding-bottom:.15em;margin-bottom:-.15em}
-        .word{display:inline-block;will-change:transform}
-        .scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;background:var(--accent);z-index:1002;transform-origin:left center;transform:scaleX(0);opacity:.6}
-        nav.scrolled{background:rgba(10,10,15,.98)}
-        body.light-mode nav.scrolled{background:rgba(250,249,247,1)}
-        .counter-number{color:var(--text-primary);font-weight:500;font-variant-numeric:tabular-nums;display:inline-block}
-        .scroll-indicator{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:1rem;opacity:0;pointer-events:none}
-        .scroll-indicator-text{font-family:var(--font-body);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--text-secondary);opacity:.7}
-        .scroll-indicator-line{width:1px;height:40px;background:var(--text-secondary);opacity:.3;position:relative;overflow:hidden}
-        .scroll-indicator-line::after{content:'';position:absolute;top:-40px;left:0;width:100%;height:20px;background:linear-gradient(180deg,transparent,var(--accent));animation:scrollPulse 2s ease-in-out infinite}
-        @keyframes scrollPulse{0%{transform:translateY(0);opacity:0}50%{opacity:1}100%{transform:translateY(60px);opacity:0}}
-        @supports(view-transition-name:root){::view-transition-old(root),::view-transition-new(root){animation-duration:.5s;animation-timing-function:cubic-bezier(.65,0,.35,1)}}
-        .venture-card,.work-card{transform-style:preserve-3d}
-        section{max-width:1400px;margin:0 auto;padding:6rem 2rem}
-        .section-header{margin-bottom:4rem}
-        .section-eyebrow{font-size:.85rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
-        .section-title{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:600;line-height:1.2;letter-spacing:-.02em;margin-bottom:1.5rem}
-        .section-description{font-size:1.2rem;line-height:1.7;color:var(--text-secondary);max-width:680px}
-        .section-with-video{position:relative;overflow:hidden;padding:0;max-width:100%}
-        .section-alt{background:var(--bg-secondary)}
-        .section-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none}
-        @media(max-width:768px){.section-video{object-position:center top}}
-        .section-video::-webkit-media-controls,.section-video::-webkit-media-controls-overlay-play-button,.section-video::-webkit-media-controls-enclosure{display:none!important}
-        .section-video-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,15,.82) 0%,rgba(10,10,15,.75) 50%,rgba(10,10,15,.90) 100%);pointer-events:none}
-        body.light-mode .section-video-overlay{background:linear-gradient(180deg,rgba(250,249,247,.88) 0%,rgba(250,249,247,.82) 50%,rgba(250,249,247,.92) 100%)}
-        .section-video-placeholder{display:none}
-        .section-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:6rem 2rem}
-        .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
-        .work-card{background:rgba(18,18,26,0.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--accent);border-radius:8px;padding:2.5rem;transition:all .3s ease}
-        @supports not (backdrop-filter:blur(1px)){.work-card{background:rgba(18,18,26,0.75)}}
-        .work-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 0 24px rgba(217,120,70,0.15)}
-        body.light-mode .work-card{background:rgba(250,249,247,0.25)}
-        @supports not (backdrop-filter:blur(1px)){body.light-mode .work-card{background:rgba(250,249,247,0.85)}}
-        .work-card-title{font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin-bottom:1rem;color:var(--text-primary)}
-        .work-card-description{color:var(--text-secondary);font-size:.95rem;line-height:1.6}
-        @media(max-width:1024px){.work-grid{grid-template-columns:repeat(2,1fr)}}
-        .contact{background:var(--bg-secondary);border-radius:16px;padding:6rem 4rem;text-align:center;border:1px solid var(--border)}
-        .contact-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:600;margin-bottom:1.5rem;letter-spacing:-.02em}
-        .contact-description{font-size:1.2rem;color:var(--text-secondary);margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto}
-        .contact-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
-        .contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2rem;background:transparent;color:var(--text-primary);text-decoration:none;font-weight:500;border:1px solid var(--border);border-radius:6px;transition:all .3s ease}
-        .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-        .contact-link.primary{background:var(--accent);color:var(--bg-primary);border-color:var(--accent)}
-        .contact-link.primary:hover{background:var(--accent-dim);border-color:var(--accent-dim);color:var(--bg-primary)}
-        footer{max-width:1400px;margin:0 auto;padding:3rem 2rem;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:var(--text-secondary);font-size:.9rem}
-        .footer-info{justify-self:start;display:flex;flex-direction:column;gap:.4rem;font-family:var(--font-body);font-size:.9rem;color:var(--text-secondary)}
-        .footer-links{display:flex;gap:2rem;justify-self:end}
-        .footer-links a{color:var(--text-secondary);text-decoration:none;transition:color .2s ease}
-        .footer-links a:hover{color:var(--accent)}
-        .footer-address{font-family:var(--font-body);font-size:.9rem;color:var(--text-secondary)}
-        .footer-social{justify-self:center;display:flex;gap:1.25rem;align-items:center}
-        .footer-social a{display:flex;align-items:center;justify-content:center;width:20px;height:20px;color:var(--text-secondary);opacity:.6;transition:opacity .3s ease,color .3s ease,transform .4s cubic-bezier(.34,1.56,.64,1)}
-        .footer-social a:hover{opacity:1;color:var(--accent);transform:rotate(-8deg) scale(1.15)}
-        .footer-social svg{width:100%;height:100%;fill:currentColor}
-        .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:4rem;padding-top:4rem;border-top:1px solid rgba(255,255,255,.08)}
-        body.light-mode .detail-grid{border-top-color:var(--border)}
-        .detail-item{padding-left:1.75rem;position:relative}
-        .detail-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);transform:scaleY(0);transform-origin:top center;transition:transform .9s cubic-bezier(.65,0,.35,1),background-color .3s ease}
-        .detail-item.is-revealed::before{transform:scaleY(1)}
-        .detail-item:hover::before{background:var(--accent)}
-        .detail-label{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:block}
-        .detail-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:1rem;color:var(--text-primary);line-height:1.3}
-        .detail-body{color:var(--text-secondary);font-size:.9rem;line-height:1.75}
-        .detail-body p+p{margin-top:.75rem}
-        @media(max-width:1024px){.work-grid{grid-template-columns:repeat(2,1fr)}.detail-grid{grid-template-columns:repeat(2,1fr);gap:2.5rem}}
-        .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent;flex-direction:column;gap:5px}
-        .hamburger span{display:block;width:22px;height:2px;background:var(--text-primary);border-radius:1px;transition:all .3s ease}
-        .hamburger.is-active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-        .hamburger.is-active span:nth-child(2){opacity:0}
-        .hamburger.is-active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-        .mobile-nav{position:fixed;inset:0;z-index:999;background:var(--bg-primary);padding:5rem 2rem 2rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility .3s ease;overflow-y:auto;display:none}
-        body.light-mode .mobile-nav{background:var(--bg-primary)}
-        .mobile-nav.is-open{opacity:1;visibility:visible;pointer-events:auto}
-        .mobile-nav-links{list-style:none;display:flex;flex-direction:column}
-        .mobile-nav-links>li{border-bottom:1px solid var(--border)}
-        .mobile-nav-links>li>a,.mobile-nav-toggle{display:block;padding:1.15rem 0;font-size:1.1rem;color:var(--text-primary);text-decoration:none;font-weight:500;background:none;border:none;font-family:inherit;cursor:pointer;width:100%;text-align:left}
-        .mobile-nav-toggle{display:flex;align-items:center;justify-content:space-between}
-        .mobile-nav-toggle .chevron{font-size:.7rem;color:var(--text-secondary);transition:transform .25s ease}
-        .mobile-nav-toggle.is-open .chevron{transform:rotate(180deg);color:var(--accent)}
-        .mobile-sub{max-height:0;overflow:hidden;transition:max-height .3s ease}
-        .mobile-sub.is-open{max-height:300px}
-        .mobile-sub a{display:block;padding:.7rem 0 .7rem 1.25rem;font-size:.95rem;color:var(--text-secondary);text-decoration:none;transition:color .15s ease}
-        .mobile-sub a:active{color:var(--accent)}
-        @media(max-width:768px){.hamburger{display:flex}.mobile-nav{display:block}.theme-toggle{top:1.25rem;left:1.5rem;width:44px;height:44px}.theme-toggle svg{width:18px;height:18px}.nav-links{display:none}.nav-container{padding:1.25rem 1.5rem}.hero{padding:5rem 1.5rem 3rem;min-height:100svh}.hero-content{padding:0}.scroll-indicator{display:none}.hero-eyebrow{font-size:.75rem;margin-bottom:1rem}.hero-title{font-size:clamp(2rem,10vw,3.5rem);margin-bottom:1.5rem}.hero-description{font-size:1.05rem;margin-bottom:2rem;line-height:1.65}.hero-cta{width:100%;justify-content:center;padding:1.15rem 2rem;font-size:1rem;min-height:44px}section{padding:4rem 1.5rem}.section-eyebrow{font-size:.75rem}.section-title{font-size:clamp(1.75rem,8vw,2.5rem);margin-bottom:1rem}.section-description{font-size:1rem}.work-grid{grid-template-columns:1fr;gap:1.25rem}.work-card{padding:1.75rem}.work-card-title{font-size:1.2rem}.work-card-description{font-size:.9rem}.detail-grid{grid-template-columns:1fr;gap:2rem;margin-top:3rem;padding-top:3rem}.detail-item{padding-left:1.5rem}.section-inner{padding:4rem 1.5rem}.contact{padding:3.5rem 1.5rem}.contact-title{font-size:clamp(1.75rem,8vw,2.5rem);margin-bottom:1rem}.contact-description{font-size:1rem;margin-bottom:2rem}.contact-links{flex-direction:column;width:100%}.contact-link{width:100%;justify-content:center;padding:1.15rem 2rem;font-size:1rem;min-height:44px}footer{grid-template-columns:1fr;gap:1.75rem;text-align:center;padding:2.5rem 1.5rem;font-size:.85rem}.footer-info,.footer-social,.footer-links{justify-self:center}.footer-links{gap:1.5rem}.footer-links a{min-height:44px;display:inline-flex;align-items:center}.footer-info{align-items:center;text-align:center}.footer-social{gap:1rem}.footer-social a{width:44px;height:44px;opacity:.7}.footer-social svg{width:20px;height:20px}.footer-address{font-size:.85rem}}
-        @media(max-width:480px){.hero{padding:4rem 1.25rem 2.5rem}.hero-title{font-size:clamp(1.75rem,11vw,2.5rem)}.hero-description{font-size:.95rem;line-height:1.6}.hero-eyebrow{letter-spacing:.08em}.section-title{font-size:clamp(1.5rem,9vw,2rem)}.section-inner{padding:3rem 1.25rem}.work-card{padding:1.5rem}.work-card-title{font-size:1.1rem}.work-card-description{font-size:.88rem}.detail-item{padding-left:1.25rem}.detail-title{font-size:1.05rem}.detail-body{font-size:.88rem}.contact{padding:3rem 1.25rem}.contact-description{font-size:.95rem}.footer-social a{width:44px;height:44px}}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>Jereme Abernathy - AI Systems & Product Development</title>
+  <meta name="description" content="AI systems, robotics, LiDAR, design, hardware, and hospitality work by Jereme Abernathy.">
+  <meta name="author" content="Jereme Abernathy">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jereme.xyz">
+  <meta property="og:title" content="Jereme Abernathy - Everything specialized. Everything deliberate.">
+  <meta property="og:description" content="Independent operator across AI systems, robotics, design, hardware, and coffee.">
+  <meta property="og:image" content="https://jereme.xyz/robot.jpeg">
+  <style>
+    :root {
+      --page: #f5f5f7;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0, 0, 0, .12);
+      --panel: #fff;
+      --blue: #0071e3;
+      --green: #2f9b61;
+      --orange: #ff7a1a;
+      --pink: #ed4f86;
+      --purple: #7d5cff;
+      --radius: 8px;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .12);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      z-index: 100;
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .global-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(245, 245, 247, .78);
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      backdrop-filter: saturate(180%) blur(18px);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      height: 52px;
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+      color: rgba(29, 29, 31, .82);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .hero {
+      min-height: calc(100svh - 52px);
+      display: grid;
+      align-items: center;
+      padding: 58px 22px 38px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(245, 245, 247, .76) 58%, #f5f5f7),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2400&q=85") center / cover;
+    }
+
+    .hero-copy {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .product-kicker {
+      margin: 0 0 12px;
+      font-size: clamp(24px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .hero h1 {
+      margin: 0 auto;
+      max-width: 1050px;
+      font-size: clamp(56px, 10vw, 132px);
+      line-height: .9;
+      letter-spacing: 0;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-lede {
+      max-width: 760px;
+      margin: 26px auto 0;
+      font-size: clamp(21px, 3vw, 32px);
+      line-height: 1.16;
+      font-weight: 700;
+      color: #2b2b2d;
+    }
+
+    .hero-sub {
+      max-width: 690px;
+      margin: 18px auto 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .link-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .media-stage {
+      max-width: 1180px;
+      margin: -20px auto 0;
+      padding: 0 22px 86px;
+    }
+
+    .window-wall {
+      min-height: 430px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(135deg, rgba(0, 113, 227, .76), rgba(237, 79, 134, .58) 44%, rgba(47, 155, 97, .72)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=85") center / cover;
+      display: grid;
+      align-items: end;
+      padding: clamp(22px, 5vw, 54px);
+      color: #fff;
+    }
+
+    .window-wall p {
+      max-width: 640px;
+      margin: 0;
+      font-size: clamp(28px, 5vw, 58px);
+      line-height: 1;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 82px 22px;
+    }
+
+    .section.center { text-align: center; }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .section h2 {
+      margin: 0 auto;
+      max-width: 900px;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .94;
+      letter-spacing: 0;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+
+    .section-lede {
+      max-width: 760px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: clamp(19px, 2.3vw, 28px);
+      line-height: 1.2;
+      font-weight: 650;
+      text-wrap: balance;
+    }
+
+    .feature-band {
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .feature-visual {
+      min-height: 520px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 12px 42px rgba(0, 0, 0, .12);
+    }
+
+    .visual-ai {
+      background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .34)),
+        url("https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1600&q=85");
+    }
+
+    .visual-design {
+      background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .25)),
+        url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=85");
+    }
+
+    .visual-coffee {
+      background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .34)),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85");
+    }
+
+    .feature-copy {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: clamp(26px, 5vw, 54px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .08);
+    }
+
+    .feature-copy h3 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .feature-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .tile-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 14px;
+      overflow-x: auto;
+      padding: 32px 0 10px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+    }
+
+    .tile {
+      min-height: 260px;
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+      padding: 24px;
+      color: #fff;
+      display: grid;
+      align-content: space-between;
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(160deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .48));
+    }
+
+    .tile h3 {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .tile p {
+      margin: 0;
+      max-width: 27ch;
+      font-size: 15px;
+      color: rgba(255, 255, 255, .88);
+    }
+
+    .tile:nth-child(1) { background: linear-gradient(135deg, var(--blue), var(--purple)); }
+    .tile:nth-child(2) { background: linear-gradient(135deg, var(--green), #16a6a5); }
+    .tile:nth-child(3) { background: linear-gradient(135deg, var(--orange), var(--pink)); }
+    .tile:nth-child(4) { background: linear-gradient(135deg, #303134, #737a85); }
+    .tile:nth-child(5) { background: linear-gradient(135deg, #c84528, #f6b14b); }
+    .tile:nth-child(6) { background: linear-gradient(135deg, #215c76, #37b6ad); }
+
+    .stat-band {
+      background: #fff;
+      padding: 72px 22px;
+      border-top: 1px solid rgba(0, 0, 0, .06);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+    }
+
+    .stats {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .split-list {
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px;
+      min-height: 260px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
+    }
+
+    .mini-card h3 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.05;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .contact-panel {
+      max-width: 1040px;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      padding: clamp(38px, 7vw, 76px);
+      color: #fff;
+      text-align: center;
+      background:
+        linear-gradient(120deg, rgba(0, 113, 227, .92), rgba(237, 79, 134, .88), rgba(255, 122, 26, .88)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      color: #fff;
+      max-width: 760px;
+    }
+
+    .contact-panel p {
+      max-width: 760px;
+      margin: 20px auto 0;
+      color: rgba(255, 255, 255, .9);
+      font-size: 20px;
+    }
+
+    .contact-panel .pill {
+      margin-top: 28px;
+      background: #fff;
+      color: #111;
+    }
+
+    footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 22px 46px;
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--blue); }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-inner { padding: 0 16px; }
+      .hero { padding-left: 16px; padding-right: 16px; }
+      .media-stage, .section { padding-left: 16px; padding-right: 16px; }
+      .feature-band, .split-list, .stats {
+        grid-template-columns: 1fr;
+      }
+      .feature-visual { min-height: 360px; }
+      .tile-rail { grid-auto-columns: 82%; }
+      .window-wall { min-height: 360px; }
+      footer { display: grid; }
+    }
+
+    @media (max-width: 520px) {
+      .hero-copy { max-width: 300px; }
+      .hero h1 { max-width: 300px; font-size: 42px; line-height: .96; }
+      .product-kicker { font-size: 24px; }
+      .hero-lede { max-width: 300px; font-size: 19px; }
+      .hero-sub { max-width: 300px; font-size: 16px; }
+      .section h2 { font-size: 42px; }
+      .section { padding-top: 64px; padding-bottom: 64px; }
+      .tile-rail { grid-auto-columns: 88%; }
+      .mini-card { min-height: 0; }
+    }
+  </style>
 </head>
 <body>
-    <div class="gradient-mesh" aria-hidden="true">
-        <div class="gradient-blob gradient-blob-1"></div>
-        <div class="gradient-blob gradient-blob-2"></div>
-        <div class="gradient-blob gradient-blob-3"></div>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <nav class="global-nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="brand" href="#">Jereme Abernathy</a>
+      <ul class="nav-links">
+        <li><a href="#ai">AI</a></li>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#coffee">Coffee</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+      <a class="pill" href="#contact">Contact</a>
     </div>
-    <a href="#main-content" class="skip-link">Skip to content</a>
-    <div class="scroll-progress"></div>
-    <button class="theme-toggle" aria-label="Toggle dark/light mode">
-        <svg class="moon-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="sun-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#e8e6e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5" fill="#e8e6e3"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-    </button>
-    <nav>
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li>
-                    <a href="/ai/" class="nav-dropdown-toggle">Technology</a>
-                    <div class="nav-dropdown">
-                        <a href="/ai/">AI</a>
-                        <a href="/robotics/">Robotics</a>
-                        <a href="/lidar/">LiDAR</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#design" class="nav-dropdown-toggle">Design</a>
-                    <div class="nav-dropdown">
-                        <a href="/overview.html">Overview</a>
-                        <a href="/prototypes.html">Prototypes</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#coffee" class="nav-dropdown-toggle">Coffee</a>
-                    <div class="nav-dropdown">
-                        <a href="/pine/">Pine</a>
-                        <a href="/drift/">Drift</a>
-                    </div>
-                </li>
-                <li><a href="/about/">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
+  </nav>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Everything specialized. Everything deliberate.</h1>
+        <p class="hero-lede">AI systems, robotics, LiDAR, product design, and physical spaces built with the same standard: reliability over approximation.</p>
+        <p class="hero-sub">18 years across frontier model workflows, sensing systems, hardware, consumer product development, and hospitality concepts rooted in the Pacific Northwest.</p>
+        <div class="hero-actions">
+          <a class="pill" href="#contact">Get in touch</a>
+          <a class="link-cta" href="#ai">Explore the work</a>
         </div>
-    </nav>
-    <div class="mobile-nav" id="mobile-nav">
-        <ul class="mobile-nav-links">
-            <li>
-                <button class="mobile-nav-toggle" aria-expanded="false">
-                    <span>Technology</span>
-                    <span class="chevron">▾</span>
-                </button>
-                <div class="mobile-sub">
-                    <a href="/ai/">AI</a>
-                    <a href="/robotics/">Robotics</a>
-                    <a href="/lidar/">LiDAR</a>
-                </div>
-            </li>
-            <li>
-                <button class="mobile-nav-toggle" aria-expanded="false">
-                    <span>Design</span>
-                    <span class="chevron">▾</span>
-                </button>
-                <div class="mobile-sub">
-                    <a href="/overview.html">Overview</a>
-                    <a href="/prototypes.html">Prototypes</a>
-                </div>
-            </li>
-            <li>
-                <button class="mobile-nav-toggle" aria-expanded="false">
-                    <span>Coffee</span>
-                    <span class="chevron">▾</span>
-                </button>
-                <div class="mobile-sub">
-                    <a href="/pine/">Pine</a>
-                    <a href="/drift/">Drift</a>
-                </div>
-            </li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-    <main id="main-content">
-    <div class="hero">
-        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-hidden="true">
-            <source src="hero-bg.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay" aria-hidden="true"></div>
-        <canvas class="particle-canvas" aria-hidden="true"></canvas>
-        <div class="hero-content">
-            <div class="hero-eyebrow">Field Transmission // Pacific Northwest</div>
-            <h1 class="hero-title">Everything specialized. Everything deliberate.</h1>
-            <p class="hero-description">
-                <span class="counter-number" data-target="18">18</span> years building systems across AI, robotics, LiDAR, sensing, design, and physical environments—from infrastructure to frontier model deployment. Focused on reliability over approximation.
-            </p>
-            <a href="#contact" class="hero-cta">Get in touch →</a>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-indicator-line"></div>
-            <div class="scroll-indicator-text">Scroll</div>
-        </div>
+      </div>
+    </section>
+
+    <div class="media-stage" aria-hidden="true">
+      <div class="window-wall">
+        <p>Systems thinking for models, machines, objects, and rooms.</p>
+      </div>
     </div>
 
-    <!-- ============ SECTION 1 — AI SYSTEMS ============ -->
-    <section id="ai" class="section-with-video">
-        <video class="section-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-hidden="true">
-            <source src="ai-bg.mp4" type="video/mp4">
-        </video>
-        <div class="section-video-overlay"></div>
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">AI · LiDAR · Robotic Systems // fw/r</div>
-                <h2 class="section-title">Where the model breaks is where the work starts.</h2>
-                <p class="section-description">Active contributor to training pipelines and evaluation frameworks for frontier models. Building prompt systems, annotation rubrics, and red-teaming protocols across GPT-4, Claude, Gemini, Mistral, Llama, and open-source deployments. Turns out "jailbreak the model" is a job description now. On the hardware side: point cloud processing, sensor fusion, and mapping and localization pipelines for autonomous systems — where sensor fusion errors don't get flagged in eval, they show up in the field.</p>
-            </div>
-            <div class="work-grid">
-                <div class="work-card">
-                    <h3 class="work-card-title">Training Data</h3>
-                    <div class="work-card-description">Human feedback annotation, response rewriting, task instruction authoring, rubric design. Quality assurance for datasets feeding production models at scale.</div>
-                </div>
-                <div class="work-card">
-                    <h3 class="work-card-title">Robotics & LiDAR</h3>
-                    <div class="work-card-description">Precise sensor integration, spatial intelligence, autonomous systems. Governments, enterprises, and startups willing to ask difficult questions about what their data actually means.</div>
-                </div>
-                <div class="work-card">
-                    <h3 class="work-card-title">Systems Architecture</h3>
-                    <div class="work-card-description">Cloudflare Workers edge compute, LangChain orchestration, vector store integration, semantic caching. Python, TypeScript, React. Infrastructure that doesn't become a liability.</div>
-                </div>
-            </div>
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <span class="detail-label">Foundation Stack</span>
-                    <h3 class="detail-title">Active across every major frontier model.</h3>
-                    <div class="detail-body">
-                        <p>GPT-4o/4-turbo, Claude 3.5 Sonnet/Opus (100k+ context), Gemini 1.5 Pro, Llama 3.1 (8B–405B), Mistral Large/Codestral. Not theoretical — production deployments across annotation platforms, evaluation pipelines, and client-facing systems.</p>
-                        <p>Architectural familiarity with transformer variants, mixture-of-experts, and retrieval-augmented generation topologies. Knowing how a model is built shapes how you break it and how you fix it.</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Evaluation & Feedback</span>
-                    <h3 class="detail-title">Production-scale human feedback workflows.</h3>
-                    <div class="detail-body">
-                        <p>Outlier, Scale AI, Appen, Remotasks — RLHF preference labeling, comparative ranking, constitutional AI alignment, multi-objective reward modeling. Inter-annotator agreement protocols: Fleiss' kappa, Cohen's κ. Rubric design that holds up under edge cases.</p>
-                        <p>The dataset is only as good as the rubric. The rubric is only as good as the judgment behind it. That's the actual job.</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Adversarial Testing</span>
-                    <h3 class="detail-title">Stress-testing before the stress finds you.</h3>
-                    <div class="detail-body">
-                        <p>Systematic red teaming across jailbreak taxonomies: prompt injection, context manipulation, role-play exploits, indirect instruction attacks. Automated hallucination detection via claim decomposition and entailment verification. Factuality benchmarking against knowledge graphs.</p>
-                        <p>Out-of-distribution behavioral analysis. Finding the failure modes in a controlled environment instead of a production incident.</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section center" id="ai">
+      <h2>Where the model breaks is where the work starts.</h2>
+      <p class="section-lede">Prompt systems, annotation rubrics, red-teaming protocols, point cloud processing, sensor fusion, and mapping pipelines for systems that have to behave outside the demo.</p>
+      <div class="feature-band">
+        <div class="feature-visual visual-ai" aria-label="Robotics and sensing visual"></div>
+        <div class="feature-copy">
+          <h3>Frontier model work with field-grade expectations.</h3>
+          <p>Active across training data, evaluation workflows, RLHF feedback loops, hallucination testing, and adversarial prompt analysis for GPT, Claude, Gemini, Mistral, Llama, and open-source deployments.</p>
+          <p>On the hardware side: robotics, LiDAR, and spatial intelligence pipelines where sensor fusion errors do not stay theoretical.</p>
         </div>
+      </div>
+      <div class="tile-rail" aria-label="AI capabilities">
+        <article class="tile"><h3>Training Data</h3><p>Response rewriting, rubric design, preference labeling, and QA for production datasets.</p></article>
+        <article class="tile"><h3>Evaluation</h3><p>Inter-annotator agreement, factuality checks, and benchmarks that survive edge cases.</p></article>
+        <article class="tile"><h3>Red Teaming</h3><p>Prompt injection, context manipulation, role-play exploits, and indirect attacks.</p></article>
+        <article class="tile"><h3>Robotics</h3><p>Sensor integration, spatial intelligence, autonomous systems, and field behavior.</p></article>
+      </div>
     </section>
 
-    <!-- ============ SECTION 2 — DESIGN & PRODUCT ============ -->
-    <section id="design" class="section-with-video section-alt">
-        <video class="section-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-hidden="true">
-            <source src="design-bg.mp4" type="video/mp4">
-        </video>
-        <div class="section-video-overlay"></div>
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">Design & Product // nrthrn</div>
-                <h2 class="section-title">Function is the brief. Everything else is craft.</h2>
-                <p class="section-description">Tech and industrial goods designed for utility, refined by human judgment. Prototypes to production. Consumer hardware to tooling. Nothing gratuitous, nothing wasted. Objects built to work exactly the way they look.</p>
-            </div>
-            <div class="work-grid">
-                <div class="work-card"><h3 class="work-card-title">Industrial Design</h3><div class="work-card-description">Form follows function, then gets refined until there's nothing left to remove. Consumer goods, tools, and hardware designed for the way people actually use things.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Prototyping</h3><div class="work-card-description">From concept to physical object. Iterative builds, material selection, tolerance testing. The gap between a good idea and a manufacturable product is where most things die.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Hardware Development</h3><div class="work-card-description">Consumer electronics, embedded systems, peripheral devices. Hardware that ships to millions is a different discipline than hardware that ships to one client. Both matter here.</div></div>
-            </div>
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <span class="detail-label">Hardware to Market</span>
-                    <h3 class="detail-title">18 years from concept to shipping product.</h3>
-                    <div class="detail-body">
-                        <p>Former PM on hardware at a large tech company — camera systems, audio hardware, smart displays at consumer scale. That experience lives in every nrthrn project. Understanding supply chain, manufacturing tolerances, and what "done" actually means when a product ships to millions.</p>
-                        <p>Independent builds operate differently. Smaller runs, tighter margins, more direct material decisions. The discipline is the same. The stakes are different.</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Visual Systems</span>
-                    <h3 class="detail-title">Brand architecture built to last, not to launch.</h3>
-                    <div class="detail-body">
-                        <p>Consumer and industrial objects designed from the material out. Every decision justified by use, every surface earned. The gap between a thing that works and a thing that feels inevitable is where the actual work lives.</p>
-                        <p>The scale ranges from a single prototype to full production runs. The clients range from manufacturers to independent operators building something that didn't exist before. The object doesn't care who made it — it either does what it's supposed to do, or it doesn't.</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">Physical–Digital</span>
-                    <h3 class="detail-title">Objects and interfaces share the same rules.</h3>
-                    <div class="detail-body">
-                        <p>Industrial and UI design both reduce to the same question: what does the person need to happen, and what gets in the way. The medium changes — aluminum, glass, CSS, firmware — the discipline doesn't.</p>
-                        <p>nrthrn sits at that intersection deliberately. Consumer hardware, digital interfaces, tooling, and physical goods under one roof. Cross-pollination is the point.</p>
-                    </div>
-                </div>
-            </div>
+    <div class="stat-band" aria-label="Experience summary">
+      <div class="stats">
+        <div class="stat"><strong>18</strong><span>years building systems</span></div>
+        <div class="stat"><strong>6+</strong><span>frontier model families</span></div>
+        <div class="stat"><strong>4</strong><span>operating lanes: fw/r, nrthrn, pine, drift</span></div>
+      </div>
+    </div>
+
+    <section class="section center" id="design">
+      <h2>Function is the brief. Everything else is craft.</h2>
+      <p class="section-lede">Tech and industrial goods designed for utility, refined by human judgment, and shaped by the realities of manufacturing, materials, and use.</p>
+      <div class="feature-band">
+        <div class="feature-copy">
+          <h3>Objects and interfaces share the same rules.</h3>
+          <p>Consumer hardware, embedded systems, industrial design, visual systems, and tooling are all reduced to the same question: what does the person need to happen, and what gets in the way?</p>
+          <p>From single prototypes to production runs, the object either does what it is supposed to do or it does not.</p>
         </div>
+        <div class="feature-visual visual-design" aria-label="Design and product visual"></div>
+      </div>
+      <div class="split-list">
+        <article class="mini-card"><h3>Industrial Design</h3><p>Consumer goods, tools, and hardware designed around use, material, and restraint.</p></article>
+        <article class="mini-card"><h3>Prototyping</h3><p>Concepts pushed into physical builds, tolerance tests, material decisions, and manufacturable product paths.</p></article>
+        <article class="mini-card"><h3>Hardware Development</h3><p>Camera systems, audio hardware, smart displays, peripheral devices, and embedded systems.</p></article>
+      </div>
     </section>
 
-    <!-- ============ SECTION 3 — COFFEE & HOSPITALITY ============ -->
-    <section id="coffee" class="section-with-video">
-        <video class="section-video" autoplay muted loop playsinline webkit-playsinline preload="metadata" aria-hidden="true">
-            <source src="coffee-bg.mp4" type="video/mp4">
-        </video>
-        <div class="section-video-overlay"></div>
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">Coffee & Hospitality // pine · drift</div>
-                <h2 class="section-title">A place that actually wants you there.</h2>
-                <p class="section-description">Two concepts. One rooted in a PNW neighborhood, one on the Washington coast. Both built on the same conviction — a space that earns its place in the community it's inside of. The coffee is good. The quiet is better.</p>
-            </div>
-            <div class="work-grid">
-                <div class="work-card"><h3 class="work-card-title">Sourcing & Roasting</h3><div class="work-card-description">Direct relationships with farms, careful selection, roast profiles that don't bury the bean. Coffee that tastes like it came from somewhere specific — because it did.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Space Design</h3><div class="work-card-description">Built for the neighborhood it's in, not the neighborhood someone wishes it was. Materials that age well. Light that doesn't lie. Nothing in the space is accidental.</div></div>
-                <div class="work-card"><h3 class="work-card-title">Community & Culture</h3><div class="work-card-description">A coffee shop that actually wants regulars. Collaborative workspace, slow mornings, people who work on real things. The culture is the product as much as the espresso.</div></div>
-            </div>
-            <div class="detail-grid">
-                <div class="detail-item">
-                    <span class="detail-label">pine</span>
-                    <h3 class="detail-title">One location. One idea that keeps being right.</h3>
-                    <div class="detail-body">
-                        <p>PNW-rooted coffee built around a single conviction: people do their best thinking when a space actually wants them there. Not a 45-minute table turn. Not an ambient playlist optimized for spend-per-seat. A place you come back to.</p>
-                        <p>The sourcing, the build-out, the culture — all of it tuned to the specific community pine is inside of. The brand is deliberate. The space earns it.</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">drift</span>
-                    <h3 class="detail-title">Coastal coffee. Earned discovery.</h3>
-                    <div class="detail-body">
-                        <p>Somewhere on the coast where rust is real and community's earned. No coordinates, no signage you'll spot from the harbor. Weathered walls, good coffee, people who actually live here. Built for the ones who belong. Discovered by the ones who look.</p>
-                        <p>A different thing than pine. Slower. More deliberate. One location, one coast, one kind of person. Not for everyone — and that's the whole point.</p>
-                    </div>
-                </div>
-                <div class="detail-item">
-                    <span class="detail-label">The Space</span>
-                    <h3 class="detail-title">Stay as long as you need. We mean it.</h3>
-                    <div class="detail-body">
-                        <p>Fast wifi, power at every seat, good music at the right volume — not too quiet to feel sterile, not loud enough to make you leave. Chairs you forget you're sitting in. A room that doesn't rush you out the door the moment your cup is empty.</p>
-                        <p>Built for the people who need somewhere to think. Founders, writers, builders, people between meetings who don't want to go back to the office yet. The second cup is always on your terms.</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section center" id="coffee">
+      <h2>A place that actually wants you there.</h2>
+      <p class="section-lede">Two concepts, one rooted in a PNW neighborhood and one on the Washington coast. Both built around spaces that earn their place in the community they are inside of.</p>
+      <div class="feature-band">
+        <div class="feature-visual visual-coffee" aria-label="Coffee and hospitality visual"></div>
+        <div class="feature-copy">
+          <h3>The coffee is good. The quiet is better.</h3>
+          <p>Direct sourcing, careful roast profiles, material-rich interiors, useful seating, proper light, fast wifi, power where people actually sit, and a culture that does not rush the second cup.</p>
+          <p>pine is neighborhood-rooted. drift is coastal and earned by discovery. Different rooms, same conviction.</p>
         </div>
+      </div>
+      <div class="tile-rail" aria-label="Hospitality capabilities">
+        <article class="tile"><h3>Sourcing</h3><p>Coffee that tastes like it came from somewhere specific because it did.</p></article>
+        <article class="tile"><h3>Space Design</h3><p>Materials that age well, light that works, and rooms tuned for the people inside them.</p></article>
+        <article class="tile"><h3>Community</h3><p>A coffee shop that actually wants regulars, builders, writers, founders, and people between meetings.</p></article>
+        <article class="tile"><h3>Culture</h3><p>The room is part of the product. So is the pace. So is the welcome.</p></article>
+      </div>
     </section>
 
-    <section>
-        <div class="contact" id="contact">
-            <h2 class="contact-title">Let's talk.</h2>
-            <p class="contact-description">Prompt engineering, evaluation frameworks, red teaming, training data pipelines, LiDAR and sensor fusion, autonomous systems, industrial design, hardware prototyping, consumer product development. Remote-first, async-optimized, allegedly hilarious, precision-focused. No stand-ups. No slide decks. Just the data.</p>
-            <div class="contact-links">
-                <a href="mailto:jeremedotxyz@gmail.com?subject=Inquiry%20from%20jereme.xyz" class="contact-link primary">Ping me</a>
-            </div>
-        </div>
+    <section class="section" id="contact">
+      <div class="contact-panel">
+        <h2>Let’s talk.</h2>
+        <p>Prompt engineering, evaluation frameworks, red teaming, training data pipelines, LiDAR and sensor fusion, autonomous systems, industrial design, hardware prototyping, and consumer product development.</p>
+        <a class="pill" href="mailto:jeremedotxyz@gmail.com?subject=Inquiry%20from%20jereme.xyz">Ping me</a>
+      </div>
     </section>
-    </main>
+  </main>
 
-    <footer>
-        <div class="footer-info">
-            <div>&copy; 2026 jereme.xyz</div>
-            <div class="footer-address">915 Broadway St #100, Vancouver, WA 98660</div>
-        </div>
-        <div class="footer-social">
-            <a href="https://github.com/jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://www.x.com/jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="https://instagram.com/jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-            <a href="https://www.threads.net/@jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="Threads"><svg viewBox="0 0 16 16"><path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/></svg></a>
-            <a href="https://substack.com/@jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="Substack"><svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
-            <a href="https://www.youtube.com/@jeremedotxyz" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=af4199ae75104e2b" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
-        </div>
-        <div class="footer-links">
-            <a href="/privacy.html">Privacy</a>
-            <a href="/terms.html">Terms</a>
-        </div>
-    </footer>
-
-    <script>
-        (function initParticles(){const canvas=document.querySelector('.particle-canvas');if(!canvas)return;if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;const ctx=canvas.getContext('2d');let particles=[],animationId;function resizeCanvas(){canvas.width=canvas.parentElement.offsetWidth;canvas.height=canvas.parentElement.offsetHeight;}function createParticles(){particles=[];const count=Math.floor((canvas.width*canvas.height)/25000);for(let i=0;i<count;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,radius:Math.random()*1.5+0.5,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,opacity:Math.random()*.5+.3});}}
-        function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);const c=document.body.classList.contains('light-mode')?'rgba(26,24,22,':'rgba(232,230,227,';particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);ctx.fillStyle=c+p.opacity+')';ctx.fill();});animationId=requestAnimationFrame(draw);}
-        function init(){resizeCanvas();createParticles();if(animationId)cancelAnimationFrame(animationId);draw();}
-        window.addEventListener('load',init);let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(init,200);});})();
-    </script>
-    <script>
-        (function(){const video=document.querySelector('.hero-video');if(!video)return;video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('playsinline','');video.setAttribute('webkit-playsinline','');video.setAttribute('muted','');video.removeAttribute('controls');function tryPlay(){video.play().catch(()=>{const unlock=()=>video.play().catch(()=>{});document.addEventListener('touchstart',unlock,{once:true});document.addEventListener('click',unlock,{once:true});});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',tryPlay);}else{tryPlay();}})();
-    </script>
-    <script>
-        const themeToggle=document.querySelector('.theme-toggle');if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode');
-        function toggleTheme(){const apply=()=>{document.body.classList.toggle('light-mode');localStorage.setItem('theme',document.body.classList.contains('light-mode')?'light':'dark');};document.startViewTransition?document.startViewTransition(apply):apply();}
-        themeToggle.addEventListener('click',toggleTheme);
-    </script>
-    <script>
-        const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-        const librariesLoaded=typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'&&typeof Lenis!=='undefined';
-        if(!librariesLoaded){document.querySelectorAll('.hero-eyebrow,.hero-title,.hero-description,.hero-cta,.work-card,.detail-item,.section-eyebrow,.section-title,.section-description,.contact').forEach(el=>{el.style.opacity='1';el.style.transform='none';});document.querySelectorAll('.capability-item,.detail-item').forEach(el=>el.classList.add('is-revealed'));}
-        if(!prefersReducedMotion&&librariesLoaded){
-            const isMobileDevice=window.matchMedia('(max-width:768px)').matches||window.matchMedia('(hover:none)').matches;
-            let lenis=null;
-            if(!isMobileDevice){lenis=new Lenis({duration:1.2,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true,smoothTouch:false});(function raf(time){lenis.raf(time);requestAnimationFrame(raf);})(0);}
-            gsap.registerPlugin(ScrollTrigger);
-            if(lenis){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(time=>lenis.raf(time*1000));gsap.ticker.lagSmoothing(0);}
-            gsap.defaults({ease:'power3.out',duration:.9});
-            function splitTextIntoWords(el){el.innerHTML=el.textContent.trim().split(/\s+/).map(w=>`<span class="word-mask"><span class="word">${w}</span></span>`).join(' ');return el.querySelectorAll('.word');}
-            const heroTitle=document.querySelector('.hero-title');
-            const heroTitleWords=heroTitle?splitTextIntoWords(heroTitle):[];
-            document.querySelectorAll('.section-title').forEach(t=>splitTextIntoWords(t));
-            gsap.set('.word',{yPercent:110});gsap.set('.hero-title,.section-title',{opacity:1});
-            gsap.to('.scroll-progress',{scaleX:1,ease:'none',scrollTrigger:{start:'top top',end:'bottom bottom',scrub:.3}});
-            ScrollTrigger.create({start:'top -80',end:'max',toggleClass:{className:'scrolled',targets:'nav'}});
-            function startHeroEntrance(){
-                const heroTL=gsap.timeline({defaults:{ease:'power3.out'}});
-                heroTL.fromTo('.hero-eyebrow',{y:20,opacity:0},{y:0,opacity:1,duration:.8},.1)
-                    .to(heroTitleWords,{yPercent:0,duration:1.1,stagger:.07,ease:'power4.out'},.25)
-                    .fromTo('.hero-description',{y:30,opacity:0},{y:0,opacity:1,duration:.9},.75)
-                    .fromTo('.hero-cta',{y:20,opacity:0,scale:.92},{y:0,opacity:1,scale:1,duration:.8,ease:'back.out(1.4)'},1.0)
-                    .to('.scroll-indicator',{opacity:1,duration:.8},1.3);
-                const counterEl=document.querySelector('.counter-number');
-                if(counterEl){const target=parseInt(counterEl.dataset.target,10)||18;const counter={value:0};gsap.to(counter,{value:target,duration:1.8,delay:.85,ease:'power2.out',onUpdate:()=>{counterEl.textContent=Math.round(counter.value);}});}
-            }
-            // Fire hero entrance immediately on load — no loader gate
-            window.addEventListener('load', startHeroEntrance);
-            gsap.to('.scroll-indicator',{opacity:0,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'+=200',scrub:.5}});
-            if(!isMobileDevice){[{t:'.hero-eyebrow',y:-100,s:.5},{t:'.hero-title',y:-60,s:.8},{t:'.hero-description',y:-35,s:1},{t:'.hero-cta',y:-15,s:1.2}].forEach(({t,y,s})=>{gsap.to(t,{y,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:s}});});}
-            gsap.utils.toArray('section').forEach(section=>{const eyebrow=section.querySelector('.section-eyebrow'),title=section.querySelector('.section-title'),description=section.querySelector('.section-description');if(eyebrow&&title){const tl=gsap.timeline({scrollTrigger:{trigger:section,start:'top 75%',toggleActions:'play none none none'}});tl.from(eyebrow,{y:20,opacity:0,duration:.7}).to(title.querySelectorAll('.word'),{yPercent:0,duration:.9,stagger:.05,ease:'power4.out'},'-=.4');if(description)tl.from(description,{y:20,opacity:0,duration:.8},'-=.5');}});
-            gsap.utils.toArray('.work-grid').forEach(grid=>{gsap.from(grid.querySelectorAll('.work-card'),{y:30,opacity:0,duration:.8,stagger:0,scrollTrigger:{trigger:grid,start:'top 80%',toggleActions:'play none none none'}});});
-            gsap.utils.toArray('.detail-grid').forEach(grid=>{const items=grid.querySelectorAll('.detail-item');items.forEach((item,i)=>{ScrollTrigger.create({trigger:item,start:'top 88%',onEnter:()=>setTimeout(()=>item.classList.add('is-revealed'),i*100)});});gsap.from(items,{x:-24,opacity:0,duration:.8,stagger:.1,scrollTrigger:{trigger:grid,start:'top 82%',toggleActions:'play none none none'}});});
-            document.querySelectorAll('.section-video').forEach(vid=>{if(!vid.querySelector('source[src]')?.getAttribute('src'))return;vid.muted=true;vid.loop=true;vid.playsInline=true;vid.setAttribute('playsinline','');vid.setAttribute('muted','');vid.play().catch(()=>{document.addEventListener('touchstart',()=>vid.play().catch(()=>{}),{once:true});});});
-            const contact=document.querySelector('.contact');if(contact)gsap.from(contact,{scale:.96,opacity:0,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:contact,start:'top 85%',toggleActions:'play none none none'}});
-            if(document.fonts)document.fonts.ready.then(()=>ScrollTrigger.refresh());
-            function makeMagnetic(el,strength=.3,returnEase='elastic.out(1,.4)'){if(!el)return;let hovering=false;el.addEventListener('mouseenter',()=>{hovering=true;});el.addEventListener('mousemove',e=>{if(!hovering)return;const r=el.getBoundingClientRect();gsap.to(el,{x:(e.clientX-r.left-r.width/2)*strength,y:(e.clientY-r.top-r.height/2)*strength,duration:.5,ease:'power2.out'});});el.addEventListener('mouseleave',()=>{hovering=false;gsap.to(el,{x:0,y:0,duration:.8,ease:returnEase});});}
-            makeMagnetic(document.querySelector('.hero-cta'),.25);makeMagnetic(document.querySelector('.theme-toggle'),.4,'power2.out');document.querySelectorAll('.contact-link').forEach(l=>makeMagnetic(l,.3));
-            function make3DTilt(card,maxTilt=4){if(!card)return;let hovering=false;card.addEventListener('mouseenter',()=>{hovering=true;});card.addEventListener('mousemove',e=>{if(!hovering)return;const r=card.getBoundingClientRect();gsap.to(card,{rotationY:((e.clientX-r.left)/r.width-.5)*2*maxTilt,rotationX:-((e.clientY-r.top)/r.height-.5)*2*maxTilt,duration:.5,ease:'power2.out',transformPerspective:1200,transformOrigin:'center center'});});card.addEventListener('mouseleave',()=>{hovering=false;gsap.to(card,{rotationY:0,rotationX:0,duration:.8,ease:'power3.out'});});}
-            if(!window.matchMedia('(hover:none)').matches){gsap.utils.toArray('.work-card').forEach(c=>make3DTilt(c,2.5));}
-        }
-    </script>
-    <script>
-        (function(){
-            const hamburger=document.getElementById('hamburger');
-            const mobileNav=document.getElementById('mobile-nav');
-            if(!hamburger||!mobileNav)return;
-            hamburger.addEventListener('click',function(){
-                const isOpen=this.classList.toggle('is-active');
-                mobileNav.classList.toggle('is-open',isOpen);
-                this.setAttribute('aria-expanded',isOpen);
-                document.body.style.overflow=isOpen?'hidden':'';
-            });
-            mobileNav.querySelectorAll('.mobile-nav-toggle').forEach(btn=>{
-                btn.addEventListener('click',function(){
-                    const sub=this.nextElementSibling;
-                    const isOpen=this.classList.toggle('is-open');
-                    sub.classList.toggle('is-open',isOpen);
-                    this.setAttribute('aria-expanded',isOpen);
-                });
-            });
-            mobileNav.querySelectorAll('a').forEach(link=>{
-                link.addEventListener('click',function(){
-                    hamburger.classList.remove('is-active');
-                    mobileNav.classList.remove('is-open');
-                    hamburger.setAttribute('aria-expanded','false');
-                    document.body.style.overflow='';
-                });
-            });
-        })();
-    </script>
+  <footer>
+    <div>
+      <div>&copy; 2026 jereme.xyz</div>
+      <div>915 Broadway St #100, Vancouver, WA 98660</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/jeremedotxyz">GitHub</a>
+      <a href="https://www.x.com/jeremedotxyz">X</a>
+      <a href="https://instagram.com/jeremedotxyz">Instagram</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+  </footer>
 </body>
 </html>
