@@ -397,6 +397,18 @@
       color: var(--ink);
     }
 
+    .signature-wrap {
+      max-width: 240px;
+    }
+
+    .signature {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: .92;
+      mix-blend-mode: multiply;
+    }
+
     .signature-fallback {
       font-family: "Snell Roundhand", "Brush Script MT", "Lucida Handwriting", cursive;
       font-size: 48px;
@@ -578,7 +590,9 @@
 
         <div class="signoff">
           <p class="signoff-line">Don't let the wheels fall off.</p>
-          <div class="signature-fallback">Jereme</div>
+          <div class="signature-wrap">
+            <img class="signature" src="signature.png" alt="Jereme signature" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'signature-fallback', textContent: 'Jereme' }))">
+          </div>
           <p class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</p>
           <p class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative, it still worked.</p>
         </div>
