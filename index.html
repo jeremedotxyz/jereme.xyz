@@ -1,625 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5f5f7">
-  <title>Jereme Abernathy - AI Systems & Product Development</title>
-  <meta name="description" content="AI systems, robotics, LiDAR, design, hardware, and hospitality work by Jereme Abernathy.">
-  <meta name="author" content="Jereme Abernathy">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jereme.xyz">
-  <meta property="og:title" content="Jereme Abernathy - Everything specialized. Everything deliberate.">
-  <meta property="og:description" content="Independent operator across AI systems, robotics, design, hardware, and coffee.">
-  <meta property="og:image" content="https://jereme.xyz/robot.jpeg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — jereme.xyz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --page: #f5f5f7;
-      --ink: #1d1d1f;
-      --muted: #6e6e73;
-      --line: rgba(0, 0, 0, .12);
-      --panel: #fff;
-      --blue: #0071e3;
-      --green: #2f9b61;
-      --orange: #ff7a1a;
-      --pink: #ed4f86;
-      --purple: #7d5cff;
-      --radius: 8px;
-      --shadow: 0 22px 70px rgba(0, 0, 0, .12);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --bg: #f5f5f0;
+      --fg: #111110;
+      --dim: #888882;
+      --border: #d4d4cc;
+      --amber: #b84010;
+      --scanline: rgba(0,0,0,0.012);
+      --px: 'Share Tech Mono', 'Courier New', monospace;
+      --pad: clamp(1.25rem, 5vw, 3rem);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html, body {
+      height: 100%;
+    }
+
     body {
-      margin: 0;
-      background: var(--page);
-      color: var(--ink);
-      line-height: 1.45;
-      overflow-x: hidden;
-    }
-
-    img, video { max-width: 100%; display: block; }
-    a { color: inherit; }
-
-    .skip-link {
-      position: absolute;
-      left: 16px;
-      top: -60px;
-      z-index: 100;
-      background: var(--ink);
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-    .skip-link:focus { top: 16px; }
-
-    .global-nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(245, 245, 247, .78);
-      border-bottom: 1px solid rgba(0, 0, 0, .08);
-      backdrop-filter: saturate(180%) blur(18px);
-    }
-
-    .nav-inner {
-      max-width: 1180px;
-      height: 52px;
-      margin: 0 auto;
-      padding: 0 22px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--px);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 22px;
+      justify-content: center;
+      min-height: 100svh;
+      overflow: hidden;
     }
 
-    .brand {
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
+    /* CRT effects */
+    #crt-vignette {
+      position: fixed; inset: 0; z-index: 3; pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.1) 100%);
+    }
+    #scanlines {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom, transparent 0px, transparent 3px,
+        var(--scanline) 3px, var(--scanline) 4px
+      );
+    }
+    #grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      animation: grain 0.8s steps(2) infinite;
+    }
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      25%  { transform: translate(-2px,1px); }
+      50%  { transform: translate(1px,-2px); }
+      75%  { transform: translate(2px,1px); }
+      100% { transform: translate(-1px,2px); }
+    }
+    @keyframes flicker {
+      0%,94%,100% { opacity: 1; }
+      95% { opacity: 0.97; }
+      97% { opacity: 0.99; }
+    }
+    body { animation: flicker 10s infinite; }
+
+    /* MAIN */
+    .container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: var(--pad);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .error-code {
+      font-size: clamp(5rem, 20vw, 10rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.1s forwards;
+    }
+
+    .error-code span { color: var(--amber); }
+
+    .error-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-top: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+    .error-label::before { content: '// '; opacity: 0.6; }
+
+    .error-message {
+      font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      margin-top: 1.2rem;
+      line-height: 2;
+      max-width: 420px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+      opacity: 0;
+      animation: fadeIn 0.7s ease 0.7s forwards;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
-      gap: 24px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
-      color: rgba(29, 29, 31, .82);
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.9s forwards;
     }
 
     .nav-links a {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: lowercase;
+      color: var(--dim);
       text-decoration: none;
-      transition: color .2s ease;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-links a.primary { color: var(--amber); }
+    .nav-links a.primary:hover { opacity: 0.7; }
+
+    /* blinking cursor after 404 */
+    .cursor {
+      display: inline-block;
+      width: 0.08em;
+      height: 0.85em;
+      background: var(--amber);
+      margin-left: 0.15em;
+      vertical-align: bottom;
+      opacity: 0;
+      animation: cursorAppear 0s 1.2s forwards, blink 1.1s step-end 1.2s infinite;
+    }
+    @keyframes cursorAppear {
+      to { opacity: 1; }
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
-    .nav-links a:hover { color: var(--blue); }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 7px 16px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
+    /* lost signal line */
+    .signal-line {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      color: var(--border);
+      margin-top: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
     }
 
-    .hero {
-      min-height: calc(100svh - 52px);
-      display: grid;
-      align-items: center;
-      padding: 58px 22px 38px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(245, 245, 247, .76) 58%, #f5f5f7),
-        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2400&q=85") center / cover;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
-    .hero-copy {
-      max-width: 980px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .product-kicker {
-      margin: 0 0 12px;
-      font-size: clamp(24px, 4vw, 42px);
-      font-weight: 800;
-      letter-spacing: 0;
-    }
-
-    .hero h1 {
-      margin: 0 auto;
-      max-width: 1050px;
-      font-size: clamp(56px, 10vw, 132px);
-      line-height: .9;
-      letter-spacing: 0;
-      font-weight: 800;
-      overflow-wrap: anywhere;
-    }
-
-    .hero-lede {
-      max-width: 760px;
-      margin: 26px auto 0;
-      font-size: clamp(21px, 3vw, 32px);
-      line-height: 1.16;
-      font-weight: 700;
-      color: #2b2b2d;
-    }
-
-    .hero-sub {
-      max-width: 690px;
-      margin: 18px auto 0;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 21px);
-    }
-
-    .hero-actions {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .link-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    .media-stage {
-      max-width: 1180px;
-      margin: -20px auto 0;
-      padding: 0 22px 86px;
-    }
-
-    .window-wall {
-      min-height: 430px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background:
-        linear-gradient(135deg, rgba(0, 113, 227, .76), rgba(237, 79, 134, .58) 44%, rgba(47, 155, 97, .72)),
-        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=85") center / cover;
-      display: grid;
-      align-items: end;
-      padding: clamp(22px, 5vw, 54px);
-      color: #fff;
-    }
-
-    .window-wall p {
-      max-width: 640px;
-      margin: 0;
-      font-size: clamp(28px, 5vw, 58px);
-      line-height: 1;
-      font-weight: 800;
-      text-wrap: balance;
-    }
-
-    .section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 82px 22px;
-    }
-
-    .section.center { text-align: center; }
-
-    .eyebrow {
-      margin: 0 0 12px;
-      color: var(--orange);
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .section h2 {
-      margin: 0 auto;
-      max-width: 900px;
-      font-size: clamp(42px, 7vw, 88px);
-      line-height: .94;
-      letter-spacing: 0;
-      font-weight: 800;
-      text-wrap: balance;
-    }
-
-    .section-lede {
-      max-width: 760px;
-      margin: 20px auto 0;
-      color: var(--muted);
-      font-size: clamp(19px, 2.3vw, 28px);
-      line-height: 1.2;
-      font-weight: 650;
-      text-wrap: balance;
-    }
-
-    .feature-band {
-      margin-top: 42px;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .feature-visual {
-      min-height: 520px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 12px 42px rgba(0, 0, 0, .12);
-    }
-
-    .visual-ai {
-      background-image:
-        linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .34)),
-        url("https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1600&q=85");
-    }
-
-    .visual-design {
-      background-image:
-        linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .25)),
-        url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=85");
-    }
-
-    .visual-coffee {
-      background-image:
-        linear-gradient(180deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .34)),
-        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=85");
-    }
-
-    .feature-copy {
-      display: grid;
-      align-content: center;
-      gap: 14px;
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding: clamp(26px, 5vw, 54px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, .08);
-    }
-
-    .feature-copy h3 {
-      margin: 0;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .feature-copy p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 19px;
-    }
-
-    .tile-rail {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(260px, 1fr);
-      gap: 14px;
-      overflow-x: auto;
-      padding: 32px 0 10px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-    }
-
-    .tile {
-      min-height: 260px;
-      scroll-snap-align: start;
-      border-radius: var(--radius);
-      padding: 24px;
-      color: #fff;
-      display: grid;
-      align-content: space-between;
-      overflow: hidden;
-      position: relative;
-      isolation: isolate;
-    }
-
-    .tile::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(160deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, .48));
-    }
-
-    .tile h3 {
-      margin: 0;
-      font-size: 26px;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .tile p {
-      margin: 0;
-      max-width: 27ch;
-      font-size: 15px;
-      color: rgba(255, 255, 255, .88);
-    }
-
-    .tile:nth-child(1) { background: linear-gradient(135deg, var(--blue), var(--purple)); }
-    .tile:nth-child(2) { background: linear-gradient(135deg, var(--green), #16a6a5); }
-    .tile:nth-child(3) { background: linear-gradient(135deg, var(--orange), var(--pink)); }
-    .tile:nth-child(4) { background: linear-gradient(135deg, #303134, #737a85); }
-    .tile:nth-child(5) { background: linear-gradient(135deg, #c84528, #f6b14b); }
-    .tile:nth-child(6) { background: linear-gradient(135deg, #215c76, #37b6ad); }
-
-    .stat-band {
-      background: #fff;
-      padding: 72px 22px;
-      border-top: 1px solid rgba(0, 0, 0, .06);
-      border-bottom: 1px solid rgba(0, 0, 0, .06);
-    }
-
-    .stats {
-      max-width: 980px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: clamp(42px, 8vw, 78px);
-      line-height: .95;
-      letter-spacing: 0;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 17px;
-      font-weight: 600;
-    }
-
-    .split-list {
-      margin-top: 42px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .mini-card {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 28px;
-      min-height: 260px;
-      display: grid;
-      align-content: start;
-      gap: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
-    }
-
-    .mini-card h3 {
-      margin: 0;
-      font-size: 25px;
-      line-height: 1.05;
-    }
-
-    .mini-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .contact-panel {
-      max-width: 1040px;
-      margin: 0 auto;
-      border-radius: var(--radius);
-      padding: clamp(38px, 7vw, 76px);
-      color: #fff;
-      text-align: center;
-      background:
-        linear-gradient(120deg, rgba(0, 113, 227, .92), rgba(237, 79, 134, .88), rgba(255, 122, 26, .88)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85") center / cover;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-panel h2 {
-      color: #fff;
-      max-width: 760px;
-    }
-
-    .contact-panel p {
-      max-width: 760px;
-      margin: 20px auto 0;
-      color: rgba(255, 255, 255, .9);
-      font-size: 20px;
-    }
-
-    .contact-panel .pill {
-      margin-top: 28px;
-      background: #fff;
-      color: #111;
-    }
-
-    footer {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 34px 22px 46px;
-      display: flex;
-      justify-content: space-between;
-      gap: 22px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid rgba(0, 0, 0, .08);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a { text-decoration: none; }
-    .footer-links a:hover { color: var(--blue); }
-
-    @media (max-width: 860px) {
-      .nav-links { display: none; }
-      .nav-inner { padding: 0 16px; }
-      .hero { padding-left: 16px; padding-right: 16px; }
-      .media-stage, .section { padding-left: 16px; padding-right: 16px; }
-      .feature-band, .split-list, .stats {
-        grid-template-columns: 1fr;
-      }
-      .feature-visual { min-height: 360px; }
-      .tile-rail { grid-auto-columns: 82%; }
-      .window-wall { min-height: 360px; }
-      footer { display: grid; }
-    }
-
-    @media (max-width: 520px) {
-      .hero-copy { max-width: 300px; }
-      .hero h1 { max-width: 300px; font-size: 42px; line-height: .96; }
-      .product-kicker { font-size: 24px; }
-      .hero-lede { max-width: 300px; font-size: 19px; }
-      .hero-sub { max-width: 300px; font-size: 16px; }
-      .section h2 { font-size: 42px; }
-      .section { padding-top: 64px; padding-bottom: 64px; }
-      .tile-rail { grid-auto-columns: 88%; }
-      .mini-card { min-height: 0; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <nav class="global-nav" aria-label="Main">
-    <div class="nav-inner">
-      <a class="brand" href="#">Jereme Abernathy</a>
-      <ul class="nav-links">
-        <li><a href="#ai">AI</a></li>
-        <li><a href="#design">Design</a></li>
-        <li><a href="#coffee">Coffee</a></li>
-        <li><a href="/about/">About</a></li>
-      </ul>
-      <a class="pill" href="#contact">Contact</a>
+  <div id="grain"></div>
+  <div id="scanlines"></div>
+  <div id="crt-vignette"></div>
+
+  <div class="container">
+    <div class="error-code">4<span>0</span>4<span class="cursor"></span></div>
+    <div class="error-label">signal lost</div>
+    <div class="signal-line">jereme.xyz · transmission interrupted</div>
+    <p class="error-message">
+      this page doesn't exist.<br>
+      maybe it never did.<br>
+      maybe it did and someone deleted it.<br>
+      either way, it's gone now.
+    </p>
+    <div class="divider"></div>
+    <div class="nav-links">
+      <a href="/" class="primary">← back to base</a>
+      <a href="/pct.html">pct 2027</a>
     </div>
-  </nav>
+  </div>
 
-  <main id="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <h1 id="hero-title">Everything specialized. Everything deliberate.</h1>
-        <p class="hero-lede">AI systems, robotics, LiDAR, product design, and physical spaces built with the same standard: reliability over approximation.</p>
-        <p class="hero-sub">18 years across frontier model workflows, sensing systems, hardware, consumer product development, and hospitality concepts rooted in the Pacific Northwest.</p>
-        <div class="hero-actions">
-          <a class="pill" href="#contact">Get in touch</a>
-          <a class="link-cta" href="#ai">Explore the work</a>
-        </div>
-      </div>
-    </section>
-
-    <div class="media-stage" aria-hidden="true">
-      <div class="window-wall">
-        <p>Systems thinking for models, machines, objects, and rooms.</p>
-      </div>
-    </div>
-
-    <section class="section center" id="ai">
-      <h2>Where the model breaks is where the work starts.</h2>
-      <p class="section-lede">Prompt systems, annotation rubrics, red-teaming protocols, point cloud processing, sensor fusion, and mapping pipelines for systems that have to behave outside the demo.</p>
-      <div class="feature-band">
-        <div class="feature-visual visual-ai" aria-label="Robotics and sensing visual"></div>
-        <div class="feature-copy">
-          <h3>Frontier model work with field-grade expectations.</h3>
-          <p>Active across training data, evaluation workflows, RLHF feedback loops, hallucination testing, and adversarial prompt analysis for GPT, Claude, Gemini, Mistral, Llama, and open-source deployments.</p>
-          <p>On the hardware side: robotics, LiDAR, and spatial intelligence pipelines where sensor fusion errors do not stay theoretical.</p>
-        </div>
-      </div>
-      <div class="tile-rail" aria-label="AI capabilities">
-        <article class="tile"><h3>Training Data</h3><p>Response rewriting, rubric design, preference labeling, and QA for production datasets.</p></article>
-        <article class="tile"><h3>Evaluation</h3><p>Inter-annotator agreement, factuality checks, and benchmarks that survive edge cases.</p></article>
-        <article class="tile"><h3>Red Teaming</h3><p>Prompt injection, context manipulation, role-play exploits, and indirect attacks.</p></article>
-        <article class="tile"><h3>Robotics</h3><p>Sensor integration, spatial intelligence, autonomous systems, and field behavior.</p></article>
-      </div>
-    </section>
-
-    <div class="stat-band" aria-label="Experience summary">
-      <div class="stats">
-        <div class="stat"><strong>18</strong><span>years building systems</span></div>
-        <div class="stat"><strong>6+</strong><span>frontier model families</span></div>
-        <div class="stat"><strong>4</strong><span>operating lanes: fw/r, nrthrn, pine, drift</span></div>
-      </div>
-    </div>
-
-    <section class="section center" id="design">
-      <h2>Function is the brief. Everything else is craft.</h2>
-      <p class="section-lede">Tech and industrial goods designed for utility, refined by human judgment, and shaped by the realities of manufacturing, materials, and use.</p>
-      <div class="feature-band">
-        <div class="feature-copy">
-          <h3>Objects and interfaces share the same rules.</h3>
-          <p>Consumer hardware, embedded systems, industrial design, visual systems, and tooling are all reduced to the same question: what does the person need to happen, and what gets in the way?</p>
-          <p>From single prototypes to production runs, the object either does what it is supposed to do or it does not.</p>
-        </div>
-        <div class="feature-visual visual-design" aria-label="Design and product visual"></div>
-      </div>
-      <div class="split-list">
-        <article class="mini-card"><h3>Industrial Design</h3><p>Consumer goods, tools, and hardware designed around use, material, and restraint.</p></article>
-        <article class="mini-card"><h3>Prototyping</h3><p>Concepts pushed into physical builds, tolerance tests, material decisions, and manufacturable product paths.</p></article>
-        <article class="mini-card"><h3>Hardware Development</h3><p>Camera systems, audio hardware, smart displays, peripheral devices, and embedded systems.</p></article>
-      </div>
-    </section>
-
-    <section class="section center" id="coffee">
-      <h2>A place that actually wants you there.</h2>
-      <p class="section-lede">Two concepts, one rooted in a PNW neighborhood and one on the Washington coast. Both built around spaces that earn their place in the community they are inside of.</p>
-      <div class="feature-band">
-        <div class="feature-visual visual-coffee" aria-label="Coffee and hospitality visual"></div>
-        <div class="feature-copy">
-          <h3>The coffee is good. The quiet is better.</h3>
-          <p>Direct sourcing, careful roast profiles, material-rich interiors, useful seating, proper light, fast wifi, power where people actually sit, and a culture that does not rush the second cup.</p>
-          <p>pine is neighborhood-rooted. drift is coastal and earned by discovery. Different rooms, same conviction.</p>
-        </div>
-      </div>
-      <div class="tile-rail" aria-label="Hospitality capabilities">
-        <article class="tile"><h3>Sourcing</h3><p>Coffee that tastes like it came from somewhere specific because it did.</p></article>
-        <article class="tile"><h3>Space Design</h3><p>Materials that age well, light that works, and rooms tuned for the people inside them.</p></article>
-        <article class="tile"><h3>Community</h3><p>A coffee shop that actually wants regulars, builders, writers, founders, and people between meetings.</p></article>
-        <article class="tile"><h3>Culture</h3><p>The room is part of the product. So is the pace. So is the welcome.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="contact-panel">
-        <h2>Let’s talk.</h2>
-        <p>Prompt engineering, evaluation frameworks, red teaming, training data pipelines, LiDAR and sensor fusion, autonomous systems, industrial design, hardware prototyping, and consumer product development.</p>
-        <a class="pill" href="mailto:jeremedotxyz@gmail.com?subject=Inquiry%20from%20jereme.xyz">Ping me</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div>
-      <div>&copy; 2026 jereme.xyz</div>
-      <div>915 Broadway St #100, Vancouver, WA 98660</div>
-    </div>
-    <div class="footer-links">
-      <a href="https://github.com/jeremedotxyz">GitHub</a>
-      <a href="https://www.x.com/jeremedotxyz">X</a>
-      <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-    </div>
-  </footer>
 </body>
 </html>
