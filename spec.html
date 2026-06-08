@@ -1,1 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>Jereme Abernathy</title>
+  <meta name="description" content="AI systems, robotics, objects, rooms, and ideas by Jereme Abernathy.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jereme Abernathy">
+  <meta property="og:description" content="A small signal from the workbench.">
+  <style>
+    :root {
+      --paper: #f7f5ef;
+      --ink: #171717;
+      --soft: rgba(23, 23, 23, .64);
+      --line: rgba(23, 23, 23, .14);
+      --signal: #0066ff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100svh;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(247, 245, 239, .98) 0%, rgba(247, 245, 239, .9) 44%, rgba(247, 245, 239, .12) 100%),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2400&q=86") center / cover;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: clamp(18px, 4vw, 44px);
+    }
+
+    header,
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--soft);
+    }
+
+    .brand {
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a,
+    footer a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover,
+    footer a:hover {
+      border-color: currentColor;
+    }
+
+    main {
+      display: grid;
+      align-content: center;
+      width: min(720px, 100%);
+      padding: 72px 0;
+    }
+
+    .kicker {
+      margin: 0 0 18px;
+      color: var(--signal);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-size: clamp(56px, 11vw, 128px);
+      line-height: .88;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 600px;
+      margin: 28px 0 0;
+      color: rgba(23, 23, 23, .82);
+      font-size: clamp(21px, 3vw, 32px);
+      line-height: 1.12;
+      font-weight: 650;
+    }
+
+    .whisper {
+      max-width: 520px;
+      margin: 18px 0 0;
+      color: var(--soft);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .quiet-link {
+      color: var(--soft);
+      font-size: 14px;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .quiet-link:hover { color: var(--ink); }
+
+    .signals {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 56px;
+      max-width: 640px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .signal {
+      min-height: 92px;
+      padding: 16px;
+      background: rgba(247, 245, 239, .82);
+      backdrop-filter: blur(14px);
+    }
+
+    .signal strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .signal span {
+      display: block;
+      margin-top: 8px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background:
+          linear-gradient(180deg, rgba(247, 245, 239, .98), rgba(247, 245, 239, .84)),
+          url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=86") center / cover;
+      }
+
+      header,
+      footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      main { padding: 58px 0; }
+      h1 { font-size: 58px; }
+      .lede { font-size: 23px; }
+      .signals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 420px) {
+      .page { padding: 18px; }
+      h1 { font-size: 50px; }
+      .signals { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="#">Jereme Abernathy</a>
+      <nav aria-label="Main">
+        <a href="ai-apple-fitness-inspired.html">AI</a>
+        <a href="lidar-apple-fitness-inspired.html">LiDAR</a>
+        <a href="about-apple-fitness-inspired.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="kicker">Independent systems, objects, and places.</p>
+      <h1>Quiet work. Long reach.</h1>
+      <p class="lede">I build the kind of things that make people lean forward: model workflows, sensing systems, physical products, and rooms with a pulse.</p>
+      <p class="whisper">The public version stays small on purpose. The interesting parts are usually in motion.</p>
+
+      <div class="actions">
+        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=I%20want%20to%20know%20more">Ask for the signal</a>
+        <a class="quiet-link" href="about-apple-fitness-inspired.html">Read the longer note</a>
+      </div>
+
+      <section class="signals" aria-label="Signals">
+        <div class="signal"><strong>Models</strong><span>Evaluation, red teams, training data, workflows.</span></div>
+        <div class="signal"><strong>Machines</strong><span>Robotics, LiDAR, spatial intelligence.</span></div>
+        <div class="signal"><strong>Objects</strong><span>Hardware, tools, product development.</span></div>
+        <div class="signal"><strong>Rooms</strong><span>Coffee, hospitality, community texture.</span></div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Vancouver, WA / Pacific Northwest</span>
+      <span><a href="https://github.com/jeremedotxyz">GitHub</a> / <a href="https://instagram.com/jeremedotxyz">Instagram</a></span>
+    </footer>
+  </div>
+</body>
+</html>
 
