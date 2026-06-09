@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5f5f7">
-  <title>LiDAR - jereme.xyz</title>
-  <meta name="description" content="LiDAR work from fw/r - sensing, point clouds, and the light that runs out ahead.">
-  <link rel="canonical" href="https://jereme.xyz/lidar/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="jereme.xyz">
-  <meta property="og:title" content="LiDAR - jereme.xyz">
-  <meta property="og:description" content="LiDAR work from fw/r - sensing, point clouds, and the light that runs out ahead.">
-  <meta property="og:url" content="https://jereme.xyz/lidar/">
-  <meta name="twitter:card" content="summary">
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,582 +9,637 @@
     gtag('js', new Date());
     gtag('config', 'G-NTH4464X6R');
   </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>LiDAR - jereme.xyz</title>
+  <meta name="description" content="LiDAR work from fw/r - sensing, point clouds, calibration, infrastructure perception, and spatial truth.">
+  <link rel="canonical" href="https://jereme.xyz/lidar/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="jereme.xyz">
+  <meta property="og:title" content="LiDAR - jereme.xyz">
+  <meta property="og:description" content="LiDAR work from fw/r - sensing, point clouds, calibration, infrastructure perception, and spatial truth.">
+  <meta property="og:url" content="https://jereme.xyz/lidar/">
+  <meta name="twitter:card" content="summary">
   <style>
     :root {
-      --page: #f5f5f7;
-      --ink: #1d1d1f;
-      --muted: #6e6e73;
-      --panel: #fff;
-      --blue: #0071e3;
-      --cyan: #00a7c7;
-      --green: #2f9b61;
-      --orange: #ff7a1a;
-      --radius: 8px;
-      --shadow: 0 22px 70px rgba(0, 0, 0, .12);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --ink: #141414;
+      --soft: rgba(20, 20, 20, .68);
+      --quiet: rgba(20, 20, 20, .48);
+      --paper: #fff;
+      --line: rgba(20, 20, 20, .12);
+      --blue: #0067ff;
+      --fire: #f05a1a;
+      --gold: #f6a044;
+      --lime: #b7f21f;
+      --mint: #43d6a3;
+      --cyan: #64d2ff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      background: var(--page);
       color: var(--ink);
-      line-height: 1.45;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      width: 100%;
     }
-    a { color: inherit; }
 
-    .skip-link {
-      position: absolute;
-      top: -60px;
-      left: 16px;
-      z-index: 100;
-      padding: 10px 14px;
-      border-radius: 6px;
-      background: var(--ink);
-      color: #fff;
-      text-decoration: none;
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 30;
+      background: rgba(255, 255, 255, .82);
+      border-bottom: 1px solid rgba(20, 20, 20, .08);
+      backdrop-filter: blur(22px) saturate(160%);
     }
-    .skip-link:focus { top: 16px; }
 
-    .global-nav {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(245, 245, 247, .78);
-      border-bottom: 1px solid rgba(0, 0, 0, .08);
-      backdrop-filter: saturate(180%) blur(18px);
+    .nav-inner,
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
     .nav-inner {
-      max-width: 1180px;
-      height: 52px;
-      margin: 0 auto;
-      padding: 0 22px;
+      min-height: 58px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 22px;
+      font-size: 13px;
+      color: var(--soft);
     }
 
-    .brand {
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-links {
+    .links {
       display: flex;
       align-items: center;
-      gap: 24px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
-      color: rgba(29, 29, 31, .82);
+      gap: 22px;
+      flex-wrap: wrap;
     }
 
-    .nav-links a {
-      text-decoration: none;
-      transition: color .2s ease;
-    }
-    .nav-links a:hover { color: var(--blue); }
-
-    .pill {
+    .button {
       display: inline-flex;
+      min-height: 34px;
       align-items: center;
       justify-content: center;
-      min-height: 34px;
-      padding: 7px 16px;
+      padding: 0 16px;
       border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
+      background: var(--ink);
+      color: white;
       font-size: 13px;
-      font-weight: 650;
-      text-decoration: none;
+      font-weight: 750;
       white-space: nowrap;
     }
 
     .hero {
-      min-height: calc(100svh - 52px);
+      min-height: 100svh;
       display: grid;
-      align-items: center;
-      padding: 58px 22px 38px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .95), rgba(245, 245, 247, .78) 58%, #f5f5f7),
-        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2400&q=85") center / cover;
+      align-items: end;
+      padding: 118px 0 0;
+      background: #fff;
+      position: relative;
+      isolation: isolate;
     }
 
     .hero-copy {
-      width: 100%;
-      max-width: 1040px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .product-kicker {
-      margin: 0 0 12px;
-      font-size: clamp(24px, 4vw, 42px);
-      font-weight: 800;
-      letter-spacing: 0;
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(300px, 520px);
+      align-items: end;
+      gap: clamp(32px, 7vw, 96px);
+      padding-bottom: clamp(32px, 6vw, 72px);
     }
 
     h1 {
-      margin: 0 auto;
-      max-width: 980px;
-      font-size: clamp(72px, 14vw, 174px);
-      line-height: .86;
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(72px, 14vw, 178px);
+      line-height: .84;
       letter-spacing: 0;
-      font-weight: 850;
-      overflow-wrap: anywhere;
     }
 
-    .hero-lede {
-      max-width: 820px;
-      margin: 26px auto 0;
-      font-size: clamp(22px, 3vw, 34px);
-      line-height: 1.14;
-      font-weight: 750;
-      color: #2b2b2d;
-      text-wrap: balance;
+    .lead {
+      margin: 0;
+      color: rgba(20,20,20,.84);
+      font-size: clamp(23px, 3vw, 36px);
+      line-height: 1.08;
+      font-weight: 680;
     }
 
-    .hero-sub {
-      max-width: 710px;
-      margin: 18px auto 0;
-      color: var(--muted);
-      font-size: clamp(17px, 2vw, 21px);
+    .side-note {
+      margin: 18px 0 0;
+      color: var(--soft);
+      font-size: 17px;
+      line-height: 1.5;
     }
 
-    .hero-actions {
-      margin-top: 30px;
+    .actions {
       display: flex;
-      justify-content: center;
-      gap: 12px;
+      align-items: center;
+      gap: 18px;
+      margin-top: 24px;
+      font-size: 15px;
+      font-weight: 760;
+      color: var(--blue);
       flex-wrap: wrap;
     }
 
-    .link-cta {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      font-size: 17px;
-      font-weight: 650;
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    .media-stage {
-      max-width: 1180px;
-      margin: -20px auto 0;
-      padding: 0 22px 86px;
-    }
-
-    .scan-wall {
-      min-height: 470px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      background:
-        linear-gradient(135deg, rgba(0, 113, 227, .72), rgba(0, 167, 199, .62) 44%, rgba(47, 155, 97, .72)),
-        url("https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1800&q=85") center / cover;
-      display: grid;
-      align-items: end;
-      padding: clamp(24px, 5vw, 56px);
-      color: #fff;
-    }
-
-    .scan-wall p {
-      max-width: 680px;
-      margin: 0;
-      font-size: clamp(30px, 5vw, 62px);
-      line-height: 1;
-      font-weight: 850;
-      text-wrap: balance;
-    }
-
-    .section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 82px 22px;
-    }
-
-    .section.center { text-align: center; }
-
-    .eyebrow {
-      margin: 0 0 12px;
-      color: var(--cyan);
-      font-size: 17px;
-      font-weight: 750;
-    }
-
-    .section h2 {
-      margin: 0 auto;
-      max-width: 920px;
-      font-size: clamp(42px, 7vw, 92px);
-      line-height: .94;
-      letter-spacing: 0;
-      font-weight: 850;
-      text-wrap: balance;
-    }
-
-    .section-lede {
-      max-width: 760px;
-      margin: 20px auto 0;
-      color: var(--muted);
-      font-size: clamp(19px, 2.3vw, 28px);
-      line-height: 1.2;
-      font-weight: 650;
-      text-wrap: balance;
-    }
-
-    .feature-band {
-      margin-top: 42px;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .feature-visual {
-      min-height: 520px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .32)),
-        url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=85") center / cover;
-      box-shadow: 0 12px 42px rgba(0, 0, 0, .12);
-    }
-
-    .feature-copy {
-      display: grid;
-      align-content: center;
-      gap: 14px;
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding: clamp(26px, 5vw, 54px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, .08);
-      text-align: left;
-    }
-
-    .feature-copy h3 {
-      margin: 0;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .feature-copy p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 19px;
-    }
-
-    .tile-rail {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(260px, 1fr);
-      gap: 14px;
-      overflow-x: auto;
-      max-width: 100%;
-      padding: 32px 0 10px;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-    }
-
-    .tile {
-      min-height: 250px;
-      scroll-snap-align: start;
-      border-radius: var(--radius);
-      padding: 24px;
-      color: #fff;
-      display: grid;
-      align-content: space-between;
+    .scan-stage {
+      min-height: 540px;
       position: relative;
-      isolation: isolate;
       overflow: hidden;
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(100,210,255,.11) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100,210,255,.11) 1px, transparent 1px),
+        radial-gradient(circle at 52% 44%, rgba(100,210,255,.22), transparent 38%),
+        #061018;
+      background-size: 28px 28px, 28px 28px, auto, auto;
+      box-shadow: 0 28px 80px rgba(0,0,0,.24);
+      color: #fff;
     }
 
-    .tile::before {
+    .scan-stage::after {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: -1;
-      background: linear-gradient(160deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .44));
+      background: linear-gradient(135deg, rgba(255,255,255,.16), transparent 30%, rgba(255,255,255,.08));
+      mix-blend-mode: screen;
+      pointer-events: none;
     }
 
-    .tile h3 {
+    .terrain {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      bottom: 15%;
+      height: 31%;
+      border-bottom: 1px solid rgba(100,210,255,.5);
+      background:
+        linear-gradient(135deg, transparent 16%, rgba(100,210,255,.22) 16% 17%, transparent 17% 34%, rgba(183,242,31,.18) 34% 35%, transparent 35% 52%, rgba(100,210,255,.2) 52% 53%, transparent 53%),
+        linear-gradient(to top, rgba(100,210,255,.12), transparent);
+      clip-path: polygon(0 80%, 12% 62%, 23% 68%, 38% 36%, 52% 48%, 64% 20%, 78% 42%, 90% 30%, 100% 56%, 100% 100%, 0 100%);
+    }
+
+    .scan-ring,
+    .scan-ring::before,
+    .scan-ring::after {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(100,210,255,.42);
+    }
+
+    .scan-ring {
+      width: 58%;
+      aspect-ratio: 1;
+      left: 21%;
+      top: 12%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .scan-ring::before,
+    .scan-ring::after {
+      content: "";
+      inset: 18%;
+    }
+
+    .scan-ring::after { inset: 36%; }
+
+    .scan-line {
+      position: absolute;
+      width: 33%;
+      height: 2px;
+      left: 50%;
+      top: 41%;
+      transform-origin: left center;
+      background: linear-gradient(90deg, #64d2ff, transparent);
+      animation: sweep 6s linear infinite;
+    }
+
+    .point {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #64d2ff;
+      box-shadow: 0 0 16px #64d2ff;
+      animation: flicker 3.6s ease-in-out infinite;
+    }
+
+    .point:nth-child(4) { left: 20%; top: 42%; }
+    .point:nth-child(5) { left: 31%; top: 58%; animation-delay: .4s; }
+    .point:nth-child(6) { left: 47%; top: 37%; animation-delay: .8s; }
+    .point:nth-child(7) { left: 63%; top: 52%; animation-delay: 1.2s; }
+    .point:nth-child(8) { left: 75%; top: 31%; animation-delay: 1.6s; }
+    .point:nth-child(9) { left: 84%; top: 63%; animation-delay: 2s; }
+
+    .readout {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .readout span {
+      min-height: 54px;
+      display: grid;
+      align-content: center;
+      padding: 0 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.76);
+      font-size: 11px;
+      font-weight: 760;
+      text-transform: uppercase;
+    }
+
+    .readout strong {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      text-transform: none;
+    }
+
+    @keyframes sweep {
+      from { transform: rotate(-72deg); }
+      to { transform: rotate(288deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .55; transform: scale(.98); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: .32; transform: scale(.9); }
+      50% { opacity: 1; transform: scale(1.16); }
+    }
+
+    .statement,
+    .documents,
+    .closer {
+      padding: clamp(78px, 11vw, 150px) 0;
+      background: #fff;
+    }
+
+    .statement h2,
+    .documents h2,
+    .closer h2 {
       margin: 0;
-      font-size: 26px;
-      line-height: 1;
+      font-size: clamp(42px, 6vw, 88px);
+      line-height: .96;
       letter-spacing: 0;
     }
 
-    .tile p {
-      margin: 0;
-      max-width: 27ch;
-      font-size: 15px;
-      color: rgba(255, 255, 255, .88);
+    .statement p,
+    .documents .section-copy,
+    .closer p {
+      margin: 26px 0 0;
+      color: var(--soft);
+      font-size: clamp(21px, 2.5vw, 31px);
+      line-height: 1.18;
+      font-weight: 650;
     }
 
-    .tile:nth-child(1) { background: linear-gradient(135deg, var(--blue), #7d5cff); }
-    .tile:nth-child(2) { background: linear-gradient(135deg, var(--cyan), #37b6ad); }
-    .tile:nth-child(3) { background: linear-gradient(135deg, var(--green), #16a6a5); }
-    .tile:nth-child(4) { background: linear-gradient(135deg, #303134, #737a85); }
-
-    .docs-band {
+    .approach {
+      padding: clamp(72px, 10vw, 126px) 0;
       background: #fff;
-      padding: 82px 22px;
-      border-top: 1px solid rgba(0, 0, 0, .06);
-      border-bottom: 1px solid rgba(0, 0, 0, .06);
     }
 
-    .docs-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      text-align: center;
+    .approach-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+      gap: clamp(34px, 6vw, 78px);
+      align-items: start;
+    }
+
+    .approach-copy h2 {
+      margin: 0;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .approach-copy p {
+      margin: 22px 0 0;
+      color: var(--soft);
+      font-size: clamp(20px, 2vw, 26px);
+      line-height: 1.22;
+      font-weight: 640;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .capability,
+    .doc-card {
+      min-height: 240px;
+      display: grid;
+      align-content: space-between;
+      padding: 24px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(20,20,20,.08);
+      color: var(--ink);
+    }
+
+    .capability:nth-child(1) { box-shadow: inset 0 5px 0 var(--fire); }
+    .capability:nth-child(2) { box-shadow: inset 0 5px 0 var(--cyan); }
+    .capability:nth-child(3) { box-shadow: inset 0 5px 0 var(--lime); }
+    .capability:nth-child(4) { box-shadow: inset 0 5px 0 var(--ink); }
+
+    .capability span,
+    .doc-card span {
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 820;
+      text-transform: uppercase;
+    }
+
+    .capability strong,
+    .doc-card strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .capability p,
+    .doc-card p {
+      margin: 22px 0 0;
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 1.42;
     }
 
     .doc-grid {
-      margin-top: 38px;
+      margin-top: 34px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      text-align: left;
     }
 
     .doc-card {
-      min-height: 300px;
-      display: grid;
-      align-content: space-between;
-      gap: 24px;
-      padding: 28px;
-      border-radius: var(--radius);
-      background: #f5f5f7;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
+      min-height: 310px;
     }
 
-    .doc-label {
-      margin: 0 0 12px;
-      color: var(--orange);
-      font-size: 13px;
-      font-weight: 750;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-    }
-
-    .doc-card h3 {
-      margin: 0;
-      font-size: 26px;
-      line-height: 1.04;
-      letter-spacing: 0;
-    }
-
-    .doc-meta {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .doc-card .pill {
+    .doc-card .button {
       justify-self: start;
-      background: var(--ink);
-      color: #fff;
+      margin-top: 24px;
     }
 
-    .contact-panel {
-      max-width: 1040px;
-      margin: 0 auto;
-      border-radius: var(--radius);
-      padding: clamp(38px, 7vw, 76px);
-      color: #fff;
-      text-align: center;
-      background:
-        linear-gradient(120deg, rgba(0, 113, 227, .92), rgba(0, 167, 199, .84), rgba(47, 155, 97, .88)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85") center / cover;
-      box-shadow: var(--shadow);
+    .closer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 34px;
+      align-items: end;
+      padding-bottom: 54px;
+      border-bottom: 1px solid var(--line);
     }
 
-    .contact-panel h2 {
-      margin: 0 auto;
-      max-width: 780px;
-      font-size: clamp(42px, 7vw, 88px);
-      line-height: .94;
-      letter-spacing: 0;
-      font-weight: 850;
-    }
-
-    .contact-panel p {
-      max-width: 720px;
-      margin: 20px auto 0;
-      color: rgba(255, 255, 255, .9);
-      font-size: 20px;
-    }
-
-    .contact-panel .pill {
-      margin-top: 28px;
-      background: #fff;
-      color: #111;
+    .closer p {
+      max-width: 850px;
     }
 
     footer {
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 36px));
       margin: 0 auto;
-      padding: 34px 22px 46px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 22px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid rgba(0, 0, 0, .08);
-    }
-
-    .footer-links {
-      display: flex;
       gap: 18px;
+      padding: 28px 0 40px;
+      color: var(--soft);
+      font-size: 12px;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
-    footer a { text-decoration: none; }
-    footer a:hover { color: var(--blue); }
-
-    @media (max-width: 860px) {
-      .nav-links { display: none; }
-      .hero { width: 100vw; max-width: 100vw; justify-items: center; overflow: hidden; }
-      .nav-inner, .hero, .media-stage, .section { padding-left: 16px; padding-right: 16px; }
-      .feature-band, .doc-grid { grid-template-columns: 1fr; }
-      .feature-visual { min-height: 360px; }
-      .tile-rail { grid-auto-columns: 82%; }
-      .scan-wall { min-height: 360px; }
-      footer { display: grid; }
+    .socials a {
+      width: 22px;
+      height: 22px;
+      display: inline-grid;
+      place-items: center;
+      opacity: .72;
+      transition: opacity .2s ease, transform .2s ease;
     }
 
-    @media (max-width: 520px) {
-      .hero-copy { max-width: 290px; transform: translateX(-54px); }
-      h1 { max-width: 290px; font-size: 64px; line-height: .88; }
-      .product-kicker { font-size: 24px; }
-      .hero-lede { max-width: 290px; font-size: 20px; }
-      .hero-sub { max-width: 290px; font-size: 16px; }
-      .hero-actions { gap: 10px; }
-      .section { padding-top: 64px; padding-bottom: 64px; }
-      .section h2, .contact-panel h2 { font-size: 42px; }
-      .tile-rail { grid-auto-columns: 88%; }
+    .socials a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .socials img {
+      width: 19px;
+      height: 19px;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .scan-ring,
+      .scan-line,
+      .point { animation: none; }
+    }
+
+    @media (max-width: 950px) {
+      .hero-copy,
+      .approach-grid,
+      .closer-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 94px; }
+      .doc-grid { grid-template-columns: 1fr; }
+      .links a:not(.button) { display: none; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner,
+      .wrap,
+      footer {
+        width: min(100% - 28px, 1180px);
+      }
+      .nav-inner { min-height: 54px; }
+      .links { gap: 14px; }
+      .hero {
+        min-height: auto;
+        align-items: start;
+        padding: 82px 0 64px;
+      }
+      .hero-copy { padding-bottom: 0; }
+      h1 { font-size: 76px; }
+      .lead { font-size: 22px; }
+      .actions { flex-direction: column; align-items: flex-start; }
+      .scan-stage { min-height: 430px; }
+      .readout {
+        grid-template-columns: 1fr;
+        left: 16px;
+        right: 16px;
+      }
+      .capability-grid { grid-template-columns: 1fr; }
+      .capability { min-height: 190px; }
       .doc-card { min-height: 0; }
-      .docs-band { padding: 64px 16px; }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to content</a>
-
-  <nav class="global-nav" aria-label="Main">
+  <nav class="nav" aria-label="Main">
     <div class="nav-inner">
-      <a class="brand" href="/">jereme.xyz</a>
-      <ul class="nav-links">
-        <li><a href="/ai/">AI</a></li>
-        <li><a href="/robotics/">Robotics</a></li>
-        <li><a href="/lidar/">LiDAR</a></li>
-        <li><a href="/about/">About</a></li>
-      </ul>
-      <a class="pill" href="mailto:jeremedotxyz@gmail.com?subject=LiDAR%20Inquiry">Contact</a>
+      <div class="links">
+        <a href="https://jereme.xyz/lidar/">LiDAR</a>
+        <a href="https://jereme.xyz/ai/">AI</a>
+        <a href="mailto:jeremedotxyz@gmail.com?subject=Design">Design</a>
+        <a href="mailto:jeremedotxyz@gmail.com?subject=Spaces">Spaces</a>
+        <a href="https://jereme.xyz/about/">About</a>
+        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=LiDAR%20Inquiry">Ping Me</a>
+      </div>
     </div>
   </nav>
 
-  <main id="main-content">
+  <main>
     <section class="hero" aria-labelledby="page-title">
-      <div class="hero-copy">
-        <h1 id="page-title">LiDAR.</h1>
-        <p class="hero-lede">The light that runs out ahead and tells you what’s there.</p>
-        <p class="hero-sub">Point clouds, terrain, calibration, registration, fusion, and the geometry of being sure. Reliability over approximation, especially when the field gets weird.</p>
-        <div class="hero-actions">
-          <a class="pill" href="#documents">Download PDFs</a>
-          <a class="link-cta" href="#approach">Explore the approach</a>
+      <div class="wrap hero-copy">
+        <div>
+          <h1 id="page-title">LiDAR.</h1>
+        </div>
+        <div>
+          <p class="lead">The light that runs out ahead and tells you what is actually there.</p>
+          <p class="side-note">Point clouds, terrain, calibration, registration, fusion, and the geometry of being sure. Reliability over approximation, especially when the field gets weird.</p>
+          <div class="actions">
+            <a class="button" href="#documents">Download PDFs</a>
+            <a href="#approach">Explore the approach</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="media-stage" aria-hidden="true">
-      <div class="scan-wall">
-        <p>Sensing work for infrastructure, terrain, robotics, and field environments.</p>
+    <section class="statement">
+      <div class="wrap">
+        <h2>A beam of light asked to come back honest.</h2>
+        <p>The hard part is not the scan. It is knowing whether the scan deserves belief: sensor choice, alignment, drift, registration, confidence, and the judgment to say when the geometry is lying.</p>
       </div>
-    </div>
+    </section>
 
-    <section class="section center" id="approach">
-      <h2>A beam of light asked to come back honest.</h2>
-      <p class="section-lede">The work is rarely the shiny part. It is sensor selection, calibration, registration, fusion, and the judgment required to trust the geometry.</p>
-      <div class="feature-band">
-        <div class="feature-visual" aria-label="LiDAR sensing visual"></div>
-        <div class="feature-copy">
-          <h3>Called in when the obvious has been tried.</h3>
+    <section class="approach" id="approach">
+      <div class="wrap approach-grid">
+        <div class="scan-stage" aria-label="Animated LiDAR scan visual">
+          <div class="scan-ring"></div>
+          <div class="scan-line"></div>
+          <div class="terrain"></div>
+          <i class="point"></i>
+          <i class="point"></i>
+          <i class="point"></i>
+          <i class="point"></i>
+          <i class="point"></i>
+          <i class="point"></i>
+          <div class="readout">
+            <span><strong>2.4m</strong>range lock</span>
+            <span><strong>0.03</strong>drift check</span>
+            <span><strong>live</strong>scan pass</span>
+          </div>
+        </div>
+        <div class="approach-copy">
+          <h2>Called in when the obvious has already been tried.</h2>
           <p>Deployments span infrastructure, terrain capture, robotics perception, and field environments where GPS is unreliable and the answer still has to hold.</p>
           <p>Boutique by design. Less theater, more confidence in what the data actually says.</p>
         </div>
       </div>
-      <div class="tile-rail" aria-label="LiDAR capability areas">
-        <article class="tile"><h3>Point Clouds</h3><p>Registration, filtering, structure extraction, and datasets that keep their shape under scrutiny.</p></article>
-        <article class="tile"><h3>Calibration</h3><p>Sensor alignment, drift checks, repeatability, and the boring details that decide whether results hold.</p></article>
-        <article class="tile"><h3>Fusion</h3><p>Combining LiDAR with vision, positioning, and robotics perception without hiding uncertainty.</p></article>
-        <article class="tile"><h3>Field Work</h3><p>Terrain, light rail, infrastructure, and conditions that do not care about the lab demo.</p></article>
+    </section>
+
+    <section class="approach">
+      <div class="wrap capability-grid" aria-label="LiDAR capability areas">
+        <article class="capability">
+          <span>01</span>
+          <div><strong>Point Clouds</strong><p>Registration, filtering, structure extraction, and datasets that keep their shape under scrutiny.</p></div>
+        </article>
+        <article class="capability">
+          <span>02</span>
+          <div><strong>Calibration</strong><p>Sensor alignment, drift checks, repeatability, and the details that decide whether results hold.</p></div>
+        </article>
+        <article class="capability">
+          <span>03</span>
+          <div><strong>Fusion</strong><p>Combining LiDAR with vision, positioning, and robotics perception without hiding uncertainty.</p></div>
+        </article>
+        <article class="capability">
+          <span>04</span>
+          <div><strong>Field Work</strong><p>Terrain, light rail, infrastructure, and conditions that do not care about the lab demo.</p></div>
+        </article>
       </div>
     </section>
 
-    <section class="docs-band" id="documents">
-      <div class="docs-inner">
+    <section class="documents" id="documents">
+      <div class="wrap">
         <h2>Reference work and proposals.</h2>
-        <p class="section-lede">A small set of downloadable PDFs for LiDAR concepts, abstracts, and proof-of-concept work.</p>
+        <p class="section-copy">A small set of downloadable PDFs for LiDAR concepts, abstracts, and proof-of-concept work.</p>
         <div class="doc-grid">
           <article class="doc-card">
             <div>
-              <p class="doc-label">Abstract</p>
-              <h3>LiDAR Abstract (LRV) Q1 2020</h3>
-              <p class="doc-meta">PDF · jereme abernathy · fw/r</p>
+              <span>Abstract</span>
+              <strong>LiDAR Abstract (LRV) Q1 2020</strong>
+              <p>PDF - jereme abernathy - fw/r</p>
             </div>
-            <a class="pill" href="/lidar/abstract.pdf" download>Download PDF</a>
+            <a class="button" href="/lidar/abstract.pdf" download>Download PDF</a>
           </article>
           <article class="doc-card">
             <div>
-              <p class="doc-label">Request for Proposal</p>
-              <h3>LiDAR MAX Light Rail RFP — Portland / Multnomah County, OR</h3>
-              <p class="doc-meta">PDF · jereme abernathy · fw/r · November 2022</p>
+              <span>Request for Proposal</span>
+              <strong>LiDAR MAX Light Rail RFP</strong>
+              <p>Portland / Multnomah County, OR. PDF - jereme abernathy - fw/r - November 2022.</p>
             </div>
-            <a class="pill" href="/lidar/portland_max_poc.pdf" download>Download PDF</a>
+            <a class="button" href="/lidar/portland_max_poc.pdf" download>Download PDF</a>
           </article>
           <article class="doc-card">
             <div>
-              <p class="doc-label">Proof of Concept</p>
-              <h3>LiDAR Light Rail PoC — Seattle / King County, WA</h3>
-              <p class="doc-meta">PDF · jereme abernathy · fw/r · January 2026</p>
+              <span>Proof of Concept</span>
+              <strong>LiDAR Light Rail PoC</strong>
+              <p>Seattle / King County, WA. PDF - jereme abernathy - fw/r - January 2026.</p>
             </div>
-            <a class="pill" href="/lidar/lidar_seattle_poc.pdf" download>Download PDF</a>
+            <a class="button" href="/lidar/lidar_seattle_poc.pdf" download>Download PDF</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="contact-panel">
-        <h2>Need the geometry to hold?</h2>
-        <p>Talk through LiDAR, point clouds, sensor fusion, terrain capture, autonomous systems, or infrastructure perception work.</p>
-        <a class="pill" href="mailto:jeremedotxyz@gmail.com?subject=LiDAR%20Inquiry">Ping me</a>
+    <section class="closer">
+      <div class="wrap closer-grid">
+        <div>
+          <h2>Need the geometry to hold?</h2>
+          <p>Talk through LiDAR, point clouds, sensor fusion, terrain capture, autonomous systems, or infrastructure perception work.</p>
+        </div>
+        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=LiDAR%20Inquiry">Ping me</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div>
-      <div>&copy; 2026 jereme.xyz</div>
-      <div>915 Broadway St #100, Vancouver, WA 98660</div>
-    </div>
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-    </div>
+    <span>915 Broadway St, Vancouver, WA 98660</span>
+    <span class="socials" aria-label="Social links">
+      <a href="https://instagram.com/jeremedotxyz" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/instagram.svg" alt=""></a>
+      <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9" aria-label="Spotify"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/spotify.svg" alt=""></a>
+      <a href="https://www.threads.com/@jeremedotxyz" aria-label="Threads"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/threads.svg" alt=""></a>
+      <a href="https://substack.com/@jeremedotxyz" aria-label="Substack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/substack.svg" alt=""></a>
+      <a href="https://www.x.com/jeremedotxyz" aria-label="X"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/x.svg" alt=""></a>
+      <a href="https://www.youtube.com/@jeremedotxyz" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/youtube.svg" alt=""></a>
+    </span>
   </footer>
 </body>
 </html>
