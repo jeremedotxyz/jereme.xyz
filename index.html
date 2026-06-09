@@ -11,8 +11,8 @@
       --ink: #141414;
       --soft: rgba(20, 20, 20, .68);
       --quiet: rgba(20, 20, 20, .48);
-      --paper: #fbfaf7;
-      --bone: #f1eee7;
+      --paper: #fff;
+      --bone: #fff;
       --line: rgba(20, 20, 20, .12);
       --blue: #0067ff;
       --fire: #f05a1a;
@@ -28,7 +28,7 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: var(--paper);
+      background: #fff;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -40,7 +40,7 @@
       position: fixed;
       inset: 0 0 auto;
       z-index: 30;
-      background: rgba(251, 250, 247, .74);
+      background: rgba(255, 255, 255, .82);
       border-bottom: 1px solid rgba(20, 20, 20, .08);
       backdrop-filter: blur(22px) saturate(160%);
     }
@@ -87,25 +87,9 @@
       display: grid;
       align-items: end;
       padding: 118px 0 0;
-      background:
-        radial-gradient(circle at 77% 18%, rgba(183, 242, 31, .24), transparent 25%),
-        radial-gradient(circle at 17% 40%, rgba(0, 103, 255, .16), transparent 31%),
-        linear-gradient(180deg, #fff 0%, var(--paper) 52%, var(--bone) 100%);
+      background: #fff;
       position: relative;
       isolation: isolate;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 86px 0 auto;
-      height: 56%;
-      z-index: -1;
-      background-image:
-        linear-gradient(rgba(20,20,20,.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(20,20,20,.055) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: radial-gradient(circle at 50% 34%, black, transparent 70%);
     }
 
     .hero-copy {
@@ -144,6 +128,9 @@
       align-items: center;
       gap: 18px;
       margin-top: 24px;
+      font-size: 15px;
+      font-weight: 760;
+      color: var(--blue);
     }
 
     .question {
@@ -623,6 +610,12 @@
       }
       .nav-inner { min-height: 54px; }
       .links { gap: 14px; }
+      .hero {
+        min-height: auto;
+        align-items: start;
+        padding: 82px 0 64px;
+      }
+      .hero-copy { padding-bottom: 0; }
       h1 { font-size: 56px; }
       .lead { font-size: 22px; }
       .actions { flex-direction: column; align-items: flex-start; }
@@ -770,4 +763,3 @@
   </footer>
 </body>
 </html>
-```
