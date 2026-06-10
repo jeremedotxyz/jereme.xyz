@@ -1,774 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NTH4464X6R');
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fbfaf7">
-  <title>jereme.xyz</title>
-  <meta name="description" content="AI systems, robotics, LiDAR, product ideas, and spaces built with taste and technical care.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — jereme.xyz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --ink: #141414;
-      --soft: rgba(20, 20, 20, .68);
-      --quiet: rgba(20, 20, 20, .48);
-      --paper: #fff;
-      --bone: #fff;
-      --line: rgba(20, 20, 20, .12);
-      --blue: #0067ff;
-      --fire: #f05a1a;
-      --gold: #f6a044;
-      --lime: #b7f21f;
-      --mint: #43d6a3;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      --bg: #f5f5f0;
+      --fg: #111110;
+      --dim: #888882;
+      --border: #d4d4cc;
+      --amber: #b84010;
+      --scanline: rgba(0,0,0,0.012);
+      --px: 'Share Tech Mono', 'Courier New', monospace;
+      --pad: clamp(1.25rem, 5vw, 3rem);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html, body {
+      height: 100%;
+    }
 
     body {
-      margin: 0;
-      color: var(--ink);
-      background: #fff;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    .nav {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 30;
-      background: rgba(255, 255, 255, .82);
-      border-bottom: 1px solid rgba(20, 20, 20, .08);
-      backdrop-filter: blur(22px) saturate(160%);
-    }
-
-    .nav-inner,
-    .wrap {
-      width: min(1180px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    .nav-inner {
-      min-height: 58px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--px);
       display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      font-size: 13px;
-      color: var(--soft);
-    }
-
-    .links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 34px;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 0 16px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: white;
-      font-size: 13px;
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    .hero {
       min-height: 100svh;
-      display: grid;
-      align-items: end;
-      padding: 118px 0 0;
-      background: #fff;
-      position: relative;
-      isolation: isolate;
-    }
-
-    .hero-copy {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
-      align-items: end;
-      gap: clamp(28px, 7vw, 96px);
-      padding-bottom: clamp(32px, 6vw, 72px);
-    }
-
-    h1 {
-      max-width: 930px;
-      margin: 0;
-      font-size: clamp(58px, 10vw, 146px);
-      line-height: .98;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      margin: 0;
-      color: rgba(20,20,20,.84);
-      font-size: clamp(22px, 3vw, 35px);
-      line-height: 1.08;
-      font-weight: 680;
-    }
-
-    .side-note {
-      margin: 18px 0 0;
-      color: var(--soft);
-      font-size: 17px;
-      line-height: 1.5;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-top: 24px;
-      font-size: 15px;
-      font-weight: 760;
-      color: var(--blue);
-    }
-
-    .question {
-      padding: clamp(78px, 11vw, 150px) 0;
-      background: var(--paper);
-    }
-
-    .question-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: clamp(36px, 7vw, 92px);
-      align-items: start;
-    }
-
-    .question h2,
-    .lab h2,
-    .lanes h2,
-    .closer h2 {
-      margin: 0;
-      font-size: clamp(42px, 6vw, 88px);
-      line-height: .96;
-      letter-spacing: 0;
-    }
-
-    .question p {
-      margin: 26px 0 0;
-      color: var(--soft);
-      font-size: clamp(21px, 2.5vw, 31px);
-      line-height: 1.18;
-      font-weight: 650;
-    }
-
-    .lab {
-      padding: clamp(72px, 10vw, 126px) 0;
-      background: #fff;
-    }
-
-    .lab-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-      gap: clamp(34px, 6vw, 78px);
-      align-items: center;
-    }
-
-    .device-stack {
-      min-height: 560px;
-      position: relative;
-    }
-
-    .device {
-      position: absolute;
       overflow: hidden;
-      background: #111;
-      border: 10px solid #1d1d1f;
-      box-shadow: 0 28px 80px rgba(0,0,0,.25);
     }
 
-    .device::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(135deg, rgba(255,255,255,.16), transparent 32%, rgba(255,255,255,.08));
-      mix-blend-mode: screen;
+    /* CRT effects */
+    #crt-vignette {
+      position: fixed; inset: 0; z-index: 3; pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.1) 100%);
     }
-
-    .screen {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      color: #fff;
+    #scanlines {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom, transparent 0px, transparent 3px,
+        var(--scanline) 3px, var(--scanline) 4px
+      );
     }
-
-    .laptop { width: 75%; height: 54%; left: 0; top: 17%; border-radius: 26px; }
-    .phone { width: 29%; height: 69%; right: 4%; bottom: 0; border-radius: 36px; z-index: 2; }
-    .watch { width: 25%; height: 25%; left: 42%; top: 0; border-radius: 30px; z-index: 3; }
-
-    .ipad { animation: focusIpad 12s infinite; }
-    .phone { animation: focusPhone 12s infinite; }
-    .watch { animation: focusWatch 12s infinite; }
-
-    @keyframes focusIpad {
-      0%, 30% { filter: brightness(1.16) saturate(1.2); transform: translateY(-3px); }
-      36%, 100% { filter: brightness(.72) saturate(.72); transform: translateY(0); }
+    #grain {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      animation: grain 0.8s steps(2) infinite;
     }
-
-    @keyframes focusPhone {
-      0%, 30%, 68%, 100% { filter: brightness(.72) saturate(.72); transform: translateY(0); }
-      36%, 62% { filter: brightness(1.18) saturate(1.25); transform: translateY(-3px); }
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      25%  { transform: translate(-2px,1px); }
+      50%  { transform: translate(1px,-2px); }
+      75%  { transform: translate(2px,1px); }
+      100% { transform: translate(-1px,2px); }
     }
-
-    @keyframes focusWatch {
-      0%, 64%, 100% { filter: brightness(.72) saturate(.72); transform: translateY(0); }
-      70%, 94% { filter: brightness(1.2) saturate(1.18); transform: translateY(-3px); }
+    @keyframes flicker {
+      0%,94%,100% { opacity: 1; }
+      95% { opacity: 0.97; }
+      97% { opacity: 0.99; }
     }
+    body { animation: flicker 10s infinite; }
 
-    .code-screen {
-      padding: 20px 22px;
-      background:
-        radial-gradient(circle at 80% 10%, rgba(67, 214, 163, .18), transparent 28%),
-        linear-gradient(135deg, #071019, #101014);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-
-    .code-top {
+    /* MAIN */
+    .container {
+      position: relative;
+      z-index: 10;
       display: flex;
-      gap: 7px;
-      margin-bottom: 18px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: var(--pad);
+      max-width: 600px;
+      width: 100%;
     }
 
-    .code-top i {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ff5f57;
-    }
-
-    .code-top i:nth-child(2) { background: #febc2e; }
-    .code-top i:nth-child(3) { background: #28c840; }
-
-    .code-line {
-      width: var(--w);
-      height: 12px;
-      margin: 11px 0;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--c), rgba(255,255,255,.16));
-      transform-origin: left center;
-      animation: writeCode 12s steps(18) infinite;
-      opacity: .24;
-    }
-
-    .code-line:nth-child(2) { --w: 58%; --c: #64d2ff; }
-    .code-line:nth-child(3) { --w: 78%; --c: #b7f21f; }
-    .code-line:nth-child(4) { --w: 44%; --c: #f6a044; }
-    .code-line:nth-child(5) { --w: 84%; --c: #64d2ff; }
-    .code-line:nth-child(6) { --w: 66%; --c: #43d6a3; }
-    .code-line:nth-child(7) { --w: 51%; --c: #f05a1a; }
-    .code-line:nth-child(8) { --w: 73%; --c: #b7f21f; }
-
-    @keyframes writeCode {
-      0%, 3% { transform: scaleX(.08); opacity: .22; }
-      12%, 29% { transform: scaleX(1); opacity: 1; }
-      34%, 100% { transform: scaleX(.28); opacity: .16; }
-    }
-
-    .lidar-screen {
-      display: grid;
-      place-items: center;
-      background:
-        linear-gradient(rgba(100,210,255,.09) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100,210,255,.09) 1px, transparent 1px),
-        radial-gradient(circle at center, rgba(100,210,255,.2), transparent 58%),
-        #061018;
-      background-size: 22px 22px, 22px 22px, auto, auto;
-    }
-
-    .lidar-ring,
-    .lidar-ring::before,
-    .lidar-ring::after {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(100,210,255,.42);
-    }
-
-    .lidar-ring {
-      width: 70%;
-      aspect-ratio: 1;
-      animation: lidarActive 12s infinite;
-    }
-
-    .lidar-ring::before,
-    .lidar-ring::after {
-      content: "";
-      inset: 18%;
-    }
-
-    .lidar-ring::after { inset: 36%; }
-
-    .scan {
-      position: absolute;
-      width: 46%;
-      height: 2px;
-      left: 50%;
-      top: 50%;
-      transform-origin: left center;
-      background: linear-gradient(90deg, #64d2ff, transparent);
-      animation: scanSweep 12s linear infinite;
-    }
-
-    .dot {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #64d2ff;
-      box-shadow: 0 0 14px #64d2ff;
-      animation: lidarActive 12s infinite;
-    }
-
-    .dot:nth-child(3) { left: 28%; top: 36%; }
-    .dot:nth-child(4) { left: 62%; top: 30%; }
-    .dot:nth-child(5) { left: 70%; top: 62%; }
-    .dot:nth-child(6) { left: 34%; top: 68%; }
-
-    .measure {
-      position: absolute;
-      bottom: 24px;
-      left: 20px;
-      right: 20px;
-      display: flex;
-      justify-content: space-between;
-      color: rgba(255,255,255,.82);
-      font-size: 12px;
-      font-weight: 760;
-      animation: lidarActive 12s infinite;
-    }
-
-    @keyframes lidarActive {
-      0%, 31%, 67%, 100% { opacity: .24; }
-      36%, 62% { opacity: 1; }
-    }
-
-    @keyframes scanSweep {
-      0%, 31% { opacity: 0; transform: rotate(-80deg); }
-      36% { opacity: 1; transform: rotate(-80deg); }
-      62% { opacity: 1; transform: rotate(260deg); }
-      67%, 100% { opacity: 0; transform: rotate(260deg); }
-    }
-
-    .pay-screen {
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at 50% 30%, rgba(183,242,31,.18), transparent 35%), #08090a;
-    }
-
-    .coffee-cup {
-      width: 50px;
-      height: 36px;
-      border: 4px solid rgba(255,255,255,.86);
-      border-top: 0;
-      border-radius: 0 0 15px 15px;
-      position: absolute;
-      bottom: 26px;
-      left: 24px;
-      animation: payActive 12s infinite;
-    }
-
-    .coffee-cup::after {
-      content: "";
-      position: absolute;
-      width: 15px;
-      height: 18px;
-      border: 4px solid rgba(255,255,255,.82);
-      border-left: 0;
-      border-radius: 0 12px 12px 0;
-      right: -17px;
-      top: 7px;
-    }
-
-    .pay-card {
-      width: 54px;
-      height: 36px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #f6a044, #b7f21f);
-      box-shadow: 0 12px 24px rgba(0,0,0,.34);
-      animation: tapCard 12s infinite;
-    }
-
-    .pay-check {
-      position: absolute;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 3px solid var(--lime);
-      opacity: 0;
-      animation: payCheck 12s infinite;
-    }
-
-    .pay-check::after {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 10px;
-      left: 10px;
-      top: 12px;
-      border-left: 4px solid var(--lime);
-      border-bottom: 4px solid var(--lime);
-      transform: rotate(-45deg);
-    }
-
-    @keyframes tapCard {
-      0%, 65% { opacity: .18; transform: translateY(-28px) scale(.9); }
-      72% { opacity: 1; transform: translateY(-6px) scale(1); }
-      82%, 94% { opacity: 1; transform: translateY(2px) scale(.96); }
-      100% { opacity: .18; transform: translateY(-28px) scale(.9); }
-    }
-
-    @keyframes payCheck {
-      0%, 76% { opacity: 0; transform: scale(.6); }
-      82%, 94% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(.6); }
-    }
-
-    @keyframes payActive {
-      0%, 65%, 100% { opacity: .28; }
-      72%, 94% { opacity: 1; }
-    }
-
-    .lab-copy p {
-      margin: 22px 0 0;
-      color: var(--soft);
-      font-size: clamp(20px, 2vw, 26px);
-      line-height: 1.22;
-      font-weight: 640;
-    }
-
-    .lanes {
-      padding: clamp(64px, 9vw, 110px) 0;
-      background: var(--paper);
-    }
-
-    .lanes-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 28px;
-    }
-
-    .lane-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .lane {
-      min-height: 270px;
-      display: grid;
-      align-content: space-between;
-      padding: 24px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(20,20,20,.08);
-      color: var(--ink);
-      transition: transform .2s ease, background .2s ease;
-    }
-
-    .lane:hover {
-      transform: translateY(-4px);
-      background: #fff;
-    }
-
-    .lane:nth-child(1) { box-shadow: inset 0 5px 0 var(--fire); }
-    .lane:nth-child(2) { box-shadow: inset 0 5px 0 var(--blue); }
-    .lane:nth-child(3) { box-shadow: inset 0 5px 0 var(--lime); }
-    .lane:nth-child(4) { box-shadow: inset 0 5px 0 var(--ink); }
-    .lane:nth-child(5) { box-shadow: inset 0 5px 0 var(--mint); }
-
-    .lane span {
-      color: var(--quiet);
-      font-size: 12px;
-      font-weight: 820;
-    }
-
-    .lane strong {
-      display: block;
-      margin-top: 10px;
-      font-size: 30px;
+    .error-code {
+      font-size: clamp(5rem, 20vw, 10rem);
       line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.1s forwards;
     }
 
-    .lane p {
-      margin: 22px 0 0;
-      color: var(--soft);
-      font-size: 15px;
-      line-height: 1.42;
+    .error-code span { color: var(--amber); }
+
+    .error-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-top: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.3s forwards;
+    }
+    .error-label::before { content: '// '; opacity: 0.6; }
+
+    .error-message {
+      font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      margin-top: 1.2rem;
+      line-height: 2;
+      max-width: 420px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.5s forwards;
     }
 
-    .closer {
-      padding: clamp(76px, 11vw, 148px) 0 46px;
-      background: var(--paper);
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+      opacity: 0;
+      animation: fadeIn 0.7s ease 0.7s forwards;
     }
 
-    .closer-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 34px;
-      align-items: end;
-      padding-bottom: 54px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .closer p {
-      max-width: 850px;
-      margin: 24px 0 0;
-      color: var(--soft);
-      font-size: clamp(21px, 2.6vw, 32px);
-      line-height: 1.18;
-      font-weight: 650;
-    }
-
-    footer {
-      width: min(1180px, calc(100% - 36px));
-      margin: 0 auto;
+    .nav-links {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 28px 0 40px;
-      color: var(--soft);
-      font-size: 12px;
+      gap: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.9s forwards;
     }
 
-    .socials {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    .nav-links a {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: lowercase;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-links a.primary { color: var(--amber); }
+    .nav-links a.primary:hover { opacity: 0.7; }
+
+    /* blinking cursor after 404 */
+    .cursor {
+      display: inline-block;
+      width: 0.08em;
+      height: 0.85em;
+      background: var(--amber);
+      margin-left: 0.15em;
+      vertical-align: bottom;
+      opacity: 0;
+      animation: cursorAppear 0s 1.2s forwards, blink 1.1s step-end 1.2s infinite;
+    }
+    @keyframes cursorAppear {
+      to { opacity: 1; }
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
-    .socials a {
-      width: 22px;
-      height: 22px;
-      display: inline-grid;
-      place-items: center;
-      opacity: .72;
-      transition: opacity .2s ease, transform .2s ease;
+    /* lost signal line */
+    .signal-line {
+      font-size: 0.5rem;
+      letter-spacing: 0.25em;
+      color: var(--border);
+      margin-top: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
     }
 
-    .socials a:hover {
-      opacity: 1;
-      transform: translateY(-1px);
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
-    .socials img {
-      width: 19px;
-      height: 19px;
-      display: block;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .ipad,
-      .phone,
-      .watch,
-      .code-line,
-      .lidar-ring,
-      .scan,
-      .dot,
-      .measure,
-      .pay-card,
-      .pay-check,
-      .coffee-cup { animation: none; }
-      .pay-check { opacity: 1; }
-    }
-
-    @media (max-width: 950px) {
-      .hero-copy,
-      .question-grid,
-      .lab-grid,
-      .closer-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero { padding-top: 94px; }
-      .side-note { max-width: 680px; }
-      .lane-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .device-stack { min-height: 470px; }
-      .links a:not(.button) { display: none; }
-      footer { align-items: flex-start; flex-direction: column; }
-    }
-
-    @media (max-width: 560px) {
-      .nav-inner,
-      .wrap,
-      footer {
-        width: min(100% - 28px, 1180px);
-      }
-      .nav-inner { min-height: 54px; }
-      .links { gap: 14px; }
-      .hero {
-        min-height: auto;
-        align-items: start;
-        padding: 82px 0 64px;
-      }
-      .hero-copy { padding-bottom: 0; }
-      h1 { font-size: 56px; }
-      .lead { font-size: 22px; }
-      .actions { flex-direction: column; align-items: flex-start; }
-      .lane-grid { grid-template-columns: 1fr; }
-      .lane { min-height: 190px; }
-      .lanes-head { align-items: flex-start; flex-direction: column; }
-      .device-stack { min-height: 410px; }
-      .laptop { width: 88%; height: 48%; top: 18%; }
-      .phone { width: 37%; height: 62%; right: 0; }
-      .watch { width: 32%; height: 24%; left: 42%; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <nav class="nav" aria-label="Main">
-    <div class="nav-inner">
-      <div class="links">
-        <a href="https://jereme.xyz/lidar/">LiDAR</a>
-        <a href="https://jereme.xyz/ai/">AI</a>
-        <span>Design</span>
-        <span>Spaces</span>
-        <a href="https://jereme.xyz/about/">About</a>
-        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Ping%20me">Ping Me</a>
-      </div>
+
+  <div id="grain"></div>
+  <div id="scanlines"></div>
+  <div id="crt-vignette"></div>
+
+  <div class="container">
+    <div class="error-code">4<span>0</span>4<span class="cursor"></span></div>
+    <div class="error-label">signal lost</div>
+    <div class="signal-line">jereme.xyz · transmission interrupted</div>
+    <p class="error-message">
+      this page doesn't exist.<br>
+      maybe it never did.<br>
+      maybe it did and someone deleted it.<br>
+      either way, it's gone now.
+    </p>
+    <div class="divider"></div>
+    <div class="nav-links">
+      <a href="/" class="primary">← back to base</a>
+      <a href="/pct.html">pct 2027</a>
     </div>
-  </nav>
+  </div>
 
-  <main>
-    <section class="hero" aria-labelledby="intro-title">
-      <div class="wrap hero-copy">
-        <div>
-          <h1 id="intro-title">Building things that survive first contact.</h1>
-        </div>
-        <div>
-          <p class="lead">The work lives where language, light, machines, materials, and human behavior start arguing with each other.</p>
-          <p class="side-note">Not a clean little portfolio. More like a shop floor with taste: systems thinking, product instinct, spatial feel, and enough technical pressure to see what breaks.</p>
-          <div class="actions">
-            <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Ping%20me">Start a conversation</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="question" id="question">
-      <div class="wrap question-grid">
-        <div>
-          <h2>Chasing the moment when an idea stops posing and starts working.</h2>
-          <p>A model should say what was meant. A robot should know where it is. A sensor should return the truth. A space should make people want to stay without needing to explain itself. Design should make complexity feel like it finally found its shape.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="lab" id="lab">
-      <div class="wrap lab-grid">
-        <div class="device-stack" aria-hidden="true">
-          <figure class="device laptop ipad">
-            <div class="screen code-screen">
-              <div class="code-top"><i></i><i></i><i></i></div>
-              <div class="code-line"></div>
-              <div class="code-line"></div>
-              <div class="code-line"></div>
-              <div class="code-line"></div>
-              <div class="code-line"></div>
-              <div class="code-line"></div>
-              <div class="code-line"></div>
-            </div>
-          </figure>
-          <figure class="device phone">
-            <div class="screen lidar-screen">
-              <div class="lidar-ring"></div>
-              <div class="scan"></div>
-              <i class="dot"></i>
-              <i class="dot"></i>
-              <i class="dot"></i>
-              <i class="dot"></i>
-              <div class="measure"><span>2.4m</span><span>scan</span></div>
-            </div>
-          </figure>
-          <figure class="device watch">
-            <div class="screen pay-screen">
-              <div class="pay-card"></div>
-              <div class="coffee-cup"></div>
-              <div class="pay-check"></div>
-            </div>
-          </figure>
-        </div>
-        <div class="lab-copy">
-          <h2>Not a portfolio. A pressure-tested way of seeing.</h2>
-          <p>The point is not to look busy. The point is to build useful systems across the whole signal: AI that can be evaluated, sensors that understand space, design that gives complexity a shape, environments that people want to return to, and the operating taste that makes the pieces hold together.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="lanes" id="lanes">
-      <div class="wrap">
-        <div class="lanes-head">
-          <h2>Different ways to make the signal real.</h2>
-        </div>
-        <div class="lane-grid">
-          <a class="lane" href="https://jereme.xyz/lidar/">
-            <span>01</span>
-            <div><strong>LiDAR</strong><p>Point clouds, calibration, sensing, mapping, and spatial truth.</p></div>
-          </a>
-          <a class="lane" href="https://jereme.xyz/ai/">
-            <span>02</span>
-            <div><strong>AI</strong><p>Evaluation, red teams, workflows, data, and model behavior.</p></div>
-          </a>
-          <div class="lane">
-            <span>03</span>
-            <div><strong>Design</strong><p>Interfaces, systems, rhythm, composition, and the feel of the thing.</p></div>
-          </div>
-          <div class="lane">
-            <span>04</span>
-            <div><strong>Spaces</strong><p>Coffee, hospitality, light, seating, sound, pace, and return.</p></div>
-          </div>
-          <a class="lane" href="https://jereme.xyz/about/">
-            <span>05</span>
-            <div><strong>About</strong><p>The standards, the operating lanes, and the longer note.</p></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="closer">
-      <div class="wrap closer-grid">
-        <div>
-          <h2>Interesting is easy. Durable is the trick.</h2>
-          <p>That is the thread: make the beautiful thing accountable to reality, and make the technical thing humane enough that people actually want to use it.</p>
-        </div>
-        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Ping%20me">Start a conversation</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <span>915 Broadway St, Vancouver, WA 98660</span>
-    <span class="socials" aria-label="Social links">
-      <a href="https://instagram.com/jeremedotxyz" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/instagram.svg" alt=""></a>
-      <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9" aria-label="Spotify"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/spotify.svg" alt=""></a>
-      <a href="https://www.threads.com/@jeremedotxyz" aria-label="Threads"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/threads.svg" alt=""></a>
-      <a href="https://substack.com/@jeremedotxyz" aria-label="Substack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/substack.svg" alt=""></a>
-      <a href="https://www.x.com/jeremedotxyz" aria-label="X"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/x.svg" alt=""></a>
-      <a href="https://www.youtube.com/@jeremedotxyz" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/youtube.svg" alt=""></a>
-    </span>
-  </footer>
 </body>
 </html>
