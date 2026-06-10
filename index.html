@@ -35,9 +35,14 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
     body {
+      overflow-x: hidden;
       margin: 0;
       color: var(--ink);
       background:
@@ -106,6 +111,15 @@
       padding: clamp(42px, 6vw, 74px) 0;
     }
 
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 820;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
     h1 {
       max-width: 9.5ch;
       margin: 0;
@@ -153,8 +167,12 @@
     }
 
     @keyframes statusBlink {
-      0%, 100% { opacity: .45; }
-      45%, 55% { opacity: 1; }
+      0%, 100% {
+        opacity: .45;
+      }
+      45%, 55% {
+        opacity: 1;
+      }
     }
 
     .hero-actions {
@@ -180,6 +198,14 @@
       white-space: nowrap;
     }
 
+    .text-link {
+      color: var(--soft);
+      font-size: 14px;
+      font-weight: 760;
+    }
+
+    .text-link:hover { color: var(--ink); }
+
     .portrait {
       position: relative;
       min-height: 560px;
@@ -188,6 +214,10 @@
       border: 0;
       background: transparent;
       isolation: isolate;
+    }
+
+    .portrait::after {
+      content: none;
     }
 
     .device-scene {
@@ -266,16 +296,16 @@
       position: absolute;
       left: 24px;
       right: 24px;
-      top: 23px;
-      bottom: 20px;
+      top: 20px;
+      bottom: 18px;
       display: grid;
       align-content: start;
-      gap: 10px;
+      gap: 8px;
     }
 
     .code-stack i {
       display: block;
-      height: 9px;
+      height: 8px;
       width: var(--w);
       border-radius: 999px;
       background: linear-gradient(90deg, var(--c), rgba(255,255,255,.16));
@@ -305,6 +335,34 @@
       background:
         radial-gradient(circle at 50% 38%, rgba(57,255,136,.18), transparent 32%),
         linear-gradient(180deg, #061018, #101014);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 12px;
+      z-index: 6;
+      width: 34%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.72);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      transform: translateX(-50%);
+    }
+
+    .phone::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      z-index: 4;
+      pointer-events: none;
+      border-radius: 32px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), transparent 18%),
+        radial-gradient(circle at 50% 42%, rgba(57,255,136,.08), transparent 32%);
+      mix-blend-mode: screen;
     }
 
     .phone-orbit,
@@ -393,6 +451,21 @@
       border-radius: 0 16px 16px 0;
     }
 
+    .coffee-cup::before {
+      content: "";
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      top: 6px;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+    }
+
+    .pay-card {
+      display: none;
+    }
+
     .pay-check {
       position: absolute;
       width: 42%;
@@ -434,9 +507,9 @@
     }
 
     @keyframes tabletTyping {
-      0%, 4% { opacity: .22; transform: scaleX(.08); }
+      0%, 4% { opacity: .42; transform: scaleX(.56); }
       12%, 28% { opacity: 1; transform: scaleX(1); }
-      36%, 100% { opacity: .16; transform: scaleX(.26); }
+      36%, 100% { opacity: .5; transform: scaleX(.72); }
     }
 
     @keyframes phonePulse {
@@ -466,6 +539,43 @@
       0%, 86% { opacity: 0; transform: translate(-50%, -50%) scale(.5); }
       91%, 97% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
       100% { opacity: 0; transform: translate(-50%, -50%) scale(.5); }
+    }
+
+    .status-card {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(22px);
+      color: #fff;
+    }
+
+    .stat {
+      min-height: 86px;
+      padding: 14px;
+      background: rgba(20,20,20,.54);
+    }
+
+    .stat span {
+      display: block;
+      color: rgba(255,255,255,.62);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 1.05;
     }
 
     .section {
@@ -532,6 +642,10 @@
       color: var(--quiet);
       font-size: 12px;
       font-weight: 820;
+    }
+
+    .venture div {
+      align-self: start;
     }
 
     .venture strong {
@@ -632,7 +746,27 @@
       }
 
       .hero { min-height: auto; }
-      .portrait { min-height: 460px; }
+      .portrait {
+        min-height: 460px;
+        overflow: hidden;
+      }
+      .device-scene {
+        left: 50%;
+        width: min(430px, 100%);
+        transform: translateX(-50%);
+      }
+      .tablet {
+        height: 51%;
+        left: 4%;
+        top: 29%;
+      }
+      .phone { right: 0; }
+      .code-stack {
+        top: 17px;
+        bottom: 15px;
+        gap: 5px;
+      }
+      .code-stack i { height: 7px; }
       .ventures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       footer { align-items: flex-start; flex-direction: column; }
       .footer-links { justify-items: start; }
@@ -642,9 +776,61 @@
       .page { width: min(100% - 28px, 1180px); }
       header { align-items: flex-start; justify-content: flex-start; padding: 18px 0; }
       nav { gap: 14px; }
+      .hero > div {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
       h1 { font-size: 58px; }
-      .lead { font-size: 23px; }
+      .lead {
+        width: 100%;
+        max-width: min(100%, 29ch);
+        font-size: 22px;
+        overflow-wrap: break-word;
+      }
+      .note,
+      .availability {
+        max-width: min(100%, 31ch);
+        overflow-wrap: break-word;
+      }
+      .availability { align-items: flex-start; }
+      .availability::before { margin-top: .42em; }
       .portrait { min-height: 410px; }
+      .tablet {
+        width: 77%;
+        height: 52%;
+        left: 3%;
+        top: 28%;
+        border-width: 7px;
+        border-radius: 28px;
+      }
+      .phone {
+        width: 36%;
+        height: 62%;
+        right: 1%;
+        bottom: 9%;
+        border-width: 7px;
+        border-radius: 34px;
+      }
+      .watch {
+        width: 28%;
+        height: 26%;
+        left: 45%;
+        top: 9%;
+        border-width: 7px;
+        border-radius: 28px;
+      }
+      .code-stack {
+        left: 18px;
+        right: 18px;
+        top: 15px;
+        bottom: 13px;
+        gap: 4px;
+      }
+      .code-stack i { height: 6px; }
+      .status-card { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stat { min-height: 82px; padding: 13px; }
+      .stat strong { font-size: 16px; }
       .ventures { grid-template-columns: 1fr; }
       .venture {
         min-height: 210px;
@@ -656,11 +842,12 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .availability::before,
+      .availability::before { animation: none; opacity: 1; }
       .hero-device,
       .code-stack i,
       .phone-orbit,
       .phone-sweep,
+      .pay-card,
       .coffee-cup,
       .pay-check {
         animation: none;
@@ -692,7 +879,6 @@
           </div>
           <p class="availability">Selectively available for serious problems, strange ideas, and useful conversations.</p>
         </div>
-
         <figure class="portrait" aria-label="Animated tablet phone and watch device stack">
           <div class="device-scene" aria-hidden="true">
             <div class="hero-device tablet">
@@ -700,7 +886,6 @@
                 <span class="code-stack"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
               </div>
             </div>
-
             <div class="hero-device phone">
               <div class="device-screen phone-screen">
                 <span class="phone-orbit"></span>
@@ -715,7 +900,6 @@
                 <i class="scan-dot"></i>
               </div>
             </div>
-
             <div class="hero-device watch">
               <div class="device-screen watch-screen">
                 <span class="coffee-cup"></span>
@@ -731,7 +915,6 @@
           <h2 id="ventures-title">One operating system. Different surfaces.</h2>
           <p>The work changes shape by room: technical systems, daily ritual, useful objects, and places that reward attention.</p>
         </div>
-
         <div class="ventures">
           <article class="venture">
             <span>01 / AI, Robotics, LiDAR</span>
@@ -740,7 +923,6 @@
               <p>Technical systems for teams that need models, sensors, robots, and evaluations to work outside the demo.</p>
             </div>
           </article>
-
           <article class="venture">
             <span>02 / PNW Coffee</span>
             <div>
@@ -748,7 +930,6 @@
               <p>A coffee haus shaped around hospitality, pace, light, seating, sound, and the daily ritual of returning.</p>
             </div>
           </article>
-
           <article class="venture">
             <span>03 / Physical Goods</span>
             <div>
@@ -756,7 +937,6 @@
               <p>Industrial and consumer products with real materials, real weight, and a reason for every millimeter.</p>
             </div>
           </article>
-
           <article class="venture">
             <span>04 / Coastal Hospitality</span>
             <div>
@@ -772,7 +952,6 @@
           <h2 id="thesis-title">Enough said. Not too much.</h2>
           <p>This is a small map of the work: things built with patience, taste, and enough ambiguity to stay interesting.</p>
         </div>
-
         <ul class="principles">
           <li><span>Builds</span> precision, patience, intention</li>
           <li><span>Studies</span> systems, space, behavior, taste</li>
@@ -786,7 +965,6 @@
           <h2 id="closer-title">The useful thing should feel inevitable.</h2>
           <p>That is the through-line: make the technical thing humane, make the beautiful thing accountable, and leave the room clearer than it was.</p>
         </div>
-
         <a class="button" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Write me</a>
       </section>
     </main>
@@ -796,7 +974,6 @@
         <span>&copy; 2026 jereme.xyz</span>
         <span>915 Broadway St, Vancouver, WA 98660</span>
       </span>
-
       <span class="footer-links">
         <span class="socials" aria-label="Social links">
           <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
@@ -807,7 +984,6 @@
           <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9">Spotify</a>
           <a href="https://substack.com/@jeremedotxyz">Substack</a>
         </span>
-
         <span class="policy-links">
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
