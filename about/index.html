@@ -1,8 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="/site/venture.css">
-  <!-- Google tag (gtag.js) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>About - jereme.xyz</title>
+  <meta name="description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.">
+  <link rel="canonical" href="https://jereme.xyz/about/">
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="jereme.xyz">
+  <meta property="og:title" content="About - jereme.xyz">
+  <meta property="og:description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.">
+  <meta property="og:url" content="https://jereme.xyz/about/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://jereme.xyz/#website",
+          "name": "jereme.xyz",
+          "url": "https://jereme.xyz/",
+          "description": "Jereme Abernathy. Independent operator in the Pacific Northwest."
+        },
+        {
+          "@type": "Person",
+          "@id": "https://jereme.xyz/#person",
+          "name": "Jereme Abernathy",
+          "alternateName": "jereme.xyz",
+          "url": "https://jereme.xyz/",
+          "email": "mailto:loveletters@jereme.xyz",
+          "description": "Independent operator in the Pacific Northwest building AI systems, coffee spaces, and physical goods.",
+          "homeLocation": { "@type": "Place", "name": "Pacific Northwest" },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "915 Broadway St #100",
+            "addressLocality": "Vancouver",
+            "addressRegion": "WA",
+            "postalCode": "98660",
+            "addressCountry": "US"
+          },
+          "knowsAbout": ["AI systems", "robotics", "coffee spaces", "industrial design", "physical goods"],
+          "sameAs": [
+            "https://www.threads.com/@jeremedotxyz",
+            "https://www.instagram.com/jeremedotxyz/",
+            "https://github.com/jeremedotxyz",
+            "https://www.youtube.com/@jeremedotxyz",
+            "https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9",
+            "https://substack.com/@jeremedotxyz"
+          ],
+          "mainEntityOfPage": { "@id": "https://jereme.xyz/about/#about-page" }
+        },
+        {
+          "@type": "AboutPage",
+          "@id": "https://jereme.xyz/about/#about-page",
+          "name": "About - jereme.xyz",
+          "url": "https://jereme.xyz/about/",
+          "description": "A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.",
+          "isPartOf": { "@id": "https://jereme.xyz/#website" },
+          "about": { "@id": "https://jereme.xyz/#person" }
+        }
+      ]
+    }
+  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -10,254 +71,549 @@
     gtag('js', new Date());
     gtag('config', 'G-NTH4464X6R');
   </script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f4f6f2">
-
-  <title>About - jereme.xyz</title>
-  <meta name="description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.">
-
-  <link rel="canonical" href="https://jereme.xyz/site/about/">
-  <meta property="og:type" content="profile">
-  <meta property="og:site_name" content="jereme.xyz">
-  <meta property="og:title" content="About - jereme.xyz">
-  <meta property="og:description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.">
-  <meta property="og:url" content="https://jereme.xyz/site/about/">
-
   <style>
-    :root { --accent: #141414; }
-
-    .about-hero {
-      grid-template-columns: 1fr;
-      max-width: 980px;
-      min-height: 520px;
-      align-items: end;
+    :root {
+      --paper: #f7f5ef;
+      --ink: #141414;
+      --soft: rgba(20, 20, 20, .66);
+      --quiet: rgba(20, 20, 20, .48);
+      --line: rgba(20, 20, 20, .14);
+      --heat: #f05a1a;
+      --heat-dark: #9d3712;
+      --heat-soft: #f6a044;
+      --lime: #b7f21f;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     }
 
-    .about-hero h1 {
-      max-width: 920px;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.45;
     }
 
-    .about-hero .lead {
-      max-width: 850px;
+    a { color: inherit; }
+    ::selection { background: rgba(240, 90, 26, .22); }
+
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 18px;
+      z-index: 10;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
     }
 
-    .about-hero .note {
-      max-width: 780px;
+    .skip-link:focus { top: 18px; }
+
+    .page {
+      width: min(1160px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    .venture-links {
+    header {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .brand,
+    nav a,
+    footer a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-weight: 750;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a:hover,
+    footer a:hover,
+    .brand:hover {
+      border-color: currentColor;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--heat);
+      outline-offset: 4px;
+    }
+
+    .hero {
+      min-height: calc(100svh - 72px);
+      display: grid;
+      grid-template-columns: minmax(0, 730px) minmax(220px, 360px);
+      align-content: center;
+      align-items: center;
+      gap: clamp(32px, 7vw, 92px);
+      padding: 36px 0 78px;
+    }
+
+    h1 {
+      max-width: 10ch;
+      margin: 0;
+      font-size: clamp(64px, 12vw, 142px);
+      line-height: .88;
+      letter-spacing: 0;
+    }
+
+    .hero-lede {
+      max-width: 650px;
+      margin: 30px 0 0;
+      color: rgba(20, 20, 20, .84);
+      font-size: clamp(22px, 3vw, 33px);
+      line-height: 1.12;
+      font-weight: 650;
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      margin: 18px 0 0;
+      color: var(--soft);
+      font-size: 17px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button,
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      font-size: 14px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .button {
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .text-link {
+      color: var(--soft);
+    }
+
+    .text-link:hover { color: var(--ink); }
+
+    .signal-graphic {
+      width: min(100%, 360px);
+      margin: 0;
+      justify-self: end;
+    }
+
+    .signal-graphic svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .signal-graphic .frame {
+      fill: rgba(255, 255, 255, .36);
+      stroke: rgba(20, 20, 20, .16);
+      stroke-width: 1.25;
+    }
+
+    .signal-graphic .heat-fill { fill: var(--heat); }
+    .signal-graphic .heat-soft { fill: var(--heat-soft); }
+    .signal-graphic .heat-dark { fill: var(--heat-dark); }
+
+    .signal-graphic .line {
+      fill: none;
+      stroke: rgba(20, 20, 20, .74);
+      stroke-width: 1.8;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    .signal-graphic .heat-line {
+      fill: none;
+      stroke: var(--heat);
+      stroke-width: 4;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    .signal-graphic .lime-line {
+      fill: none;
+      stroke: var(--lime);
+      stroke-width: 3;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    .section {
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section h2,
+    .letter-heading h2,
+    .contact-panel h2 {
+      max-width: 900px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 92px);
+      line-height: .94;
+      letter-spacing: 0;
+    }
+
+    .section-lede,
+    .letter-heading p,
+    .contact-panel p {
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: var(--soft);
+      font-size: clamp(19px, 2.3vw, 28px);
+      line-height: 1.2;
+      font-weight: 650;
+    }
+
+    .identity-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 34px;
+      margin-top: 42px;
     }
 
-    .venture-links .tile {
-      display: block;
-      color: var(--ink);
+    .identity-card {
+      --card-accent: rgba(20, 20, 20, .14);
+      --card-bg: rgba(255, 255, 255, .62);
+      min-height: 210px;
+      padding: 20px;
+      background: var(--card-bg);
+      border: 1px solid rgba(20, 20, 20, .08);
+      border-top: 4px solid var(--card-accent);
+      display: grid;
+      align-content: space-between;
+    }
+
+    .identity-card:nth-child(1) {
+      --card-accent: rgba(236, 96, 35, .76);
+      --card-bg: rgba(246, 159, 70, .62);
+    }
+
+    .identity-card:nth-child(2) {
+      --card-accent: rgba(151, 196, 47, .68);
+      --card-bg: rgba(190, 218, 84, .56);
+    }
+
+    .identity-card:nth-child(3) {
+      --card-accent: rgba(239, 113, 45, .68);
+      --card-bg: rgba(244, 186, 70, .58);
+    }
+
+    .identity-card:nth-child(4) {
+      --card-accent: rgba(232, 178, 57, .66);
+      --card-bg: rgba(246, 169, 82, .54);
+    }
+
+    .identity-card span {
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .identity-card h3 {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1;
+    }
+
+    .identity-card p {
+      margin: 22px 0 0;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .letter-band {
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .letter-inner {
+      display: grid;
+      grid-template-columns: minmax(220px, 340px) minmax(0, 760px);
+      gap: clamp(32px, 8vw, 92px);
+      align-items: start;
+    }
+
+    .letter-heading {
+      position: sticky;
+      top: 28px;
     }
 
     .prose {
-      max-width: 880px;
-      color: rgba(20, 20, 20, 0.82);
+      color: rgba(20, 20, 20, .78);
       font-size: clamp(18px, 2vw, 21px);
       line-height: 1.72;
     }
 
-    .prose p {
-      margin: 0 0 1.45em;
-    }
-
-    .prose strong {
-      color: var(--ink);
-      font-weight: 820;
-    }
+    .prose p { margin: 0 0 1.45em; }
+    .prose strong { color: var(--ink); font-weight: 750; }
+    .prose em { color: var(--ink); }
 
     .pull-quote {
-      margin: clamp(38px, 6vw, 58px) 0;
-      padding: clamp(28px, 5vw, 46px);
-      border: 1px solid var(--ink);
-      border-radius: 8px;
-      color: var(--paper);
-      background: var(--ink);
+      margin: 48px 0;
+      padding: clamp(26px, 5vw, 42px);
+      background: rgba(246, 159, 70, .62);
+      border: 1px solid rgba(20, 20, 20, .08);
+      border-top: 4px solid rgba(183, 242, 31, .72);
     }
 
     .pull-quote p {
       margin: 0;
-      font-size: clamp(32px, 5vw, 58px);
-      line-height: 0.96;
+      color: var(--ink);
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1;
       font-weight: 850;
     }
 
     .signoff {
-      max-width: 880px;
-      margin-top: 56px;
-      padding-top: 34px;
-      border-top: 1px solid var(--line);
+      margin-top: 68px;
+      display: grid;
+      gap: 18px;
     }
 
     .signoff-line {
-      margin: 0 0 18px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.08;
-      font-weight: 850;
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(25px, 4vw, 38px);
+      line-height: 1.1;
+      font-weight: 800;
+    }
+
+    .signature-wrap { max-width: 240px; }
+
+    .signature {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: .92;
+      mix-blend-mode: multiply;
+    }
+
+    .signature-fallback {
+      font-family: "Snell Roundhand", "Brush Script MT", "Lucida Handwriting", cursive;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--ink);
     }
 
     .stage-note {
-      margin: 0 0 10px;
-      color: var(--muted);
+      margin: 0;
+      color: var(--soft);
       font-size: 15px;
+      font-weight: 600;
       font-style: italic;
-      font-weight: 650;
     }
 
-    .socials {
+    .contact-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: clamp(24px, 6vw, 76px);
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-panel p { font-size: 20px; }
+
+    footer {
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 28px 0 38px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 13px;
     }
 
-    @media (max-width: 860px) {
-      .about-hero {
-        min-height: 0;
-      }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-      .venture-links {
+    @media (max-width: 900px) {
+      header { align-items: flex-start; flex-direction: column; justify-content: center; }
+      .hero {
         grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 66px 0 58px;
       }
+      .signal-graphic {
+        width: min(100%, 340px);
+        justify-self: start;
+        margin-top: 10px;
+      }
+      .identity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .letter-inner { grid-template-columns: 1fr; }
+      .letter-heading { position: static; }
+      .contact-panel { grid-template-columns: 1fr; padding: 54px 0; }
+      footer { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .page { width: min(100% - 32px, 1160px); }
+      nav { gap: 14px; }
+      h1 { font-size: 54px; }
+      .hero-lede { font-size: 23px; }
+      .identity-grid { grid-template-columns: 1fr; }
+      .identity-card { min-height: 160px; }
+      .prose { font-size: 17px; line-height: 1.68; }
     }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="page">
-    <header class="site-header">
-      <a class="brand" href="/">jereme.xyz</a>
+    <header>
+      <a class="brand" href="jereme-apple-fitness-inspired.html">jereme.xyz</a>
       <nav aria-label="Main">
-        <a href="/site/fwr/fwr.html">fw/r</a>
-        <a href="/site/pine/pine.html">pine</a>
-        <a href="/site/nrthrn/nrthrn.html">nrthrn</a>
-        <a href="/site/drift/drift.html">drift</a>
-        <a href="/site/about/">about</a>
-        <a href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">contact</a>
+        <a href="lidar-apple-fitness-inspired.html">LiDAR</a>
+        <a href="https://jereme.xyz/ai/">AI</a>
+        <a href="jereme-apple-fitness-inspired.html#spaces">Spaces</a>
+        <a href="about-splashA.html">About</a>
       </nav>
     </header>
 
-    <main>
-      <section class="hero about-hero" aria-labelledby="title">
+    <main id="main-content">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <h1 id="page-title">A longer letter.</h1>
+          <p class="hero-lede">The work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.</p>
+          <p class="hero-sub">In lieu of a press release. Read at your own pace.</p>
+          <div class="hero-actions">
+            <a class="button" href="#letter">Read the letter</a>
+            <a class="text-link" href="#ventures">See the ventures</a>
+          </div>
+        </div>
+        <figure class="signal-graphic" aria-hidden="true">
+          <svg viewBox="0 0 360 420" role="img">
+            <path class="frame" d="M48 30h220l44 58v244l-52 58H48z" />
+            <path class="heat-soft" d="M77 66h144l31 39v58H77z" />
+            <path class="heat-fill" d="M107 192h178v54H107z" />
+            <path class="heat-dark" d="M77 276h112v78H77z" />
+            <path class="line" d="M48 30l77 76h187M48 390l141-114h123M77 66v288M221 66v97M285 192v54" />
+            <path class="line" d="M107 246l82 30M252 105l-31 58M189 354l96-108" />
+            <path class="heat-line" d="M40 132h78l35 34h132M40 222h67M189 222h123M40 318h149l49-42" />
+            <path class="lime-line" d="M118 132h68M118 150h96M118 318h39M118 336h51" />
+          </svg>
+        </figure>
+      </section>
+
+      <section class="section" id="ventures">
+        <h2>Different rooms. Same work.</h2>
+        <div class="identity-grid">
+          <article class="identity-card"><span>01</span><div><h3>fw/r</h3><p>Robotics, LiDAR, and AI for rooms where the answers actually have to work.</p></div></article>
+          <article class="identity-card"><span>02</span><div><h3>pine</h3><p>The coffee shop. Five locations into the saga. Antique brass floor sinks have entered the chat.</p></div></article>
+          <article class="identity-card"><span>03</span><div><h3>nrthrn</h3><p>Product design for physical goods with real materials, real weight, and reasons for every millimeter.</p></div></article>
+          <article class="identity-card"><span>04</span><div><h3>drift</h3><p>pine's coastal little sister. Slower, saltier, and not interested in being found too easily.</p></div></article>
+        </div>
+      </section>
+
+      <section class="letter-band" id="letter">
+        <div class="letter-inner">
+          <div class="letter-heading">
+            <h2>In lieu of a press release.</h2>
+          </div>
+
+          <article class="prose">
+            <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
+
+            <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True Story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
+
+            <p><strong>fw/r</strong> is Robotics, LiDAR and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
+
+            <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
+
+            <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
+
+            <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
+
+            <div class="pull-quote"><p>Four bat-shit ideas, one guy stupid enough to run all of them.</p></div>
+
+            <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
+
+            <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
+
+            <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
+
+            <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
+
+            <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
+
+            <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
+
+            <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
+
+            <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
+
+            <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
+
+            <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
+
+            <div class="signoff">
+              <p class="signoff-line">Don't let the wheels fall off.</p>
+              <div class="signature-wrap">
+                <img class="signature" src="signature.png" alt="Jereme signature" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'signature-fallback', textContent: 'Jereme' }))">
+              </div>
+              <p class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</p>
+              <p class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative, it still worked.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-panel">
         <div>
-          <p class="kicker">About / A longer letter</p>
-          <h1 id="title">A longer letter.</h1>
-          <p class="lead">The work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.</p>
-          <p class="note">SoCal origin story. PNW weather. Strong opinions. Somehow also toasters.</p>
-          <div class="actions">
-            <a class="button" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Write me</a>
-          </div>
+          <h2>Still here?</h2>
+          <p>Then we probably have enough overlap to talk about systems, spaces, machines, coffee, product work, or the useful thing you are trying to ship.</p>
         </div>
-      </section>
-
-      <section class="section" id="ventures" aria-labelledby="ventures-title">
-        <h2 id="ventures-title">Different rooms. Same work.</h2>
-        <p>AI systems, coffee spaces, product design, coastal hospitality, and a very specific tolerance for useful, unhurried things.</p>
-
-        <div class="venture-links">
-          <a class="tile" href="/site/fwr/fwr.html">
-            <span>01</span>
-            <h3>fw/r</h3>
-            <p>Robotics, LiDAR, and AI for rooms where the answers actually have to work.</p>
-          </a>
-
-          <a class="tile" href="/site/pine/pine.html">
-            <span>02</span>
-            <h3>pine</h3>
-            <p>The coffee shop. Five locations into the saga. Antique brass floor sinks have entered the chat.</p>
-          </a>
-
-          <a class="tile" href="/site/nrthrn/nrthrn.html">
-            <span>03</span>
-            <h3>nrthrn</h3>
-            <p>Product design for physical goods with real materials, real weight, and reasons for every millimeter.</p>
-          </a>
-
-          <a class="tile" href="/site/drift/drift.html">
-            <span>04</span>
-            <h3>drift</h3>
-            <p>pine's coastal little sister. Slower, saltier, and not interested in being found too easily.</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="section" id="letter" aria-labelledby="letter-title">
-        <h2 id="letter-title">In lieu of a press release.</h2>
-        <p>SoCal origin story. PNW weather. Strong opinions. Somehow also toasters.</p>
-
-        <article class="prose">
-          <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
-
-          <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True Story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
-
-          <p><strong>fw/r</strong> is Robotics, LiDAR and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
-
-          <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
-
-          <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
-
-          <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
-
-          <div class="pull-quote">
-            <p>Four bat-shit ideas, one guy stupid enough to run all of them.</p>
-          </div>
-
-          <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
-
-          <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
-
-          <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
-
-          <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
-
-          <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
-
-          <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
-
-          <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
-
-          <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
-
-          <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
-
-          <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
-        </article>
-
-        <div class="signoff">
-          <p class="signoff-line">Don't let the wheels fall off.</p>
-          <p class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</p>
-          <p class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative, it still worked.</p>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="closer-title">
-        <h2 id="closer-title">Still here?</h2>
-        <p>Then we probably have enough overlap to talk about systems, spaces, machines, coffee, product work, or the useful thing you are trying to ship.</p>
-        <div class="actions">
-          <a class="button" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Write me</a>
-        </div>
+        <a class="button" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Write me</a>
       </section>
     </main>
 
     <footer>
-      <span>915 Broadway St, Vancouver, WA 98660</span>
-      <div class="socials">
-        <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9">Spotify</a>
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-        <a href="https://www.x.com/jeremedotxyz">X</a>
-        <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
+      <div>
+        <div>&copy; 2026 jereme.xyz</div>
+        <div>915 Broadway St #100, Vancouver, WA 98660</div>
+      </div>
+      <div class="footer-links">
+        <a href="jereme-apple-fitness-inspired.html">Home</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
       </div>
     </footer>
   </div>
 </body>
 </html>
-```
