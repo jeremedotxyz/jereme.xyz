@@ -1,441 +1,206 @@
+Paste this as your about page, likely here:
+
+```text
+site/about/index.html
+```
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="/site/venture.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NTH4464X6R');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#f4f6f2">
+
   <title>About - jereme.xyz</title>
   <meta name="description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.">
-  <link rel="canonical" href="https://jereme.xyz/about/">
+
+  <link rel="canonical" href="https://jereme.xyz/site/about/">
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="jereme.xyz">
   <meta property="og:title" content="About - jereme.xyz">
   <meta property="og:description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.">
-  <meta property="og:url" content="https://jereme.xyz/about/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://jereme.xyz/site/about/">
+
   <style>
-    :root {
-      --ink: #141414;
-      --soft: rgba(20, 20, 20, .68);
-      --quiet: rgba(20, 20, 20, .48);
-      --paper: #fff;
-      --line: rgba(20, 20, 20, .12);
-      --blue: #0067ff;
-      --fire: #f05a1a;
-      --gold: #f6a044;
-      --lime: #b7f21f;
-      --mint: #43d6a3;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-    }
+    :root { --accent: #141414; }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: #fff;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      line-height: 1.45;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    .skip-link {
-      position: absolute;
-      top: -60px;
-      left: 16px;
-      z-index: 100;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 750;
-    }
-
-    .skip-link:focus { top: 16px; }
-
-    .nav {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 30;
-      background: rgba(255, 255, 255, .82);
-      border-bottom: 1px solid rgba(20, 20, 20, .08);
-      backdrop-filter: blur(22px) saturate(160%);
-    }
-
-    .nav-inner,
-    .wrap {
-      width: min(1180px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    .nav-inner {
-      min-height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      font-size: 13px;
-      color: var(--soft);
-    }
-
-    .links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 34px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 16px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: white;
-      font-size: 13px;
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    .hero {
-      min-height: 88svh;
-      display: grid;
+    .about-hero {
+      grid-template-columns: 1fr;
+      max-width: 980px;
+      min-height: 520px;
       align-items: end;
-      padding: 118px 0 70px;
-      background: #fff;
     }
 
-    .hero-copy {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-      align-items: end;
-      gap: clamp(28px, 7vw, 96px);
+    .about-hero h1 {
+      max-width: 920px;
     }
 
-    h1 {
-      max-width: 930px;
-      margin: 0;
-      font-size: clamp(58px, 10vw, 146px);
-      line-height: .88;
-      letter-spacing: 0;
+    .about-hero .lead {
+      max-width: 850px;
     }
 
-    .lead {
-      margin: 0;
-      color: rgba(20,20,20,.84);
-      font-size: clamp(22px, 3vw, 35px);
-      line-height: 1.08;
-      font-weight: 680;
+    .about-hero .note {
+      max-width: 780px;
     }
 
-    .side-note {
-      margin: 18px 0 0;
-      color: var(--soft);
-      font-size: 17px;
-      line-height: 1.5;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-top: 24px;
-      font-size: 15px;
-      font-weight: 760;
-      color: var(--blue);
-      flex-wrap: wrap;
-    }
-
-    .section {
-      padding: clamp(70px, 10vw, 130px) 0;
-      background: #fff;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-      gap: clamp(28px, 7vw, 96px);
-      align-items: end;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(42px, 6vw, 88px);
-      line-height: .96;
-      letter-spacing: 0;
-    }
-
-    .section-lede {
-      margin: 0;
-      color: var(--soft);
-      font-size: clamp(20px, 2.2vw, 28px);
-      line-height: 1.18;
-      font-weight: 650;
-    }
-
-    .identity-grid {
+    .venture-links {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
+      margin-top: 34px;
     }
 
-    .identity-card {
-      min-height: 270px;
-      display: grid;
-      align-content: space-between;
-      padding: 24px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(20,20,20,.08);
+    .venture-links .tile {
+      display: block;
       color: var(--ink);
-      transition: transform .2s ease, background .2s ease;
-    }
-
-    .identity-card:hover {
-      transform: translateY(-4px);
-      background: #fff;
-    }
-
-    .identity-card:nth-child(1) { box-shadow: inset 0 5px 0 var(--fire); }
-    .identity-card:nth-child(2) { box-shadow: inset 0 5px 0 var(--blue); }
-    .identity-card:nth-child(3) { box-shadow: inset 0 5px 0 var(--lime); }
-    .identity-card:nth-child(4) { box-shadow: inset 0 5px 0 var(--mint); }
-
-    .identity-card span {
-      color: var(--quiet);
-      font-size: 12px;
-      font-weight: 820;
-    }
-
-    .identity-card h3 {
-      margin: 10px 0 0;
-      font-size: 30px;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .identity-card p {
-      margin: 22px 0 0;
-      color: var(--soft);
-      font-size: 15px;
-      line-height: 1.42;
-    }
-
-    .letter {
-      padding: clamp(72px, 10vw, 126px) 0;
-      background: #fff;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .letter-inner {
-      width: min(880px, calc(100% - 36px));
-      margin: 0 auto;
-    }
-
-    .letter-heading {
-      margin-bottom: clamp(34px, 6vw, 64px);
-    }
-
-    .letter-heading h2 {
-      max-width: 820px;
-    }
-
-    .letter-heading p {
-      max-width: 620px;
-      margin: 18px 0 0;
-      color: var(--soft);
-      font-size: 18px;
-      font-weight: 650;
     }
 
     .prose {
-      color: rgba(20,20,20,.82);
+      max-width: 880px;
+      color: rgba(20, 20, 20, 0.82);
       font-size: clamp(18px, 2vw, 21px);
       line-height: 1.72;
     }
 
-    .prose p { margin: 0 0 1.45em; }
-    .prose strong { color: var(--ink); font-weight: 780; }
-    .prose em { color: var(--ink); }
+    .prose p {
+      margin: 0 0 1.45em;
+    }
+
+    .prose strong {
+      color: var(--ink);
+      font-weight: 820;
+    }
 
     .pull-quote {
       margin: clamp(38px, 6vw, 58px) 0;
-      padding: clamp(30px, 5vw, 48px);
-      border-radius: 24px;
-      color: #fff;
-      background: #111;
-      box-shadow: 0 28px 80px rgba(0,0,0,.20);
+      padding: clamp(28px, 5vw, 46px);
+      border: 1px solid var(--ink);
+      border-radius: 8px;
+      color: var(--paper);
+      background: var(--ink);
     }
 
     .pull-quote p {
       margin: 0;
       font-size: clamp(32px, 5vw, 58px);
-      line-height: .96;
+      line-height: 0.96;
       font-weight: 850;
     }
 
     .signoff {
-      margin-top: 68px;
-      padding-top: 42px;
+      max-width: 880px;
+      margin-top: 56px;
+      padding-top: 34px;
       border-top: 1px solid var(--line);
-      display: grid;
-      gap: 18px;
     }
 
     .signoff-line {
-      margin: 0;
-      font-size: clamp(25px, 4vw, 38px);
-      line-height: 1.1;
-      font-weight: 800;
-      color: var(--ink);
+      margin: 0 0 18px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.08;
+      font-weight: 850;
     }
 
-    .signature-wrap { max-width: 280px; }
-    .signature { width: 100%; height: auto; opacity: .92; mix-blend-mode: multiply; }
-    .signature-placeholder {
-      min-height: 92px;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      border: 1px dashed var(--line);
-      border-radius: 16px;
-      color: var(--quiet);
-      font-size: 13px;
-      font-weight: 750;
-      background: #fff;
-    }
-    .stage-note { margin: 0; color: var(--soft); font-size: 15px; font-weight: 600; font-style: italic; }
-
-    .closer {
-      padding: clamp(76px, 11vw, 148px) 0 46px;
-      background: #fff;
-    }
-
-    .closer-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 34px;
-      align-items: end;
-      padding-bottom: 54px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .closer p {
-      max-width: 850px;
-      margin: 24px 0 0;
-      color: var(--soft);
-      font-size: clamp(21px, 2.6vw, 32px);
-      line-height: 1.18;
+    .stage-note {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 15px;
+      font-style: italic;
       font-weight: 650;
     }
 
-    footer {
-      width: min(1180px, calc(100% - 36px));
-      margin: 0 auto;
+    .socials {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 28px 0 40px;
-      color: var(--soft);
-      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .socials { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .socials a { width: 22px; height: 22px; display: inline-grid; place-items: center; opacity: .72; transition: opacity .2s ease, transform .2s ease; }
-    .socials a:hover { opacity: 1; transform: translateY(-1px); }
-    .socials img { width: 19px; height: 19px; display: block; }
+    @media (max-width: 860px) {
+      .about-hero {
+        min-height: 0;
+      }
 
-    @media (max-width: 950px) {
-      .hero-copy,
-      .section-head,
-      .closer-grid { grid-template-columns: 1fr; }
-      .identity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .links a:not(.button) { display: none; }
-      footer { align-items: flex-start; flex-direction: column; }
-    }
-
-    @media (max-width: 560px) {
-      .nav-inner,
-      .wrap,
-      footer { width: min(100% - 28px, 1180px); }
-      .nav-inner { min-height: 54px; }
-      .links { gap: 14px; }
-      .hero { min-height: auto; align-items: start; padding: 82px 0 64px; }
-      h1 { font-size: 56px; }
-      .lead { font-size: 22px; }
-      .actions { flex-direction: column; align-items: flex-start; }
-      .identity-grid { grid-template-columns: 1fr; }
-      .identity-card { min-height: 190px; }
-      .letter-inner { width: min(100% - 28px, 880px); }
-      .prose { font-size: 17px; line-height: 1.68; }
+      .venture-links {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="/">jereme.xyz</a>
+      <nav aria-label="Main">
+        <a href="/site/fwr/fwr.html">fw/r</a>
+        <a href="/site/pine/pine.html">pine</a>
+        <a href="/site/nrthrn/nrthrn.html">nrthrn</a>
+        <a href="/site/drift/drift.html">drift</a>
+        <a href="/site/about/">about</a>
+        <a href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">contact</a>
+      </nav>
+    </header>
 
-  <nav class="nav" aria-label="Main">
-    <div class="nav-inner">
-      <div class="links">
-        <a href="lidar-apple-fitness-inspired.html">LiDAR</a>
-        <a href="ai-apple-fitness-inspired.html">AI</a>
-        <a href="mailto:jeremedotxyz@gmail.com?subject=Design">Design</a>
-        <a href="mailto:jeremedotxyz@gmail.com?subject=Spaces">Spaces</a>
-        <a href="about-apple-fitness-inspired.html">About</a>
-        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Ping%20me">Ping Me</a>
-      </div>
-    </div>
-  </nav>
-
-  <main id="main-content">
-    <section class="hero" aria-labelledby="page-title">
-      <div class="wrap hero-copy">
+    <main>
+      <section class="hero about-hero" aria-labelledby="title">
         <div>
-          <h1 id="page-title">A longer letter.</h1>
-        </div>
-        <div>
+          <p class="kicker">About / A longer letter</p>
+          <h1 id="title">A longer letter.</h1>
           <p class="lead">The work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.</p>
+          <p class="note">SoCal origin story. PNW weather. Strong opinions. Somehow also toasters.</p>
           <div class="actions">
-            <a class="button" href="#letter">Read the letter</a>
+            <a class="button" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Write me</a>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" id="ventures">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Different rooms. Same work.</h2>
-          <p class="section-lede">AI systems, coffee spaces, product design, coastal hospitality, and a very specific tolerance for useful, unhurried things.</p>
-        </div>
-        <div class="identity-grid">
-          <article class="identity-card"><span>01</span><div><h3>fw/r</h3><p>Robotics, LiDAR, and AI for rooms where the answers actually have to work.</p></div></article>
-          <article class="identity-card"><span>02</span><div><h3>pine</h3><p>The coffee shop. Five locations into the saga. Antique brass floor sinks have entered the chat.</p></div></article>
-          <article class="identity-card"><span>03</span><div><h3>nrthrn</h3><p>Product design for physical goods with real materials, real weight, and reasons for every millimeter.</p></div></article>
-          <article class="identity-card"><span>04</span><div><h3>drift</h3><p>pine's coastal little sister. Slower, saltier, and not interested in being found too easily.</p></div></article>
-        </div>
-      </div>
-    </section>
+      <section class="section" id="ventures" aria-labelledby="ventures-title">
+        <h2 id="ventures-title">Different rooms. Same work.</h2>
+        <p>AI systems, coffee spaces, product design, coastal hospitality, and a very specific tolerance for useful, unhurried things.</p>
 
-    <section class="letter" id="letter">
-      <div class="letter-inner">
-        <div class="letter-heading">
-          <h2>In lieu of a press release.</h2>
-          <p>SoCal origin story. PNW weather. Strong opinions. Somehow also toasters.</p>
+        <div class="venture-links">
+          <a class="tile" href="/site/fwr/fwr.html">
+            <span>01</span>
+            <h3>fw/r</h3>
+            <p>Robotics, LiDAR, and AI for rooms where the answers actually have to work.</p>
+          </a>
+
+          <a class="tile" href="/site/pine/pine.html">
+            <span>02</span>
+            <h3>pine</h3>
+            <p>The coffee shop. Five locations into the saga. Antique brass floor sinks have entered the chat.</p>
+          </a>
+
+          <a class="tile" href="/site/nrthrn/nrthrn.html">
+            <span>03</span>
+            <h3>nrthrn</h3>
+            <p>Product design for physical goods with real materials, real weight, and reasons for every millimeter.</p>
+          </a>
+
+          <a class="tile" href="/site/drift/drift.html">
+            <span>04</span>
+            <h3>drift</h3>
+            <p>pine's coastal little sister. Slower, saltier, and not interested in being found too easily.</p>
+          </a>
         </div>
+      </section>
+
+      <section class="section" id="letter" aria-labelledby="letter-title">
+        <h2 id="letter-title">In lieu of a press release.</h2>
+        <p>SoCal origin story. PNW weather. Strong opinions. Somehow also toasters.</p>
 
         <article class="prose">
-<p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
+          <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
 
           <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True Story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
 
@@ -447,7 +212,9 @@
 
           <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
 
-          <div class="pull-quote"><p>Four bat-shit ideas, one guy stupid enough to run all of them.</p></div>
+          <div class="pull-quote">
+            <p>Four bat-shit ideas, one guy stupid enough to run all of them.</p>
+          </div>
 
           <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
 
@@ -459,9 +226,9 @@
 
           <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
 
-          <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest — now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
+          <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
 
-          <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia — that's a fucking measurement.</p>
+          <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
 
           <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
 
@@ -471,37 +238,33 @@
         </article>
 
         <div class="signoff">
-<p class="signoff-line">Don't let the wheels fall off.</p>
-          <div class="signature-wrap">
-            <img class="signature" src="signature.png" alt="Jereme signature" onerror="this.replaceWith(Object.assign(document.createElement('div'), { className: 'signature-placeholder', textContent: 'signature.png placeholder' }))">
-          </div>
+          <p class="signoff-line">Don't let the wheels fall off.</p>
           <p class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</p>
           <p class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative, it still worked.</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="closer">
-      <div class="wrap closer-grid">
-        <div>
-          <h2>Still here?</h2>
-          <p>Then we probably have enough overlap to talk about systems, spaces, machines, coffee, product work, or the useful thing you are trying to ship.</p>
+      <section class="section" aria-labelledby="closer-title">
+        <h2 id="closer-title">Still here?</h2>
+        <p>Then we probably have enough overlap to talk about systems, spaces, machines, coffee, product work, or the useful thing you are trying to ship.</p>
+        <div class="actions">
+          <a class="button" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Write me</a>
         </div>
-        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Hello%20from%20jereme.xyz">Write me</a>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <footer>
-    <span>915 Broadway St, Vancouver, WA 98660</span>
-    <span class="socials" aria-label="Social links">
-      <a href="https://instagram.com/jeremedotxyz" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/instagram.svg" alt=""></a>
-      <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9" aria-label="Spotify"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/spotify.svg" alt=""></a>
-      <a href="https://www.threads.com/@jeremedotxyz" aria-label="Threads"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/threads.svg" alt=""></a>
-      <a href="https://substack.com/@jeremedotxyz" aria-label="Substack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/substack.svg" alt=""></a>
-      <a href="https://www.x.com/jeremedotxyz" aria-label="X"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/x.svg" alt=""></a>
-      <a href="https://www.youtube.com/@jeremedotxyz" aria-label="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/youtube.svg" alt=""></a>
-    </span>
-  </footer>
+    <footer>
+      <span>915 Broadway St, Vancouver, WA 98660</span>
+      <div class="socials">
+        <a href="https://instagram.com/jeremedotxyz">Instagram</a>
+        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9">Spotify</a>
+        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
+        <a href="https://substack.com/@jeremedotxyz">Substack</a>
+        <a href="https://www.x.com/jeremedotxyz">X</a>
+        <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
+```
