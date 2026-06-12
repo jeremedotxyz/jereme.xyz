@@ -24,15 +24,118 @@
   <style>
     :root { --accent: #16a34a; }
 
-    header nav a {
-      font-weight: 400;
-      letter-spacing: 0;
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .hero {
-      grid-template-columns: minmax(0, 1fr);
-      max-width: 780px;
-      align-items: end;
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tile,
+    .doc-card {
+      display: grid;
+      padding: 22px;
+      border: 1px solid rgba(20,20,20,.1);
+      border-top: 5px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .tile:hover,
+    .doc-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.88);
+      border-color: rgba(20,20,20,.18);
+    }
+
+    .tile {
+      min-height: 310px;
+      grid-template-rows: 42px 1fr;
+      align-content: start;
+    }
+
+    .tile div {
+      align-self: start;
+    }
+
+    .tile span {
+      display: block;
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .tile h3 {
+      margin: 10px 0 0;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .tile p {
+      margin: 22px 0 0;
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 1.42;
+    }
+
+    .doc-card {
+      min-height: 310px;
+      grid-template-rows: 1fr auto;
+      align-content: start;
+    }
+
+    .doc-card h3 {
+      margin-top: 10px;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .doc-label {
+      margin: 0;
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
+    .doc-meta {
+      margin-top: 22px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.42;
+    }
+
+    @media (max-width: 940px) {
+      .tiles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .tiles {
+        grid-template-columns: 1fr;
+      }
+
+      .tile,
+      .doc-card {
+        min-height: 210px;
+      }
+
+      .tile {
+        grid-template-rows: auto auto;
+        gap: 22px;
+      }
     }
   </style>
 </head>
@@ -59,6 +162,9 @@
             <a class="button" href="mailto:loveletters@jereme.xyz?subject=pine">Ask about pine</a>
           </div>
         </div>
+        <figure class="visual">
+          <figcaption class="visual-label"><span>pine</span><strong>Coffee, light, pace, return.</strong></figcaption>
+        </figure>
       </section>
 
       <section class="section" aria-labelledby="room-title">
