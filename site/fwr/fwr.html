@@ -123,6 +123,112 @@
     }
 
     @media (max-width: 600px) {
+      .page,
+      main,
+      section,
+      .hero > div,
+      .section-head,
+      .tiles,
+      .doc-grid,
+      .tile,
+      .doc-card,
+      .visual {
+        max-width: 100%;
+      }
+
+      .page {
+        width: calc(100% - 28px);
+        max-width: 1180px;
+        overflow: hidden;
+      }
+
+      header {
+        min-height: auto;
+        padding: 18px 0;
+      }
+
+      header nav {
+        justify-content: flex-start;
+        gap: 8px 14px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding: 42px 0 58px;
+        overflow: hidden;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: clamp(64px, 22vw, 92px);
+        line-height: .88;
+      }
+
+      .lead {
+        max-width: 14ch;
+        margin-top: 22px;
+        font-size: 24px;
+        line-height: 1.12;
+        overflow-wrap: break-word;
+      }
+
+      .note {
+        max-width: 29ch;
+        font-size: 17px;
+        line-height: 1.48;
+        overflow-wrap: break-word;
+      }
+
+      .actions,
+      .button {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .button {
+        min-height: 46px;
+        padding: 0 18px;
+        white-space: normal;
+        text-align: center;
+        box-sizing: border-box;
+      }
+
+      .visual {
+        min-height: 330px;
+        width: 100%;
+      }
+
+      .visual-label {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+      }
+
+      .visual-label strong {
+        max-width: 10ch;
+        font-size: 42px;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+
+      h2 {
+        max-width: 11ch;
+        font-size: 42px;
+        overflow-wrap: break-word;
+      }
+
+      .section-head p {
+        max-width: 23ch;
+        font-size: 21px;
+        line-height: 1.22;
+        overflow-wrap: break-word;
+      }
+
       .tiles {
         grid-template-columns: 1fr;
       }
@@ -135,6 +241,17 @@
       .tile {
         grid-template-rows: auto auto;
         gap: 22px;
+      }
+
+      .tile h3,
+      .doc-card h3 {
+        font-size: 30px;
+      }
+
+      .tile p,
+      .doc-meta {
+        max-width: 28ch;
+        overflow-wrap: break-word;
       }
     }
   </style>
