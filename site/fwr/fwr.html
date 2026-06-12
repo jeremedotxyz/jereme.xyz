@@ -24,9 +24,22 @@
   <style>
     :root { --accent: #2563eb; }
 
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
     .tile,
     .doc-card {
       display: grid;
+      padding: 22px;
       border: 1px solid rgba(20,20,20,.1);
       border-top: 5px solid var(--accent);
       border-radius: 8px;
@@ -52,13 +65,23 @@
       align-self: start;
     }
 
+    .tile span {
+      display: block;
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
     .tile h3 {
-      margin-top: 10px;
+      margin: 10px 0 0;
       font-size: 34px;
+      line-height: 1;
     }
 
     .tile p {
-      margin-top: 22px;
+      margin: 22px 0 0;
+      color: var(--soft);
+      font-size: 15px;
       line-height: 1.42;
     }
 
@@ -74,12 +97,36 @@
       line-height: 1;
     }
 
+    .doc-label {
+      margin: 0;
+      color: var(--quiet);
+      font-size: 12px;
+      font-weight: 820;
+    }
+
     .doc-meta {
       margin-top: 22px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 700;
       line-height: 1.42;
     }
 
+    @media (max-width: 940px) {
+      .tiles {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 600px) {
+      .tiles {
+        grid-template-columns: 1fr;
+      }
+
       .tile,
       .doc-card {
         min-height: 210px;
