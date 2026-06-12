@@ -20,19 +20,75 @@
   <meta property="og:title" content="fw/r - jereme.xyz">
   <meta property="og:description" content="AI, robotics, LiDAR, evaluation, and technical systems built to work outside the demo.">
   <meta property="og:url" content="https://jereme.xyz/fwr/">
-  <link rel="stylesheet" href="https://jereme.xyz/site/venture.css">
+  <link rel="stylesheet" href="venture.css">
   <style>
     :root { --accent: #2563eb; }
 
-    header nav a {
-      font-weight: 400;
-      letter-spacing: 0;
+    .tile,
+    .doc-card {
+      display: grid;
+      border: 1px solid rgba(20,20,20,.1);
+      border-top: 5px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel);
+      backdrop-filter: blur(18px);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
 
-    .hero {
-      grid-template-columns: minmax(0, 1fr);
-      max-width: 780px;
-      align-items: end;
+    .tile:hover,
+    .doc-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.88);
+      border-color: rgba(20,20,20,.18);
+    }
+
+    .tile {
+      min-height: 310px;
+      grid-template-rows: 42px 1fr;
+      align-content: start;
+    }
+
+    .tile div {
+      align-self: start;
+    }
+
+    .tile h3 {
+      margin-top: 10px;
+      font-size: 34px;
+    }
+
+    .tile p {
+      margin-top: 22px;
+      line-height: 1.42;
+    }
+
+    .doc-card {
+      min-height: 310px;
+      grid-template-rows: 1fr auto;
+      align-content: start;
+    }
+
+    .doc-card h3 {
+      margin-top: 10px;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .doc-meta {
+      margin-top: 22px;
+      line-height: 1.42;
+    }
+
+    @media (max-width: 600px) {
+      .tile,
+      .doc-card {
+        min-height: 210px;
+      }
+
+      .tile {
+        grid-template-rows: auto auto;
+        gap: 22px;
+      }
     }
   </style>
 </head>
@@ -40,10 +96,11 @@
   <div class="page">
     <header>
       <nav aria-label="Main">
-        <a href="https://jereme.xyz/site/pine/pine.html">pine</a>
-        <a href="https://jereme.xyz/site/nrthrn/nrthrn.html">nrthrn</a>
-        <a href="https://jereme.xyz/site/drift/drift.html">drift</a>
-        <a href="https://jereme.xyz/about/">about</a>
+        <a href="https://jereme.xyz/fwr/">fw/r</a>
+        <a href="https://jereme.xyz/pine/">pine</a>
+        <a href="https://jereme.xyz/nrthrn/">nrthrn</a>
+        <a href="https://jereme.xyz/drift/">drift</a>
+        <a href="about-splashA.html">about</a>
         <a href="mailto:loveletters@jereme.xyz?subject=fw/r">contact</a>
       </nav>
     </header>
@@ -59,6 +116,9 @@
             <a class="button" href="mailto:loveletters@jereme.xyz?subject=fw/r">Start a conversation</a>
           </div>
         </div>
+        <figure class="visual">
+          <figcaption class="visual-label"><span>fw/r</span><strong>Models, sensors, robots, proof.</strong></figcaption>
+        </figure>
       </section>
 
       <section class="section" aria-labelledby="work-title">
@@ -76,16 +136,52 @@
       <section class="section" id="downloads" aria-labelledby="downloads-title">
         <div class="section-head">
           <h2 id="downloads-title">Reference files.</h2>
-          <p>Proof packages, proposals, and LiDAR notes gathered exclusively under fw/r.</p>
+          <p>Download the AI proof of concept package and the LiDAR reference work gathered under fw/r.</p>
         </div>
         <div class="doc-grid">
-          <article class="doc-card"><div><p class="doc-label">AI / Proof of Concept</p><h3>Sadie LLM Harness</h3><p class="doc-meta">PDF - Jereme Abernathy - fw/r - June 2025</p></div><a class="button" href="/ai/sadie_llm_harness_poc.pdf" download>Download PDF</a></article>
-          <article class="doc-card"><div><p class="doc-label">AI / Dataset</p><h3>Sadie LLM Harness Evaluation Data</h3><p class="doc-meta">ZIP - Jereme Abernathy - fw/r - June 2025</p></div><a class="button" href="/ai/sadie_llm_harness_data.zip" download>Download ZIP</a></article>
-          <article class="doc-card"><div><p class="doc-label">LiDAR / Abstract</p><h3>LiDAR Abstract (LRV) Q1 2020</h3><p class="doc-meta">PDF - Jereme Abernathy - fw/r</p></div><a class="button" href="/lidar/abstract.pdf" download>Download PDF</a></article>
-          <article class="doc-card"><div><p class="doc-label">LiDAR / Request for Proposal</p><h3>LiDAR MAX Light Rail RFP - Portland / Multnomah County, OR</h3><p class="doc-meta">PDF - Jereme Abernathy - fw/r - April 2020</p></div><a class="button" href="/lidar/portland_max_poc.pdf" download>Download PDF</a></article>
-          <article class="doc-card"><div><p class="doc-label">LiDAR / Proof of Concept</p><h3>LiDAR Light Rail PoC - Seattle / King County, WA</h3><p class="doc-meta">PDF - Jereme Abernathy - fw/r - January 2026</p></div><a class="button" href="/lidar/lidar_seattle_poc.pdf" download>Download PDF</a></article>
+          <article class="doc-card">
+            <div>
+              <p class="doc-label">AI / Proof of Concept</p>
+              <h3>Sadie LLM Harness</h3>
+              <p class="doc-meta">PDF - Jereme Abernathy - fw/r - June 2025</p>
+            </div>
+            <a class="button" href="/ai/sadie_llm_harness_poc.pdf" download>Download PDF</a>
+          </article>
+          <article class="doc-card">
+            <div>
+              <p class="doc-label">AI / Dataset</p>
+              <h3>Sadie LLM Harness Evaluation Data</h3>
+              <p class="doc-meta">ZIP - Jereme Abernathy - fw/r - June 2025</p>
+            </div>
+            <a class="button" href="/ai/sadie_llm_harness_data.zip" download>Download ZIP</a>
+          </article>
+          <article class="doc-card">
+            <div>
+              <p class="doc-label">LiDAR / Abstract</p>
+              <h3>LiDAR Abstract (LRV) Q1 2020</h3>
+              <p class="doc-meta">PDF - Jereme Abernathy - fw/r</p>
+            </div>
+            <a class="button" href="/lidar/abstract.pdf" download>Download PDF</a>
+          </article>
+          <article class="doc-card">
+            <div>
+              <p class="doc-label">LiDAR / Request for Proposal</p>
+              <h3>LiDAR MAX Light Rail RFP - Portland / Multnomah County, OR</h3>
+              <p class="doc-meta">PDF - Jereme Abernathy - fw/r - April 2020</p>
+            </div>
+            <a class="button" href="/lidar/portland_max_poc.pdf" download>Download PDF</a>
+          </article>
+          <article class="doc-card">
+            <div>
+              <p class="doc-label">LiDAR / Proof of Concept</p>
+              <h3>LiDAR Light Rail PoC - Seattle / King County, WA</h3>
+              <p class="doc-meta">PDF - Jereme Abernathy - fw/r - January 2026</p>
+            </div>
+            <a class="button" href="/lidar/lidar_seattle_poc.pdf" download>Download PDF</a>
+          </article>
         </div>
       </section>
+
     </main>
 
     <footer>
