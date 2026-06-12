@@ -20,12 +20,19 @@
   <meta property="og:title" content="fw/r - jereme.xyz">
   <meta property="og:description" content="AI, robotics, LiDAR, evaluation, and technical systems built to work outside the demo.">
   <meta property="og:url" content="https://jereme.xyz/fwr/">
-  <link rel="stylesheet" href="venture.css">
+  <link rel="stylesheet" href="https://jereme.xyz/site/venture.css">
   <style>
     :root { --accent: #2563eb; }
+
     header nav a {
       font-weight: 400;
       letter-spacing: 0;
+    }
+
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 780px;
+      align-items: end;
     }
   </style>
 </head>
@@ -52,9 +59,6 @@
             <a class="button" href="mailto:loveletters@jereme.xyz?subject=fw/r">Start a conversation</a>
           </div>
         </div>
-        <figure class="visual">
-          <figcaption class="visual-label"><span>fw/r</span><strong>Models, sensors, robots, proof.</strong></figcaption>
-        </figure>
       </section>
 
       <section class="section" aria-labelledby="work-title">
@@ -63,80 +67,23 @@
           <p>fw/r is for AI and LiDAR work that needs clarity, calibration, and honest evaluation before anyone calls it shipped.</p>
         </div>
         <div class="tiles">
-          <article class="tile">
-            <span>01</span>
-            <div>
-              <h3>AI Systems</h3>
-              <p>Model behavior, workflow design, evaluation harnesses, and deployment patterns that can be explained.</p>
-            </div>
-          </article>
-          <article class="tile">
-            <span>02</span>
-            <div>
-              <h3>Robotics</h3>
-              <p>Perception, autonomy, operating constraints, and field-aware systems for machines that move through the world.</p>
-            </div>
-          </article>
-          <article class="tile">
-            <span>03</span>
-            <div>
-              <h3>LiDAR</h3>
-              <p>Sensing, mapping, calibration, point clouds, and the spatial logic that turns light into usable context.</p>
-            </div>
-          </article>
+          <article class="tile"><span>01</span><div><h3>AI Systems</h3><p>Model behavior, workflow design, evaluation harnesses, and deployment patterns that can be explained.</p></div></article>
+          <article class="tile"><span>02</span><div><h3>Robotics</h3><p>Perception, autonomy, operating constraints, and field-aware systems for machines that move through the world.</p></div></article>
+          <article class="tile"><span>03</span><div><h3>LiDAR</h3><p>Sensing, mapping, calibration, point clouds, and the spatial logic that turns light into usable context.</p></div></article>
         </div>
       </section>
 
       <section class="section" id="downloads" aria-labelledby="downloads-title">
         <div class="section-head">
           <h2 id="downloads-title">Reference files.</h2>
-          <p>Download the AI proof of concept package and the LiDAR reference work gathered under fw/r.</p>
+          <p>The proof packages, proposals, and LiDAR notes gathered under fw/r.</p>
         </div>
         <div class="doc-grid">
-          <article class="doc-card">
-            <div>
-              <p class="doc-label">AI / Proof of Concept</p>
-              <h3>Sadie LLM Harness</h3>
-              <p class="doc-meta">PDF - jereme abernathy - fw/r - June 2025</p>
-            </div>
-            <a class="button" href="/ai/sadie_llm_harness_poc.pdf" download>Download PDF</a>
-          </article>
-
-          <article class="doc-card">
-            <div>
-              <p class="doc-label">AI / Dataset</p>
-              <h3>Sadie LLM Harness Evaluation Data</h3>
-              <p class="doc-meta">ZIP - jereme abernathy - fw/r - June 2025</p>
-            </div>
-            <a class="button" href="/ai/sadie_llm_harness_data.zip" download>Download ZIP</a>
-          </article>
-
-          <article class="doc-card">
-            <div>
-              <p class="doc-label">LiDAR / Abstract</p>
-              <h3>LiDAR Abstract (LRV) Q1 2020</h3>
-              <p class="doc-meta">PDF - jereme abernathy - fw/r</p>
-            </div>
-            <a class="button" href="/lidar/abstract.pdf" download>Download PDF</a>
-          </article>
-
-          <article class="doc-card">
-            <div>
-              <p class="doc-label">LiDAR / Request for Proposal</p>
-              <h3>LiDAR MAX Light Rail RFP - Portland / Multnomah County, OR</h3>
-              <p class="doc-meta">PDF - jereme abernathy - fw/r - November 2022</p>
-            </div>
-            <a class="button" href="/lidar/portland_max_poc.pdf" download>Download PDF</a>
-          </article>
-
-          <article class="doc-card">
-            <div>
-              <p class="doc-label">LiDAR / Proof of Concept</p>
-              <h3>LiDAR Light Rail PoC - Seattle / King County, WA</h3>
-              <p class="doc-meta">PDF - jereme abernathy - fw/r - January 2026</p>
-            </div>
-            <a class="button" href="/lidar/lidar_seattle_poc.pdf" download>Download PDF</a>
-          </article>
+          <article class="doc-card"><div><p class="doc-label">AI / Proof of Concept</p><h3>Sadie LLM Harness</h3><p class="doc-meta">PDF - jereme abernathy - fw/r - June 2025</p></div><a class="button" href="/ai/sadie_llm_harness_poc.pdf" download>Download PDF</a></article>
+          <article class="doc-card"><div><p class="doc-label">AI / Dataset</p><h3>Sadie LLM Harness Evaluation Data</h3><p class="doc-meta">ZIP - jereme abernathy - fw/r - June 2025</p></div><a class="button" href="/ai/sadie_llm_harness_data.zip" download>Download ZIP</a></article>
+          <article class="doc-card"><div><p class="doc-label">LiDAR / Abstract</p><h3>LiDAR Abstract (LRV) Q1 2020</h3><p class="doc-meta">PDF - jereme abernathy - fw/r</p></div><a class="button" href="/lidar/abstract.pdf" download>Download PDF</a></article>
+          <article class="doc-card"><div><p class="doc-label">LiDAR / Request for Proposal</p><h3>LiDAR MAX Light Rail RFP - Portland / Multnomah County, OR</h3><p class="doc-meta">PDF - jereme abernathy - fw/r - November 2022</p></div><a class="button" href="/lidar/portland_max_poc.pdf" download>Download PDF</a></article>
+          <article class="doc-card"><div><p class="doc-label">LiDAR / Proof of Concept</p><h3>LiDAR Light Rail PoC - Seattle / King County, WA</h3><p class="doc-meta">PDF - jereme abernathy - fw/r - January 2026</p></div><a class="button" href="/lidar/lidar_seattle_poc.pdf" download>Download PDF</a></article>
         </div>
       </section>
     </main>
