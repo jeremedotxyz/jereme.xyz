@@ -14,15 +14,58 @@
   <meta name="theme-color" content="#f4f6f2">
   <title>nrthrn - jereme.xyz</title>
   <meta name="description" content="nrthrn: industrial and consumer products with real materials, real weight, and reasons for every millimeter.">
-  <link rel="canonical" href="https://jereme.xyz/site/nrthrn/nrthrn.html">
+  <link rel="canonical" href="https://jereme.xyz/nrthrn/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="jereme.xyz">
   <meta property="og:title" content="nrthrn - jereme.xyz">
   <meta property="og:description" content="Industrial and consumer products with real materials, real weight, and reasons for every millimeter.">
-  <meta property="og:url" content="https://jereme.xyz/site/nrthrn/nrthrn.html">
+  <meta property="og:url" content="https://jereme.xyz/nrthrn/">
   <link rel="stylesheet" href="https://jereme.xyz/site/venture.css">
   <style>
     :root { --accent: #f97316; }
+
+    header {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+      border-bottom: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    header nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: auto;
+      min-width: 0;
+      max-width: 100%;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    header nav a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    header nav a:hover {
+      border-color: currentColor;
+    }
 
     .tiles {
       display: grid;
@@ -30,15 +73,11 @@
       gap: 14px;
     }
 
-    .doc-grid {
+    .tile {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .tile,
-    .doc-card {
-      display: grid;
+      min-height: 310px;
+      grid-template-rows: 42px 1fr;
+      align-content: start;
       padding: 22px;
       border: 1px solid rgba(20,20,20,.1);
       border-top: 5px solid var(--accent);
@@ -48,17 +87,10 @@
       transition: transform .2s ease, background .2s ease, border-color .2s ease;
     }
 
-    .tile:hover,
-    .doc-card:hover {
+    .tile:hover {
       transform: translateY(-3px);
       background: rgba(255,255,255,.88);
       border-color: rgba(20,20,20,.18);
-    }
-
-    .tile {
-      min-height: 310px;
-      grid-template-rows: 42px 1fr;
-      align-content: start;
     }
 
     .tile div {
@@ -73,6 +105,7 @@
     }
 
     .tile h3 {
+      display: block;
       margin: 10px 0 0;
       font-size: 34px;
       line-height: 1;
@@ -85,54 +118,30 @@
       line-height: 1.42;
     }
 
-    .doc-card {
-      min-height: 310px;
-      grid-template-rows: 1fr auto;
-      align-content: start;
-    }
-
-    .doc-card h3 {
-      margin-top: 10px;
-      font-size: 34px;
-      line-height: 1;
-    }
-
-    .doc-label {
-      margin: 0;
-      color: var(--quiet);
-      font-size: 12px;
-      font-weight: 820;
-    }
-
-    .doc-meta {
-      margin-top: 22px;
-      color: var(--soft);
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.42;
-    }
-
     @media (max-width: 940px) {
       .tiles {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
-      .doc-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 600px) {
+      header {
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 18px 0;
+      }
+
+      header nav {
+        gap: 14px;
+        justify-content: flex-start;
+      }
+
       .tiles {
         grid-template-columns: 1fr;
       }
 
-      .tile,
-      .doc-card {
-        min-height: 210px;
-      }
-
       .tile {
+        min-height: 210px;
         grid-template-rows: auto auto;
         gap: 22px;
       }
