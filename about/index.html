@@ -175,307 +175,14 @@
       isolation: isolate;
     }
 
-    .device-scene {
+    .robot-hero {
       position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .hero-device {
-      position: absolute;
-      overflow: hidden;
-      background: #07080a;
-      border: 9px solid #191a1d;
-      box-shadow:
-        0 34px 80px rgba(20,20,20,.24),
-        0 12px 26px rgba(20,20,20,.16),
-        inset 0 0 0 1px rgba(255,255,255,.08);
-      transform-style: preserve-3d;
-    }
-
-    .hero-device::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      pointer-events: none;
-      background: linear-gradient(135deg, rgba(255,255,255,.22), transparent 34%, rgba(255,255,255,.1));
-      mix-blend-mode: screen;
-    }
-
-    .tablet {
-      width: 78%;
-      height: 49%;
-      left: 2%;
-      top: 31%;
-      border-radius: 34px;
-      animation: deviceTablet 12s ease-in-out infinite;
-    }
-
-    .phone {
-      width: 38.2%;
-      height: 65%;
-      right: -7%;
-      bottom: 7%;
-      z-index: 2;
-      border-radius: 40px;
-      border-width: 8px;
-      animation: devicePhone 12s ease-in-out infinite;
-    }
-
-    .watch {
-      width: 29%;
-      height: 27%;
-      left: 44%;
-      top: 8%;
-      z-index: 4;
-      border-radius: 34px;
-      border-width: 8px;
-      animation: deviceWatch 12s ease-in-out infinite;
-    }
-
-    .device-screen {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      color: #fff;
-    }
-
-    .tablet-screen {
-      background:
-        radial-gradient(circle at 85% 22%, rgba(0,191,255,.18), transparent 30%),
-        linear-gradient(135deg, #071019, #101014);
-    }
-
-    .code-stack {
-      position: absolute;
-      left: 24px;
-      right: 24px;
-      top: 20px;
-      bottom: 18px;
-      display: grid;
-      align-content: start;
-      gap: 8px;
-    }
-
-    .code-stack i {
-      display: block;
-      height: 8px;
-      width: var(--w);
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--c), rgba(255,255,255,.16));
-      opacity: .8;
-      transform-origin: left;
-      animation: tabletTyping 12s ease-in-out infinite;
-    }
-
-    .code-stack i:nth-child(1) { --w: 42%; --c: #00bfff; }
-    .code-stack i:nth-child(2) { --w: 72%; --c: #39ff88; animation-delay: .08s; }
-    .code-stack i:nth-child(3) { --w: 56%; --c: #ff9f0a; animation-delay: .16s; }
-    .code-stack i:nth-child(4) { --w: 86%; --c: #00bfff; animation-delay: .24s; }
-    .code-stack i:nth-child(5) { --w: 65%; --c: #39ff88; animation-delay: .32s; }
-    .code-stack i:nth-child(6) { --w: 35%; --c: #ff9f0a; animation-delay: .4s; }
-    .code-stack i:nth-child(7) { --w: 78%; --c: #00bfff; animation-delay: .48s; }
-    .code-stack i:nth-child(8) { --w: 58%; --c: #39ff88; animation-delay: .56s; }
-    .code-stack i:nth-child(9) { --w: 90%; --c: #00bfff; animation-delay: .64s; }
-    .code-stack i:nth-child(10) { --w: 47%; --c: #ff9f0a; animation-delay: .72s; }
-    .code-stack i:nth-child(11) { --w: 72%; --c: #39ff88; animation-delay: .8s; }
-    .code-stack i:nth-child(12) { --w: 61%; --c: #00bfff; animation-delay: .88s; }
-    .code-stack i:nth-child(13) { --w: 84%; --c: #39ff88; animation-delay: .96s; }
-    .code-stack i:nth-child(14) { --w: 38%; --c: #ff9f0a; animation-delay: 1.04s; }
-
-    .phone-screen {
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 38%, rgba(57,255,136,.18), transparent 32%),
-        linear-gradient(180deg, #061018, #101014);
-    }
-
-    .phone::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 12px;
-      z-index: 6;
-      width: 34%;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.72);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
-      transform: translateX(-50%);
-    }
-
-    .phone-orbit,
-    .phone-orbit::before,
-    .phone-orbit::after {
-      position: absolute;
-      border: 1px solid rgba(0,191,255,.58);
-      border-radius: 50%;
-    }
-
-    .phone-orbit {
-      width: 88%;
-      aspect-ratio: 1;
-      animation: phonePulse 12s ease-in-out infinite;
-    }
-
-    .phone-orbit::before,
-    .phone-orbit::after {
-      content: "";
-      inset: 18%;
-    }
-
-    .phone-orbit::after { inset: 35%; }
-
-    .phone-sweep {
-      position: absolute;
-      width: 52%;
-      height: 2px;
       left: 50%;
       top: 50%;
-      transform-origin: left center;
-      background: linear-gradient(90deg, #39ff88, transparent);
-      box-shadow: 0 0 18px rgba(57,255,136,.72);
-      animation: phoneScan 12s linear infinite;
-    }
-
-    .scan-dot {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #39ff88;
-      box-shadow: 0 0 14px rgba(57,255,136,.86);
-      opacity: 0;
-      animation: scanDot 12s ease-in-out infinite;
-    }
-
-    .scan-dot:nth-child(3) { left: 32%; top: 33%; animation-delay: .12s; }
-    .scan-dot:nth-child(4) { left: 63%; top: 29%; animation-delay: .42s; }
-    .scan-dot:nth-child(5) { left: 69%; top: 60%; animation-delay: .72s; }
-    .scan-dot:nth-child(6) { left: 34%; top: 68%; animation-delay: 1s; }
-    .scan-dot:nth-child(7) { left: 47%; top: 24%; animation-delay: .26s; }
-    .scan-dot:nth-child(8) { left: 76%; top: 43%; animation-delay: .58s; }
-    .scan-dot:nth-child(9) { left: 54%; top: 74%; animation-delay: .9s; }
-    .scan-dot:nth-child(10) { left: 24%; top: 51%; animation-delay: 1.16s; }
-
-    .watch-screen {
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(circle at 50% 22%, rgba(255,159,10,.2), transparent 34%),
-        #090a0c;
-    }
-
-    .coffee-cup {
-      position: absolute;
-      width: 38%;
-      height: 28%;
-      left: 50%;
-      top: 50%;
-      border: 4px solid rgba(255,255,255,.92);
-      border-top: 4px solid rgba(255,255,255,.92);
-      border-radius: 7px 7px 14px 14px;
-      animation: watchPayScene 12s ease-in-out infinite;
-    }
-
-    .coffee-cup::after {
-      content: "";
-      position: absolute;
-      width: 25%;
-      height: 52%;
-      right: -33%;
-      top: 21%;
-      border: 4px solid rgba(255,255,255,.9);
-      border-left: 0;
-      border-radius: 0 16px 16px 0;
-    }
-
-    .coffee-cup::before {
-      content: "";
-      position: absolute;
-      left: 16%;
-      right: 16%;
-      top: 6px;
-      height: 3px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.78);
-    }
-
-    .pay-check {
-      position: absolute;
-      width: 42%;
-      aspect-ratio: 1;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(.5);
-      border: 5px solid #39ff88;
-      border-radius: 50%;
-      opacity: 0;
-      animation: payConfirm 12s ease-in-out infinite;
-    }
-
-    .pay-check::after {
-      content: "";
-      position: absolute;
-      width: 43%;
-      height: 24%;
-      left: 25%;
-      top: 31%;
-      border-left: 6px solid #39ff88;
-      border-bottom: 6px solid #39ff88;
-      transform: rotate(-45deg);
-    }
-
-    @keyframes deviceTablet {
-      0%, 30% { filter: brightness(1.2) saturate(1.25); transform: translateY(-5px) rotate(-1deg); }
-      38%, 100% { filter: brightness(.72) saturate(.75); transform: translateY(0) rotate(-1deg); }
-    }
-
-    @keyframes devicePhone {
-      0%, 32%, 68%, 100% { filter: brightness(.72) saturate(.75); transform: translateY(0) rotate(2deg); }
-      40%, 62% { filter: brightness(1.2) saturate(1.25); transform: translateY(-6px) rotate(2deg); }
-    }
-
-    @keyframes deviceWatch {
-      0%, 66%, 100% { filter: brightness(.86) saturate(.92); transform: translateY(0) rotate(1deg); }
-      74%, 94% { filter: brightness(1.36) saturate(1.35); transform: translateY(-6px) rotate(1deg); }
-    }
-
-    @keyframes tabletTyping {
-      0%, 4% { opacity: .42; transform: scaleX(.56); }
-      12%, 28% { opacity: 1; transform: scaleX(1); }
-      36%, 100% { opacity: .5; transform: scaleX(.72); }
-    }
-
-    @keyframes phonePulse {
-      0%, 34%, 68%, 100% { opacity: .18; transform: scale(.82); }
-      42%, 62% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes phoneScan {
-      0%, 34% { opacity: 0; transform: rotate(-80deg); }
-      42% { opacity: 1; transform: rotate(-80deg); }
-      62% { opacity: 1; transform: rotate(280deg); }
-      68%, 100% { opacity: 0; transform: rotate(280deg); }
-    }
-
-    @keyframes scanDot {
-      0%, 38%, 68%, 100% { opacity: 0; transform: scale(.55); }
-      45%, 62% { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes watchPayScene {
-      0%, 68% { opacity: 0; transform: translate(-50%, -185%) scale(.88); }
-      74%, 82% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      88%, 100% { opacity: 0; transform: translate(-50%, 18%) scale(.9); }
-    }
-
-    @keyframes payConfirm {
-      0%, 86% { opacity: 0; transform: translate(-50%, -50%) scale(.5); }
-      91%, 97% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(.5); }
+      width: min(95%, 510px);
+      height: auto;
+      filter: drop-shadow(0 32px 48px rgba(20,20,20,.16));
+      transform: translate(-50%, -48%);
     }
 
     .section {
@@ -723,20 +430,6 @@
         overflow: hidden;
       }
 
-      .device-scene {
-        left: 50%;
-        width: min(430px, 100%);
-        transform: translateX(-50%);
-      }
-
-      .tablet {
-        height: 51%;
-        left: 4%;
-        top: 29%;
-      }
-
-      .phone { right: 0; }
-
       .ventures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
       .letter-heading {
@@ -780,33 +473,6 @@
 
       .portrait { min-height: 410px; }
 
-      .tablet {
-        width: 77%;
-        height: 52%;
-        left: 3%;
-        top: 28%;
-        border-width: 7px;
-        border-radius: 28px;
-      }
-
-      .phone {
-        width: 36%;
-        height: 62%;
-        right: 1%;
-        bottom: 9%;
-        border-width: 7px;
-        border-radius: 34px;
-      }
-
-      .watch {
-        width: 28%;
-        height: 26%;
-        left: 45%;
-        top: 9%;
-        border-width: 7px;
-        border-radius: 28px;
-      }
-
       .ventures { grid-template-columns: 1fr; }
 
       .venture {
@@ -823,16 +489,6 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-
-      .hero-device,
-      .code-stack i,
-      .phone-orbit,
-      .phone-sweep,
-      .scan-dot,
-      .coffee-cup,
-      .pay-check {
-        animation: none;
-      }
     }
   </style>
 </head>
@@ -861,36 +517,8 @@
           </div>
         </div>
 
-        <figure class="portrait" aria-label="Animated tablet phone and watch device stack">
-          <div class="device-scene" aria-hidden="true">
-            <div class="hero-device tablet">
-              <div class="device-screen tablet-screen">
-                <span class="code-stack"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              </div>
-            </div>
-
-            <div class="hero-device phone">
-              <div class="device-screen phone-screen">
-                <span class="phone-orbit"></span>
-                <span class="phone-sweep"></span>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-                <i class="scan-dot"></i>
-              </div>
-            </div>
-
-            <div class="hero-device watch">
-              <div class="device-screen watch-screen">
-                <span class="coffee-cup"></span>
-                <span class="pay-check"></span>
-              </div>
-            </div>
-          </div>
+        <figure class="portrait" aria-label="Robot illustration">
+          <img class="robot-hero" src="assets/og-robot-inverted-sharp-transparent.png" alt="">
         </figure>
       </section>
 
