@@ -1,1 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2eee7">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <title>jereme.xyz</title>
+  <meta name="description" content="Independent operator building AI systems, coffee spaces, physical goods, and coastal hospitality.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="jereme.xyz">
+  <meta property="og:description" content="A material, product-forward front door for fw/r, pine, nrthrn, and drift.">
+  <meta property="og:url" content="https://jereme.xyz/">
+  <style>
+    :root {
+      --paper: #f2eee7;
+      --ink: #171513;
+      --soft: rgba(23, 21, 19, .68);
+      --quiet: rgba(23, 21, 19, .48);
+      --line: rgba(23, 21, 19, .13);
+      --black: #11100f;
+      --bone: #fbf8f1;
+      --stone: #d8d0c4;
+      --orange: #e86f2d;
+      --blue: #476a84;
+      --green: #6c7a52;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    ::selection { background: rgba(232, 111, 45, .2); }
+
+    .wrap {
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(242, 238, 231, .88);
+      border-bottom: 1px solid rgba(23, 21, 19, .1);
+      backdrop-filter: blur(22px) saturate(160%);
+    }
+
+    .nav {
+      min-height: 62px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: 720;
+      color: rgba(23, 21, 19, .72);
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2vw, 28px);
+      min-width: 0;
+    }
+
+    .nav-group:last-child { justify-content: flex-end; }
+
+    .brand {
+      color: var(--ink);
+      font-size: 19px;
+      font-weight: 860;
+      letter-spacing: .02em;
+    }
+
+    .nav a {
+      white-space: nowrap;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover { border-color: currentColor; }
+
+    .pill {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 62px);
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background: #0d0d0c;
+      color: #fff;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      opacity: .8;
+      filter: saturate(.9) contrast(1.05);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8,8,7,.78) 0%, rgba(8,8,7,.24) 48%, rgba(8,8,7,.36) 100%),
+        linear-gradient(180deg, rgba(8,8,7,.1) 0%, rgba(8,8,7,.16) 42%, rgba(8,8,7,.86) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: clamp(110px, 17vh, 210px) 0 clamp(36px, 7vw, 84px);
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 11ch;
+      margin: 0;
+      font-size: clamp(60px, 10vw, 146px);
+      line-height: .86;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 560px;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: clamp(18px, 2.2vw, 27px);
+      line-height: 1.15;
+      font-weight: 620;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 820;
+      white-space: nowrap;
+    }
+
+    .button.dark {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .button.ghost {
+      border: 1px solid rgba(255,255,255,.46);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      backdrop-filter: blur(16px);
+    }
+
+    .below-hero {
+      position: relative;
+      z-index: 2;
+      margin-top: -1px;
+      background: var(--paper);
+    }
+
+    .category-rail {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rail-item {
+      min-height: 82px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 18px clamp(16px, 2.2vw, 30px);
+      background: var(--paper);
+    }
+
+    .rail-item span {
+      display: block;
+      grid-column: 1;
+      grid-row: 1;
+      color: var(--quiet);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .rail-item strong {
+      display: block;
+      grid-column: 1;
+      grid-row: 2;
+      margin-top: 3px;
+      font-size: clamp(18px, 1.8vw, 27px);
+      line-height: 1;
+    }
+
+    .rail-item::after {
+      content: "+";
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      color: var(--quiet);
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    .section {
+      padding: clamp(58px, 8vw, 112px) 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .94;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      max-width: 430px;
+      margin: 0;
+      color: var(--soft);
+      font-size: clamp(16px, 1.55vw, 21px);
+      line-height: 1.25;
+      font-weight: 600;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .product {
+      min-width: 0;
+      background: #ede7dc;
+    }
+
+    .product-image {
+      position: relative;
+      aspect-ratio: 1 / 1.08;
+      overflow: hidden;
+      background: #161412;
+    }
+
+    .product-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .9;
+    }
+
+    .product-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 34%, rgba(0,0,0,.42)),
+        linear-gradient(135deg, rgba(255,255,255,.08), transparent 42%);
+    }
+
+    .fwr-visual {
+      background:
+        radial-gradient(circle at 54% 46%, rgba(78, 143, 176, .34), transparent 26%),
+        linear-gradient(135deg, #101418, #232a2d);
+    }
+
+    .fwr-visual::before {
+      background:
+        radial-gradient(circle at 50% 48%, transparent 0 15%, rgba(126, 178, 203, .55) 15.5% 16%, transparent 16.5% 26%, rgba(126, 178, 203, .38) 26.5% 27%, transparent 27.5%),
+        linear-gradient(90deg, rgba(126,178,203,.3) 1px, transparent 1px),
+        linear-gradient(rgba(126,178,203,.22) 1px, transparent 1px);
+      background-size: auto, 34px 34px, 34px 34px;
+    }
+
+    .pine-visual {
+      background:
+        radial-gradient(circle at 50% 44%, rgba(234, 205, 154, .42), transparent 29%),
+        linear-gradient(135deg, #2b2119, #7b5b38);
+    }
+
+    .pine-visual::before {
+      background:
+        radial-gradient(ellipse at 50% 43%, rgba(255,255,255,.86) 0 16%, transparent 16.5%),
+        radial-gradient(ellipse at 50% 43%, rgba(80,42,20,.8) 0 27%, transparent 27.5%),
+        radial-gradient(ellipse at 50% 59%, rgba(255,255,255,.28) 0 31%, transparent 31.5%),
+        linear-gradient(90deg, transparent 0 58%, rgba(255,255,255,.24) 58.5% 67%, transparent 67.5%);
+      transform: scale(.9);
+    }
+
+    .nrthrn-visual {
+      background:
+        radial-gradient(circle at 72% 22%, rgba(232, 111, 45, .22), transparent 28%),
+        linear-gradient(135deg, #191715, #6e675c);
+    }
+
+    .nrthrn-visual::before {
+      background:
+        linear-gradient(135deg, transparent 25%, rgba(255,255,255,.18) 25.5% 26%, transparent 26.5%),
+        linear-gradient(90deg, rgba(255,255,255,.12), transparent 32%),
+        linear-gradient(180deg, transparent 18%, rgba(255,255,255,.14) 18.5% 19%, transparent 19.5% 64%, rgba(0,0,0,.24) 64.5%);
+      clip-path: polygon(18% 28%, 78% 16%, 88% 66%, 32% 82%);
+      background-color: rgba(210, 203, 190, .44);
+      inset: 18%;
+      border: 1px solid rgba(255,255,255,.18);
+    }
+
+    .drift-visual {
+      background:
+        linear-gradient(180deg, #6d8792 0 45%, #d8c5a8 45.5% 62%, #2d221c 62.5% 100%);
+    }
+
+    .drift-visual::before {
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(255,255,255,.7) 0 9%, transparent 9.5%),
+        linear-gradient(90deg, transparent 0 32%, rgba(255,255,255,.44) 32.5% 67%, transparent 67.5%),
+        linear-gradient(180deg, transparent 0 40%, rgba(255,255,255,.18) 40.5% 41%, transparent 41.5% 54%, rgba(255,255,255,.18) 54.5% 55%, transparent 55.5%);
+      opacity: .74;
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 1;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      color: var(--ink);
+      font-size: 10px;
+      font-weight: 880;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .product-copy {
+      padding: 18px 18px 20px;
+    }
+
+    .product-copy h3 {
+      margin: 0;
+      font-size: clamp(22px, 2.1vw, 34px);
+      line-height: .96;
+    }
+
+    .product-copy p {
+      margin: 10px 0 0;
+      color: var(--soft);
+      font-size: 14px;
+      line-height: 1.38;
+    }
+
+    .feature {
+      position: relative;
+      min-height: min(760px, 78svh);
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background: #11100f;
+      color: #fff;
+    }
+
+    .feature img {
+      position: absolute;
+      inset: 0;
+      opacity: .78;
+    }
+
+    .feature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(9,9,8,.1), rgba(9,9,8,.76)),
+        linear-gradient(180deg, transparent 35%, rgba(9,9,8,.8));
+    }
+
+    .feature-copy {
+      position: relative;
+      z-index: 1;
+      width: min(1440px, calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      justify-items: end;
+      padding: clamp(54px, 8vw, 96px) 0;
+      text-align: right;
+    }
+
+    .feature-copy div { max-width: 620px; }
+
+    .feature-copy h2 {
+      font-size: clamp(42px, 7vw, 104px);
+    }
+
+    .feature-copy p {
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.76);
+      font-size: clamp(18px, 2.1vw, 27px);
+      line-height: 1.18;
+      font-weight: 620;
+    }
+
+    .review {
+      display: grid;
+      place-items: center;
+      min-height: 330px;
+      padding: clamp(56px, 8vw, 96px) 16px;
+      background: #171513;
+      color: #fff;
+      text-align: center;
+    }
+
+    .stars {
+      margin: 0 0 10px;
+      color: #f0b35a;
+      font-size: 22px;
+      letter-spacing: .12em;
+    }
+
+    .review h2 {
+      max-width: 12ch;
+      margin: 0 auto;
+      font-size: clamp(38px, 6vw, 86px);
+    }
+
+    .review p {
+      margin: 14px 0 0;
+      color: rgba(255,255,255,.64);
+      font-size: clamp(15px, 1.6vw, 20px);
+      font-weight: 650;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .story {
+      position: relative;
+      min-height: 560px;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background: #161412;
+      color: #fff;
+    }
+
+    .story img {
+      position: absolute;
+      inset: 0;
+      opacity: .76;
+    }
+
+    .story::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.74));
+    }
+
+    .story div {
+      position: relative;
+      z-index: 1;
+      padding: clamp(24px, 4vw, 42px);
+    }
+
+    .story span {
+      color: rgba(255,255,255,.64);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .story h3 {
+      max-width: 10ch;
+      margin: 10px 0 0;
+      font-size: clamp(36px, 5vw, 74px);
+      line-height: .92;
+    }
+
+    .quote {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: clamp(64px, 10vw, 140px) 0;
+      text-align: center;
+    }
+
+    .quote p {
+      margin: 0;
+      color: rgba(23, 21, 19, .82);
+      font-size: clamp(27px, 4.8vw, 68px);
+      line-height: 1.02;
+      font-weight: 760;
+    }
+
+    .quote cite {
+      display: block;
+      margin-top: 22px;
+      color: var(--quiet);
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 820;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      background: #151311;
+      color: rgba(255,255,255,.68);
+      padding: clamp(46px, 7vw, 82px) 0 34px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(150px, .45fr));
+      gap: clamp(28px, 5vw, 72px);
+    }
+
+    .footer-brand {
+      max-width: 460px;
+    }
+
+    .footer-brand strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(40px, 6vw, 82px);
+      line-height: .88;
+    }
+
+    .footer-brand p {
+      margin: 18px 0 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .footer-col h4 {
+      margin: 0 0 14px;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .footer-col a,
+    .footer-col span {
+      display: block;
+      margin-top: 9px;
+      font-size: 14px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 52px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav-group:first-child {
+        display: none;
+      }
+
+      .category-rail,
+      .product-grid,
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-title {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap,
+      .hero-content,
+      .feature-copy,
+      .quote {
+        width: min(100% - 24px, 1440px);
+      }
+
+      .nav {
+        min-height: 58px;
+        gap: 12px;
+      }
+
+      .nav-group:last-child a:not(.pill) {
+        display: none;
+      }
+
+      .brand { font-size: 17px; }
+      .hero { min-height: 86svh; }
+      h1 { font-size: clamp(54px, 17vw, 80px); }
+
+      .hero-copy,
+      .feature-copy p {
+        max-width: 31ch;
+        font-size: 18px;
+      }
+
+      .category-rail,
+      .product-grid,
+      .split-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rail-item { min-height: 72px; }
+      .product-image { aspect-ratio: 1 / .86; }
+      .feature { min-height: 610px; }
+      .feature-copy { justify-items: start; text-align: left; }
+      .story { min-height: 430px; }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main">
+      <div class="nav-group">
+        <a href="fwr/">fw/r</a>
+        <a href="pine/">pine</a>
+        <a href="nrthrn/">nrthrn</a>
+        <a href="drift/">drift</a>
+      </div>
+      <span class="brand" aria-hidden="true"></span>
+      <div class="nav-group">
+        <a href="https://jereme.xyz/about/">About</a>
+        <a href="#collections">Collections</a>
+        <a class="pill" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="intro-title">
+      <img src="assets/jereme-hero-workbench.png" alt="">
+      <div class="hero-content">
+        <h1 id="intro-title">Built for real edges.</h1>
+        <p class="hero-copy">LiDAR, AI systems, robotics, coffee rooms, physical goods, and coastal hospitality shaped with the same obsession: useful things should feel inevitable.</p>
+        <div class="actions">
+          <a class="button ghost" href="https://jereme.xyz/about/">Read the story</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="below-hero">
+      <div class="category-rail" aria-label="Venture categories">
+        <a class="rail-item" href="fwr/"><span>Systems</span><strong>fw/r</strong></a>
+        <a class="rail-item" href="pine/"><span>Local</span><strong>pine</strong></a>
+        <a class="rail-item" href="nrthrn/"><span>Goods</span><strong>nrthrn</strong></a>
+        <a class="rail-item" href="drift/"><span>Coast</span><strong>drift</strong></a>
+      </div>
+    </div>
+
+    <section class="section wrap" id="collections" aria-label="Collections">
+      <div class="section-title">
+        <p>Four doors into one practice: engineering taste, physical product judgment, and rooms that earn repeat visits.</p>
+      </div>
+
+      <div class="product-grid">
+        <a class="product" href="fwr/">
+          <div class="product-image fwr-visual">
+            <span class="badge">Best Seller</span>
+          </div>
+          <div class="product-copy">
+            <h3>fw/r</h3>
+            <p>AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.</p>
+          </div>
+        </a>
+        <a class="product" href="pine/">
+          <div class="product-image pine-visual">
+            <span class="badge">Daily Ritual</span>
+          </div>
+          <div class="product-copy">
+            <h3>pine</h3>
+            <p>A PNW coffee haus built around light, pace, seating, sound, and return visits.</p>
+          </div>
+        </a>
+        <a class="product" href="nrthrn/">
+          <div class="product-image nrthrn-visual">
+            <span class="badge">Material Lab</span>
+          </div>
+          <div class="product-copy">
+            <h3>nrthrn</h3>
+            <p>Objects with real materials, real weight, and a reason for every millimeter.</p>
+          </div>
+        </a>
+        <a class="product" href="drift/">
+          <div class="product-image drift-visual">
+            <span class="badge">Coastal</span>
+          </div>
+          <div class="product-copy">
+            <h3>drift</h3>
+            <p>Coastal hospitality with slower mornings, sharper details, and fewer distractions.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="feature" aria-labelledby="feature-title">
+      <img src="assets/jereme-hero-lidar-robotics.png" alt="">
+      <div class="feature-copy">
+        <div>
+          <h2 id="feature-title">Designed to stand up.</h2>
+          <p>From sensor stacks to cafe counters, the test is the same: can the thing keep its promise when the room gets noisy?</p>
+          <div class="actions">
+            <a class="button" href="fwr/">Explore fw/r</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="review" aria-labelledby="review-title">
+      <div>
+        <p class="stars" aria-label="Five stars">★★★★★</p>
+        <h2 id="review-title">Trusted by the hard-to-impress.</h2>
+        <p>Useful, calm, material, and built with enough restraint to age well.</p>
+      </div>
+    </section>
+
+    <section class="section wrap" aria-label="Categories">
+      <div class="section-title">
+        <p>Pick the surface, then follow the work deeper.</p>
+      </div>
+      <div class="split-grid">
+        <a class="story" href="nrthrn/">
+          <img src="assets/scroll-mapping.png" alt="">
+          <div>
+            <span>Quality. Character. Weight.</span>
+            <h3>Physical goods</h3>
+          </div>
+        </a>
+        <a class="story" href="pine/">
+          <img src="assets/scroll-evaluation.png" alt="">
+          <div>
+            <span>Light. Sound. Pace.</span>
+            <h3>Rooms people return to</h3>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="quote" aria-label="Founder note">
+      <p>"Make the technical thing humane, make the beautiful thing accountable, and leave the room clearer than it was."</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p>A quiet front door for fw/r, pine, nrthrn, and drift. Built from Vancouver, Washington for practical futures and better rooms.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Work</h4>
+          <a href="fwr/">fw/r</a>
+          <a href="pine/">pine</a>
+          <a href="nrthrn/">nrthrn</a>
+          <a href="drift/">drift</a>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <a href="https://instagram.com/jeremedotxyz">Instagram</a>
+          <a href="https://x.com/jeremedotxyz">Twitter</a>
+          <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
+          <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
+          <a href="https://github.com/jeremedotxyz">GitHub</a>
+          <a href="https://substack.com/@jeremedotxyz">Substack</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <span>915 Broadway St, Vancouver, WA 98660</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 jereme.xyz</span>
+        <span>Useful things. Real edges. Good rooms.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
 
