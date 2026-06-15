@@ -681,6 +681,28 @@
       flex-wrap: wrap;
     }
 
+    .socials a {
+      display: inline-flex;
+      width: 18px;
+      height: 18px;
+      align-items: center;
+      justify-content: center;
+      color: var(--soft);
+    }
+
+    .socials img {
+      width: 18px;
+      height: 18px;
+      opacity: .72;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .socials a:hover img,
+    .socials a:focus-visible img {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
     .footer-links {
       display: grid;
       justify-items: end;
@@ -942,13 +964,13 @@
 
       <span class="footer-links">
         <span class="socials" aria-label="Social links">
-          <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-          <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-          <a href="https://www.x.com/jeremedotxyz">Twitter</a>
-          <a href="https://github.com/jeremedotxyz">GitHub</a>
-          <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
-          <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9">Spotify</a>
-          <a href="https://substack.com/@jeremedotxyz">Substack</a>
+          <a href="https://www.threads.com/@jeremedotxyz" aria-label="Threads" title="Threads"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/threads.svg" alt=""></a>
+          <a href="https://instagram.com/jeremedotxyz" aria-label="Instagram" title="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/instagram.svg" alt=""></a>
+          <a href="https://www.x.com/jeremedotxyz" aria-label="X" title="X"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/x.svg" alt=""></a>
+          <a href="https://github.com/jeremedotxyz" aria-label="GitHub" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/github.svg" alt=""></a>
+          <a href="https://www.youtube.com/@jeremedotxyz" aria-label="YouTube" title="YouTube"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/youtube.svg" alt=""></a>
+          <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9" aria-label="Spotify" title="Spotify"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/spotify.svg" alt=""></a>
+          <a href="https://substack.com/@jeremedotxyz" aria-label="Substack" title="Substack"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/substack.svg" alt=""></a>
         </span>
 
         <span class="policy-links">
