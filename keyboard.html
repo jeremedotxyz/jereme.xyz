@@ -53,16 +53,47 @@
 
     .site-wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
-    header { padding: 32px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
-    .brand-dot { width: 48px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); position: relative; box-shadow: 0 16px 34px rgba(255,97,26,.24); }
-    .brand-dot::before, .brand-dot::after { content: ""; position: absolute; width: 3px; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.48); top: 10px; }
-    .brand-dot::before { left: 14px; } .brand-dot::after { right: 14px; }
-    .menu-btn { font-family: var(--mono); font-size: 20px; width: 38px; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(32,32,32,.08); border-radius: 13px; background: rgba(255,255,255,.2); color: rgba(32,32,32,.58); cursor: pointer; }
+    /* BOOT SEQUENCE */
+    .boot {
+      position: fixed; inset: 0; z-index: 100;
+      display: grid; place-items: center;
+      background: var(--paper);
+      animation: bootOut 1.15s ease 1.65s forwards;
+      pointer-events: none;
+    }
 
-    /* Standardized Hero Padding across all pages */
+    /* Standardized Solid Brand Dot */
+    .brand-dot { 
+      width: 48px; 
+      aspect-ratio: 1; 
+      border-radius: 50%; 
+      background: var(--orange); 
+      position: relative; 
+      box-shadow: 0 16px 34px rgba(255,97,26,.24);
+      display: inline-block;
+    }
+
+    /* HEADER */
+    header { 
+      padding: 32px 0; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      border-bottom: 1px solid var(--line); 
+    }
+
+    nav { 
+      display: flex; 
+      gap: 24px; 
+      font-size: 13px; 
+      font-weight: 800; 
+      color: var(--soft); 
+    }
+    nav a:hover { color: var(--ink); }
+
+    /* HERO */
     .hero { padding: 100px 0 140px; display: flex; flex-direction: column; }
     
-    /* Standardized Mega Typography across all pages */
     .mega { 
       font-size: clamp(100px, 20vw, 300px); 
       line-height: 0.74; 
@@ -75,7 +106,7 @@
     }
     .mega span { display: block; }
 
-    /* KEYBOARD (Hifi Reconstruction) */
+    /* KEYBOARD (Exact Reconstruction) */
     .device-wrap { width: min(1080px, 100%); animation: floatDevice 6s ease-in-out infinite; align-self: center; }
     .device {
       min-height: 384px; display: grid; grid-template-columns: 230px 1fr 74px; border-radius: 26px; overflow: hidden;
@@ -108,7 +139,7 @@
     .rail-meta { display: grid; place-items: center; gap: 7px; color: rgba(235,235,235,.58); font-family: var(--mono); font-size: 10px; writing-mode: vertical-rl; }
     .rail-meta::before { content: ""; width: 18px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,97,26,.12); }
 
-    /* SECTIONS */
+    /* CONTENT SECTIONS */
     .section { padding: clamp(80px, 10vw, 180px) 32px; border-top: 1px solid var(--line); }
     .intro { display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 1360px; margin: 0 auto; }
     .intro-copy { margin: 0; max-width: 900px; font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance; padding-bottom: 20px; }
@@ -123,6 +154,7 @@
     .practice-head h2 { margin: 0; font-size: clamp(58px, 9vw, 150px); line-height: .85; letter-spacing: -.085em; font-weight: 800; }
     .practice-head p { margin: 0; color: var(--soft); font-size: clamp(20px, 2vw, 28px); line-height: 1.06; font-weight: 800; }
 
+    /* PRACTICE CARDS */
     .cards-grid { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card { background: #2a2a2e; border-radius: 28px; padding: 20px; color: #fff; display: grid; grid-template-rows: auto 80px 1fr auto; min-height: 460px; position: relative; overflow: hidden; }
     .card:nth-child(2) { background: #f7f7f5; color: var(--ink); }
@@ -159,25 +191,26 @@
 </head>
 <body>
 
+  <!-- BOOT SEQUENCE -->
   <div class="boot" aria-hidden="true">
-    <div class="boot-mark"><span class="dot" style="width:50px; aspect-ratio:1; border-radius:50%; background:var(--orange);"></span><span>jereme.xyz</span></div>
+    <div class="brand-dot" style="width: 52px;"></div>
   </div>
 
   <div class="site">
     <div class="site-wrap">
       <header>
-        <a href="/" class="brand-dot"></a>
-        <nav style="display: flex; gap: 30px; font-weight: 800; font-size: 13px;">
+        <a href="/" class="brand-dot" aria-label="Home"></a>
+        <nav>
           <a href="/site/fwr/fwr.html">fw/r</a>
           <a href="/site/pine/pine.html">pine</a>
           <a href="/site/nrthrn/nrthrn.html">nrthrn</a>
+          <a href="/site/drift/drift.html">drift</a>
           <a href="/about/">about</a>
         </nav>
-        <button class="menu-btn">:</button>
       </header>
 
       <main>
-        <!-- Standardized Hero -->
+        <!-- HERO -->
         <section class="hero">
           <h1 class="mega"><span>useful</span><span>things.</span></h1>
 
@@ -235,11 +268,23 @@
 
         <section class="section">
           <div class="intro">
-            <p class="intro-copy">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
+            <p class="intro-copy" style="font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance;">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
             <div class="meta">
-              <div class="meta-row"><div class="meta-label">Compass / 01</div><strong>Useful things with real edges and a reason to stay</strong></div>
-              <div class="meta-row"><div class="meta-label">Mode / 02</div><strong>Independent, practical, material-minded</strong></div>
-              <div class="meta-row"><div class="meta-label">Focus / 03</div><strong>AI, LiDAR, robotics, coffee, objects, places</strong></div>
+              <!-- Compass -->
+              <div class="meta-row">
+                <div class="meta-label">Compass / 01</div>
+                <strong>Useful things with real edges and a reason to stay</strong>
+              </div>
+              <!-- Mode -->
+              <div class="meta-row">
+                <div class="meta-label">Mode / 02</div>
+                <strong>Independent, practical, material-minded</strong>
+              </div>
+              <!-- Focus -->
+              <div class="meta-row">
+                <div class="meta-label">Focus / 03</div>
+                <strong>AI, LiDAR, robotics, coffee, objects, places</strong>
+              </div>
             </div>
           </div>
         </section>
@@ -250,13 +295,13 @@
           <h2 class="section-title">Four practices.</h2>
           <div class="cards-grid">
             <script>
-              const cards = [
+              const items = [
                 { l: 'track 01 / fw/r', t: 'Intelligent Systems', d: 'AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.' },
                 { l: 'track 02 / pine', t: 'Local Roots', d: 'A PNW coffee haus built around light, pace, seating, sound, and return visits.' },
                 { l: 'track 03 / nrthrn', t: 'Designed Objects', d: 'Objects with real materials, real weight, and a reason for every millimeter.' },
                 { l: 'track 04 / drift', t: 'Coastal Rituals', d: 'Coastal rooms and rituals with slower mornings and sharper details.' }
               ];
-              cards.forEach((item) => {
+              items.forEach((item) => {
                 document.write(`
                   <a href="#" class="card">
                     <small>${item.l}</small>
@@ -289,7 +334,7 @@
         </div>
         <div class="footer-col">
           <h4>Work</h4>
-          <a href="#">fw/r</a><a href="#">pine</a><a href="#">nrthrn</a><a href="#">drift</a>
+          <a href="/site/fwr/fwr.html">fw/r</a><a href="/site/pine/pine.html">pine</a><a href="/site/nrthrn/nrthrn.html">nrthrn</a><a href="/site/drift/drift.html">drift</a>
         </div>
         <div class="footer-col">
           <h4>Social</h4>
