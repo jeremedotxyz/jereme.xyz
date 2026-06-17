@@ -158,9 +158,11 @@
     .hero-stage {
       position: relative;
       z-index: 2;
-      min-height: 1100px; 
-      display: grid;
-      place-items: center;
+      min-height: 1400px; /* Increased dramatically for vertical clearance */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Aligned to top to control the gap better */
     }
 
     .mega {
@@ -184,7 +186,8 @@
       position: relative;
       z-index: 2;
       width: min(1080px, 82vw);
-      transform: translateY(340px);
+      margin-top: 600px; /* Force keyboard far below the absolute-positioned text */
+      transform: translateY(0);
       animation: floatDevice 6s ease-in-out infinite;
     }
 
@@ -670,8 +673,8 @@
     }
 
     @keyframes floatDevice {
-      0%, 100% { transform: translateY(340px) rotate(-.2deg); }
-      50% { transform: translateY(326px) rotate(.18deg); }
+      0%, 100% { transform: translateY(0) rotate(-.2deg); }
+      50% { transform: translateY(-14px) rotate(.18deg); }
     }
 
     @keyframes knobTurn {
@@ -698,8 +701,8 @@
     }
 
     @media (max-width: 1060px) {
-      .hero-stage { min-height: 1000px; }
-      .device-wrap { width: min(980px, 94vw); }
+      .hero-stage { min-height: 1200px; }
+      .device-wrap { width: min(980px, 94vw); margin-top: 500px; }
       .device { grid-template-columns: 190px 1fr 58px; }
       .meta { grid-template-columns: 1fr; }
       .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -711,7 +714,7 @@
       .topline { grid-template-columns: auto 1fr auto; }
       .hero-stage { min-height: 710px; place-items: start center; padding-top: 130px; }
       .mega { inset: 330px auto auto -18px; font-size: clamp(120px, 34vw, 190px); white-space: normal; }
-      .device-wrap { width: 1080px; transform: translateX(260px) translateY(0); }
+      .device-wrap { width: 1080px; transform: translateX(260px) translateY(0); margin-top: 0; }
       .hero-foot { flex-direction: column; margin-top: 20px; }
       .section { padding: 58px 18px; }
       .intro-copy { font-size: clamp(34px, 12vw, 58px); }
