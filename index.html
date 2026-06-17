@@ -41,13 +41,11 @@
       transform: translateY(-20px); 
     }
 
-    /* FADE IN LOGO SECTION */
     .splash-wrap {
       display: flex;
       align-items: center;
       gap: clamp(14px, 2vw, 20px);
       opacity: 0;
-      /* Animates opacity and a very slight scale for a "premium" feel */
       animation: logoFadeIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
     }
 
@@ -73,7 +71,8 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      min-height: 1.2em;
+      /* Height reserved to prevent shifting */
+      height: clamp(10px, 1.2vw, 12px); 
     }
 
     .status {
@@ -84,10 +83,14 @@
       font-weight: 400;
       white-space: pre; 
       overflow: hidden;
+      
+      /* FIX: Snap cursor height to text height */
+      line-height: 1;
+      height: 1em; 
+      
       border-right: 2px solid var(--orange); 
       width: 0;
       
-      /* Typing starts slightly after the logo begins fading in */
       animation: 
         typing 1.8s steps(16, end) 1s forwards,
         blink 0.8s step-end infinite;
@@ -114,7 +117,6 @@
       50% { border-color: var(--orange); }
     }
 
-    /* Subtle CRT texture */
     body::after {
       content: "";
       position: fixed;
@@ -129,13 +131,11 @@
 <body>
 
   <div class="main-container">
-    <!-- Logo Section -->
     <div class="splash-wrap">
       <div class="dot"></div>
       <div class="brand">jereme.xyz</div>
     </div>
 
-    <!-- Loading Section -->
     <div class="status-container">
       <div class="status">System Loading  </div>
     </div>
