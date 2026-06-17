@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ebebeb">
@@ -99,7 +99,7 @@
     .mega { font-size: clamp(100px, 20vw, 300px); line-height: 0.74; letter-spacing: -0.075em; font-weight: 800; margin: 0 0 240px -2vw; position: relative; width: 100%; pointer-events: none; }
     .mega span { display: block; }
 
-    /* KEYBOARD (Hifi Reconstruction) */
+    /* KEYBOARD */
     .device-wrap { width: min(1080px, 100%); animation: floatDevice 6s ease-in-out infinite; align-self: center; }
     .device { min-height: 384px; display: grid; grid-template-columns: 230px 1fr 74px; border-radius: 26px; overflow: hidden; background: #19191b; box-shadow: 0 38px 72px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.06); }
     .left-module, .right-rail, .control-grid { border: 1px solid rgba(0,0,0,.78); }
@@ -142,10 +142,6 @@
     .meta-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange); }
     .meta-row strong { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
 
-    .practice-head { max-width: 1360px; margin: 0 auto 60px; display: grid; grid-template-columns: 1fr minmax(280px, 430px); gap: 28px; align-items: end; }
-    .practice-head h2 { margin: 0; font-size: clamp(58px, 9vw, 150px); line-height: .85; letter-spacing: -.085em; font-weight: 800; }
-    .practice-head p { margin: 0; color: var(--soft); font-size: clamp(20px, 2vw, 28px); line-height: 1.06; font-weight: 800; }
-
     /* CARDS */
     .cards-grid { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card { background: #2a2a2e; border-radius: 28px; padding: 20px; color: #fff; display: grid; grid-template-rows: auto 80px 1fr 80px; min-height: 480px; position: relative; overflow: hidden; }
@@ -163,7 +159,6 @@
     .quote { min-height: 60svh; display: grid; place-items: center; text-align: center; background: #1a1a1a; color: var(--paper); padding: 100px 32px; margin-top: 100px; }
     .quote p { max-width: 1100px; font-size: clamp(38px, 7vw, 100px); line-height: 0.85; font-weight: 800; }
 
-    /* --- REFINED TESTBENCH FOOTER --- */
     .testbench-footer {
       padding: clamp(80px, 12vw, 140px) 40px 40px;
       border-top: 1px solid var(--line);
@@ -220,10 +215,11 @@
       <header>
         <a href="/" class="brand-dot" aria-label="Home"></a>
         <nav>
-          <a href="/site/fwr/fwr.html">fw/r</a>
-          <a href="/site/pine/pine.html">pine</a>
-          <a href="/site/nrthrn/nrthrn.html">nrthrn</a>
-          <a href="/site/drift/drift.html">drift</a>
+          <!-- UPDATED HEADER NAV LINKS -->
+          <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
+          <a href="https://jereme.xyz/site/pine/pine.html">pine</a>
+          <a href="https://jereme.xyz/site/nrthrn/nrthrn.html">nrthrn</a>
+          <a href="https://jereme.xyz/site/drift/drift.html">drift</a>
           <a href="/about/">about</a>
         </nav>
       </header>
@@ -276,7 +272,7 @@
 
         <section class="section">
           <div class="intro">
-            <p class="intro-copy" style="font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance;">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
+            <p class="intro-copy">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
             <div class="meta">
               <div class="meta-row"><div class="meta-label">Compass / 01</div><strong>Useful things with real edges and a reason to stay</strong></div>
               <div class="meta-row"><div class="meta-label">Mode / 02</div><strong>Independent, practical, material-minded</strong></div>
@@ -291,11 +287,12 @@
           <h2 class="section-title">Four practices.</h2>
           <div class="cards-grid">
             <script>
+              // UPDATED CARD ARRAY LINKS
               const cards = [
-                { l: 'track 01 / fw/r', t: 'Intelligent Systems', d: 'AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.', h:'/fwr/fwr.html' },
-                { l: 'track 02 / pine', t: 'Local Roots', d: 'A PNW coffee haus built around light, pace, seating, sound, and return visits.', h:'/pine/pine.html' },
-                { l: 'track 03 / nrthrn', t: 'Designed Objects', d: 'Objects with real materials, real weight, and a reason for every millimeter.', h:'/nrthrn/nrthrn.html' },
-                { l: 'track 04 / drift', t: 'Coastal Rituals', d: 'Coastal rooms and rituals with slower mornings and sharper details.', h:'/drift/drift.html' }
+                { l: 'track 01 / fw/r', t: 'Intelligent Systems', d: 'AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.', h:'https://jereme.xyz/site/fwr/fwr.html' },
+                { l: 'track 02 / pine', t: 'Local Roots', d: 'A PNW coffee haus built around light, pace, seating, sound, and return visits.', h:'https://jereme.xyz/site/pine/pine.html' },
+                { l: 'track 03 / nrthrn', t: 'Designed Objects', d: 'Objects with real materials, real weight, and a reason for every millimeter.', h:'https://jereme.xyz/site/nrthrn/nrthrn.html' },
+                { l: 'track 04 / drift', t: 'Coastal Rituals', d: 'Coastal rooms and rituals with slower mornings and sharper details.', h:'https://jereme.xyz/site/drift/drift.html' }
               ];
               cards.forEach((item) => {
                 document.write(`
@@ -332,10 +329,11 @@
 
       <div class="footer-col">
         <h4>Practices</h4>
-        <a href="/site/fwr/fwr.html">fw/r</a>
-        <a href="/site/pine/pine.html">pine</a>
-        <a href="/site/nrthrn/nrthrn.html">nrthrn</a>
-        <a href="/site/drift/drift.html">drift</a>
+        <!-- UPDATED FOOTER LINKS -->
+        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
+        <a href="https://jereme.xyz/site/pine/pine.html">pine</a>
+        <a href="https://jereme.xyz/site/nrthrn/nrthrn.html">nrthrn</a>
+        <a href="https://jereme.xyz/site/drift/drift.html">drift</a>
       </div>
 
       <div class="footer-col">
