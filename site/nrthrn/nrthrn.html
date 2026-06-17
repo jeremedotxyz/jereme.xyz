@@ -43,21 +43,18 @@
     .brief-leds { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; width: 140px; }
     .led { width: 100%; aspect-ratio: 1; background: rgba(0,0,0,0.08); border-radius: 1px; }
     @keyframes led-pulse { 0%, 100% { background: rgba(0,0,0,0.08); } 50% { background: var(--accent); box-shadow: 0 0 8px var(--accent); } }
-    .brief-text { font-size: clamp(19px, 2.3vw, 25px); line-height: 1.55; font-weight: 700; color: var(--ink); }
-    .brief-text p { margin-bottom: 1.5em; }
+    .brief-text { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65; font-weight: 700; color: var(--ink); max-width: 720px; }
+    .brief-text p { margin-bottom: 1.6em; }
     footer { padding: 80px 0 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-weight: 800; font-size: 13px; }
     @media (max-width: 1060px) { .tiles { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { .mega { margin-bottom: 100px; } footer { flex-direction: column; gap: 20px; } }
+    @media (max-width: 600px) { .mega { margin-bottom: 100px; } .brief-card { padding: 32px 24px; } footer { flex-direction: column; gap: 20px; } }
   </style>
 </head>
 <body>
   <div class="site-wrap">
-    <header>
-      <a class="brand-dot" href="/"></a>
-      <nav><a href="/site/fwr/fwr.html">fw/r</a><a href="/site/pine/pine.html">pine</a><a href="/site/drift/drift.html">drift</a><a href="/about/">about</a></nav>
-    </header>
+    <header><a class="brand-dot" href="/"></a><nav><a href="/site/fwr/fwr.html">fw/r</a><a href="/site/pine/pine.html">pine</a><a href="/site/drift/drift.html">drift</a><a href="/about/">about</a></nav></header>
     <main>
-      <section class="hero"><h1 class="mega">nrthrn.</h1><p class="lead-text">Industrial and consumer products with real materials, real weight, and reasons for every millimeter.</p></section>
+      <section class="hero"><h1 class="mega">nrthrn.</h1><p class="lead-text">Industrial and consumer products with real materials, real weight, and a reason for every millimeter.</p></section>
       <div class="divider" data-label="SPEC // OBJECT_PHILOSOPHY"></div>
       <div class="tiles">
         <article class="tile"><small>Spec 01</small><div><h3>Materials</h3><p>Real finishes, real wear, real constraints, and choices that improve with contact.</p></div></article>
@@ -71,12 +68,12 @@
           <div class="brief-leds"><script>for(let i=0; i<24; i++) { const delay = (Math.random() * 5).toFixed(1); const dur = (3 + Math.random() * 3).toFixed(1); document.write(`<div class="led" style="animation: led-pulse ${dur}s infinite ${delay}s ease-in-out"></div>`); }</script></div>
         </div>
         <div class="brief-text">
-          <p>nrthrn is for objects that have to earn the space they take up: tools, goods, fixtures, and systems.</p>
-          <p>The object should explain itself. Every edge, surface, and tolerance is a sentence. We focus on making those sentences worth reading.</p>
+          <p>nrthrn is for objects that have to earn the space they take up: tools, goods, fixtures, systems, and the useful beautiful things in between.</p>
+          <p>The object should explain itself. Every edge, surface, material, tolerance, and interaction is a sentence. We focus on making those sentences worth reading.</p>
         </div>
       </section>
     </main>
-    <footer style="margin-top:100px;"><div style="opacity:0.5">&copy; 2026 jereme.xyz</div><div><a href="/" style="margin-right:20px;">Home</a><a href="/about/">About</a></div></footer>
+    <footer style="margin-top: 100px;"><div style="opacity: 0.5;">&copy; 2026 jereme.xyz</div><div><a href="/" style="margin-right: 20px;">Home</a><a href="/about/">About</a></div></footer>
   </div>
 </body>
 </html>
