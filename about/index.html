@@ -27,7 +27,6 @@
       --ink: #202020;
       --orange: #ff611a;
       --charcoal: #1f1f22;
-      --panel: #2b2b2f;
       --soft: rgba(32, 32, 32, .62);
       --line: rgba(32, 32, 32, .12);
       --white: #f7f7f5;
@@ -98,6 +97,9 @@
       line-height: .74;
       letter-spacing: -.095em;
       font-weight: 800;
+      /* Safety margin increased to prevent overlapping 'g' descender */
+      margin-bottom: 220px; 
+      margin-left: -2vw;
     }
     .mega span { display: block; }
 
@@ -218,14 +220,15 @@
       margin: 0; font-size: clamp(28px, 3.8vw, 54px); line-height: 1; font-weight: 850; color: var(--ink); letter-spacing: -0.06em;
     }
 
-    /* SIGNATURE & CLOSER */
-    .signoff { margin-top: 100px; padding-top: 60px; border-top: 1px solid var(--line); }
+    /* SIGNATURE SECTION */
+    .signoff { margin-top: 100px; padding-top: 40px; }
     .signoff-line { font-size: 34px; font-weight: 800; letter-spacing: -0.04em; margin: 0 0 28px; }
     .signature-wrap { max-width: 260px; margin-bottom: 24px; }
     .signature { width: 100%; height: auto; mix-blend-mode: multiply; filter: contrast(1.1); }
     .signature-fallback { font-family: cursive; font-size: 48px; color: var(--ink); }
     .stage-note { font-family: var(--mono); font-size: 12px; color: var(--soft); text-transform: uppercase; margin-bottom: 12px; display: block; line-height: 1.5; }
 
+    /* CLOSER */
     .closer {
       padding: 140px 0;
       border-top: 1px solid var(--line);
@@ -255,6 +258,7 @@
     /* RESPONSIVE */
     @media (max-width: 1120px) {
       .hero { grid-template-columns: 1fr; }
+      .mega { margin-bottom: 120px; }
       .robot-wrap { order: -1; margin-bottom: 40px; width: 320px; }
       .letter-section { grid-template-columns: 1fr; gap: 40px; }
       .letter-heading h2 { position: static; }
@@ -263,6 +267,7 @@
     @media (max-width: 600px) {
       .site-wrap { padding: 0 20px; }
       .hero { padding: 60px 0; }
+      .mega { margin-bottom: 100px; }
       .ventures { grid-template-columns: 1fr; }
       .module { padding: 42px 24px; }
       .closer { flex-direction: column; align-items: flex-start; }
@@ -314,25 +319,25 @@
           <small>track 01 / fw/r</small>
           <div class="card-visual"></div>
           <h3>Intelligent Systems</h3>
-          <p>Robotics, LiDAR, and AI for rooms where the answers actually have to work.</p>
+          <p>AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.</p>
         </a>
         <a class="card" href="/site/pine/pine.html">
           <small>track 02 / pine</small>
           <div class="card-visual"></div>
           <h3>Local Roots</h3>
-          <p>The coffee shop. Five locations into the saga. Antique brass floor sinks have entered the chat.</p>
+          <p>A PNW coffee haus built around light, pace, seating, sound, and return visits.</p>
         </a>
         <a class="card" href="/site/nrthrn/nrthrn.html">
           <small>track 03 / nrthrn</small>
           <div class="card-visual"></div>
           <h3>Designed Objects</h3>
-          <p>Product design for physical goods with real materials, real weight, and reasons for every millimeter.</p>
+          <p>Objects with real materials, real weight, and a reason for every millimeter.</p>
         </a>
         <a class="card" href="/site/drift/drift.html">
           <small>track 04 / drift</small>
           <div class="card-visual"></div>
           <h3>Coastal Rituals</h3>
-          <p>pine's coastal little sister. Slower, saltier, and not interested in being found too easily.</p>
+          <p>Coastal rooms and rituals with slower mornings, sharper details, and fewer distractions.</p>
         </a>
       </section>
 
@@ -385,6 +390,7 @@
 
           <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
 
+          <!-- SIGNATURE -->
           <div class="signoff">
             <p class="signoff-line">Don't let the wheels fall off.</p>
             <div class="signature-wrap">
