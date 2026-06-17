@@ -25,7 +25,6 @@
       width: 100%;
       height: 100%;
       background: var(--paper);
-      /* Robust Centering */
       display: flex;
       flex-direction: column;
       justify-content: center; 
@@ -39,17 +38,17 @@
       flex-direction: column;
       align-items: center;
       gap: 32px; 
-      /* Optical adjustment: accounts for status text height to make logo feel centered */
       transform: translateY(-20px); 
     }
 
+    /* FADE IN LOGO SECTION */
     .splash-wrap {
       display: flex;
       align-items: center;
       gap: clamp(14px, 2vw, 20px);
       opacity: 0;
-      transform: translateY(10px);
-      animation: splashIn 0.8s ease forwards;
+      /* Animates opacity and a very slight scale for a "premium" feel */
+      animation: logoFadeIn 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
     }
 
     .dot {
@@ -83,17 +82,26 @@
       text-transform: uppercase;
       color: rgba(32, 32, 32, 0.4);
       font-weight: 400;
-      
-      /* Essential for trailing spaces and typewriter effect */
       white-space: pre; 
       overflow: hidden;
       border-right: 2px solid var(--orange); 
       width: 0;
       
-      /* 16 steps = "System Loading" (14) + 2 spaces */
+      /* Typing starts slightly after the logo begins fading in */
       animation: 
-        typing 1.8s steps(16, end) 0.8s forwards,
+        typing 1.8s steps(16, end) 1s forwards,
         blink 0.8s step-end infinite;
+    }
+
+    @keyframes logoFadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(10px) scale(0.98); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
     }
 
     @keyframes typing {
@@ -106,14 +114,7 @@
       50% { border-color: var(--orange); }
     }
 
-    @keyframes splashIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Industrial CRT scanline texture */
+    /* Subtle CRT texture */
     body::after {
       content: "";
       position: fixed;
@@ -128,13 +129,13 @@
 <body>
 
   <div class="main-container">
-    <!-- Logo -->
+    <!-- Logo Section -->
     <div class="splash-wrap">
       <div class="dot"></div>
       <div class="brand">jereme.xyz</div>
     </div>
 
-    <!-- Status -->
+    <!-- Loading Section -->
     <div class="status-container">
       <div class="status">System Loading  </div>
     </div>
