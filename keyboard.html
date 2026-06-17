@@ -184,14 +184,14 @@
     .hero-stage {
       position: relative;
       z-index: 2;
-      min-height: 720px;
+      min-height: 1100px; 
       display: grid;
       place-items: center;
     }
 
     .mega {
       position: absolute;
-      inset: auto -3vw -4vw -2vw;
+      inset: 4vw -3vw auto -2vw;
       z-index: 0;
       color: #202020;
       font-size: clamp(130px, 23vw, 360px);
@@ -210,7 +210,7 @@
       position: relative;
       z-index: 2;
       width: min(1080px, 82vw);
-      transform: translateY(24px);
+      transform: translateY(340px);
       animation: floatDevice 6s ease-in-out infinite;
     }
 
@@ -258,6 +258,7 @@
       font-family: var(--mono);
       font-size: 11px;
       text-transform: uppercase;
+      cursor: default;
     }
 
     .autoplay::before {
@@ -401,32 +402,6 @@
       border-left: 2px solid #111;
     }
 
-    .rail-type {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .rail-meta {
-      display: grid;
-      place-items: center;
-      gap: 7px;
-      color: rgba(235,235,235,.58);
-      font-family: var(--mono);
-      font-size: 10px;
-      writing-mode: vertical-rl;
-    }
-
-    .rail-meta::before {
-      content: "";
-      width: 18px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 0 5px rgba(255,97,26,.12);
-    }
-
     .hero-foot {
       position: relative;
       z-index: 3;
@@ -445,25 +420,16 @@
 
     .intro {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(340px, .72fr);
-      gap: clamp(34px, 8vw, 110px);
+      grid-template-columns: 1fr;
+      gap: 60px;
       align-items: start;
       max-width: 1360px;
       margin: 0 auto;
     }
 
-    .intro h2,
-    .practice-head h2 {
-      margin: 0;
-      font-size: clamp(58px, 9vw, 150px);
-      line-height: .78;
-      letter-spacing: -.085em;
-      font-weight: 800;
-    }
-
     .intro-copy {
       margin: 0;
-      max-width: 790px;
+      max-width: 900px;
       font-size: clamp(32px, 4.8vw, 76px);
       line-height: .88;
       letter-spacing: -.07em;
@@ -471,32 +437,66 @@
       text-wrap: balance;
     }
 
+    /* REWORKED META SECTION */
     .meta {
       display: grid;
-      gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(32,32,32,.1);
+      border: 1px solid rgba(32,32,32,.1);
     }
 
     .meta-row {
-      display: grid;
-      grid-template-columns: 118px minmax(0, 1fr);
-      gap: 18px;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.4);
-      box-shadow: inset 0 0 0 1px rgba(32,32,32,.08);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding: 32px;
+      background: var(--paper);
     }
 
-    .meta-row span {
-      color: var(--soft);
+    .meta-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 6px 12px;
+      width: fit-content;
       font-family: var(--mono);
       font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .meta-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 8px var(--orange);
     }
 
     .meta-row strong {
-      font-size: 18px;
-      line-height: 1.16;
+      font-size: clamp(20px, 1.8vw, 26px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
     }
+
+    /* Decorative technical marks */
+    .meta-row::before,
+    .meta-row::after {
+        content: "+";
+        position: absolute;
+        font-family: var(--mono);
+        font-size: 14px;
+        color: rgba(32,32,32,0.2);
+    }
+    .meta-row::before { top: 10px; left: 10px; }
+    .meta-row::after { bottom: 10px; right: 10px; }
 
     .practice-head {
       max-width: 1360px;
@@ -505,6 +505,14 @@
       grid-template-columns: 1fr minmax(280px, 430px);
       gap: 28px;
       align-items: end;
+    }
+
+    .practice-head h2 {
+      margin: 0;
+      font-size: clamp(58px, 9vw, 150px);
+      line-height: .78;
+      letter-spacing: -.085em;
+      font-weight: 800;
     }
 
     .practice-head p {
@@ -689,8 +697,8 @@
     }
 
     @keyframes floatDevice {
-      0%, 100% { transform: translateY(24px) rotate(-.2deg); }
-      50% { transform: translateY(10px) rotate(.18deg); }
+      0%, 100% { transform: translateY(340px) rotate(-.2deg); }
+      50% { transform: translateY(326px) rotate(.18deg); }
     }
 
     @keyframes knobTurn {
@@ -720,7 +728,7 @@
 
     @media (max-width: 1060px) {
       .hero-stage {
-        min-height: 640px;
+        min-height: 1000px;
       }
 
       .device-wrap {
@@ -731,11 +739,14 @@
         grid-template-columns: 190px 1fr 58px;
       }
 
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
       .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .intro,
       .practice-head,
       footer {
         grid-template-columns: 1fr;
@@ -795,11 +806,6 @@
         font-size: clamp(34px, 12vw, 58px);
       }
 
-      .meta-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
       .cards {
         grid-template-columns: 1fr;
       }
@@ -837,14 +843,14 @@
         <div class="hero-stage">
           <h1 class="mega" id="intro-title">
             <span>useful</span>
-            <span>things</span>
+            <span>things.</span>
           </h1>
 
           <div class="device-wrap" aria-label="Useful things, quietly built.">
             <div class="device">
               <aside class="left-module">
                 <div class="speaker" aria-hidden="true"></div>
-                <a class="autoplay" href="https://jereme.xyz/about/">read story</a>
+                <div class="autoplay">read story</div>
                 <div class="signal-badge">
                   <small>personal signal</small>
                   Useful things,<br>quietly built.
@@ -889,10 +895,7 @@
                 </div>
               </section>
 
-              <aside class="right-rail">
-                <strong class="rail-type">J.</strong>
-                <span class="rail-meta">site of the day</span>
-              </aside>
+              <aside class="right-rail"></aside>
             </div>
           </div>
         </div>
@@ -906,20 +909,22 @@
       <section class="section" aria-label="About Jereme">
         <div class="intro">
           <p class="intro-copy">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
+          
           <div class="meta" aria-label="Profile details">
             <div class="meta-row">
-              <span>Compass</span>
+              <div class="meta-label">Compass / 01</div>
               <strong>Useful things with real edges and a reason to stay</strong>
             </div>
             <div class="meta-row">
-              <span>Mode</span>
+              <div class="meta-label">Mode / 02</div>
               <strong>Independent, practical, material-minded</strong>
             </div>
             <div class="meta-row">
-              <span>Focus</span>
+              <div class="meta-label">Focus / 03</div>
               <strong>AI, LiDAR, robotics, coffee, objects, places</strong>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -1003,4 +1008,3 @@
   </div>
 </body>
 </html>
-
