@@ -63,12 +63,12 @@
 
     .hero-stage { padding: 40px 0 120px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
     .mega { 
-      font-size: clamp(100px, 23vw, 360px); line-height: 0.74; letter-spacing: -0.095em; font-weight: 800; 
+      font-size: clamp(100px, 23vw, 360px); line-height: 0.74; letter-spacing: -0.075em; font-weight: 800; 
       margin-bottom: 240px; position: relative; width: 100%; margin-left: -2vw; pointer-events: none;
     }
     .mega span { display: block; }
 
-    /* KEYBOARD (Exact Reconstruction) */
+    /* KEYBOARD */
     .device-wrap { width: min(1080px, 100%); animation: floatDevice 6s ease-in-out infinite; padding-bottom: 120px; }
     .device {
       min-height: 384px; display: grid; grid-template-columns: 230px 1fr 74px; border-radius: 26px; overflow: hidden;
@@ -106,7 +106,6 @@
     .intro { display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 1360px; margin: 0 auto; }
     .intro-copy { margin: 0; max-width: 900px; font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance; padding-bottom: 20px; }
 
-    /* FIXED SPEC CARDS */
     .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
     .meta-row { position: relative; display: flex; flex-direction: column; gap: 32px; padding: 32px; background: var(--paper); border: 1px solid var(--line); }
     .meta-label { 
@@ -115,13 +114,12 @@
       text-transform: uppercase; letter-spacing: 0.1em;
     }
     .meta-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange); }
-    .meta-row strong { font-size: clamp(20px, 1.8vw, 26px); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
+    .meta-row strong { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
 
     .practice-head { max-width: 1360px; margin: 0 auto 60px; display: grid; grid-template-columns: 1fr minmax(280px, 430px); gap: 28px; align-items: end; }
     .practice-head h2 { margin: 0; font-size: clamp(58px, 9vw, 150px); line-height: .85; letter-spacing: -.085em; font-weight: 800; }
     .practice-head p { margin: 0; color: var(--soft); font-size: clamp(20px, 2vw, 28px); line-height: 1.06; font-weight: 800; }
 
-    /* ALIGNED PRACTICE CARDS */
     .cards-grid { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card { 
         background: #2a2a2e; border-radius: 28px; padding: 20px; color: #fff; 
@@ -131,11 +129,10 @@
     .card:nth-child(2) { background: #f7f7f5; color: var(--ink); }
     .card:nth-child(3) { background: #c9c9c8; color: var(--ink); }
     .card:nth-child(4) { background: #111113; }
-    .card small { font-family: var(--mono); font-size: 11px; text-transform: uppercase; opacity: 0.5; }
+    .card small { font-family: var(--mono); font-size: 10px; text-transform: uppercase; opacity: 0.5; }
     .card h3 { font-size: 28px; font-weight: 800; margin: 12px 0 0; line-height: 0.9; align-self: start; }
     .card p { font-size: 14px; opacity: 0.7; margin-top: 10px; font-weight: 600; line-height: 1.4; }
 
-    /* ACTIVITY GRID */
     .led-matrix { align-self: center; background: rgba(0,0,0,0.15); border-radius: 14px; padding: 10px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; margin: 20px 0; }
     .led { aspect-ratio: 1; border-radius: 1px; background: rgba(255,255,255,0.03); opacity: 0.2; }
     @keyframes led-pulse {
@@ -181,6 +178,7 @@
       </header>
 
       <main>
+        <!-- HERO -->
         <section class="hero-stage">
           <h1 class="mega"><span>useful</span><span>things.</span></h1>
 
@@ -220,9 +218,10 @@
                   <span class="pad">02</span><span class="pad">03</span><span class="pad">04</span><span class="pad">ok</span>
                 </div>
                 <div class="icons">
-                  <span class="icon-pad">fw</span><span class="icon-pad">ai</span><span class="icon-pad">lid</span><span class="icon-pad">pin</span>
-                  <span class="icon-pad">cup</span><span class="icon-pad">obj</span><span class="icon-pad">mat</span><span class="icon-pad">rit</span>
-                  <span class="icon-pad">sea</span><span class="icon-pad">hum</span><span class="icon-pad">clr</span><span class="icon-pad">go</span>
+                  <!-- Updated sequence: #j, mpw, fbn, zop, mbo -->
+                  <span class="icon-pad">#j</span><span class="icon-pad">mpw</span><span class="icon-pad">fbn</span><span class="icon-pad">zop</span>
+                  <span class="icon-pad">mbo</span><span class="icon-pad">vx</span><span class="icon-pad">qz</span><span class="icon-pad">t9</span>
+                  <span class="icon-pad">l2</span><span class="icon-pad">rm</span><span class="icon-pad">s4</span><span class="icon-pad">nk</span>
                 </div>
               </section>
 
