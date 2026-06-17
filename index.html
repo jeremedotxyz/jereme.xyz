@@ -7,13 +7,14 @@
   <title>jereme.xyz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@800&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #ebebeb;
       --ink: #202020;
       --orange: #ff611a;
       --sans: "Manrope", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      --mono: "Fragment Mono", monospace;
     }
 
     * { box-sizing: border-box; }
@@ -43,27 +44,10 @@
       width: clamp(48px, 6vw, 64px);
       aspect-ratio: 1;
       border-radius: 50%;
+      /* Solid orange as requested */
       background: var(--orange);
       position: relative;
-      box-shadow: 
-        0 10px 30px rgba(255, 97, 26, 0.2),
-        inset 0 0 0 1px rgba(0,0,0,0.05);
-      animation: pulse 2s infinite ease-in-out;
     }
-
-    /* Hardware "Reflections" on the dot */
-    .dot::before,
-    .dot::after {
-      content: "";
-      position: absolute;
-      width: 4px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.45);
-      top: 20%;
-    }
-    .dot::before { left: 25%; }
-    .dot::after { right: 25%; }
 
     .brand {
       color: #505055;
@@ -74,14 +58,43 @@
       user-select: none;
     }
 
-    .status {
+    /* CENTERED TYPEWRITER STATUS */
+    .status-container {
       position: absolute;
-      bottom: 40px;
+      bottom: 60px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .status {
+      font-family: var(--mono);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.2em;
-      color: rgba(32, 32, 32, 0.3);
-      font-weight: 800;
+      color: rgba(32, 32, 32, 0.4);
+      font-weight: 400;
+      
+      /* Typing Animation logic */
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--orange); /* The cursor */
+      width: 0;
+      /* steps(14) corresponds to the 14 characters in "System Loading" */
+      animation: 
+        typing 2s steps(14, end) 0.8s forwards,
+        blink 0.8s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      /* Width calculated to match font size and character count */
+      to { width: 174px; } 
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--orange); }
     }
 
     @keyframes splashIn {
@@ -91,19 +104,14 @@
       }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); filter: brightness(1); }
-      50% { transform: scale(1.05); filter: brightness(1.1); }
-    }
-
-    /* Subtle Scanline Texture */
+    /* Subtle Scanline Overlay for industrial texture */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.02) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
-      background-size: 100% 4px, 3px 100%;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.012) 50%);
+      background-size: 100% 4px;
       z-index: 10;
     }
   </style>
@@ -115,7 +123,9 @@
     <div class="brand">jereme.xyz</div>
   </div>
 
-  <div class="status">System Active</div>
+  <div class="status-container">
+    <div class="status">System Loading</div>
+  </div>
 
 </body>
 </html>
