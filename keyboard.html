@@ -41,77 +41,72 @@
 
     a { color: inherit; text-decoration: none; }
 
-    .divider {
-      width: 100%; height: 1px; background: var(--line);
-      position: relative; margin: 60px 0;
-    }
-    .divider::before {
-      content: "COORD_REF // " attr(data-label);
-      position: absolute; top: -12px; left: 0;
-      font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5;
+    /* --- BOOT / SPLASH SEQUENCE --- */
+    .boot {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--paper);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      /* The whole splash fades out and disappears after the sequence */
+      animation: bootOut 0.8s ease 3.5s forwards; 
     }
 
+    .boot-content {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 32px; transform: translateY(-20px);
+    }
+
+    .boot-dot {
+      width: clamp(48px, 6vw, 64px); aspect-ratio: 1; border-radius: 50%;
+      background: var(--orange);
+      opacity: 0;
+      animation: logoFadeIn 1s ease forwards 0.5s;
+    }
+
+    .status-container {
+      display: flex; justify-content: center; width: 100%; height: 1em;
+    }
+
+    .status {
+      font-family: var(--mono); font-size: 12px; text-transform: uppercase;
+      color: rgba(32, 32, 32, 0.4); font-weight: 400;
+      white-space: pre; overflow: hidden; line-height: 1; height: 1em;
+      border-right: 2px solid var(--orange); width: 0;
+      /* Types "System Loading" (14) + 2 spaces = 16 steps */
+      animation: 
+        typing 1.8s steps(16, end) 1.2s forwards,
+        blink 0.8s step-end infinite;
+    }
+
+    @keyframes logoFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes typing { from { width: 0; } to { width: 16ch; } }
+    @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--orange); } }
+    @keyframes bootOut { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+    /* --- SITE CONTENT --- */
+    .site { opacity: 0; animation: siteIn 0.8s ease 3.7s forwards; }
+    @keyframes siteIn { to { opacity: 1; } }
+
+    .divider { width: 100%; height: 1px; background: var(--line); position: relative; margin: 60px 0; }
+    .divider::before { content: "COORD_REF // " attr(data-label); position: absolute; top: -12px; left: 0; font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; }
     .site-wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
-    /* BOOT SEQUENCE */
-    .boot {
-      position: fixed; inset: 0; z-index: 100;
-      display: grid; place-items: center;
-      background: var(--paper);
-      animation: bootOut 1.15s ease 1.65s forwards;
-      pointer-events: none;
-    }
+    header { padding: 32px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+    .brand-dot { width: 48px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); position: relative; box-shadow: 0 16px 34px rgba(255,97,26,.24); }
 
-    /* Standardized Solid Brand Dot */
-    .brand-dot { 
-      width: 48px; 
-      aspect-ratio: 1; 
-      border-radius: 50%; 
-      background: var(--orange); 
-      position: relative; 
-      box-shadow: 0 16px 34px rgba(255,97,26,.24);
-      display: inline-block;
-    }
-
-    /* HEADER */
-    header { 
-      padding: 32px 0; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      border-bottom: 1px solid var(--line); 
-    }
-
-    nav { 
-      display: flex; 
-      gap: 24px; 
-      font-size: 13px; 
-      font-weight: 800; 
-      color: var(--soft); 
-    }
+    nav { display: flex; gap: 24px; font-size: 13px; font-weight: 800; color: var(--soft); }
     nav a:hover { color: var(--ink); }
 
-    /* HERO */
     .hero { padding: 100px 0 140px; display: flex; flex-direction: column; }
-    
-    .mega { 
-      font-size: clamp(100px, 20vw, 300px); 
-      line-height: 0.74; 
-      letter-spacing: -0.075em; 
-      font-weight: 800; 
-      margin: 0 0 240px -2vw; 
-      position: relative; 
-      width: 100%; 
-      pointer-events: none;
-    }
+    .mega { font-size: clamp(100px, 20vw, 300px); line-height: 0.74; letter-spacing: -0.075em; font-weight: 800; margin: 0 0 240px -2vw; position: relative; width: 100%; pointer-events: none; }
     .mega span { display: block; }
 
-    /* KEYBOARD (Exact Reconstruction) */
+    /* KEYBOARD */
     .device-wrap { width: min(1080px, 100%); animation: floatDevice 6s ease-in-out infinite; align-self: center; }
-    .device {
-      min-height: 384px; display: grid; grid-template-columns: 230px 1fr 74px; border-radius: 26px; overflow: hidden;
-      background: #19191b; box-shadow: 0 38px 72px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.06);
-    }
+    .device { min-height: 384px; display: grid; grid-template-columns: 230px 1fr 74px; border-radius: 26px; overflow: hidden; background: #19191b; box-shadow: 0 38px 72px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.06); }
     .left-module, .right-rail, .control-grid { border: 1px solid rgba(0,0,0,.78); }
     .left-module { display: grid; grid-template-rows: 124px 66px 78px 1fr; background: #252529; }
     .speaker { position: relative; background: radial-gradient(circle, #050505 1.3px, transparent 1.8px), #252529; background-size: 9px 9px; border-bottom: 2px solid #111; }
@@ -121,7 +116,6 @@
     .signal-badge small { color: rgba(255,255,255,.52); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
     .record-strip { display: flex; align-items: center; gap: 12px; padding: 16px; color: rgba(235,235,235,.38); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
     .record-strip::before { content: ""; width: 18px; aspect-ratio: 1; border-radius: 50%; background: #222; box-shadow: inset 0 0 0 5px #34343a, 0 0 0 1px #090909; }
-
     .control-grid { display: grid; grid-template-rows: 124px 64px 64px 64px 68px; background: #252529; }
     .screen-row { display: grid; grid-template-columns: 1fr repeat(4, 1fr); }
     .screen { padding: 20px; background: #030303; color: rgba(255,255,255,.78); font-family: var(--mono); font-size: 12px; line-height: 1.45; text-transform: uppercase; box-shadow: inset 0 0 26px rgba(255,255,255,.04); }
@@ -133,17 +127,14 @@
     .pad.light { background: #d7d7d2; color: #202020; }
     .pad.orange { background: var(--orange); color: #fff; animation: padPulse 1.65s ease-in-out infinite; }
     .icon-pad { color: rgba(235,235,235,.6); font-size: 18px; background: #292a2e; }
-    
     .right-rail { display: grid; grid-template-rows: 1fr auto 1fr; place-items: center; background: #151517; color: var(--white); border-left: 2px solid #111; }
     .rail-type { writing-mode: vertical-rl; text-orientation: mixed; font-weight: 800; letter-spacing: .02em; }
     .rail-meta { display: grid; place-items: center; gap: 7px; color: rgba(235,235,235,.58); font-family: var(--mono); font-size: 10px; writing-mode: vertical-rl; }
     .rail-meta::before { content: ""; width: 18px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,97,26,.12); }
 
-    /* CONTENT SECTIONS */
+    /* CONTENT */
     .section { padding: clamp(80px, 10vw, 180px) 32px; border-top: 1px solid var(--line); }
-    .intro { display: grid; grid-template-columns: 1fr; gap: 60px; max-width: 1360px; margin: 0 auto; }
     .intro-copy { margin: 0; max-width: 900px; font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance; padding-bottom: 20px; }
-
     .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
     .meta-row { position: relative; display: flex; flex-direction: column; gap: 32px; padding: 32px; background: var(--paper); border: 1px solid var(--line); }
     .meta-label { display: flex; align-items: center; gap: 12px; background: var(--ink); color: var(--paper); padding: 6px 12px; width: fit-content; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
@@ -154,7 +145,6 @@
     .practice-head h2 { margin: 0; font-size: clamp(58px, 9vw, 150px); line-height: .85; letter-spacing: -.085em; font-weight: 800; }
     .practice-head p { margin: 0; color: var(--soft); font-size: clamp(20px, 2vw, 28px); line-height: 1.06; font-weight: 800; }
 
-    /* PRACTICE CARDS */
     .cards-grid { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
     .card { background: #2a2a2e; border-radius: 28px; padding: 20px; color: #fff; display: grid; grid-template-rows: auto 80px 1fr auto; min-height: 460px; position: relative; overflow: hidden; }
     .card:nth-child(2) { background: #f7f7f5; color: var(--ink); }
@@ -166,10 +156,7 @@
 
     .led-matrix { align-self: center; background: rgba(0,0,0,0.15); border-radius: 14px; padding: 10px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; margin: 20px 0; }
     .led { aspect-ratio: 1; border-radius: 1px; background: rgba(255,255,255,0.03); opacity: 0.2; }
-    @keyframes led-pulse {
-      0%, 100% { opacity: 0.05; background: rgba(255,255,255,0.03); }
-      50% { opacity: 1; background: var(--orange); box-shadow: 0 0 10px var(--orange); }
-    }
+    @keyframes led-pulse { 0%, 100% { opacity: 0.05; background: rgba(255,255,255,0.03); } 50% { opacity: 1; background: var(--orange); box-shadow: 0 0 10px var(--orange); } }
 
     .quote { min-height: 60svh; display: grid; place-items: center; text-align: center; background: #1a1a1a; color: var(--paper); padding: 100px 32px; margin-top: 100px; }
     .quote p { max-width: 1100px; font-size: clamp(38px, 7vw, 100px); line-height: 0.85; font-weight: 800; }
@@ -179,21 +166,22 @@
     .footer-col a { display: block; margin-bottom: 12px; font-weight: 800; font-size: 14px; opacity: 0.6; }
 
     @keyframes floatDevice { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .25; } }
-    @keyframes knobTurn { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(16deg); } }
     @keyframes padPulse { 0%, 100% { filter: saturate(1); } 50% { filter: saturate(1.45) brightness(1.08); } }
-    @keyframes bootOut { to { opacity: 0; visibility: hidden; } }
-    @keyframes siteIn { to { opacity: 1; } }
 
     @media (max-width: 1060px) { .meta { grid-template-columns: 1fr; } .cards-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .site-wrap { padding: 0 20px; } .mega { margin-bottom: 140px; } .device-wrap { transform: scale(0.85); transform-origin: left top; margin-left: -5%; } .cards-grid { grid-template-columns: 1fr; } footer { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .site-wrap { padding: 0 20px; } .mega { margin-bottom: 140px; } .device-wrap { transform: scale(0.85); transform-origin: left top; margin-left: -5%; } footer { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
   <!-- BOOT SEQUENCE -->
   <div class="boot" aria-hidden="true">
-    <div class="brand-dot" style="width: 52px;"></div>
+    <div class="boot-content">
+      <div class="boot-dot"></div>
+      <div class="status-container">
+        <div class="status">System Loading  </div>
+      </div>
+    </div>
   </div>
 
   <div class="site">
@@ -210,7 +198,6 @@
       </header>
 
       <main>
-        <!-- HERO -->
         <section class="hero">
           <h1 class="mega"><span>useful</span><span>things.</span></h1>
 
@@ -219,36 +206,19 @@
               <aside class="left-module">
                 <div class="speaker" aria-hidden="true"></div>
                 <div class="autoplay">read story</div>
-                <div class="signal-badge">
-                  <small>personal signal</small>
-                  Useful things,<br>quietly built.
-                </div>
+                <div class="signal-badge"><small>personal signal</small>Useful things,<br>quietly built.</div>
                 <div class="record-strip">record session</div>
               </aside>
 
               <section class="control-grid">
                 <div class="screen-row">
                   <div class="screen">JEREME.XYZ v2.0<br>SYSTEM STATUS: ACTIVE<br><br>make the technical thing<br>humane <span>_</span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
+                  <div class="knob-cell"><span class="knob"></span></div><div class="knob-cell"><span class="knob"></span></div>
+                  <div class="knob-cell"><span class="knob"></span></div><div class="knob-cell"><span class="knob"></span></div>
                 </div>
-                <div class="steps">
-                  <span class="pad">1</span><span class="pad">2</span><span class="pad">3</span><span class="pad">4</span>
-                  <span class="pad">1</span><span class="pad">2</span><span class="pad">3</span><span class="pad">4</span>
-                  <span class="pad">5</span><span class="pad">6</span><span class="pad">7</span><span class="pad">8</span>
-                </div>
-                <div class="pads">
-                  <span class="pad"></span><span class="pad"></span><span class="pad orange"></span><span class="pad"></span>
-                  <span class="pad light"></span><span class="pad"></span><span class="pad"></span><span class="pad light"></span>
-                  <span class="pad light"></span><span class="pad"></span><span class="pad"></span><span class="pad"></span>
-                </div>
-                <div class="steps">
-                  <span class="pad">ai</span><span class="pad">lr</span><span class="pad">rb</span><span class="pad">cf</span>
-                  <span class="pad">ob</span><span class="pad">rm</span><span class="pad orange">pnw</span><span class="pad">01</span>
-                  <span class="pad">02</span><span class="pad">03</span><span class="pad">04</span><span class="pad">ok</span>
-                </div>
+                <div class="steps"><script>for(i=1;i<=12;i++)document.write('<span class="pad">'+(i<=8?i:i-8)+'</span>')</script></div>
+                <div class="pads"><script>for(i=1;i<=12;i++)document.write('<span class="pad '+(i==3?'orange':(i==5||i==8||i==9?'light':''))+'"></span>')</script></div>
+                <div class="steps"><span class="pad">ai</span><span class="pad">lr</span><span class="pad">rb</span><span class="pad">cf</span><span class="pad">ob</span><span class="pad">rm</span><span class="pad orange">pnw</span><span class="pad">01</span><span class="pad">02</span><span class="pad">03</span><span class="pad">04</span><span class="pad">ok</span></div>
                 <div class="icons">
                   <span class="icon-pad">#j</span><span class="icon-pad">mpw</span><span class="icon-pad">fbn</span><span class="icon-pad">zop</span>
                   <span class="icon-pad">mbo</span><span class="icon-pad">vx</span><span class="icon-pad">qz</span><span class="icon-pad">t9</span>
@@ -268,23 +238,11 @@
 
         <section class="section">
           <div class="intro">
-            <p class="intro-copy" style="font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance;">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
+            <p class="intro-copy">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
             <div class="meta">
-              <!-- Compass -->
-              <div class="meta-row">
-                <div class="meta-label">Compass / 01</div>
-                <strong>Useful things with real edges and a reason to stay</strong>
-              </div>
-              <!-- Mode -->
-              <div class="meta-row">
-                <div class="meta-label">Mode / 02</div>
-                <strong>Independent, practical, material-minded</strong>
-              </div>
-              <!-- Focus -->
-              <div class="meta-row">
-                <div class="meta-label">Focus / 03</div>
-                <strong>AI, LiDAR, robotics, coffee, objects, places</strong>
-              </div>
+              <div class="meta-row"><div class="meta-label">Compass / 01</div><strong>Useful things with real edges and a reason to stay</strong></div>
+              <div class="meta-row"><div class="meta-label">Mode / 02</div><strong>Independent, practical, material-minded</strong></div>
+              <div class="meta-row"><div class="meta-label">Focus / 03</div><strong>AI, LiDAR, robotics, coffee, objects, places</strong></div>
             </div>
           </div>
         </section>
@@ -295,13 +253,13 @@
           <h2 class="section-title">Four practices.</h2>
           <div class="cards-grid">
             <script>
-              const items = [
+              const cards = [
                 { l: 'track 01 / fw/r', t: 'Intelligent Systems', d: 'AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.' },
                 { l: 'track 02 / pine', t: 'Local Roots', d: 'A PNW coffee haus built around light, pace, seating, sound, and return visits.' },
                 { l: 'track 03 / nrthrn', t: 'Designed Objects', d: 'Objects with real materials, real weight, and a reason for every millimeter.' },
                 { l: 'track 04 / drift', t: 'Coastal Rituals', d: 'Coastal rooms and rituals with slower mornings and sharper details.' }
               ];
-              items.forEach((item) => {
+              cards.forEach((item) => {
                 document.write(`
                   <a href="#" class="card">
                     <small>${item.l}</small>
@@ -328,8 +286,7 @@
 
       <footer>
         <div class="footer-col" style="opacity:0.5">
-          <div class="brand-dot" style="width:32px; margin-bottom:20px;"></div>
-          <p style="font-weight:800; font-size:14px; margin:0;">jereme.xyz</p>
+          <div class="brand-dot" style="width:32px;"></div>
           <p style="font-family:var(--mono); font-size:9px; margin-top:10px;">SYS_DOC_REL_2026</p>
         </div>
         <div class="footer-col">
