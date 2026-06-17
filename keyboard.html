@@ -103,7 +103,6 @@
       min-height: 100svh;
       display: grid;
       grid-template-rows: auto 1fr auto;
-      overflow: hidden;
       padding: 32px;
     }
 
@@ -178,7 +177,9 @@
       pointer-events: none;
       margin-left: -2vw;
       width: 100%;
-      margin-bottom: 140px; /* Increased to ensure the 'g' is fully cleared */
+      /* Added padding-bottom and massive margin-bottom to clear the 'g' descender */
+      padding-bottom: 0.1em; 
+      margin-bottom: 280px; 
     }
 
     .mega span {
@@ -191,7 +192,7 @@
       width: min(1080px, 82vw);
       transform: translateY(0);
       animation: floatDevice 6s ease-in-out infinite;
-      padding-bottom: 100px;
+      padding-bottom: 120px;
     }
 
     .device {
@@ -417,7 +418,6 @@
       text-wrap: balance;
     }
 
-    /* INDUSTRIAL META SECTION */
     .meta {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
