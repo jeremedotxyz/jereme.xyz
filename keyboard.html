@@ -177,9 +177,8 @@
       pointer-events: none;
       margin-left: -2vw;
       width: 100%;
-      /* Added padding-bottom and massive margin-bottom to clear the 'g' descender */
-      padding-bottom: 0.1em; 
-      margin-bottom: 280px; 
+      padding-bottom: 40px; 
+      margin-bottom: 240px; 
     }
 
     .mega span {
@@ -395,14 +394,14 @@
     }
 
     .section {
-      padding: clamp(70px, 9vw, 140px) 32px;
+      padding: clamp(100px, 12vw, 180px) 32px; /* Increased vertical space between sections */
       border-top: 1px solid rgba(32,32,32,.08);
     }
 
     .intro {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 60px;
+      gap: 100px; /* Buffer between copy and meta grid */
       align-items: start;
       max-width: 1360px;
       margin: 0 auto;
@@ -412,12 +411,14 @@
       margin: 0;
       max-width: 900px;
       font-size: clamp(32px, 4.8vw, 76px);
-      line-height: .88;
+      line-height: .95; /* Relaxed slightly to prevent descender clipping */
       letter-spacing: -.07em;
       font-weight: 800;
       text-wrap: balance;
+      padding-bottom: 40px; /* Buffer before the cards/meta start */
     }
 
+    /* INDUSTRIAL META SECTION */
     .meta {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -479,7 +480,7 @@
 
     .practice-head {
       max-width: 1360px;
-      margin: 0 auto 28px;
+      margin: 0 auto 80px; /* Increased margin to push cards down */
       display: grid;
       grid-template-columns: 1fr minmax(280px, 430px);
       gap: 28px;
@@ -489,7 +490,7 @@
     .practice-head h2 {
       margin: 0;
       font-size: clamp(58px, 9vw, 150px);
-      line-height: .78;
+      line-height: .85; /* Relaxed from .78 */
       letter-spacing: -.085em;
       font-weight: 800;
     }
@@ -595,7 +596,7 @@
       display: grid;
       place-items: center;
       text-align: center;
-      padding: clamp(70px, 10vw, 150px) 32px;
+      padding: clamp(120px, 15vw, 240px) 32px; /* Massive padding to ensure separation */
       background: #202020;
       color: var(--paper);
     }
@@ -604,7 +605,7 @@
       max-width: 1180px;
       margin: 0;
       font-size: clamp(38px, 7vw, 118px);
-      line-height: .82;
+      line-height: .9; /* Relaxed slightly */
       letter-spacing: -.08em;
       font-weight: 800;
       text-wrap: balance;
