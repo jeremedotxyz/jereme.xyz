@@ -25,71 +25,80 @@
       width: 100%;
       height: 100%;
       background: var(--paper);
-      display: grid;
-      place-items: center;
+      /* Robust Centering */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center;     
       font-family: var(--sans);
       overflow: hidden;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px; 
+      /* Optical adjustment: accounts for status text height to make logo feel centered */
+      transform: translateY(-20px); 
     }
 
     .splash-wrap {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: clamp(14px, 2vw, 20px);
       opacity: 0;
       transform: translateY(10px);
       animation: splashIn 0.8s ease forwards;
     }
 
     .dot {
-      width: clamp(48px, 6vw, 64px);
+      width: clamp(40px, 5vw, 56px);
       aspect-ratio: 1;
       border-radius: 50%;
-      /* Solid orange as requested */
       background: var(--orange);
-      position: relative;
+      flex-shrink: 0;
     }
 
     .brand {
       color: #505055;
-      font-size: clamp(28px, 4vw, 42px);
+      font-size: clamp(24px, 4vw, 42px);
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1;
       user-select: none;
+      white-space: nowrap;
     }
 
-    /* CENTERED TYPEWRITER STATUS */
     .status-container {
-      position: absolute;
-      bottom: 60px;
-      width: 100%;
       display: flex;
       justify-content: center;
+      width: 100%;
+      min-height: 1.2em;
     }
 
     .status {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: clamp(10px, 1.2vw, 12px);
       text-transform: uppercase;
-      letter-spacing: 0.2em;
       color: rgba(32, 32, 32, 0.4);
       font-weight: 400;
       
-      /* Typing Animation logic */
-      white-space: nowrap;
+      /* Essential for trailing spaces and typewriter effect */
+      white-space: pre; 
       overflow: hidden;
-      border-right: 2px solid var(--orange); /* The cursor */
+      border-right: 2px solid var(--orange); 
       width: 0;
-      /* steps(14) corresponds to the 14 characters in "System Loading" */
+      
+      /* 16 steps = "System Loading" (14) + 2 spaces */
       animation: 
-        typing 2s steps(14, end) 0.8s forwards,
+        typing 1.8s steps(16, end) 0.8s forwards,
         blink 0.8s step-end infinite;
     }
 
     @keyframes typing {
       from { width: 0; }
-      /* Width calculated to match font size and character count */
-      to { width: 174px; } 
+      to { width: 16ch; } 
     }
 
     @keyframes blink {
@@ -104,7 +113,7 @@
       }
     }
 
-    /* Subtle Scanline Overlay for industrial texture */
+    /* Industrial CRT scanline texture */
     body::after {
       content: "";
       position: fixed;
@@ -118,13 +127,17 @@
 </head>
 <body>
 
-  <div class="splash-wrap">
-    <div class="dot"></div>
-    <div class="brand">jereme.xyz</div>
-  </div>
+  <div class="main-container">
+    <!-- Logo -->
+    <div class="splash-wrap">
+      <div class="dot"></div>
+      <div class="brand">jereme.xyz</div>
+    </div>
 
-  <div class="status-container">
-    <div class="status">System Loading</div>
+    <!-- Status -->
+    <div class="status-container">
+      <div class="status">System Loading  </div>
+    </div>
   </div>
 
 </body>
