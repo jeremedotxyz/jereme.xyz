@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#ebebeb">
 
   <title>About - jereme.xyz</title>
-  <meta name="description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather.">
+  <meta name="description" content="A longer letter from Jereme Abernathy about the work, the rooms, the machines, the coffee, the objects, and the PNW weather.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +27,7 @@
       --ink: #202020;
       --orange: #ff611a;
       --charcoal: #1f1f22;
+      --panel: #2b2b2f;
       --soft: rgba(32, 32, 32, .62);
       --line: rgba(32, 32, 32, .12);
       --white: #f7f7f5;
@@ -103,16 +104,6 @@
     .hero-spec {
       margin-top: 32px;
       max-width: 620px;
-    }
-
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 20px;
-      display: block;
-      letter-spacing: 0.1em;
     }
 
     .lead {
@@ -227,15 +218,14 @@
       margin: 0; font-size: clamp(28px, 3.8vw, 54px); line-height: 1; font-weight: 850; color: var(--ink); letter-spacing: -0.06em;
     }
 
-    /* SIGNATURE SECTION (No border as requested) */
-    .signoff { margin-top: 80px; }
-    .signoff-line { font-size: clamp(28px, 3vw, 34px); font-weight: 800; letter-spacing: -0.04em; margin: 0 0 24px; color: var(--ink); }
+    /* SIGNATURE & CLOSER */
+    .signoff { margin-top: 100px; padding-top: 60px; border-top: 1px solid var(--line); }
+    .signoff-line { font-size: 34px; font-weight: 800; letter-spacing: -0.04em; margin: 0 0 28px; }
     .signature-wrap { max-width: 260px; margin-bottom: 24px; }
     .signature { width: 100%; height: auto; mix-blend-mode: multiply; filter: contrast(1.1); }
     .signature-fallback { font-family: cursive; font-size: 48px; color: var(--ink); }
-    .stage-note { font-family: var(--mono); font-size: 11px; color: var(--soft); text-transform: uppercase; margin-bottom: 12px; display: block; line-height: 1.5; }
+    .stage-note { font-family: var(--mono); font-size: 12px; color: var(--soft); text-transform: uppercase; margin-bottom: 12px; display: block; line-height: 1.5; }
 
-    /* CLOSER */
     .closer {
       padding: 140px 0;
       border-top: 1px solid var(--line);
@@ -304,7 +294,6 @@
             <span>things.</span>
           </h1>
           <div class="hero-spec">
-            <span class="eyebrow">jereme / profile_02</span>
             <p class="lead">The work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.</p>
             <a class="button" href="#letter">Read the letter</a>
           </div>
@@ -396,7 +385,6 @@
 
           <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
 
-          <!-- SIGNATURE (Line removed per request) -->
           <div class="signoff">
             <p class="signoff-line">Don't let the wheels fall off.</p>
             <div class="signature-wrap">
