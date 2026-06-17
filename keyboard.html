@@ -102,7 +102,7 @@
       position: relative;
       min-height: 100svh;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr;
       padding: 32px;
     }
 
@@ -382,17 +382,6 @@
       border-left: 2px solid #111;
     }
 
-    .hero-foot {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: rgba(32,32,32,.58);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
     .section {
       padding: clamp(80px, 10vw, 180px) 32px;
       border-top: 1px solid rgba(32,32,32,.08);
@@ -659,7 +648,6 @@
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
     }
 
-    /* SPECIFIC MOBILE OVERRIDES */
     @media (max-width: 1060px) {
       .device-wrap { width: min(980px, 94vw); transform-origin: center top; }
       .meta { grid-template-columns: 1fr; }
@@ -676,7 +664,6 @@
         margin-bottom: 80px; 
         line-height: 0.8;
       }
-      /* Scale the device wrap to fit screen without breaking fixed internal grid */
       .device-wrap { 
         width: 100%; 
         transform: scale(0.8); 
@@ -740,7 +727,7 @@
                   <div class="screen">
                     JEREME.XYZ v2.0<br>
                     SYSTEM STATUS: ACTIVE<br><br>
-                    Power required. Please<br>
+                    POWER NOT REQUIRED.<br>
                     make the technical thing<br>
                     humane <span>_</span>
                   </div>
@@ -775,11 +762,6 @@
               <aside class="right-rail"></aside>
             </div>
           </div>
-        </div>
-
-        <div class="hero-foot">
-          <span>& make useful</span>
-          <span>&copy; 2026 made around rooms, tools, and people</span>
         </div>
       </section>
 
