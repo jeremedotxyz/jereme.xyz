@@ -1,368 +1,775 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-NTH4464X6R");
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ebebeb">
-  <title>jereme.xyz 🤖</title>
+  <meta name="theme-color" content="#e9e6df">
+  <title>Jereme Abernathy - Useful Systems, Rooms, Objects, and Places</title>
+  <meta name="description" content="Jereme Abernathy helps founders, teams, and organizations turn fuzzy technical ideas into clear, buildable systems across AI, robotics, LiDAR, product thinking, hospitality, objects, and emerging technology.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --paper: #ebebeb;
-      --ink: #202020;
+      --paper: #e9e6df;
+      --ink: #191817;
+      --soft: rgba(25, 24, 23, .68);
+      --quiet: rgba(25, 24, 23, .46);
+      --line: rgba(25, 24, 23, .14);
+      --black: #11100f;
+      --white: #f7f5ef;
       --orange: #ff611a;
-      --charcoal: #1f1f22;
-      --line: rgba(0, 0, 0, .22);
-      --line-heavy: rgba(0, 0, 0, 0.35);
-      --white: #f7f7f5;
+      --blue: #2d5f8c;
+      --green: #66724d;
+      --red: #b9342e;
       --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
-    html { background: var(--paper); scroll-behavior: smooth; }
-    
+
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.04;
+      z-index: 100;
       pointer-events: none;
-      z-index: 9999;
-    }
-
-    body { 
-      margin: 0; color: var(--ink); background: var(--paper); 
-      font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; 
+      opacity: .035;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     }
 
     a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-    /* --- BOOT / SPLASH SEQUENCE --- */
-    .boot {
-      position: fixed; inset: 0; z-index: 1000;
-      background: var(--paper);
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      animation: bootOut 0.8s ease 3.5s forwards; 
+    .wrap {
+      width: min(1360px, calc(100% - 48px));
+      margin: 0 auto;
     }
 
-    .boot-content {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 32px; transform: translateY(-20px);
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      border-bottom: 1px solid rgba(247,245,239,.16);
+      color: rgba(247,245,239,.78);
+      mix-blend-mode: normal;
     }
 
-    .boot-dot {
-      width: clamp(48px, 6vw, 64px); aspect-ratio: 1; border-radius: 50%;
+    .topbar-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+
+    .brand-dot {
+      width: 36px;
+      aspect-ratio: 1;
+      border-radius: 50%;
       background: var(--orange);
-      opacity: 0;
-      animation: logoFadeIn 1s ease forwards 0.5s;
+      box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
     }
 
-    .status-container {
-      display: flex; justify-content: center; width: 100%; height: 1em;
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+      flex-wrap: wrap;
     }
 
-    .status {
-      font-family: var(--mono); font-size: 12px; text-transform: uppercase;
-      color: rgba(32, 32, 32, 0.4); font-weight: 400;
-      white-space: pre; overflow: hidden; line-height: 1; height: 1em;
-      border-right: 2px solid var(--orange); width: 0;
-      animation: typing 1.8s steps(16, end) 1.2s forwards, blink 0.8s step-end infinite;
-    }
+    nav a { opacity: .82; }
+    nav a:hover { opacity: 1; }
+    .nav-cta { color: #fff; opacity: 1; }
 
-    @keyframes logoFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    @keyframes typing { from { width: 0; } to { width: 16ch; } }
-    @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--orange); } }
-    @keyframes bootOut { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-
-    /* --- MAIN SITE WRAPPER --- */
-    .site { opacity: 0; animation: siteIn 0.8s ease 3.7s forwards; }
-    @keyframes siteIn { to { opacity: 1; } }
-
-    .site-wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-
-    header { padding: 32px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
-    .brand-dot { 
-      width: 48px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); position: relative; 
-      box-shadow: 0 16px 34px rgba(255,97,26,.24); display: inline-block;
-    }
-
-    nav { display: flex; gap: 24px; font-size: 13px; font-weight: 800; color: var(--soft); }
-    nav a:hover { color: var(--ink); }
-
-    .hero { padding: 100px 0 140px; display: flex; flex-direction: column; }
-    .mega { font-size: clamp(100px, 20vw, 300px); line-height: 0.74; letter-spacing: -0.075em; font-weight: 800; margin: 0 0 240px -2vw; position: relative; width: 100%; pointer-events: none; }
-    .mega span { display: block; }
-
-    /* KEYBOARD */
-    .device-wrap { width: min(1080px, 100%); animation: floatDevice 6s ease-in-out infinite; align-self: center; }
-    .device { min-height: 384px; display: grid; grid-template-columns: 230px 1fr 74px; border-radius: 26px; overflow: hidden; background: #19191b; box-shadow: 0 38px 72px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.06); }
-    .left-module, .right-rail, .control-grid { border: 1px solid rgba(0,0,0,.78); }
-    .left-module { display: grid; grid-template-rows: 124px 66px 78px 1fr; background: #252529; }
-    .speaker { position: relative; background: radial-gradient(circle, #050505 1.3px, transparent 1.8px), #252529; background-size: 9px 9px; border-bottom: 2px solid #111; }
-    .autoplay { display: flex; align-items: center; justify-content: center; gap: 8px; color: rgba(235,235,235,.42); background: #303035; border-bottom: 2px solid #111; font-family: var(--mono); font-size: 11px; text-transform: uppercase; cursor: default; }
-    .autoplay::before { content: ""; width: 7px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); animation: blink 1.2s steps(2, end) infinite; }
-    .signal-badge { display: grid; align-content: center; gap: 4px; padding: 16px; background: #2c2c31; color: var(--white); border-bottom: 2px solid #111; font-weight: 800; line-height: 1.02; }
-    .signal-badge small { color: rgba(255,255,255,.52); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
-    .record-strip { display: flex; align-items: center; gap: 12px; padding: 16px; color: rgba(235,235,235,.38); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
-    .record-strip::before { content: ""; width: 18px; aspect-ratio: 1; border-radius: 50%; background: #222; box-shadow: inset 0 0 0 5px #34343a, 0 0 0 1px #090909; }
-
-    .control-grid { display: grid; grid-template-rows: 124px 64px 64px 64px 68px; background: #252529; }
-    .screen-row { display: grid; grid-template-columns: 1fr repeat(4, 1fr); }
-    .screen { padding: 20px; background: #030303; color: rgba(255,255,255,.78); font-family: var(--mono); font-size: 12px; line-height: 1.45; text-transform: uppercase; box-shadow: inset 0 0 26px rgba(255,255,255,.04); }
-    .screen span { color: var(--orange); animation: blink 1s steps(2, end) infinite; }
-    .knob-cell, .pad, .icon-pad { display: grid; place-items: center; border-left: 2px solid #111; border-bottom: 2px solid #111; background: #2c2c31; }
-    .knob { width: 66px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 54% 43%, #9b9b9d 0 4px, transparent 5px), radial-gradient(circle, #4b4c50 0 34%, #1c1c1f 35% 52%, #2f3035 53% 100%); box-shadow: inset -10px -12px 18px rgba(0,0,0,.5), inset 8px 8px 12px rgba(255,255,255,.06), 0 8px 16px rgba(0,0,0,.32); animation: knobTurn 7s ease-in-out infinite; }
-    .steps, .pads, .icons { display: grid; grid-template-columns: repeat(12, 1fr); }
-    .pad { min-width: 0; color: rgba(235,235,235,.58); font-family: var(--mono); font-size: 20px; background: #3b3c41; box-shadow: inset 0 9px 16px rgba(255,255,255,.05), inset 0 -12px 18px rgba(0,0,0,.32); }
-    .pad.light { background: #d7d7d2; color: #202020; }
-    .pad.orange { background: var(--orange); color: #fff; animation: padPulse 1.65s ease-in-out infinite; }
-    .icon-pad { color: rgba(235,235,235,.6); font-size: 18px; background: #292a2e; }
-    
-    .right-rail { display: grid; grid-template-rows: 1fr auto 1fr; place-items: center; background: #151517; color: var(--white); border-left: 2px solid #111; }
-    .rail-type { writing-mode: vertical-rl; text-orientation: mixed; font-weight: 800; letter-spacing: .02em; }
-    .rail-meta { display: grid; place-items: center; gap: 7px; color: rgba(235,235,235,.58); font-family: var(--mono); font-size: 10px; writing-mode: vertical-rl; }
-    .rail-meta::before { content: ""; width: 18px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,97,26,.12); }
-
-    /* CONTENT */
-    .divider { width: 100%; height: 1px; background: var(--line); position: relative; margin: 60px 0; }
-    .divider::before { content: "COORD_REF // " attr(data-label); position: absolute; top: -12px; left: 0; font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; }
-
-    .section { padding: clamp(80px, 10vw, 180px) 32px; border-top: 1px solid var(--line); }
-    .intro-copy { margin: 0; max-width: 900px; font-size: clamp(32px, 4.8vw, 76px); line-height: .95; letter-spacing: -.07em; font-weight: 800; text-wrap: balance; padding-bottom: 20px; }
-    
-    .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
-    .meta-row { position: relative; display: flex; flex-direction: column; gap: 32px; padding: 32px; background: var(--paper); border: 1px solid var(--line); }
-    .meta-label { display: flex; align-items: center; gap: 12px; background: var(--ink); color: var(--paper); padding: 6px 12px; width: fit-content; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .meta-label::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 8px var(--orange); }
-    .meta-row strong { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
-
-    /* CARDS */
-    .cards-grid { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .card { background: #2a2a2e; border-radius: 28px; padding: 20px; color: #fff; display: grid; grid-template-rows: auto 80px 1fr 80px; min-height: 480px; position: relative; overflow: hidden; }
-    .card:nth-child(2) { background: #f7f7f5; color: var(--ink); }
-    .card:nth-child(3) { background: #c9c9c8; color: var(--ink); }
-    .card:nth-child(4) { background: #111113; }
-    .card small { font-family: var(--mono); font-size: 10px; text-transform: uppercase; opacity: 0.5; }
-    .card h3 { font-size: 28px; font-weight: 800; margin: 12px 0 0; line-height: 0.9; align-self: start; }
-    .card p { font-size: 14px; opacity: 0.7; margin: 0; font-weight: 600; line-height: 1.4; align-self: start; }
-
-    .led-matrix { align-self: center; background: rgba(0,0,0,0.15); border-radius: 14px; padding: 10px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; margin: 20px 0; }
-    .led { aspect-ratio: 1; border-radius: 1px; background: rgba(255,255,255,0.03); opacity: 0.2; }
-    @keyframes led-pulse { 0%, 100% { opacity: 0.05; background: rgba(255,255,255,0.03); } 50% { opacity: 1; background: var(--orange); box-shadow: 0 0 10px var(--orange); } }
-
-    .quote { min-height: 60svh; display: grid; place-items: center; text-align: center; background: #1a1a1a; color: var(--paper); padding: 100px 32px; margin-top: 100px; }
-    .quote p { max-width: 1100px; font-size: clamp(38px, 7vw, 100px); line-height: 0.85; font-weight: 800; }
-
-    .testbench-footer {
-      padding: clamp(80px, 12vw, 140px) 40px 40px;
-      border-top: 1px solid var(--line);
+    .hero {
+      position: relative;
+      min-height: 88svh;
       display: grid;
-      grid-template-columns: 1.2fr repeat(3, minmax(140px, 0.5fr));
-      gap: clamp(40px, 6vw, 80px);
-      background: var(--paper);
+      align-items: end;
+      isolation: isolate;
+      overflow: hidden;
+      background: #101010;
+      color: #fff;
     }
 
-    .footer-brand { display: flex; flex-direction: column; gap: 24px; }
-    .footer-brand .brand-dot { width: 56px; }
-    .footer-note { font-size: 18px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; max-width: 420px; color: var(--ink); }
-    
-    .footer-col h4 { font-family: var(--mono); font-size: 10px; text-transform: uppercase; margin-bottom: 24px; color: var(--soft); letter-spacing: 0.1em; }
-    .footer-col a { display: block; margin-bottom: 12px; font-weight: 800; font-size: 14px; color: var(--ink); opacity: 0.6; transition: opacity 0.2s; }
-    .footer-col a:hover { opacity: 1; }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      opacity: .78;
+      filter: saturate(.9) contrast(1.05);
+    }
 
-    .footer-bottom {
-      grid-column: 1 / -1;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(7,7,7,.88) 0%, rgba(7,7,7,.45) 43%, rgba(7,7,7,.7) 100%),
+        linear-gradient(180deg, rgba(7,7,7,.12) 0%, rgba(7,7,7,.18) 46%, rgba(7,7,7,.9) 100%);
+    }
+
+    .hero-content {
+      padding: 160px 0 clamp(44px, 8vw, 88px);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
+    }
+
+    h1 {
+      max-width: 10ch;
+      margin: 0;
+      font-size: clamp(64px, 9.6vw, 156px);
+      line-height: .82;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: rgba(255,255,255,.8);
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.12;
+      font-weight: 750;
+      letter-spacing: -.03em;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid currentColor;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .button.primary {
+      background: #fff;
+      color: var(--ink);
+      border-color: #fff;
+    }
+
+    .button.dark {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: clamp(44px, 6vw, 72px);
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.16);
+    }
+
+    .hero-meta div {
+      min-height: 116px;
+      padding: 18px;
+      background: rgba(9,9,9,.55);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-meta small,
+    .label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--quiet);
+    }
+
+    .hero-meta small { color: rgba(255,255,255,.48); }
+
+    .hero-meta strong {
+      display: block;
+      margin-top: 14px;
+      font-size: clamp(17px, 1.6vw, 22px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    section { position: relative; }
+
+    .section {
+      padding: clamp(72px, 9vw, 132px) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+      gap: clamp(32px, 7vw, 110px);
+      align-items: end;
+      margin-bottom: clamp(28px, 5vw, 64px);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(42px, 6.4vw, 104px);
+      line-height: .86;
+      letter-spacing: -.065em;
+      font-weight: 800;
+    }
+
+    .section-head p,
+    .large-copy {
+      margin: 0;
+      color: var(--soft);
+      font-size: clamp(19px, 2vw, 26px);
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: -.025em;
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .signal {
+      min-height: 178px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .signal strong {
+      display: block;
+      margin-top: 18px;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .split-feature {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr);
+      min-height: 620px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .split-copy {
+      display: grid;
+      align-content: center;
+      padding: clamp(44px, 7vw, 94px);
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .split-copy p {
+      max-width: 640px;
+      margin: 24px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(19px, 2vw, 26px);
+      line-height: 1.24;
+      font-weight: 720;
+      letter-spacing: -.02em;
+    }
+
+    .split-media {
+      position: relative;
+      overflow: hidden;
+      background: #0e0f10;
+    }
+
+    .split-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.22));
+      pointer-events: none;
+    }
+
+    .venture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .venture {
+      min-height: 470px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 22px;
+      border-radius: 8px;
+      color: #fff;
+      overflow: hidden;
+      background: #202024;
+    }
+
+    .venture:nth-child(2) { background: var(--white); color: var(--ink); }
+    .venture:nth-child(3) { background: #c9c9c6; color: var(--ink); }
+    .venture:nth-child(4) { background: #111113; }
+
+    .venture-visual {
+      min-height: 170px;
+      margin: 22px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(0,0,0,.18);
+    }
+
+    .venture h3 {
+      margin: 0;
+      font-size: clamp(30px, 3vw, 46px);
+      line-height: .88;
+      letter-spacing: -.055em;
+    }
+
+    .venture p {
+      margin: 14px 0 0;
+      color: currentColor;
+      opacity: .68;
+      font-size: 15px;
+      line-height: 1.42;
+      font-weight: 700;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      height: 100%;
+      padding: 12px;
+      background: rgba(0,0,0,.2);
+    }
+
+    .matrix span {
+      min-height: 10px;
+      border-radius: 1px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .venture:nth-child(2) .matrix span,
+    .venture:nth-child(3) .matrix span {
+      background: rgba(0,0,0,.08);
+    }
+
+    .matrix span:nth-child(7n),
+    .matrix span:nth-child(13n) {
+      background: var(--orange);
+      box-shadow: 0 0 14px rgba(255,97,26,.45);
+    }
+
+    .work-list {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: clamp(32px, 7vw, 110px);
+      align-items: start;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .list li {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 24px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list strong {
+      display: block;
+      font-size: clamp(22px, 2.6vw, 38px);
+      line-height: .96;
+      letter-spacing: -.05em;
+    }
+
+    .list p {
+      margin: 10px 0 0;
+      color: var(--soft);
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .quote-band {
+      min-height: 64svh;
+      display: grid;
+      place-items: center;
+      padding: clamp(80px, 11vw, 150px) 24px;
+      background: #171717;
+      color: var(--paper);
+      text-align: center;
+    }
+
+    .quote-band p {
+      max-width: 1120px;
+      margin: 0;
+      font-size: clamp(40px, 7vw, 112px);
+      line-height: .82;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    .final {
+      padding: clamp(80px, 11vw, 150px) 0 56px;
+    }
+
+    .final-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+      gap: clamp(32px, 7vw, 90px);
+      align-items: end;
+      padding: clamp(40px, 7vw, 86px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .final-panel p {
+      max-width: 860px;
+      margin: 24px 0 0;
+      color: var(--soft);
+      font-size: clamp(19px, 2vw, 26px);
+      line-height: 1.22;
+      font-weight: 750;
+      letter-spacing: -.025em;
+    }
+
+    .contact-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    footer {
+      padding: 42px 0;
+      border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      padding-top: 40px;
-      border-top: 1px solid var(--line);
-      margin-top: 40px;
+      gap: 24px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .footer-meta { display: flex; flex-direction: column; gap: 4px; font-family: var(--mono); font-size: 9px; text-transform: uppercase; color: var(--soft); letter-spacing: 0.05em; }
-    .footer-meta span b { color: var(--ink); }
-    .footer-tagline { font-size: 12px; font-weight: 800; color: var(--soft); opacity: 0.5; }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-    @keyframes floatDevice { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @keyframes padPulse { 0%, 100% { filter: saturate(1); } 50% { filter: saturate(1.45) brightness(1.08); } }
+    @media (max-width: 1080px) {
+      .hero-meta,
+      .signal-grid,
+      .venture-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
 
-    @media (max-width: 1060px) { .meta { grid-template-columns: 1fr; } .cards-grid { grid-template-columns: repeat(2, 1fr); } .testbench-footer { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 600px) { .site-wrap { padding: 0 20px; } .mega { margin-bottom: 140px; } .device-wrap { transform: scale(0.85); transform-origin: left top; margin-left: -5%; } .testbench-footer { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; align-items: flex-start; gap: 20px; } }
+      .section-head,
+      .work-list,
+      .final-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .split-feature {
+        grid-template-columns: 1fr;
+      }
+
+      .split-media {
+        min-height: 460px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 32px, 1360px); }
+      .topbar { position: absolute; }
+      .topbar-inner { align-items: flex-start; flex-direction: column; padding: 20px 0; }
+      nav { justify-content: flex-start; gap: 14px; }
+      .brand-lockup span:not(.brand-dot) { display: none; }
+      .hero { min-height: 92svh; }
+      .hero-content { padding-top: 150px; }
+      h1 { max-width: 7ch; font-size: clamp(56px, 17vw, 72px); }
+      h2 { max-width: 310px; }
+      .eyebrow { max-width: 300px; overflow-wrap: anywhere; }
+      .hero-copy,
+      .section-head p,
+      .large-copy,
+      .split-copy p,
+      .final-panel p {
+        max-width: 300px;
+        font-size: 19px;
+      }
+      .actions,
+      .button {
+        width: 100%;
+      }
+      .hero-meta,
+      .signal-grid,
+      .venture-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-meta {
+        width: min(100%, 310px);
+      }
+      .hero-meta div,
+      .signal,
+      .venture {
+        min-width: 0;
+      }
+      .hero-meta strong,
+      .signal strong,
+      .venture p,
+      .list p {
+        overflow-wrap: anywhere;
+      }
+      .section { padding: 76px 0; }
+      h2 { font-size: clamp(42px, 13vw, 58px); }
+      .venture { min-height: 390px; }
+      .split-copy { padding: 64px 24px; }
+      .split-media { min-height: 360px; }
+      .list li { grid-template-columns: 1fr; gap: 8px; }
+      .final-panel { padding: 30px 22px; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- BOOT SEQUENCE -->
-  <div class="boot" aria-hidden="true">
-    <div class="boot-content">
-      <div class="boot-dot"></div>
-      <div class="status-container">
-        <div class="status">System Loading  </div>
-      </div>
+  <header class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="brand-lockup" href="#top" aria-label="Jereme Abernathy home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Jereme Abernathy</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="#work">work</a>
+        <a href="#ventures">ventures</a>
+        <a href="#method">method</a>
+        <a href="#contact" class="nav-cta">work with me</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <!-- MAIN SITE -->
-  <div class="site">
-    <div class="site-wrap">
-      <header>
-        <a href="/" class="brand-dot" aria-label="Home"></a>
-        <nav>
-          <!-- UPDATED HEADER NAV LINKS -->
-          <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
-          <a href="https://jereme.xyz/site/pine/pine.html">pine</a>
-          <a href="https://jereme.xyz/site/nrthrn/nrthrn.html">nrthrn</a>
-          <a href="https://jereme.xyz/site/drift/drift.html">drift</a>
-          <a href="/about/">about</a>
-        </nav>
-      </header>
-
-      <main>
-        <section class="hero">
-          <h1 class="mega"><span>useful</span><span>things.</span></h1>
-
-          <div class="device-wrap">
-            <div class="device">
-              <aside class="left-module">
-                <div class="speaker" aria-hidden="true"></div>
-                <div class="autoplay">read story</div>
-                <div class="signal-badge">
-                  <small>personal signal</small>
-                  Useful things,<br>quietly built.
-                </div>
-                <div class="record-strip">record session</div>
-              </aside>
-
-              <section class="control-grid">
-                <div class="screen-row">
-                  <div class="screen">JEREME.XYZ v2.0<br>SYSTEM STATUS: ACTIVE<br><br>make the technical thing<br>humane <span>_</span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                  <div class="knob-cell"><span class="knob"></span></div>
-                </div>
-                <div class="steps"><script>for(i=1;i<=12;i++)document.write('<span class="pad">'+(i<=8?i:i-8)+'</span>')</script></div>
-                <div class="pads"><script>for(i=1;i<=12;i++)document.write('<span class="pad '+(i==3?'orange':(i==5||i==8||i==9?'light':''))+'"></span>')</script></div>
-                <div class="steps"><span class="pad">ai</span><span class="pad">lr</span><span class="pad">rb</span><span class="pad">cf</span>
-                  <span class="pad">ob</span><span class="pad">rm</span><span class="pad orange">pnw</span><span class="pad">01</span>
-                  <span class="pad">02</span><span class="pad">03</span><span class="pad">04</span><span class="pad">ok</span></div>
-                <div class="icons">
-                  <span class="icon-pad">#j</span><span class="icon-pad">mpw</span><span class="icon-pad">fbn</span><span class="icon-pad">zop</span>
-                  <span class="icon-pad">mbo</span><span class="icon-pad">vx</span><span class="icon-pad">qz</span><span class="icon-pad">t9</span>
-                  <span class="icon-pad">l2</span><span class="icon-pad">rm</span><span class="icon-pad">s4</span><span class="icon-pad">nk</span>
-                </div>
-              </section>
-
-              <aside class="right-rail">
-                <strong class="rail-type">J.</strong>
-                <span class="rail-meta">system active</span>
-              </aside>
-            </div>
-          </div>
-        </section>
-
-        <div class="divider" data-label="SECTION_01_INTRO"></div>
-
-        <section class="section">
-          <div class="intro">
-            <p class="intro-copy">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
-            <div class="meta">
-              <div class="meta-row"><div class="meta-label">Compass / 01</div><strong>Useful things with real edges and a reason to stay</strong></div>
-              <div class="meta-row"><div class="meta-label">Mode / 02</div><strong>Independent, practical, material-minded</strong></div>
-              <div class="meta-row"><div class="meta-label">Focus / 03</div><strong>AI, LiDAR, robotics, coffee, objects, places</strong></div>
-            </div>
-          </div>
-        </section>
-
-        <div class="divider" data-label="SECTION_02_PRACTICE"></div>
-
-        <section class="section">
-          <h2 class="section-title">Four practices.</h2>
-          <div class="cards-grid">
-            <script>
-              // UPDATED CARD ARRAY LINKS
-              const cards = [
-                { l: 'track 01 / fw/r', t: 'Intelligent Systems', d: 'AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.', h:'https://jereme.xyz/site/fwr/fwr.html' },
-                { l: 'track 02 / pine', t: 'Local Roots', d: 'A PNW coffee haus built around light, pace, seating, sound, and return visits.', h:'https://jereme.xyz/site/pine/pine.html' },
-                { l: 'track 03 / nrthrn', t: 'Designed Objects', d: 'Objects with real materials, real weight, and a reason for every millimeter.', h:'https://jereme.xyz/site/nrthrn/nrthrn.html' },
-                { l: 'track 04 / drift', t: 'Coastal Rituals', d: 'Coastal rooms and rituals with slower mornings and sharper details.', h:'https://jereme.xyz/site/drift/drift.html' }
-              ];
-              cards.forEach((item) => {
-                document.write(`
-                  <a href="${item.h}" class="card">
-                    <small>${item.l}</small>
-                    <div><h3>${item.t}</h3></div>
-                    <div class="led-matrix">
-                      ${Array(72).fill().map(() => {
-                        const delay = (Math.random() * 5).toFixed(1);
-                        const dur = (4 + Math.random() * 4).toFixed(1);
-                        return `<div class="led" style="animation: led-pulse ${dur}s infinite ${delay}s ease-in-out"></div>`;
-                      }).join('')}
-                    </div>
-                    <p>${item.d}</p>
-                  </a>
-                `);
-              });
-            </script>
-          </div>
-        </section>
-
-        <section class="quote">
-          <p>"Make the technical thing humane, make the beautiful thing accountable, and leave the room clearer than it was."</p>
-        </section>
-      </main>
-    </div>
-
-    <!-- REFINED TESTBENCH FOOTER -->
-    <footer class="testbench-footer">
-      <div class="footer-brand">
-        <div class="brand-dot"></div>
-        <p class="footer-note">This is where the work stays within reach. Drawn to useful ideas, rooms worth staying in, and people worth listening to.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Practices</h4>
-        <!-- UPDATED FOOTER LINKS -->
-        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
-        <a href="https://jereme.xyz/site/pine/pine.html">pine</a>
-        <a href="https://jereme.xyz/site/nrthrn/nrthrn.html">nrthrn</a>
-        <a href="https://jereme.xyz/site/drift/drift.html">drift</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Social</h4>
-        <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-        <a href="https://x.com/jeremedotxyz">Twitter</a>
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
-        <a href="https://github.com/jeremedotxyz">GitHub</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9">Spotify</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>System</h4>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="mailto:jeremedotxyz@gmail.com">Contact</a>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-meta">
-          <span>&copy; 2026 <b>jereme.xyz</b></span>
-          <span>915 Broadway St, Vancouver, WA 98660</span>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img src="assets/jereme-hero-workbench.png" alt="">
+      <div class="hero-content wrap">
+        <p class="eyebrow">AI / Robotics / LiDAR / Product / Rooms / Objects</p>
+        <h1 id="hero-title">jereme.xyz</h1>
+        <p class="hero-copy">I help founders, teams, and organizations turn fuzzy technical ideas, strange product problems, and future-facing concepts into clear, buildable, useful systems.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=Work%20With%20Jereme">Work With Me</a>
+          <a class="button" href="#ventures">Explore the Work</a>
         </div>
-        <span class="footer-tagline">Useful things. Real edges. Good rooms.</span>
+        <div class="hero-meta" aria-label="Focus areas">
+          <div><small>Mode / 01</small><strong>Sharp, calm, technical without going cold</strong></div>
+          <div><small>Promise / 02</small><strong>Make the complex clear enough to build</strong></div>
+          <div><small>Terrain / 03</small><strong>AI, robotics, LiDAR, software, hardware, places</strong></div>
+          <div><small>Output / 04</small><strong>Useful things with real edges and a reason to stay</strong></div>
+        </div>
       </div>
-    </footer>
-  </div>
+    </section>
 
+    <section class="section wrap" id="work">
+      <div class="section-head">
+        <h2>The work lives between signal and substance.</h2>
+        <p>I work where technical complexity, product judgment, creative direction, and real-world constraints all have to sit at the same table.</p>
+      </div>
+      <div class="signal-grid">
+        <article class="signal"><span class="label">AI Strategy</span><strong>Model behavior, workflow design, evaluation, and adoption that survives contact with real teams.</strong></article>
+        <article class="signal"><span class="label">Robotics</span><strong>Perception, autonomy, field constraints, and machines that need to move through the world.</strong></article>
+        <article class="signal"><span class="label">LiDAR</span><strong>Sensing, mapping, calibration, point clouds, and spatial logic turned into usable context.</strong></article>
+        <article class="signal"><span class="label">Product</span><strong>Fuzzy ideas shaped into build paths, prototypes, systems, and sharper decisions.</strong></article>
+        <article class="signal"><span class="label">Direction</span><strong>Creative and technical taste applied to rooms, objects, services, and the story around them.</strong></article>
+      </div>
+    </section>
+
+    <section class="split-feature" aria-label="Field-ready systems">
+      <div class="split-copy">
+        <span class="label">fw/r / Field-Ready Systems</span>
+        <h2>Built where the easy answer stops.</h2>
+        <p>AI, robotics, and LiDAR work for teams that need models, sensors, robots, and evaluations to work outside the demo. Define the problem. Instrument the behavior. Test what breaks. Build the version that can be explained.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=Work%20With%20Jereme%20/%20fw/r">Talk Systems</a>
+          <a class="button" href="fwr.html">View fw/r</a>
+        </div>
+      </div>
+      <figure class="split-media">
+        <img src="assets/jereme-hero-lidar-robotics.png" alt="">
+      </figure>
+    </section>
+
+    <section class="section wrap" id="ventures">
+      <div class="section-head">
+        <h2>Four names. One operating system.</h2>
+        <p>Different rooms for the same instinct: make the technical thing humane, make the beautiful thing accountable, and leave the room clearer than it was.</p>
+      </div>
+      <div class="venture-grid">
+        <a class="venture" href="fwr.html">
+          <span class="label">01 / fw/r</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
+            <h3>Intelligent Systems</h3>
+            <p>AI strategy, robotics, LiDAR, evaluation harnesses, and technical systems for the field.</p>
+          </div>
+        </a>
+        <a class="venture" href="pine.html">
+          <span class="label">02 / pine</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
+            <h3>Local Roots</h3>
+            <p>A Pacific Northwest coffee haus shaped around hospitality, pace, light, sound, seating, and return.</p>
+          </div>
+        </a>
+        <a class="venture" href="nrthrn.html">
+          <span class="label">03 / nrthrn</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
+            <h3>Designed Objects</h3>
+            <p>Industrial and consumer products with real materials, real weight, and a reason for every millimeter.</p>
+          </div>
+        </a>
+        <a class="venture" href="drift.html">
+          <span class="label">04 / drift</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
+            <h3>Coastal Rituals</h3>
+            <p>A coastal hospitality concept for slower mornings, weather-aware rooms, careful coffee, and people who notice.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section wrap" id="method">
+      <div class="work-list">
+        <div>
+          <span class="label">Method / Not a framework, relax</span>
+          <h2>Turn the fog into a buildable map.</h2>
+          <p class="large-copy" style="margin-top:24px;">The job is to bring enough clarity, taste, technical judgment, and operator pressure to make the next move obvious.</p>
+        </div>
+        <ul class="list">
+          <li><span class="label">01</span><div><strong>Find the real problem.</strong><p>Separate the actual system from the deck, the meeting, the vibe, and the wishful thinking.</p></div></li>
+          <li><span class="label">02</span><div><strong>Make behavior measurable.</strong><p>Define what should happen, what can break, what needs evidence, and how the work earns trust.</p></div></li>
+          <li><span class="label">03</span><div><strong>Shape the thing.</strong><p>Turn strategy into prototypes, operating logic, product direction, technical narrative, or the first version worth testing.</p></div></li>
+          <li><span class="label">04</span><div><strong>Keep the room honest.</strong><p>Clear language. Good taste. No fake certainty. No decorative complexity. No pretending the emperor is dressed.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <p>Make the technical thing humane. Make the beautiful thing accountable.</p>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2>Built for people trying to ship the hard thing.</h2>
+        <p>Founders, teams, operators, organizations, and builders who have a real problem, a strange idea, a technical knot, or a useful thing that deserves better than where it is stuck.</p>
+      </div>
+      <div class="signal-grid">
+        <article class="signal"><span class="label">Founder Advisory</span><strong>Product direction, systems thinking, technical narrative, and operator judgment.</strong></article>
+        <article class="signal"><span class="label">Technical Consulting</span><strong>AI, robotics, LiDAR, sensing, evaluation, and build-path decisions.</strong></article>
+        <article class="signal"><span class="label">Experimental Builds</span><strong>Proofs of concept, harnesses, prototypes, and useful weird things with a point.</strong></article>
+        <article class="signal"><span class="label">Creative Direction</span><strong>Brand, rooms, objects, editorial systems, and the feeling of the work.</strong></article>
+        <article class="signal"><span class="label">Product Systems</span><strong>The logic underneath software, hardware, services, teams, spaces, and rituals.</strong></article>
+      </div>
+    </section>
+
+    <section class="final wrap" id="contact">
+      <div class="final-panel">
+        <div>
+          <span class="label">Signal / Open channel</span>
+          <h2>Bring me the fuzzy thing.</h2>
+          <p>If you are holding a technical idea, product mess, robotics question, AI strategy problem, room concept, object sketch, or future-facing system that needs to become clear and buildable, that is the work.</p>
+        </div>
+        <div class="contact-stack">
+          <a class="button dark" href="mailto:jeremedotxyz@gmail.com?subject=Work%20With%20Jereme">Work With Me</a>
+          <a class="button secondary" href="about.html">Read About Jereme</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div>
+      <strong>jereme.xyz</strong><br>
+      <span>Useful things. Real edges. Good rooms.</span>
+    </div>
+    <div class="footer-links">
+      <a href="fwr.html">fw/r</a>
+      <a href="pine.html">pine</a>
+      <a href="nrthrn.html">nrthrn</a>
+      <a href="drift.html">drift</a>
+      <a href="about.html">about</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".matrix").forEach((matrix) => {
+      for (let i = 0; i < 96; i += 1) {
+        matrix.appendChild(document.createElement("span"));
+      }
+    });
+  </script>
 </body>
 </html>
