@@ -1,79 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-NTH4464X6R");
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ebebeb">
-  <title>drift - jereme.xyz</title>
+  <meta name="theme-color" content="#e9e6df">
+  <title>drift - Coastal Coffee and Hospitality Concept</title>
+  <meta name="description" content="drift is a coastal coffee and hospitality concept built around slower mornings, salt air, careful coffee, weather-aware rooms, and staying a little longer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="venture.css">
   <style>
-    :root {
-      --paper: #ebebeb; --ink: #202020; --orange: #ff611a; --accent: #dc2626; 
-      --charcoal: #1f1f22; --soft: rgba(32, 32, 32, .62); --line: rgba(32, 32, 32, .14);
-      --white: #f7f7f5; --mono: "Fragment Mono", monospace; --sans: "Manrope", sans-serif;
-    }
-    * { box-sizing: border-box; }
-    html { background: var(--paper); scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    body::before { content: ""; position: fixed; inset: 0; background-image: url("https://grainy-gradients.vercel.app/noise.svg"); opacity: 0.04; pointer-events: none; z-index: 999; }
-    a { color: inherit; text-decoration: none; }
-    .divider { width: 100%; height: 1px; background: var(--line); position: relative; margin: 60px 0; }
-    .divider::before { content: "COORD_REF // " attr(data-label); position: absolute; top: -12px; left: 0; font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; }
-    .site-wrap { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
-    header { padding: 32px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
-    .brand-dot { width: 48px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); position: relative; box-shadow: 0 16px 34px rgba(255,97,26,.24); }
-    nav { display: flex; gap: 24px; font-size: 13px; font-weight: 800; color: var(--soft); }
-    nav a:hover { color: var(--ink); }
-    .hero { padding: 100px 0 80px; display: flex; flex-direction: column; }
-    .mega { margin: 0 0 240px -2vw; color: #202020; font-size: clamp(100px, 20vw, 360px); line-height: .74; letter-spacing: -.07em; font-weight: 800; }
-    .lead-text { font-size: clamp(24px, 3.5vw, 54px); line-height: 1.05; font-weight: 800; letter-spacing: -0.05em; margin: 0 0 24px; max-width: 820px; }
-    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 80px; }
-    .tile { min-height: 300px; display: grid; grid-template-rows: auto 1fr; padding: 24px; border-radius: 28px; background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); position: relative; }
-    .tile:nth-child(3) { background: var(--charcoal); color: #fff; }
-    .tile::before { content: ""; position: absolute; top: 24px; right: 24px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .tile small { font-family: var(--mono); font-size: 11px; opacity: .5; text-transform: uppercase; }
-    .tile h3 { font-size: 30px; font-weight: 800; margin: 20px 0 0; letter-spacing: -0.04em; }
-    .tile p { font-size: 15px; font-weight: 700; opacity: .7; margin: 12px 0 0; line-height: 1.4; }
-    .brief-card { background: var(--white); border-radius: 28px; border: 1px solid var(--line); padding: clamp(32px, 5vw, 64px); box-shadow: 0 40px 80px rgba(0,0,0,0.03); max-width: 1100px; display: flex; flex-direction: column; gap: 48px; position: relative; }
-    .brief-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--line); padding-bottom: 32px; }
-    .brief-meta { font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: var(--soft); display: flex; flex-direction: column; gap: 4px; }
-    .brief-meta span b { color: var(--accent); }
-    .brief-leds { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; width: 140px; }
-    .led { width: 100%; aspect-ratio: 1; background: rgba(0,0,0,0.08); border-radius: 1px; }
-    @keyframes led-pulse { 0%, 100% { background: rgba(0,0,0,0.08); } 50% { background: var(--accent); box-shadow: 0 0 8px var(--accent); } }
-    .brief-text { font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65; font-weight: 700; color: var(--ink); max-width: 720px; }
-    .brief-text p { margin-bottom: 1.5em; }
-    footer { padding: 80px 0 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-weight: 800; font-size: 13px; }
-    @media (max-width: 1060px) { .tiles { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { .mega { margin-bottom: 100px; } .brief-card { padding: 32px 24px; } footer { flex-direction: column; gap: 20px; } }
+    :root { --accent: #b9342e; --accent-soft: rgba(185, 52, 46, .14); }
   </style>
 </head>
 <body>
-  <div class="site-wrap">
-    <header><a class="brand-dot" href="/"></a><nav><a href="/site/fwr/fwr.html">fw/r</a><a href="/site/pine/pine.html">pine</a><a href="/site/nrthrn/nrthrn.html">nrthrn</a><a href="/about/">about</a></nav></header>
-    <main>
-      <section class="hero"><h1 class="mega">drift.</h1><p class="lead-text">A coastal coffee concept: slower, saltier, and built for people who notice when a room is doing its job.</p></section>
-      <div class="divider" data-label="ELEMENTS // COASTAL_LOGIC"></div>
-      <div class="tiles">
-        <article class="tile"><small>Element 01</small><div><h3>Coast</h3><p>Salt air, muted light, and a rhythm that belongs to the edge of the map.</p></div></article>
-        <article class="tile"><small>Element 02</small><div><h3>Coffee</h3><p>Careful, quietly excellent coffee for people who would rather stay a little longer.</p></div></article>
-        <article class="tile"><small>Element 03</small><div><h3>Room</h3><p>Hospitality that feels discovered, not announced: warm, useful, patient.</p></div></article>
+  <header class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="brand-lockup" href="jereme-landing.html" aria-label="Jereme Abernathy home"><span class="brand-dot"></span><span>Jereme Abernathy</span></a>
+      <nav aria-label="Main">
+        <a href="fwr.html">fw/r</a>
+        <a href="pine.html">pine</a>
+        <a href="nrthrn.html">nrthrn</a>
+        <a class="nav-cta" href="drift.html">drift</a>
+        <a href="about.html">about</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow">drift / Coastal Coffee / Hospitality / Weather</p>
+        <h1>Slower mornings on the edge of the map.</h1>
+        <p class="lead">A coastal coffee and hospitality concept built around salt air, careful coffee, muted light, weather-aware rooms, and the luxury of not rushing.</p>
+        <p class="note">drift is pine's coastal little sister: quieter, more patient, and not especially interested in being found too easily.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=drift%20Coastal%20Concept">Get in Touch</a>
+          <a class="button" href="#elements">Explore drift</a>
+        </div>
       </div>
-      <div class="divider" data-label="PROTOCOL // COASTAL_BRIEF"></div>
-      <section class="brief-card">
-        <div class="brief-header">
-          <div class="brief-meta"><span>Subject: <b>Operating Brief</b></span><span>Ref: <b>SALT_AIR_STRATEGY</b></span></div>
-          <div class="brief-leds"><script>for(let i=0; i<24; i++) { const delay = (Math.random() * 5).toFixed(1); const dur = (3 + Math.random() * 3).toFixed(1); document.write(`<div class="led" style="animation: led-pulse ${dur}s infinite ${delay}s ease-in-out"></div>`); }</script></div>
+      <figure class="hero-visual coast">
+        <figcaption class="visual-copy"><span class="label">Coastal logic</span><strong>Salt air, warm light, patient rooms.</strong></figcaption>
+      </figure>
+    </section>
+
+    <section class="wrap">
+      <div class="proof-row" aria-label="drift focus">
+        <div><span class="label">01 / Coast</span><strong>Muted light, shifting weather, quiet roads, and salt in the edges.</strong></div>
+        <div><span class="label">02 / Coffee</span><strong>Careful coffee for people who would rather stay a little longer.</strong></div>
+        <div><span class="label">03 / Room</span><strong>Hospitality that feels discovered, useful, warm, and patient.</strong></div>
+        <div><span class="label">04 / Pace</span><strong>A slower rhythm that belongs to the day instead of fighting it.</strong></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="elements">
+      <div class="section-head">
+        <h2>Hospitality for weather and wandering.</h2>
+        <p>drift is not trying to be loud. It is a place for the hour after a walk, the coffee before the drive, the table near the window, and the feeling that the room was waiting.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card"><span class="label">Element 01</span><div><h3>Coast</h3><p>Salt air, softened edges, muted palettes, weather, distance, and a rhythm that belongs near the water.</p></div></article>
+        <article class="card"><span class="label">Element 02</span><div><h3>Coffee</h3><p>Careful, quietly excellent coffee that supports the moment without turning the moment into a lecture.</p></div></article>
+        <article class="card"><span class="label">Element 03</span><div><h3>Room</h3><p>A hospitality experience that feels discovered, not announced: warm, useful, patient, and a little hard to leave.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="split">
+        <div class="split-copy">
+          <span class="label">What makes it different</span>
+          <h2>A smaller signal, stronger atmosphere.</h2>
+          <p>Where pine is daily return, drift is the coastal pause. The concept is built around environmental rhythm: light, weather, materials, silence, service, and the gentle permission to be slower.</p>
         </div>
-        <div class="brief-text">
-          <p>drift is pine's coastal little sister: quieter, more patient, more weather-aware, and not especially interested in being found too easily.</p>
-          <p>The plan is no plan. The plan is patience. Built around the feeling of finding exactly the right room at exactly the right hour.</p>
+        <ul class="list">
+          <li><span class="label">01</span><div><strong>Designed for the in-between.</strong><p>Morning after the storm, late coffee after the beach, quiet table before the drive, or a soft reset when the day has gotten too loud.</p></div></li>
+          <li><span class="label">02</span><div><strong>Weather-aware by default.</strong><p>The room changes with light, rain, fog, sound, wind, and season instead of pretending hospitality happens in a vacuum.</p></div></li>
+          <li><span class="label">03</span><div><strong>Local without shouting.</strong><p>Coastal materials, restrained signage, simple food, careful coffee, and enough mystery to keep the place from feeling over-explained.</p></div></li>
+          <li><span class="label">04</span><div><strong>Built to be found twice.</strong><p>The first visit should feel like discovery. The second should feel like returning to something that already knew your pace.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="brief">
+        <span class="label">Operating brief</span>
+        <h2>The plan is patience.</h2>
+        <p>drift is built around the feeling of finding exactly the right room at exactly the right hour. It is slower, saltier, more weather-aware, and allergic to over-polished hospitality theater.</p>
+        <div class="brief-grid">
+          <div><span class="label">Audience</span><strong>Locals, travelers, readers, walkers, remote workers, and people who notice when a room is doing its job.</strong></div>
+          <div><span class="label">Mood</span><strong>Coastal, quiet, warm, personal, unhurried, slightly hidden, and better when the weather changes.</strong></div>
+          <div><span class="label">Offer</span><strong>Coffee, small food, quiet tables, useful rituals, good light, and a room people want to keep in their mental map.</strong></div>
+          <div><span class="label">Relationship to pine</span><strong>Same hospitality brain. Different weather, slower tempo, more salt in the sentence.</strong></div>
         </div>
-      </section>
-    </main>
-    <footer style="margin-top: 100px;"><div style="opacity: 0.5;">&copy; 2026 jereme.xyz</div><div><a href="/" style="margin-right: 20px;">Home</a><a href="/about/">About</a></div></footer>
-  </div>
+      </div>
+    </section>
+
+    <section class="quote-band"><p>Not a stop along the way. The reason to take the long way.</p></section>
+
+    <section class="section wrap">
+      <div class="final-panel">
+        <div><span class="label">Signal / drift</span><h2>If the coast is calling, answer calmly.</h2><p>For location ideas, collaboration, partnership, or a quiet note about the coastal coffee room that should exist, send a signal.</p></div>
+        <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=drift%20Coastal%20Concept">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div><strong>drift</strong><br><span>Coastal coffee, slower mornings, and weather-aware rooms.</span></div>
+    <div class="footer-links"><a href="jereme-landing.html">home</a><a href="fwr.html">fw/r</a><a href="pine.html">pine</a><a href="nrthrn.html">nrthrn</a></div>
+  </footer>
 </body>
 </html>
