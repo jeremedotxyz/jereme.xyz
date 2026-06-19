@@ -1,129 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-NTH4464X6R");
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f2eee7">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-  <title>jereme.xyz</title>
-  <meta name="description" content="Independent operator building AI systems, coffee spaces, physical goods, and coastal places.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="jereme.xyz">
-  <meta property="og:description" content="A material, product-forward front door for fw/r, pine, nrthrn, and drift.">
-  <meta property="og:url" content="https://jereme.xyz/">
+  <meta name="theme-color" content="#e9e6df">
+  <title>Jereme Abernathy - Useful Systems, Rooms, Objects, and Places</title>
+  <meta name="description" content="Jereme Abernathy helps founders, teams, and organizations turn fuzzy technical ideas into clear, buildable systems across AI, robotics, LiDAR, product thinking, hospitality, objects, and emerging technology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --paper: #f2eee7;
-      --ink: #171513;
-      --soft: rgba(23, 21, 19, .68);
-      --quiet: rgba(23, 21, 19, .48);
-      --line: rgba(23, 21, 19, .13);
+      --paper: #e9e6df;
+      --ink: #191817;
+      --soft: rgba(25, 24, 23, .68);
+      --quiet: rgba(25, 24, 23, .46);
+      --line: rgba(25, 24, 23, .14);
       --black: #11100f;
-      --bone: #fbf8f1;
-      --stone: #d8d0c4;
-      --orange: #e86f2d;
-      --blue: #476a84;
-      --green: #6c7a52;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      --white: #f7f5ef;
+      --orange: #ff611a;
+      --blue: #2d5f8c;
+      --green: #66724d;
+      --red: #b9342e;
+      --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
 
     html {
+      background: var(--paper);
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
 
     body {
       margin: 0;
-      overflow-x: hidden;
       color: var(--ink);
       background: var(--paper);
+      font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
-      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    ::selection { background: rgba(232, 111, 45, .2); }
 
     .wrap {
-      width: min(1440px, calc(100% - 32px));
+      width: min(1360px, calc(100% - 48px));
       margin: 0 auto;
     }
 
     .topbar {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      inset: 0 0 auto;
       z-index: 20;
-      background: rgba(242, 238, 231, .88);
-      border-bottom: 1px solid rgba(23, 21, 19, .1);
-      backdrop-filter: blur(22px) saturate(160%);
+      border-bottom: 1px solid rgba(247,245,239,.16);
+      color: rgba(247,245,239,.78);
+      mix-blend-mode: normal;
     }
 
-    .nav {
-      min-height: 62px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 24px;
-      font-size: 13px;
-      font-weight: 720;
-      color: rgba(23, 21, 19, .72);
-    }
-
-    .nav-group {
+    .topbar-inner {
+      min-height: 72px;
       display: flex;
       align-items: center;
-      gap: clamp(14px, 2vw, 28px);
-      min-width: 0;
-    }
-
-    .nav-group:last-child { justify-content: flex-end; }
-
-    .brand {
-      color: var(--ink);
-      font-size: 19px;
-      font-weight: 860;
-      letter-spacing: .02em;
-    }
-
-    .nav a {
-      white-space: nowrap;
-      border-bottom: 1px solid transparent;
-    }
-
-    .nav a:hover { border-color: currentColor; }
-
-    .pill {
-      display: inline-flex;
-      min-height: 34px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 16px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: #fff;
+      justify-content: space-between;
+      gap: 28px;
       font-size: 13px;
-      font-weight: 780;
+      font-weight: 800;
     }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+
+    .brand-dot {
+      width: 36px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a { opacity: .82; }
+    nav a:hover { opacity: 1; }
+    .nav-cta { color: #fff; opacity: 1; }
 
     .hero {
       position: relative;
-      min-height: calc(78svh - 62px);
+      min-height: 88svh;
       display: grid;
       align-items: end;
+      isolation: isolate;
       overflow: hidden;
-      background: #0d0d0c;
+      background: #101010;
       color: #fff;
     }
 
     .hero img {
       position: absolute;
       inset: 0;
-      opacity: .74;
+      z-index: -2;
+      opacity: .78;
       filter: saturate(.9) contrast(1.05);
     }
 
@@ -131,517 +137,692 @@
       content: "";
       position: absolute;
       inset: 0;
+      z-index: -1;
       background:
-        linear-gradient(90deg, rgba(8,8,7,.78) 0%, rgba(8,8,7,.24) 48%, rgba(8,8,7,.36) 100%),
-        linear-gradient(180deg, rgba(8,8,7,.1) 0%, rgba(8,8,7,.16) 42%, rgba(8,8,7,.86) 100%);
+        linear-gradient(90deg, rgba(7,7,7,.88) 0%, rgba(7,7,7,.45) 43%, rgba(7,7,7,.7) 100%),
+        linear-gradient(180deg, rgba(7,7,7,.12) 0%, rgba(7,7,7,.18) 46%, rgba(7,7,7,.9) 100%);
     }
 
     .hero-content {
-      position: relative;
-      z-index: 1;
-      width: min(1440px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: clamp(82px, 14vh, 154px) 0 clamp(34px, 6vw, 72px);
+      padding: 160px 0 clamp(44px, 8vw, 88px);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.62);
     }
 
     h1 {
-      max-width: 11ch;
+      max-width: 10ch;
       margin: 0;
-      font-size: clamp(56px, 8vw, 116px);
-      line-height: .86;
-      letter-spacing: 0;
+      font-size: clamp(64px, 9.6vw, 156px);
+      line-height: .82;
+      letter-spacing: -.07em;
+      font-weight: 800;
     }
 
     .hero-copy {
-      max-width: 560px;
-      margin: 22px 0 0;
-      color: rgba(255,255,255,.78);
-      font-size: clamp(18px, 2.2vw, 27px);
-      line-height: 1.15;
-      font-weight: 620;
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: rgba(255,255,255,.8);
+      font-size: clamp(20px, 2.2vw, 32px);
+      line-height: 1.12;
+      font-weight: 750;
+      letter-spacing: -.03em;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 26px;
+      margin-top: 32px;
     }
 
     .button {
       display: inline-flex;
-      min-height: 44px;
+      min-height: 46px;
       align-items: center;
       justify-content: center;
       padding: 0 20px;
-      border-radius: 999px;
+      border: 1px solid currentColor;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .button.primary {
       background: #fff;
       color: var(--ink);
-      font-size: 14px;
-      font-weight: 820;
-      white-space: nowrap;
+      border-color: #fff;
     }
 
-    .button.ghost {
-      border: 1px solid rgba(255,255,255,.46);
-      background: rgba(255,255,255,.08);
+    .button.dark {
+      background: var(--ink);
       color: #fff;
-      backdrop-filter: blur(16px);
+      border-color: var(--ink);
     }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: clamp(44px, 6vw, 72px);
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.16);
+    }
+
+    .hero-meta div {
+      min-height: 116px;
+      padding: 18px;
+      background: rgba(9,9,9,.55);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-meta small,
+    .label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--quiet);
+    }
+
+    .hero-meta small { color: rgba(255,255,255,.48); }
+
+    .hero-meta strong {
+      display: block;
+      margin-top: 14px;
+      font-size: clamp(17px, 1.6vw, 22px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    section { position: relative; }
 
     .section {
-      padding: clamp(52px, 7vw, 88px) 0;
+      padding: clamp(72px, 9vw, 132px) 0;
+      border-top: 1px solid var(--line);
     }
 
-    .section-title {
-      display: flex;
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+      gap: clamp(32px, 7vw, 110px);
       align-items: end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 22px;
+      margin-bottom: clamp(28px, 5vw, 64px);
     }
 
     h2 {
       margin: 0;
-      font-size: clamp(34px, 5vw, 72px);
-      line-height: .94;
-      letter-spacing: 0;
+      font-size: clamp(42px, 6.4vw, 104px);
+      line-height: .86;
+      letter-spacing: -.065em;
+      font-weight: 800;
     }
 
-    .section-title p {
-      max-width: 430px;
+    .section-head p,
+    .large-copy {
       margin: 0;
       color: var(--soft);
-      font-size: clamp(16px, 1.55vw, 21px);
-      line-height: 1.25;
-      font-weight: 600;
+      font-size: clamp(19px, 2vw, 26px);
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: -.025em;
     }
 
-    .profile-band {
+    .signal-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr);
-      gap: clamp(28px, 6vw, 84px);
-      align-items: start;
-      padding: clamp(52px, 7vw, 88px) 0 clamp(32px, 4vw, 52px);
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .signal {
+      min-height: 178px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .signal strong {
+      display: block;
+      margin-top: 18px;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .split-feature {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr);
+      min-height: 620px;
+      border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
     }
 
-    .profile-copy {
-      max-width: 780px;
-      margin: 0;
-      color: rgba(23, 21, 19, .86);
-      font-size: clamp(24px, 3.4vw, 48px);
-      line-height: 1.04;
+    .split-copy {
+      display: grid;
+      align-content: center;
+      padding: clamp(44px, 7vw, 94px);
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .split-copy p {
+      max-width: 640px;
+      margin: 24px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(19px, 2vw, 26px);
+      line-height: 1.24;
       font-weight: 720;
+      letter-spacing: -.02em;
     }
 
-    .profile-meta {
-      display: grid;
-      gap: 1px;
-      background: var(--line);
+    .split-media {
+      position: relative;
+      overflow: hidden;
+      background: #0e0f10;
     }
 
-    .meta-row {
-      display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
-      gap: 18px;
-      padding: 18px 0;
-      background: var(--paper);
+    .split-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.22));
+      pointer-events: none;
     }
 
-    .meta-row span {
-      color: var(--quiet);
-      font-size: 11px;
-      font-weight: 850;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .meta-row strong {
-      color: var(--ink);
-      font-size: 17px;
-      line-height: 1.25;
-    }
-
-    .product-grid {
+    .venture-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .practices-section {
-      padding-top: clamp(28px, 3.5vw, 44px);
-    }
-
-    .product {
-      min-width: 0;
-      background: #ede7dc;
-    }
-
-    .product-image {
-      position: relative;
-      aspect-ratio: 1 / .82;
+    .venture {
+      min-height: 470px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 22px;
+      border-radius: 8px;
+      color: #fff;
       overflow: hidden;
-      background: #161412;
+      background: #202024;
     }
 
-    .product-image::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: .9;
+    .venture:nth-child(2) { background: var(--white); color: var(--ink); }
+    .venture:nth-child(3) { background: #c9c9c6; color: var(--ink); }
+    .venture:nth-child(4) { background: #111113; }
+    .venture:nth-child(1),
+    .venture:nth-child(4) {
+      color: #fff;
+    }
+    .venture:nth-child(1) .label,
+    .venture:nth-child(4) .label,
+    .venture:nth-child(1) h3,
+    .venture:nth-child(4) h3 {
+      color: #fff;
+      opacity: 1;
     }
 
-    .product-image::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), transparent 34%, rgba(0,0,0,.42)),
-        linear-gradient(135deg, rgba(255,255,255,.08), transparent 42%);
+    .venture-visual {
+      min-height: 170px;
+      margin: 22px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(0,0,0,.18);
     }
 
-    .fwr-visual {
-      background:
-        radial-gradient(circle at 54% 46%, rgba(78, 143, 176, .34), transparent 26%),
-        linear-gradient(135deg, #101418, #232a2d);
-    }
-
-    .fwr-visual::before {
-      background:
-        radial-gradient(circle at 50% 48%, transparent 0 15%, rgba(126, 178, 203, .55) 15.5% 16%, transparent 16.5% 26%, rgba(126, 178, 203, .38) 26.5% 27%, transparent 27.5%),
-        linear-gradient(90deg, rgba(126,178,203,.3) 1px, transparent 1px),
-        linear-gradient(rgba(126,178,203,.22) 1px, transparent 1px);
-      background-size: auto, 34px 34px, 34px 34px;
-    }
-
-    .pine-visual {
-      background:
-        radial-gradient(circle at 50% 44%, rgba(234, 205, 154, .42), transparent 29%),
-        linear-gradient(135deg, #2b2119, #7b5b38);
-    }
-
-    .pine-visual::before {
-      background:
-        radial-gradient(ellipse at 50% 43%, rgba(255,255,255,.86) 0 16%, transparent 16.5%),
-        radial-gradient(ellipse at 50% 43%, rgba(80,42,20,.8) 0 27%, transparent 27.5%),
-        radial-gradient(ellipse at 50% 59%, rgba(255,255,255,.28) 0 31%, transparent 31.5%),
-        linear-gradient(90deg, transparent 0 58%, rgba(255,255,255,.24) 58.5% 67%, transparent 67.5%);
-      transform: scale(.9);
-    }
-
-    .nrthrn-visual {
-      background:
-        radial-gradient(circle at 72% 22%, rgba(232, 111, 45, .22), transparent 28%),
-        linear-gradient(135deg, #191715, #6e675c);
-    }
-
-    .nrthrn-visual::before {
-      background:
-        linear-gradient(135deg, transparent 25%, rgba(255,255,255,.18) 25.5% 26%, transparent 26.5%),
-        linear-gradient(90deg, rgba(255,255,255,.12), transparent 32%),
-        linear-gradient(180deg, transparent 18%, rgba(255,255,255,.14) 18.5% 19%, transparent 19.5% 64%, rgba(0,0,0,.24) 64.5%);
-      clip-path: polygon(18% 28%, 78% 16%, 88% 66%, 32% 82%);
-      background-color: rgba(210, 203, 190, .44);
-      inset: 18%;
-      border: 1px solid rgba(255,255,255,.18);
-    }
-
-    .drift-visual {
-      background:
-        linear-gradient(180deg, #6d8792 0 45%, #d8c5a8 45.5% 62%, #2d221c 62.5% 100%);
-    }
-
-    .drift-visual::before {
-      background:
-        radial-gradient(ellipse at 50% 58%, rgba(255,255,255,.7) 0 9%, transparent 9.5%),
-        linear-gradient(90deg, transparent 0 32%, rgba(255,255,255,.44) 32.5% 67%, transparent 67.5%),
-        linear-gradient(180deg, transparent 0 40%, rgba(255,255,255,.18) 40.5% 41%, transparent 41.5% 54%, rgba(255,255,255,.18) 54.5% 55%, transparent 55.5%);
-      opacity: .74;
-    }
-
-    .product-copy {
-      padding: 18px 18px 20px;
-    }
-
-    .product-copy h3 {
+    .venture h3 {
       margin: 0;
-      font-size: clamp(22px, 2.1vw, 34px);
-      line-height: .96;
+      font-size: clamp(30px, 3vw, 46px);
+      line-height: .88;
+      letter-spacing: -.055em;
     }
 
-    .product-copy p {
+    .venture p {
+      margin: 14px 0 0;
+      color: currentColor;
+      opacity: .68;
+      font-size: 15px;
+      line-height: 1.42;
+      font-weight: 700;
+    }
+
+    .venture-address {
+      display: block;
+      margin-top: 14px;
+      opacity: .86;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3px;
+      height: 100%;
+      padding: 12px;
+      background: rgba(0,0,0,.2);
+    }
+
+    .matrix span {
+      min-height: 10px;
+      border-radius: 1px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .venture:nth-child(2) .matrix span,
+    .venture:nth-child(3) .matrix span {
+      background: rgba(0,0,0,.08);
+    }
+
+    .matrix span:nth-child(7n),
+    .matrix span:nth-child(13n) {
+      background: var(--orange);
+      box-shadow: 0 0 14px rgba(255,97,26,.45);
+    }
+
+    .work-list {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: clamp(32px, 7vw, 110px);
+      align-items: start;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .list li {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 24px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list strong {
+      display: block;
+      font-size: clamp(22px, 2.6vw, 38px);
+      line-height: .96;
+      letter-spacing: -.05em;
+    }
+
+    .list p {
       margin: 10px 0 0;
       color: var(--soft);
-      font-size: 14px;
-      line-height: 1.38;
+      font-size: 16px;
+      line-height: 1.45;
+      font-weight: 700;
     }
 
-    .quote {
-      width: min(980px, calc(100% - 32px));
-      margin: 0 auto;
-      min-height: clamp(260px, 32vw, 420px);
+    .quote-band {
+      min-height: 64svh;
       display: grid;
       place-items: center;
-      padding: clamp(42px, 6vw, 76px) 0;
+      padding: clamp(80px, 11vw, 150px) 24px;
+      background: #171717;
+      color: var(--paper);
       text-align: center;
     }
 
-    .quote p {
-      max-width: 900px;
+    .quote-band p {
+      max-width: 1120px;
       margin: 0;
-      color: rgba(23, 21, 19, .82);
-      font-size: clamp(25px, 4vw, 54px);
-      line-height: 1.02;
-      font-weight: 760;
-      text-wrap: balance;
+      font-size: clamp(40px, 7vw, 112px);
+      line-height: .82;
+      letter-spacing: -.07em;
+      font-weight: 800;
+    }
+
+    .final {
+      padding: clamp(80px, 11vw, 150px) 0 56px;
+    }
+
+    .final-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+      gap: clamp(32px, 7vw, 90px);
+      align-items: end;
+      padding: clamp(40px, 7vw, 86px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .final-panel p {
+      max-width: 860px;
+      margin: 24px 0 0;
+      color: var(--soft);
+      font-size: clamp(19px, 2vw, 26px);
+      line-height: 1.22;
+      font-weight: 750;
+      letter-spacing: -.025em;
+    }
+
+    .contact-stack {
+      display: grid;
+      gap: 12px;
     }
 
     footer {
-      background: #151311;
-      color: rgba(255,255,255,.68);
-      padding: clamp(46px, 7vw, 82px) 0 34px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) repeat(3, minmax(150px, .45fr));
-      gap: clamp(28px, 5vw, 72px);
-    }
-
-    .footer-brand {
-      max-width: 460px;
-    }
-
-    .footer-brand p {
-      margin: 18px 0 0;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .footer-col h4 {
-      margin: 0 0 14px;
-      color: #fff;
-      font-size: 13px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .footer-col a,
-    .footer-col span {
-      display: block;
-      margin-top: 9px;
-      font-size: 14px;
-    }
-
-    .footer-bottom {
+      padding: 42px 0;
+      border-top: 1px solid var(--line);
       display: flex;
       justify-content: space-between;
-      gap: 16px;
-      margin-top: 52px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,.12);
-      font-size: 12px;
+      gap: 24px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    @media (max-width: 980px) {
-      .nav {
-        grid-template-columns: 1fr auto;
-      }
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-      .nav-group:first-child {
-        display: none;
-      }
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+    }
 
-      .product-grid,
-      .footer-grid {
+    .footer-socials a {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      opacity: .72;
+    }
+
+    .footer-socials a:hover { opacity: 1; }
+    .footer-socials svg { width: 20px; height: 20px; fill: currentColor; }
+
+    @media (max-width: 1080px) {
+      .hero-meta,
+      .signal-grid,
+      .venture-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .profile-band {
+      .section-head,
+      .work-list,
+      .final-panel {
         grid-template-columns: 1fr;
       }
 
-      .section-title {
-        align-items: start;
-        flex-direction: column;
+      .split-feature {
+        grid-template-columns: 1fr;
+      }
+
+      .split-media {
+        min-height: 460px;
       }
     }
 
     @media (max-width: 680px) {
-      .wrap,
-      .hero-content,
-      .quote {
-        width: min(100% - 24px, 1440px);
+      .wrap { width: min(100% - 32px, 1360px); }
+      .topbar { position: absolute; }
+      .topbar-inner { align-items: flex-start; flex-direction: column; padding: 20px 0; }
+      nav { justify-content: flex-start; gap: 14px; }
+      .brand-lockup span:not(.brand-dot) { display: none; }
+      .hero { min-height: 92svh; }
+      .hero-content { padding-top: 150px; }
+      h1 { max-width: 7ch; font-size: clamp(56px, 17vw, 72px); }
+      h2 { max-width: 310px; }
+      .eyebrow { max-width: 300px; overflow-wrap: anywhere; }
+      .hero-copy,
+      .section-head p,
+      .large-copy,
+      .split-copy p,
+      .final-panel p {
+        max-width: 300px;
+        font-size: 19px;
       }
-
-      .nav {
-        min-height: 58px;
-        gap: 12px;
+      .actions,
+      .button {
+        width: 100%;
       }
-
-      .nav-group:last-child a:not(.pill) {
-        display: none;
-      }
-
-      .brand { font-size: 17px; }
-      .hero { min-height: 72svh; }
-      h1 { font-size: clamp(48px, 15vw, 76px); }
-
-      .hero-copy {
-        max-width: 31ch;
-        font-size: 18px;
-      }
-
-      .product-grid,
-      .footer-grid {
+      .hero-meta,
+      .signal-grid,
+      .venture-grid {
         grid-template-columns: 1fr;
       }
-
-      .profile-copy {
-        font-size: clamp(23px, 8vw, 34px);
+      .hero-meta {
+        width: min(100%, 310px);
       }
-
-      .meta-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
+      .hero-meta div,
+      .signal,
+      .venture {
+        min-width: 0;
       }
+      .hero-meta strong,
+      .signal strong,
+      .venture p,
+      .list p {
+        overflow-wrap: anywhere;
+      }
+      .section { padding: 76px 0; }
+      h2 { font-size: clamp(42px, 13vw, 58px); }
+      .venture { min-height: 390px; }
+      .split-copy { padding: 64px 24px; }
+      .split-media { min-height: 360px; }
+      .list li { grid-template-columns: 1fr; gap: 8px; }
+      .final-panel { padding: 30px 22px; }
+      footer { flex-direction: column; }
+    }
 
-      .product-image { aspect-ratio: 1 / .72; }
-
-      .footer-bottom {
-        flex-direction: column;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <nav class="nav wrap" aria-label="Main">
-      <div class="nav-group">
-        <a href="fwr/">fw/r</a>
-        <a href="pine/">pine</a>
-        <a href="nrthrn/">nrthrn</a>
-        <a href="drift/">drift</a>
-        <a href="https://jereme.xyz/about/">about</a>
-      </div>
-      <span class="brand" aria-hidden="true"></span>
-      <div class="nav-group">
-        <a class="pill" href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Contact</a>
-      </div>
-    </nav>
+    <div class="topbar-inner wrap">
+      <a class="brand-lockup" href="#top" aria-label="Jereme Abernathy home">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span>Jereme Abernathy</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="#work">work</a>
+        <a href="#ventures">ventures</a>
+        <a href="#method">method</a>
+        <a href="#ventures" class="nav-cta">explore the work</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero" aria-labelledby="intro-title">
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
       <img src="assets/jereme-hero-workbench.png" alt="">
-      <div class="hero-content">
-        <h1 id="intro-title">Useful things, quietly built.</h1>
-        <p class="hero-copy">A personal map of systems, rooms, objects, and places with a reason to exist.</p>
+      <div class="hero-content wrap">
+        <p class="eyebrow">AI / Robotics / LiDAR / Product / Rooms / Objects</p>
+        <h1 id="hero-title">Jereme Abernathy</h1>
+        <p class="hero-copy"> Helping founders, teams, and organizations turn fuzzy technical ideas, strange product problems, and future-facing concepts into clear, buildable, useful systems.</p>
         <div class="actions">
-          <a class="button ghost" href="https://jereme.xyz/about/">Read the story</a>
+          <a class="button primary" href="#ventures">Explore the Work</a>
+        </div>
+        <div class="hero-meta" aria-label="Focus areas">
+          <div><small>Mode / 01</small><strong>Sharp, calm, technical without going cold</strong></div>
+          <div><small>Signal / 02</small><strong>Make the complex clear enough to build</strong></div>
+          <div><small>Terrain / 03</small><strong>AI, robotics, LiDAR, software, hardware, places</strong></div>
+          <div><small>Output / 04</small><strong>Useful things with real edges and a reason to stay</strong></div>
         </div>
       </div>
     </section>
 
-    <section class="wrap" aria-label="About Jereme">
-      <div class="profile-band">
-        <p class="profile-copy">A Pacific Northwest front door to intelligent systems, local rooms, designed objects, and coastal rituals.</p>
-        <div class="profile-meta" aria-label="Profile details">
-          <div class="meta-row">
-            <span>Compass</span>
-            <strong>Useful things with real edges and a reason to stay</strong>
-          </div>
-          <div class="meta-row">
-            <span>Mode</span>
-            <strong>Independent, practical, material-minded</strong>
-          </div>
-          <div class="meta-row">
-            <span>Focus</span>
-            <strong>AI, LiDAR, robotics, coffee, objects, places</strong>
-          </div>
-        </div>
+    <section class="section wrap" id="work">
+      <div class="section-head">
+        <h2>The work lives between signal and substance.</h2>
+        <p>I work where technical complexity, product judgment, creative direction, and real-world constraints all have to sit at the same table.</p>
+      </div>
+      <div class="signal-grid">
+        <article class="signal"><span class="label">AI Strategy</span><strong>Model behavior, workflow design, evaluation, and adoption that survives contact with real teams.</strong></article>
+        <article class="signal"><span class="label">Robotics</span><strong>Perception, autonomy, field constraints, and machines that need to move through the world.</strong></article>
+        <article class="signal"><span class="label">LiDAR</span><strong>Sensing, mapping, calibration, point clouds, and spatial logic turned into usable context.</strong></article>
+        <article class="signal"><span class="label">Product</span><strong>Fuzzy ideas shaped into build paths, prototypes, systems, and sharper decisions.</strong></article>
+        <article class="signal"><span class="label">Direction</span><strong>Creative and technical taste applied to rooms, objects, services, and the story around them.</strong></article>
       </div>
     </section>
 
-    <section class="section wrap practices-section" id="collections" aria-label="Collections">
-      <div class="section-title">
-        <h2>Four practices.</h2>
-        <p>A small map of the ventures, materials, and places taking shape.</p>
+    <section class="split-feature" aria-label="Field-ready systems">
+      <div class="split-copy">
+        <span class="label">fw/r / Field-Ready Systems</span>
+        <h2>Built where the easy answer stops.</h2>
+        <p>AI, robotics, and LiDAR work for teams that need models, sensors, robots, and evaluations to work outside the demo. Define the problem. Instrument the behavior. Test what breaks. Build the version that can be explained.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=Work%20With%20Jereme%20/%20fw/r">Talk Systems</a>
+          <a class="button" href="https://jereme.xyz/site/fwr/fwr.html">View fw/r</a>
+        </div>
       </div>
+      <figure class="split-media">
+        <img src="assets/jereme-hero-lidar-robotics.png" alt="">
+      </figure>
+    </section>
 
-      <div class="product-grid">
-        <a class="product" href="fwr/">
-          <div class="product-image fwr-visual"></div>
-          <div class="product-copy">
+    <section class="section wrap" id="ventures">
+      <div class="section-head">
+        <h2>Four names. One operating system.</h2>
+        <p>Different rooms for the same instinct: make the technical thing humane, make the beautiful thing accountable, and leave the room clearer than it was.</p>
+      </div>
+      <div class="venture-grid">
+        <a class="venture" href="https://jereme.xyz/site/fwr/fwr.html">
+          <span class="label">01 / fw/r</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
             <h3>Intelligent Systems</h3>
-            <p>AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.</p>
+            <p>AI strategy, robotics, LiDAR, evaluation harnesses, and technical systems for the field.<span class="venture-address">915 Broadway St, Vancouver, WA 98660</span></p>
           </div>
         </a>
-        <a class="product" href="pine/">
-          <div class="product-image pine-visual"></div>
-          <div class="product-copy">
+        <a class="venture" href="https://jereme.xyz/site/pine/pine.html">
+          <span class="label">02 / pine</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
             <h3>Local Roots</h3>
-            <p>A PNW coffee haus built around light, pace, seating, sound, and return visits.</p>
+            <p>A Pacific Northwest coffee haus shaped around hospitality, pace, light, sound, seating, and return.</p>
           </div>
         </a>
-        <a class="product" href="nrthrn/">
-          <div class="product-image nrthrn-visual"></div>
-          <div class="product-copy">
+        <a class="venture" href="https://jereme.xyz/site/nrthrn/nrthrn.html">
+          <span class="label">03 / nrthrn</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
             <h3>Designed Objects</h3>
-            <p>Objects with real materials, real weight, and a reason for every millimeter.</p>
+            <p>Industrial and consumer products with real materials, real weight, and a reason for every millimeter.</p>
           </div>
         </a>
-        <a class="product" href="drift/">
-          <div class="product-image drift-visual"></div>
-          <div class="product-copy">
+        <a class="venture" href="https://jereme.xyz/site/drift/drift.html">
+          <span class="label">04 / drift</span>
+          <div class="venture-visual"><div class="matrix" aria-hidden="true"></div></div>
+          <div>
             <h3>Coastal Rituals</h3>
-            <p>Coastal rooms and rituals with slower mornings, sharper details, and fewer distractions.</p>
+            <p>A coastal hospitality concept for slower mornings, weather-aware rooms, careful coffee, and people who notice.<span class="venture-address">915 Broadway St, Vancouver, WA 98660</span></p>
           </div>
         </a>
       </div>
     </section>
 
-    <section class="quote" aria-label="Founder note">
-      <p>"Make the technical thing humane, make the beautiful thing accountable, and leave the room clearer than it was."</p>
+    <section class="section wrap" id="method">
+      <div class="work-list">
+        <div>
+          <span class="label">Method / Not a framework, relax</span>
+          <h2>Turn the fog into a buildable map.</h2>
+          <p class="large-copy" style="margin-top:24px;">The job is to bring enough clarity, taste, technical judgment, and operator pressure to make the next move obvious.</p>
+        </div>
+        <ul class="list">
+          <li><span class="label">01</span><div><strong>Find the real problem.</strong><p>Separate the actual system from the deck, the meeting, the vibe, and the wishful thinking.</p></div></li>
+          <li><span class="label">02</span><div><strong>Make behavior measurable.</strong><p>Define what should happen, what can break, what needs evidence, and how the work earns trust.</p></div></li>
+          <li><span class="label">03</span><div><strong>Shape the thing.</strong><p>Turn strategy into prototypes, operating logic, product direction, technical narrative, or the first version worth testing.</p></div></li>
+          <li><span class="label">04</span><div><strong>Keep the room honest.</strong><p>Clear language. Good taste. No fake certainty. No decorative complexity. No pretending the emperor is dressed.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <p>Make the technical thing humane. Make the beautiful thing accountable.</p>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <h2>Built for people trying to ship the hard thing.</h2>
+        <p>Founders, teams, operators, organizations, and builders who have a real problem, a strange idea, a technical knot, or a useful thing that deserves better than where it is stuck.</p>
+      </div>
+      <div class="signal-grid">
+        <article class="signal"><span class="label">Founder Advisory</span><strong>Product direction, systems thinking, technical narrative, and operator judgment.</strong></article>
+        <article class="signal"><span class="label">Technical Consulting</span><strong>AI, robotics, LiDAR, sensing, evaluation, and build-path decisions.</strong></article>
+        <article class="signal"><span class="label">Experimental Builds</span><strong>Proofs of concept, harnesses, prototypes, and useful weird things with a point.</strong></article>
+        <article class="signal"><span class="label">Creative Direction</span><strong>Brand, rooms, objects, editorial systems, and the feeling of the work.</strong></article>
+        <article class="signal"><span class="label">Product Systems</span><strong>The logic underneath software, hardware, services, teams, spaces, and rituals.</strong></article>
+      </div>
+    </section>
+
+    <section class="final wrap" id="contact">
+      <div class="final-panel">
+        <div>
+          <span class="label">Signal / Open channel</span>
+          <h2>Bring me the fuzzy thing.</h2>
+          <p>If you are holding a technical idea, product mess, robotics question, AI strategy problem, room concept, object sketch, or future-facing system that needs to become clear and buildable, that is the work.</p>
+        </div>
+        <div class="contact-stack">
+          <a class="button dark" href="mailto:jeremedotxyz@gmail.com?subject=Ping%20Me">Ping Me</a>
+          <a class="button secondary" href="about">About Me</a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <p>This is where the work stays within reach. Drawn to useful ideas, rooms worth staying in, and people worth listening to.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Work</h4>
-          <a href="fwr/">fw/r</a>
-          <a href="pine/">pine</a>
-          <a href="nrthrn/">nrthrn</a>
-          <a href="drift/">drift</a>
-        </div>
-        <div class="footer-col">
-          <h4>Social</h4>
-          <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-          <a href="https://x.com/jeremedotxyz">Twitter</a>
-          <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-          <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
-          <a href="https://github.com/jeremedotxyz">GitHub</a>
-          <a href="https://substack.com/@jeremedotxyz">Substack</a>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="mailto:loveletters@jereme.xyz?subject=Hello%20from%20jereme.xyz">Contact</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-          <span>915 Broadway St, Vancouver, WA 98660</span>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 jereme.xyz</span>
-        <span>Useful things. Real edges. Good rooms.</span>
-      </div>
+  <footer class="wrap">
+    <div>
+      <strong>jereme.xyz</strong><br>
+      <span>915 Broadway St, Vancouver, WA 98660</span>
+    </div>
+    <div class="footer-socials" aria-label="Social links">
+      <a href="https://instagram.com/jeremedotxyz" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm5-2.45a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg>
+      </a>
+      <a href="https://www.threads.com/@jeremedotxyz" aria-label="Threads">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 2C6.62 2 3 5.74 3 11.52v.03C3 17.38 6.61 22 12.28 22c5.02 0 8.37-3.12 8.37-7.4 0-3.73-2.34-5.97-6.18-6.18-.33-.02-.65-.03-.97-.02-1.93.04-3.33.93-4.09 2.28l1.87.94c.4-.7 1.13-1.18 2.23-1.21.3-.01.61 0 .91.05 2.47.29 4.1 1.64 4.1 4.14 0 3.12-2.46 5.32-6.24 5.32-4.43 0-7.15-3.6-7.15-8.37v-.03C5.13 6.91 7.9 4.04 12.2 4.04c3.07 0 5.1 1.36 6.27 3.55l1.87-.95C18.86 3.77 16.06 2 12.2 2Zm.17 9.67c-2.75 0-4.53 1.32-4.53 3.35 0 1.96 1.61 3.26 4.02 3.26 2.78 0 4.43-1.54 4.43-4.05v-.46h-2.07v.38c0 1.36-.79 2.17-2.28 2.17-1.19 0-1.98-.52-1.98-1.36 0-.89.91-1.45 2.41-1.45h1.95v-1.84h-1.95Z"/></svg>
+      </a>
+      <a href="https://x.com/jeremedotxyz" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2.5h3.05l-6.66 7.61L23.12 21.5h-6.13l-4.8-6.27-5.49 6.27H3.64l7.12-8.14L3.25 2.5h6.29l4.34 5.74L18.9 2.5Zm-1.07 17h1.69L8.62 4.39H6.8L17.83 19.5Z"/></svg>
+      </a>
+      <a href="https://github.com/jeremedotxyz" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.57 9.57 0 0 1 12 7c.85 0 1.7.11 2.5.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.59c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+      </a>
+      <a href="https://substack.com/@jeremedotxyz" aria-label="Substack">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v2.6H4V3Zm0 4.4h16V10H4V7.4Zm0 4.4h16V21l-8-4.45L4 21v-9.2Z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@jeremedotxyz" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.58 7.18a2.75 2.75 0 0 0-1.94-1.95C17.93 4.78 12 4.78 12 4.78s-5.93 0-7.64.45a2.75 2.75 0 0 0-1.94 1.95A28.65 28.65 0 0 0 2 12a28.65 28.65 0 0 0 .42 4.82 2.75 2.75 0 0 0 1.94 1.95c1.71.45 7.64.45 7.64.45s5.93 0 7.64-.45a2.75 2.75 0 0 0 1.94-1.95A28.65 28.65 0 0 0 22 12a28.65 28.65 0 0 0-.42-4.82ZM10 15.2V8.8l5.33 3.2L10 15.2Z"/></svg>
+      </a>
+      <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.59 14.42a.72.72 0 0 1-.99.24c-2.72-1.66-6.14-2.04-10.17-1.12a.72.72 0 1 1-.32-1.4c4.41-1 8.19-.56 11.24 1.3.34.21.45.65.24.98Zm1.22-2.72a.9.9 0 0 1-1.24.3c-3.11-1.91-7.85-2.47-11.53-1.35a.9.9 0 1 1-.52-1.72c4.2-1.27 9.42-.65 12.99 1.54.43.26.56.81.3 1.23Zm.1-2.83C14.18 8.65 8.02 8.45 4.46 9.52a1.08 1.08 0 0 1-.62-2.07c4.09-1.23 10.89-1 15.17 1.54a1.08 1.08 0 0 1-1.1 1.88Z"/></svg>
+      </a>
     </div>
   </footer>
+
+  <script>
+    document.querySelectorAll(".matrix").forEach((matrix) => {
+      for (let i = 0; i < 96; i += 1) {
+        matrix.appendChild(document.createElement("span"));
+      }
+    });
+  </script>
 </body>
 </html>
