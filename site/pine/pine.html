@@ -6,296 +6,797 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NTH4464X6R');
+    gtag("js", new Date());
+    gtag("config", "G-NTH4464X6R");
   </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ebebeb">
-
-  <title>pine - jereme.xyz</title>
-  <meta name="description" content="pine: a Pacific Northwest coffee haus built for lingering, laptop days, and the quietly cool.">
-
+  <meta name="theme-color" content="#e9e6df">
+  <title>pine - Pacific Northwest Coffee Haus</title>
+  <meta name="description" content="pine is a Pacific Northwest coffee haus concept shaped around hospitality, pace, light, seating, sound, snacks, laptops, and the daily ritual of return.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --paper: #ebebeb;
-      --ink: #202020;
-      --orange: #ff611a;
-      --green: #16a34a; 
-      --charcoal: #1f1f22;
-      --soft: rgba(32, 32, 32, .62);
-      --line: rgba(32, 32, 32, .14);
-      --white: #f7f7f5;
-      --mono: "Fragment Mono", monospace;
-      --sans: "Manrope", sans-serif;
-    }
+:root {
+  --paper: #e9e6df;
+  --ink: #191817;
+  --soft: rgba(25, 24, 23, .68);
+  --quiet: rgba(25, 24, 23, .46);
+  --line: rgba(25, 24, 23, .14);
+  --panel: rgba(247, 245, 239, .74);
+  --white: #f7f5ef;
+  --black: #11100f;
+  --orange: #ff611a;
+  --accent: #2d5f8c;
+  --accent-soft: rgba(45, 95, 140, .14);
+  --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
 
-    * { box-sizing: border-box; }
-    html { background: var(--paper); scroll-behavior: smooth; }
-    body {
-      margin: 0; color: var(--ink); background: var(--paper);
-      font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden;
-    }
+* { box-sizing: border-box; }
 
-    /* Industrial Grain Overlay */
-    body::before {
-      content: ""; position: fixed; inset: 0;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.04; pointer-events: none; z-index: 999;
-    }
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
 
-    a { color: inherit; text-decoration: none; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 
-    .divider {
-      width: 100%; height: 1px; background: var(--line);
-      position: relative; margin: 60px 0;
-    }
-    .divider::before {
-      content: "COORD_REF // " attr(data-label);
-      position: absolute; top: -12px; left: 0;
-      font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
 
-    .site-wrap { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-    header {
-      padding: 32px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line);
-    }
-    .brand-dot { width: 48px; aspect-ratio: 1; border-radius: 50%; background: var(--orange); position: relative; box-shadow: 0 16px 34px rgba(255,97,26,.24); }
-    nav { display: flex; gap: 24px; font-size: 13px; font-weight: 800; color: var(--soft); }
-    nav a:hover { color: var(--ink); }
+::selection {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+}
 
-    /* HERO */
-    .hero { padding: 100px 0 80px; display: flex; flex-direction: column; }
-    .mega {
-      margin: 0 0 240px -2vw; color: #202020;
-      font-size: clamp(100px, 20vw, 360px); 
-      line-height: .74; 
-      letter-spacing: -.07em; /* Resolved e/n collision */
-      font-weight: 800;
-    }
-    .lead-text { font-size: clamp(24px, 3.5vw, 54px); line-height: 1.05; font-weight: 800; letter-spacing: -0.05em; margin: 0 0 24px; max-width: 820px; }
+.wrap {
+  width: min(1360px, calc(100% - 48px));
+  margin: 0 auto;
+}
 
-    /* PILLAR TILES */
-    .section-head { margin-bottom: 60px; }
-    .section-head h2 { font-size: clamp(40px, 6vw, 100px); line-height: 0.85; font-weight: 800; letter-spacing: -0.06em; margin: 0; }
-    .section-head p { font-size: 22px; color: var(--soft); font-weight: 700; margin: 24px 0 0; max-width: 780px; line-height: 1.2; }
-    
-    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .tile { min-height: 300px; display: grid; grid-template-rows: auto 1fr; padding: 24px; border-radius: 28px; background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); position: relative; }
-    .tile:nth-child(3) { background: var(--charcoal); color: #fff; }
-    .tile::before { content: ""; position: absolute; top: 24px; right: 24px; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
-    .tile small { font-family: var(--mono); font-size: 11px; opacity: .5; text-transform: uppercase; }
-    .tile h3 { font-size: 30px; font-weight: 800; margin: 20px 0 0; letter-spacing: -0.04em; }
-    .tile p { font-size: 15px; font-weight: 700; opacity: .7; margin: 12px 0 0; line-height: 1.4; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(25, 24, 23, .1);
+  background: rgba(233, 230, 223, .78);
+  backdrop-filter: blur(18px);
+}
 
-    /* OPERATING BRIEF CARD */
-    .brief-section { margin: 120px 0; }
-    
-    .brief-card {
-      background: var(--white);
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      padding: clamp(32px, 5vw, 64px);
-      box-shadow: 0 40px 80px rgba(0,0,0,0.03);
-      max-width: 1100px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      position: relative;
-    }
+.topbar-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  font-size: 13px;
+  font-weight: 800;
+}
 
-    .brief-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 32px;
-    }
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .brief-meta {
-      font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      color: var(--soft);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .brief-meta span b { color: var(--green); }
+.brand-dot {
+  width: 34px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
+}
 
-    .brief-leds {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 4px;
-      width: 140px;
-    }
-    .led {
-      width: 100%;
-      aspect-ratio: 1;
-      background: rgba(0,0,0,0.08);
-      border-radius: 1px;
-    }
-    @keyframes led-pulse {
-      0%, 100% { background: rgba(0,0,0,0.08); }
-      50% { background: var(--green); box-shadow: 0 0 8px var(--green); }
-    }
+nav,
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  flex-wrap: wrap;
+}
 
-    /* REFINED: Smaller, technical font size for long-form card copy */
-    .brief-text {
-      font-size: clamp(15px, 1.4vw, 18px);
-      line-height: 1.65;
-      font-weight: 700;
-      color: var(--ink);
-      max-width: 720px; /* Optimized line length for smaller font */
-    }
-    .brief-text p { margin-bottom: 1.6em; }
-    .brief-text p:last-child { margin-bottom: 0; }
+nav a,
+.footer-links a {
+  color: var(--soft);
+}
 
-    .status-note { 
-      display: block; 
-      margin-top: 32px; 
-      font-family: var(--mono); 
-      font-size: 11px; 
-      line-height: 1.6; 
-      text-transform: uppercase; 
-      letter-spacing: 0.05em; 
-      color: var(--soft); 
-      max-width: 600px; 
-      padding-left: 20px; 
-    }
-    .status-note span { color: var(--green); font-weight: 800; }
+nav a:hover,
+.footer-links a:hover,
+.nav-cta {
+  color: var(--ink);
+}
 
-    footer { 
-      padding: 80px 0 40px; 
-      border-top: 1px solid var(--line); 
-      display: flex; 
-      justify-content: space-between; 
-      font-weight: 800; 
-      font-size: 13px; 
-    }
+.hero {
+  min-height: calc(92svh - 72px);
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(320px, .72fr);
+  align-items: end;
+  gap: clamp(34px, 7vw, 96px);
+  padding: clamp(54px, 8vw, 112px) 0 clamp(42px, 7vw, 88px);
+}
 
-    @media (max-width: 1060px) { .tiles { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { 
-      .mega { margin-bottom: 100px; } 
-      .brief-card { padding: 32px 24px; }
-      footer { flex-direction: column; gap: 20px; }
-    }
+.eyebrow,
+.label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--quiet);
+}
+
+.eyebrow { margin: 0 0 18px; }
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: break-word;
+}
+
+h1 {
+  max-width: 8ch;
+  margin: 0;
+  font-size: clamp(68px, 12vw, 166px);
+  line-height: .82;
+  letter-spacing: -.07em;
+  font-weight: 800;
+}
+
+.lead {
+  max-width: 800px;
+  margin: 28px 0 0;
+  color: rgba(25, 24, 23, .82);
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -.035em;
+  font-weight: 760;
+}
+
+.note {
+  max-width: 660px;
+  margin: 18px 0 0;
+  color: var(--soft);
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.55;
+  font-weight: 620;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.button.primary {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.button.light {
+  background: #fff;
+  color: var(--ink);
+  border-color: #fff;
+}
+
+.hero-visual {
+  min-height: min(62svh, 680px);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(25, 24, 23, .13);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 74% 20%, color-mix(in srgb, var(--accent) 46%, transparent), transparent 31%),
+    linear-gradient(135deg, #0d0d0d, #22201d);
+  box-shadow: 0 34px 90px rgba(25, 24, 23, .18);
+  isolation: isolate;
+}
+
+.hero-visual img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .58;
+  filter: saturate(.86) contrast(1.05);
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 30%, rgba(0,0,0,.42)),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--accent) 28%, transparent) 1px, transparent 1px);
+  background-size: auto, 44px 44px, 44px 44px;
+}
+
+.hero-visual.room,
+.hero-visual.coast {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 96px),
+    linear-gradient(rgba(255,255,255,.1) 0 1px, transparent 1px 96px),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, #f4f0e7), #181716 62%, #070706);
+}
+
+.hero-visual.room::before,
+.hero-visual.coast::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(255,255,255,.18);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.22), transparent 42%),
+    linear-gradient(90deg, transparent 0 16%, rgba(255,255,255,.18) 16% 17%, transparent 17% 100%);
+  box-shadow:
+    0 36px 90px rgba(0,0,0,.34),
+    inset 0 0 0 1px rgba(0,0,0,.28);
+}
+
+.hero-visual.room::after {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.1), transparent 28%, rgba(0,0,0,.46)),
+    radial-gradient(ellipse at 30% 76%, rgba(255,255,255,.22), transparent 30%),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 36%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--accent) 24%, transparent) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+
+.hero-visual.coast {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.11) 0 1px, transparent 1px 88px),
+    linear-gradient(rgba(255,255,255,.08) 0 1px, transparent 1px 88px),
+    linear-gradient(150deg, #ede8dc 0%, color-mix(in srgb, var(--accent) 22%, #d7d0c4) 42%, #121111 100%);
+}
+
+.hero-visual.coast::before {
+  inset: 18% 10% 16%;
+  border-radius: 999px 999px 12px 12px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.4), transparent 34%),
+    repeating-linear-gradient(165deg, rgba(255,255,255,.22) 0 2px, transparent 2px 18px);
+  opacity: .72;
+}
+
+.hero-visual.coast::after {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.1), transparent 32%, rgba(0,0,0,.45)),
+    radial-gradient(ellipse at 70% 70%, rgba(255,255,255,.22), transparent 34%),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--accent) 26%, transparent) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+
+.visual-copy {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1;
+  color: #fff;
+}
+
+.visual-copy .label {
+  color: rgba(255,255,255,.56);
+}
+
+.visual-copy strong {
+  display: block;
+  max-width: 12ch;
+  margin-top: 12px;
+  font-size: clamp(34px, 4.8vw, 62px);
+  line-height: .88;
+  letter-spacing: -.055em;
+}
+
+.proof-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.proof-row div {
+  min-height: 120px;
+  padding: 18px;
+  background: rgba(247, 245, 239, .72);
+}
+
+.proof-row strong {
+  display: block;
+  margin-top: 14px;
+  font-size: clamp(17px, 1.55vw, 22px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.section {
+  padding: clamp(74px, 9vw, 132px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+  gap: clamp(32px, 7vw, 110px);
+  align-items: end;
+  margin-bottom: clamp(28px, 5vw, 60px);
+}
+
+h2 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(42px, 6.2vw, 100px);
+  line-height: .86;
+  letter-spacing: -.064em;
+  font-weight: 800;
+}
+
+.section-head p,
+.large-copy,
+.split-copy p,
+.brief p,
+.final-panel p {
+  margin: 0;
+  color: var(--soft);
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.22;
+  letter-spacing: -.02em;
+  font-weight: 650;
+}
+
+.card-grid,
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card,
+.doc-card {
+  min-height: 280px;
+  display: grid;
+  align-content: space-between;
+  gap: 26px;
+  padding: 24px;
+  border: 1px solid rgba(25, 24, 23, .1);
+  border-top: 5px solid var(--accent);
+  border-radius: 8px;
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+}
+
+.card:nth-child(3n),
+.doc-card:nth-child(2n) {
+  background: var(--ink);
+  color: #fff;
+}
+
+.card:nth-child(3n) .label,
+.card:nth-child(3n) p,
+.doc-card:nth-child(2n) .label,
+.doc-card:nth-child(2n) p {
+  color: rgba(255,255,255,.64);
+}
+
+.card h3,
+.doc-card h3 {
+  margin: 0;
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+.card p,
+.doc-card p {
+  margin: 18px 0 0;
+  color: var(--soft);
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(30px, 7vw, 90px);
+  align-items: center;
+}
+
+.split-copy h2 {
+  margin-top: 16px;
+}
+
+.split-copy p {
+  max-width: 680px;
+  margin-top: 24px;
+}
+
+.list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.list strong {
+  display: block;
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.list p {
+  max-width: 760px;
+  margin: 8px 0 0;
+  color: var(--soft);
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.brief {
+  max-width: 1120px;
+  display: grid;
+  gap: 34px;
+  padding: clamp(32px, 6vw, 66px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.brief .label,
+.brief p {
+  color: rgba(255,255,255,.68);
+}
+
+.brief h2 {
+  color: #fff;
+}
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+.brief-grid div {
+  min-height: 150px;
+  padding: 22px;
+  background: rgba(255,255,255,.045);
+}
+
+.brief-grid strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 22px;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.doc-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.doc-card {
+  min-height: 230px;
+}
+
+.doc-card a {
+  width: fit-content;
+}
+
+.quote-band {
+  padding: clamp(64px, 9vw, 118px) max(24px, calc((100vw - 1360px) / 2));
+  background: var(--accent);
+  color: #fff;
+}
+
+.quote-band p {
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(42px, 7.2vw, 112px);
+  line-height: .88;
+  letter-spacing: -.07em;
+  font-weight: 800;
+}
+
+.final-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 28px;
+  padding: clamp(32px, 6vw, 66px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.final-panel h2 {
+  margin: 14px 0 22px;
+}
+
+.final-panel p {
+  max-width: 780px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 28px 0 42px;
+  border-top: 1px solid var(--line);
+  color: var(--soft);
+  font-size: 13px;
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .section-head,
+  .split,
+  .final-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+  }
+
+  .proof-row,
+  .card-grid,
+  .doc-grid,
+  .brief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .wrap {
+    width: min(100% - 32px, 1360px);
+  }
+
+  .topbar {
+    position: relative;
+  }
+
+  .topbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  nav {
+    justify-content: flex-start;
+    gap: 12px 16px;
+  }
+
+  .brand-lockup span:not(.brand-dot) {
+    display: none;
+  }
+
+  h1 {
+    max-width: 7ch;
+    font-size: clamp(58px, 18vw, 84px);
+  }
+
+  h2 {
+    max-width: 310px;
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .lead,
+  .note,
+  .section-head p,
+  .large-copy,
+  .split-copy p,
+  .brief p,
+  .final-panel p {
+    max-width: 310px;
+    font-size: 19px;
+  }
+
+  .actions,
+  .button {
+    width: 100%;
+  }
+
+  .hero-visual {
+    min-height: 360px;
+  }
+
+  .proof-row {
+    width: min(100%, 310px);
+  }
+
+  .card,
+  .doc-card {
+    min-height: 250px;
+  }
+
+  .list li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .brief,
+  .final-panel {
+    padding: 30px 22px;
+  }
+
+  .quote-band p {
+    max-width: 330px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+  </style>
+  <style>
+    :root { --accent: #66724d; --accent-soft: rgba(102, 114, 77, .14); }
   </style>
 </head>
-
 <body>
-  <div class="site-wrap">
-    <header>
-      <a class="brand-dot" href="/" aria-label="Home"></a>
-      <nav>
-        <a href="/site/fwr/fwr.html">fw/r</a>
-        <a href="/site/nrthrn/nrthrn.html">nrthrn</a>
-        <a href="/site/drift/drift.html">drift</a>
-        <a href="/about/">about</a>
+  <header class="topbar">
+    <div class="topbar-inner wrap">
+      <a class="brand-lockup" href="jereme-landing.html" aria-label="Jereme Abernathy home"><span class="brand-dot"></span><span>Jereme Abernathy</span></a>
+      <nav aria-label="Main">
+        <a href="fwr.html">fw/r</a>
+        <a class="nav-cta" href="pine.html">pine</a>
+        <a href="nrthrn.html">nrthrn</a>
+        <a href="drift.html">drift</a>
+        <a href="about.html">about</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <h1 class="mega">pine.</h1>
-        <p class="lead-text">A coffee haus shaped around hospitality, pace, light, seating, sound, and the daily ritual of returning.</p>
-      </section>
-
-      <div class="divider" data-label="SPEC // ROOM_LOGIC"></div>
-
-      <!-- PILLARS -->
-      <section class="section-head">
-        <h2>A room with a<br>reason to exist.</h2>
-        <p>The coffee matters. So does the music, the counter height, the chair that lets someone stay, and the way the room resets itself.</p>
-      </section>
-
-      <div class="tiles">
-        <article class="tile">
-          <small>Pillar 01</small>
-          <div>
-            <h3>Hospitality</h3>
-            <p>Warmth without performance, attention without hovering, and a room that lets people arrive exactly as they are.</p>
-          </div>
-        </article>
-        <article class="tile">
-          <small>Pillar 02</small>
-          <div>
-            <h3>Ritual</h3>
-            <p>Daily coffee as a repeatable act: fast enough to trust, slow enough to actually mean something.</p>
-          </div>
-        </article>
-        <article class="tile">
-          <small>Pillar 03</small>
-          <div>
-            <h3>Design</h3>
-            <p>Material, light, sound, seating, service flow, and the small decisions that make a place durable.</p>
-          </div>
-        </article>
-      </div>
-
-      <div class="divider" data-label="PROTOCOL // BRIEF_ACTIVE"></div>
-
-      <!-- OPERATING BRIEF CARD -->
-      <section class="brief-section">
-        <div class="brief-card">
-          <div class="brief-header">
-            <div class="brief-meta">
-              <span>Subject: <b>Operating Brief</b></span>
-              <span>Ref: <b>PERMIT_PENDING_BUT_MAKE_IT_LORE</b></span>
-            </div>
-            <!-- Pulsing LED Status Grid -->
-            <div class="brief-leds">
-              <script>
-                for(let i=0; i<24; i++) {
-                  const delay = (Math.random() * 5).toFixed(1);
-                  const dur = (3 + Math.random() * 3).toFixed(1);
-                  document.write(`<div class="led" style="animation: led-pulse ${dur}s infinite ${delay}s ease-in-out"></div>`);
-                }
-              </script>
-            </div>
-          </div>
-          
-          <div class="brief-text">
-            <p>At pine, we had a radical thought: what if we didn’t passive-aggressively tap our watches while you dared to enjoy a second hour of productivity? Wild, we know.</p>
-
-            <p>So we cherry-picked chairs comfortable enough to make you question whether you accidentally moved in. Our Wi-Fi is fast enough to make buffering feel like a rumor from the old country. And when that first cup is empty? Surprise — round two’s on us.</p>
-
-            <p>Not because we’re saints, but because your extended stay means we’re doing the coffee shop thing right.</p>
-
-            <p>pine is built for lingering. For laptop days. For accidental three-hour conversations. For reading one chapter and somehow staying until the light changes. We’ve got hot coffee, local snacks, enough sarcasm to keep the room honest, and a vibe that says, yes, you can absolutely be the main character here.</p>
-
-            <p>And sure, pine has a way of attracting the in-crowd. The interesting ones. The quietly cool ones. The people who somehow make sitting in a chair look intentional.</p>
-
-            <p>We’re not saying your ex will hear you’re thriving here. But we’re also not in charge of folklore.</p>
-
-            <p>Come for the coffee. Stay for the snacks. Camp out in the chair. Finish the thing. Start the thing. Pretend to work while actually staring dramatically out the window.</p>
-
-            <p>In short: we’re pine, and we fully support your plot twist.</p>
-          </div>
-        </div>
-
-        <div class="status-note">
-          <span>Schedule_update:</span> Opening soon. Probably before the aliens come back, but we’ve been wrong about timelines before.
-        </div>
-      </section>
-    </main>
-
-    <footer style="margin-top: 100px;">
-      <div style="opacity: 0.5;">
-        <span>&copy; 2026 jereme.xyz</span>
-      </div>
+  <main>
+    <section class="hero wrap">
       <div>
-        <a href="/" style="margin-right: 20px;">Home</a>
-        <a href="/about/">About</a>
+        <p class="eyebrow">pine / Coffee / Hospitality / Return</p>
+        <h1>A room with a reason to stay.</h1>
+        <p class="lead">A Pacific Northwest coffee haus shaped around hospitality, pace, light, seating, sound, local snacks, laptop days, and the daily ritual of returning.</p>
+        <p class="note">pine is built for lingering without apology: fast enough for real life, warm enough for a second hour, and designed with enough intention that the room does some of the hosting.</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=pine%20Coffee%20Haus">Get in Touch</a>
+          <a class="button" href="#concept">Explore the Concept</a>
+        </div>
       </div>
-    </footer>
-  </div>
+      <figure class="hero-visual room">
+        <figcaption class="visual-copy"><span class="label">Room logic</span><strong>Light, seating, sound, return.</strong></figcaption>
+      </figure>
+    </section>
+
+    <section class="wrap">
+      <div class="proof-row" aria-label="pine focus">
+        <div><span class="label">01 / Room</span><strong>Comfortable enough to linger, intentional enough to feel designed.</strong></div>
+        <div><span class="label">02 / Coffee</span><strong>Careful daily coffee, repeatable quality, and no fragile ceremony.</strong></div>
+        <div><span class="label">03 / Work</span><strong>Laptop days, conversations, reading, meetings, and productive loitering.</strong></div>
+        <div><span class="label">04 / Return</span><strong>A place people remember because it makes the day easier to inhabit.</strong></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="concept">
+      <div class="section-head">
+        <h2>Hospitality without the theater.</h2>
+        <p>The best coffee rooms do not beg for attention. They make the small stuff feel handled: the chair, the outlet, the sound level, the line, the refill, the exit, the return.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card"><span class="label">Pillar 01</span><div><h3>Hospitality</h3><p>Warmth without performance, attention without hovering, and a room that lets people arrive exactly as they are.</p></div></article>
+        <article class="card"><span class="label">Pillar 02</span><div><h3>Ritual</h3><p>Daily coffee as a repeatable act: fast enough to trust, slow enough to actually mean something.</p></div></article>
+        <article class="card"><span class="label">Pillar 03</span><div><h3>Design</h3><p>Material, light, sound, seating, service flow, and the small decisions that make a place durable.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="split">
+        <div class="split-copy">
+          <span class="label">Why pine works</span>
+          <h2>The product is the room.</h2>
+          <p>The coffee matters. So does the playlist, the chair that lets someone stay, the counter height, the glare on the table, the staff rhythm, and the way the room resets after a rush.</p>
+        </div>
+        <ul class="list">
+          <li><span class="label">01</span><div><strong>Designed for the second hour.</strong><p>Most cafes tolerate lingering. pine treats it as the point: the chair, Wi-Fi, refill logic, snacks, and pace all support a longer stay.</p></div></li>
+          <li><span class="label">02</span><div><strong>Local without costume.</strong><p>Pacific Northwest roots, local snacks, grounded material choices, and a tone that feels warm rather than branded to death.</p></div></li>
+          <li><span class="label">03</span><div><strong>Useful to the day.</strong><p>Breakfast stop, laptop base, quiet meeting, accidental conversation, end-of-walk reset, or main-character window stare.</p></div></li>
+          <li><span class="label">04</span><div><strong>Memorable by restraint.</strong><p>Enough personality to be loved, enough discipline to avoid becoming a theme park for people with tote bags.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="brief">
+        <span class="label">Operating brief</span>
+        <h2>Built for lingering.</h2>
+        <p>At pine, the radical thought is simple: what if the room did not punish people for wanting to stay? The concept supports laptop days, local snacks, conversations that accidentally get good, and coffee that stays out of its own way.</p>
+        <div class="brief-grid">
+          <div><span class="label">Audience</span><strong>Neighbors, operators, readers, founders, students, remote workers, and quietly cool people doing normal things well.</strong></div>
+          <div><span class="label">Experience</span><strong>Warm, calm, slightly irreverent, useful, local, and confident without getting precious.</strong></div>
+          <div><span class="label">Design system</span><strong>Soft light, durable surfaces, good chairs, clear flow, proper sound, and small rituals worth repeating.</strong></div>
+          <div><span class="label">Status</span><strong>Opening soon. Probably before the aliens come back, but let us not get arrogant about timelines.</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band"><p>Come for the coffee. Stay because the room is doing its job.</p></section>
+
+    <section class="section wrap">
+      <div class="final-panel">
+        <div><span class="label">Signal / pine</span><h2>The door is not open yet. The idea is.</h2><p>For collaboration, location, partnership, press, or a note about the coffee shop you wish existed, send a clean signal.</p></div>
+        <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=pine%20Coffee%20Haus">Get in Touch</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div><strong>pine</strong><br><span>Pacific Northwest coffee haus for lingering, laptops, and return.</span></div>
+    <div class="footer-links"><a href="jereme-landing.html">home</a><a href="fwr.html">fw/r</a><a href="nrthrn.html">nrthrn</a><a href="drift.html">drift</a></div>
+  </footer>
 </body>
 </html>
