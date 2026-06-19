@@ -12,621 +12,706 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#e9e6df">
-  <title>About Jereme Abernathy - Useful Systems, Rooms, Objects, and Places</title>
-  <meta name="description" content="A longer letter from Jereme Abernathy about AI, robotics, LiDAR, product design, coffee, objects, coastal hospitality, taste, and useful things.">
+  <title>drift - Coastal Coffee and Hospitality Concept</title>
+  <meta name="description" content="drift is a coastal coffee and hospitality concept built around slower mornings, salt air, careful coffee, weather-aware rooms, and staying a little longer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --paper: #e9e6df;
-      --ink: #191817;
-      --soft: rgba(25, 24, 23, .68);
-      --quiet: rgba(25, 24, 23, .46);
-      --line: rgba(25, 24, 23, .14);
-      --white: #f7f5ef;
-      --black: #11100f;
-      --orange: #ff611a;
-      --blue: #2d5f8c;
-      --green: #66724d;
-      --brown: #9b5a2d;
-      --red: #b9342e;
-      --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      background: var(--paper);
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      pointer-events: none;
-      opacity: .035;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; width: 100%; height: auto; }
-    figure { margin: 0; }
-
-    .wrap {
-      width: min(1360px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid rgba(25, 24, 23, .1);
-      background: rgba(233, 230, 223, .78);
-      backdrop-filter: blur(18px);
-    }
-
-    .topbar-inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .brand-lockup {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-dot {
-      width: 34px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
-    }
-
-    nav,
-    .footer-links,
-    .socials {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    nav a,
-    .footer-links a,
-    .socials a {
-      color: var(--soft);
-    }
-
-    nav a:hover,
-    .footer-links a:hover,
-    .socials a:hover,
-    .nav-cta {
-      color: var(--ink);
-    }
-
-    .hero {
-      min-height: calc(84svh - 72px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
-      align-items: center;
-      gap: clamp(42px, 8vw, 120px);
-      padding: clamp(70px, 10vw, 148px) 0 clamp(46px, 8vw, 96px);
-    }
-
-    .eyebrow,
-    .label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--quiet);
-    }
-
-    .eyebrow { margin: 0 0 18px; }
-
-    h1,
-    h2,
-    h3,
-    p {
-      overflow-wrap: break-word;
-    }
-
-    h1 {
-      max-width: 8ch;
-      margin: 0;
-      font-size: clamp(70px, 13.6vw, 188px);
-      line-height: .79;
-      letter-spacing: -.08em;
-      font-weight: 800;
-    }
-
-    .lead {
-      max-width: 820px;
-      margin: 30px 0 0;
-      color: rgba(25, 24, 23, .82);
-      font-size: clamp(22px, 3vw, 38px);
-      line-height: 1.1;
-      letter-spacing: -.035em;
-      font-weight: 760;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 46px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      border: 1px solid currentColor;
-      border-radius: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .button.primary {
-      background: var(--ink);
-      color: #fff;
-      border-color: var(--ink);
-    }
-
-    .robot-panel {
-      position: relative;
-      min-height: 520px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(45,95,140,.14) 1px, transparent 1px),
-        linear-gradient(rgba(45,95,140,.1) 1px, transparent 1px),
-        linear-gradient(145deg, #f5f1e7, #1b1b1b);
-      background-size: 42px 42px, 42px 42px, auto;
-      box-shadow: 0 34px 90px rgba(25, 24, 23, .18);
-    }
-
-    .robot-panel img {
-      width: min(78%, 330px);
-      filter: drop-shadow(0 34px 70px rgba(0,0,0,.24));
-    }
-
-    .robot-panel::after {
-      content: "ABOUT / SIGNAL";
-      position: absolute;
-      left: 22px;
-      bottom: 22px;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.56);
-    }
-
-    .proof-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-
-    .proof-row a,
-    .proof-row div {
-      min-width: 0;
-      min-height: 140px;
-      padding: 18px;
-      background: rgba(247, 245, 239, .72);
-    }
-
-    .proof-row strong {
-      display: block;
-      margin-top: 14px;
-      font-size: clamp(17px, 1.55vw, 22px);
-      line-height: 1.08;
-      letter-spacing: -.035em;
-      overflow-wrap: anywhere;
-    }
-
-    .section {
-      padding: clamp(76px, 9vw, 132px) 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
-      gap: clamp(32px, 7vw, 110px);
-      align-items: end;
-      margin-bottom: clamp(28px, 5vw, 60px);
-    }
-
-    h2 {
-      max-width: 11ch;
-      margin: 0;
-      font-size: clamp(42px, 6.2vw, 100px);
-      line-height: .86;
-      letter-spacing: -.064em;
-      font-weight: 800;
-    }
-
-    .section-head p,
-    .large-copy,
-    .final-panel p {
-      margin: 0;
-      color: var(--soft);
-      font-size: clamp(18px, 2vw, 25px);
-      line-height: 1.22;
-      letter-spacing: -.02em;
-      font-weight: 650;
-    }
-
-    .venture-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .venture {
-      min-height: 360px;
-      display: grid;
-      align-content: space-between;
-      gap: 24px;
-      padding: 24px;
-      border: 1px solid rgba(25, 24, 23, .1);
-      border-top: 5px solid var(--blue);
-      border-radius: 8px;
-      background: rgba(247, 245, 239, .74);
-      backdrop-filter: blur(18px);
-    }
-
-    .venture:nth-child(2) { border-top-color: var(--green); }
-    .venture:nth-child(3) { border-top-color: var(--brown); }
-    .venture:nth-child(4) {
-      border-top-color: var(--red);
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .venture:nth-child(4) .label,
-    .venture:nth-child(4) p {
-      color: rgba(255,255,255,.64);
-    }
-
-    .venture h3 {
-      margin: 0;
-      font-size: clamp(27px, 3vw, 38px);
-      line-height: .95;
-      letter-spacing: -.04em;
-    }
-
-    .venture p {
-      margin: 18px 0 0;
-      color: var(--soft);
-      font-size: 15px;
-      line-height: 1.45;
-      font-weight: 700;
-    }
-
-    .letter-shell {
-      display: grid;
-      grid-template-columns: minmax(220px, 360px) minmax(0, 820px);
-      gap: clamp(34px, 8vw, 110px);
-      align-items: start;
-    }
-
-    .sticky-title {
-      position: sticky;
-      top: 116px;
-    }
-
-    .sticky-title h2 {
-      max-width: 8ch;
-    }
-
-    .sticky-title p {
-      margin: 22px 0 0;
-      color: var(--soft);
-      font-size: 16px;
-      line-height: 1.5;
-      font-weight: 650;
-    }
-
-    .prose {
-      max-width: 820px;
-      color: rgba(25, 24, 23, .88);
-      font-size: clamp(18px, 1.35vw, 22px);
-      line-height: 1.64;
-      font-weight: 560;
-    }
-
-    .prose p {
-      margin: 0 0 1.55em;
-    }
-
-    .prose strong {
-      color: var(--ink);
-      font-weight: 850;
-    }
-
-    .prose em {
-      color: var(--ink);
-    }
-
-    .pull {
-      position: relative;
-      margin: clamp(54px, 8vw, 88px) 0;
-      padding: clamp(32px, 5vw, 58px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .pull .label {
-      color: rgba(255,255,255,.56);
-    }
-
-    .pull p {
-      margin: 16px 0 0;
-      color: #fff;
-      font-size: clamp(32px, 4.5vw, 64px);
-      line-height: .9;
-      letter-spacing: -.06em;
-      font-weight: 800;
-    }
-
-    .signoff {
-      margin-top: clamp(64px, 8vw, 100px);
-      padding-top: 34px;
-      border-top: 1px solid var(--line);
-    }
-
-    .signoff-line {
-      margin: 0 0 24px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: .96;
-      letter-spacing: -.045em;
-      font-weight: 800;
-    }
-
-    .signature-mark {
-      width: fit-content;
-      margin: 0 0 18px;
-      font-size: clamp(38px, 6vw, 68px);
-      line-height: 1;
-      letter-spacing: -.07em;
-      font-weight: 800;
-    }
-
-    .stage-note {
-      display: block;
-      max-width: 620px;
-      margin-top: 10px;
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 1.5;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      color: var(--quiet);
-    }
-
-    .quote-band {
-      padding: clamp(64px, 9vw, 118px) max(24px, calc((100vw - 1360px) / 2));
-      background: var(--orange);
-      color: #fff;
-    }
-
-    .quote-band p {
-      max-width: 1040px;
-      margin: 0;
-      font-size: clamp(42px, 7.2vw, 112px);
-      line-height: .88;
-      letter-spacing: -.07em;
-      font-weight: 800;
-    }
-
-    .final-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-      gap: 28px;
-      padding: clamp(32px, 6vw, 66px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
-    }
-
-    .final-panel h2 {
-      margin: 14px 0 22px;
-    }
-
-    .final-panel p {
-      max-width: 780px;
-    }
-
-    footer {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px;
-      align-items: start;
-      padding: 28px 0 42px;
-      border-top: 1px solid var(--line);
-      color: var(--soft);
-      font-size: 13px;
-    }
-
-    .footer-meta {
-      display: grid;
-      gap: 5px;
-    }
-
-    .footer-stack {
-      display: grid;
-      justify-items: end;
-      gap: 14px;
-    }
-
-    @media (max-width: 1040px) {
-      .hero,
-      .section-head,
-      .letter-shell,
-      .final-panel,
-      footer {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .robot-panel {
-        min-height: 420px;
-        max-width: 520px;
-      }
-
-      .sticky-title {
-        position: static;
-      }
-
-      .venture-grid,
-      .proof-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .footer-stack {
-        justify-items: start;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .wrap {
-        width: min(1360px, calc(100% - 32px));
-      }
-
-      .topbar {
-        position: relative;
-      }
-
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 16px;
-        padding: 20px 0;
-      }
-
-      nav {
-        justify-content: flex-start;
-        gap: 12px 16px;
-      }
-
-      .brand-lockup span:not(.brand-dot) {
-        display: none;
-      }
-
-      h1 {
-        max-width: 7ch;
-        font-size: clamp(58px, 18vw, 86px);
-      }
-
-      h2 {
-        max-width: 310px;
-        font-size: clamp(42px, 13vw, 58px);
-      }
-
-      .lead,
-      .section-head p,
-      .large-copy,
-      .final-panel p {
-        max-width: 310px;
-        font-size: 19px;
-      }
-
-      .actions,
-      .button {
-        width: 100%;
-      }
-
-      .proof-row,
-      .venture-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .proof-row strong {
-        max-width: 280px;
-        font-size: 17px;
-      }
-
-      .robot-panel {
-        min-height: 340px;
-      }
-
-      .prose {
-        font-size: 17px;
-        line-height: 1.62;
-      }
-
-      .pull,
-      .final-panel {
-        padding: 30px 22px;
-      }
-
-      .quote-band p {
-        max-width: 330px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        scroll-behavior: auto !important;
-      }
-    }
+:root {
+  --paper: #e9e6df;
+  --ink: #191817;
+  --soft: rgba(25, 24, 23, .68);
+  --quiet: rgba(25, 24, 23, .46);
+  --line: rgba(25, 24, 23, .14);
+  --panel: rgba(247, 245, 239, .74);
+  --white: #f7f5ef;
+  --black: #11100f;
+  --orange: #ff611a;
+  --accent: #2d5f8c;
+  --accent-soft: rgba(45, 95, 140, .14);
+  --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.wrap {
+  width: min(1360px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(25, 24, 23, .1);
+  background: rgba(233, 230, 223, .78);
+  backdrop-filter: blur(18px);
+}
+
+.topbar-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-dot {
+  width: 34px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
+}
+
+nav,
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+nav a,
+.footer-links a {
+  color: var(--soft);
+}
+
+nav a:hover,
+.footer-links a:hover,
+.nav-cta {
+  color: var(--ink);
+}
+
+.hero {
+  min-height: calc(92svh - 72px);
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(320px, .72fr);
+  align-items: end;
+  gap: clamp(34px, 7vw, 96px);
+  padding: clamp(54px, 8vw, 112px) 0 clamp(42px, 7vw, 88px);
+}
+
+.eyebrow,
+.label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--quiet);
+}
+
+.eyebrow { margin: 0 0 18px; }
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: break-word;
+}
+
+h1 {
+  max-width: 8ch;
+  margin: 0;
+  font-size: clamp(68px, 12vw, 166px);
+  line-height: .82;
+  letter-spacing: -.07em;
+  font-weight: 800;
+}
+
+.lead {
+  max-width: 800px;
+  margin: 28px 0 0;
+  color: rgba(25, 24, 23, .82);
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -.035em;
+  font-weight: 760;
+}
+
+.note {
+  max-width: 660px;
+  margin: 18px 0 0;
+  color: var(--soft);
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.55;
+  font-weight: 620;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.button.primary {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.button.light {
+  background: #fff;
+  color: var(--ink);
+  border-color: #fff;
+}
+
+.hero-visual {
+  min-height: min(62svh, 680px);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(25, 24, 23, .13);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 74% 20%, color-mix(in srgb, var(--accent) 46%, transparent), transparent 31%),
+    linear-gradient(135deg, #0d0d0d, #22201d);
+  box-shadow: 0 34px 90px rgba(25, 24, 23, .18);
+  isolation: isolate;
+}
+
+.hero-visual img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  opacity: .58;
+  filter: saturate(.86) contrast(1.05);
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 30%, rgba(0,0,0,.42)),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--accent) 28%, transparent) 1px, transparent 1px);
+  background-size: auto, 44px 44px, 44px 44px;
+}
+
+.hero-visual.room,
+.hero-visual.coast {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.12) 0 1px, transparent 1px 96px),
+    linear-gradient(rgba(255,255,255,.1) 0 1px, transparent 1px 96px),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, #f4f0e7), #181716 62%, #070706);
+}
+
+.hero-visual.room::before,
+.hero-visual.coast::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(255,255,255,.18);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.22), transparent 42%),
+    linear-gradient(90deg, transparent 0 16%, rgba(255,255,255,.18) 16% 17%, transparent 17% 100%);
+  box-shadow:
+    0 36px 90px rgba(0,0,0,.34),
+    inset 0 0 0 1px rgba(0,0,0,.28);
+}
+
+.hero-visual.room::after {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.1), transparent 28%, rgba(0,0,0,.46)),
+    radial-gradient(ellipse at 30% 76%, rgba(255,255,255,.22), transparent 30%),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 36%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--accent) 24%, transparent) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+
+.hero-visual.coast {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.11) 0 1px, transparent 1px 88px),
+    linear-gradient(rgba(255,255,255,.08) 0 1px, transparent 1px 88px),
+    linear-gradient(150deg, #ede8dc 0%, color-mix(in srgb, var(--accent) 22%, #d7d0c4) 42%, #121111 100%);
+}
+
+.hero-visual.coast::before {
+  inset: 18% 10% 16%;
+  border-radius: 999px 999px 12px 12px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.4), transparent 34%),
+    repeating-linear-gradient(165deg, rgba(255,255,255,.22) 0 2px, transparent 2px 18px);
+  opacity: .72;
+}
+
+.hero-visual.coast::after {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.1), transparent 32%, rgba(0,0,0,.45)),
+    radial-gradient(ellipse at 70% 70%, rgba(255,255,255,.22), transparent 34%),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 38%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--accent) 26%, transparent) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+
+.visual-copy {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1;
+  color: #fff;
+}
+
+.visual-copy .label {
+  color: rgba(255,255,255,.56);
+}
+
+.visual-copy strong {
+  display: block;
+  max-width: 12ch;
+  margin-top: 12px;
+  font-size: clamp(34px, 4.8vw, 62px);
+  line-height: .88;
+  letter-spacing: -.055em;
+}
+
+.proof-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.proof-row div {
+  min-height: 120px;
+  padding: 18px;
+  background: rgba(247, 245, 239, .72);
+}
+
+.proof-row strong {
+  display: block;
+  margin-top: 14px;
+  font-size: clamp(17px, 1.55vw, 22px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.section {
+  padding: clamp(74px, 9vw, 132px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+  gap: clamp(32px, 7vw, 110px);
+  align-items: end;
+  margin-bottom: clamp(28px, 5vw, 60px);
+}
+
+h2 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(42px, 6.2vw, 100px);
+  line-height: .86;
+  letter-spacing: -.064em;
+  font-weight: 800;
+}
+
+.section-head p,
+.large-copy,
+.split-copy p,
+.brief p,
+.final-panel p {
+  margin: 0;
+  color: var(--soft);
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.22;
+  letter-spacing: -.02em;
+  font-weight: 650;
+}
+
+.card-grid,
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card,
+.doc-card {
+  min-height: 280px;
+  display: grid;
+  align-content: space-between;
+  gap: 26px;
+  padding: 24px;
+  border: 1px solid rgba(25, 24, 23, .1);
+  border-top: 5px solid var(--accent);
+  border-radius: 8px;
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+}
+
+.card:nth-child(3n),
+.doc-card:nth-child(2n) {
+  background: var(--ink);
+  color: #fff;
+}
+
+.card:nth-child(3n) .label,
+.card:nth-child(3n) p,
+.doc-card:nth-child(2n) .label,
+.doc-card:nth-child(2n) p {
+  color: rgba(255,255,255,.64);
+}
+
+.card h3,
+.doc-card h3 {
+  margin: 0;
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+.card p,
+.doc-card p {
+  margin: 18px 0 0;
+  color: var(--soft);
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(30px, 7vw, 90px);
+  align-items: center;
+}
+
+.split-copy h2 {
+  margin-top: 16px;
+}
+
+.split-copy p {
+  max-width: 680px;
+  margin-top: 24px;
+}
+
+.list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.list strong {
+  display: block;
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.list p {
+  max-width: 760px;
+  margin: 8px 0 0;
+  color: var(--soft);
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.brief {
+  max-width: 1120px;
+  display: grid;
+  gap: 34px;
+  padding: clamp(32px, 6vw, 66px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.brief .label,
+.brief p {
+  color: rgba(255,255,255,.68);
+}
+
+.brief h2 {
+  color: #fff;
+}
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+.brief-grid div {
+  min-height: 150px;
+  padding: 22px;
+  background: rgba(255,255,255,.045);
+}
+
+.brief-grid strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 22px;
+  line-height: 1.08;
+  letter-spacing: -.03em;
+}
+
+.doc-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.doc-card {
+  min-height: 230px;
+}
+
+.doc-card a {
+  width: fit-content;
+}
+
+.quote-band {
+  padding: clamp(64px, 9vw, 118px) max(24px, calc((100vw - 1360px) / 2));
+  background: var(--accent);
+  color: #fff;
+}
+
+.quote-band p {
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(42px, 7.2vw, 112px);
+  line-height: .88;
+  letter-spacing: -.07em;
+  font-weight: 800;
+}
+
+.final-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 28px;
+  padding: clamp(32px, 6vw, 66px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.final-panel h2 {
+  margin: 14px 0 22px;
+}
+
+.final-panel p {
+  max-width: 780px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 28px 0 42px;
+  border-top: 1px solid var(--line);
+  color: var(--soft);
+  font-size: 13px;
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .section-head,
+  .split,
+  .final-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+  }
+
+  .proof-row,
+  .card-grid,
+  .doc-grid,
+  .brief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .wrap {
+    width: min(100% - 32px, 1360px);
+  }
+
+  .topbar {
+    position: relative;
+  }
+
+  .topbar-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  nav {
+    justify-content: flex-start;
+    gap: 12px 16px;
+  }
+
+  .brand-lockup span:not(.brand-dot) {
+    display: none;
+  }
+
+  h1 {
+    max-width: 7ch;
+    font-size: clamp(58px, 18vw, 84px);
+  }
+
+  h2 {
+    max-width: 310px;
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .lead,
+  .note,
+  .section-head p,
+  .large-copy,
+  .split-copy p,
+  .brief p,
+  .final-panel p {
+    max-width: 310px;
+    font-size: 19px;
+  }
+
+  .actions,
+  .button {
+    width: 100%;
+  }
+
+  .hero-visual {
+    min-height: 360px;
+  }
+
+  .proof-row {
+    width: min(100%, 310px);
+  }
+
+  .card,
+  .doc-card {
+    min-height: 250px;
+  }
+
+  .list li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .brief,
+  .final-panel {
+    padding: 30px 22px;
+  }
+
+  .quote-band p {
+    max-width: 330px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+  </style>
+  <style>
+    :root { --accent: #b9342e; --accent-soft: rgba(185, 52, 46, .14); }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner wrap">
-      <a class="brand-lockup" href="jereme-landing.html" aria-label="Jereme Abernathy home">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <span>Jereme Abernathy</span>
-      </a>
+      <a class="brand-lockup" href="jereme-landing.html" aria-label="Jereme Abernathy home"><span class="brand-dot"></span><span>Jereme Abernathy</span></a>
       <nav aria-label="Main">
         <a href="fwr.html">fw/r</a>
         <a href="pine.html">pine</a>
         <a href="nrthrn.html">nrthrn</a>
-        <a href="drift.html">drift</a>
-        <a class="nav-cta" href="about.html">about</a>
+        <a class="nav-cta" href="drift.html">drift</a>
+        <a href="about.html">about</a>
       </nav>
     </div>
   </header>
@@ -634,161 +719,84 @@
   <main>
     <section class="hero wrap">
       <div>
-        <p class="eyebrow">About / Jereme Abernathy / Useful things</p>
-        <h1>About things.</h1>
-        <p class="lead">The work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.</p>
+        <p class="eyebrow">drift / Coastal Coffee / Hospitality / Weather</p>
+        <h1>Slower mornings on the edge of the map.</h1>
+        <p class="lead">A coastal coffee and hospitality concept built around salt air, careful coffee, muted light, weather-aware rooms, and the luxury of not rushing.</p>
+        <p class="note">drift is pine's coastal little sister: quieter, more patient, and not especially interested in being found too easily.</p>
         <div class="actions">
-          <a class="button primary" href="#letter">Read the Letter</a>
-          <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Hello%20from%20jereme.xyz">Write Me</a>
+          <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=drift%20Coastal%20Concept">Get in Touch</a>
+          <a class="button" href="#elements">Explore drift</a>
         </div>
       </div>
-      <figure class="robot-panel">
-        <img src="assets/og-robot-inverted-sharp-transparent.png" alt="Robot illustration">
+      <figure class="hero-visual coast">
+        <figcaption class="visual-copy"><span class="label">Coastal logic</span><strong>Salt air, warm light, patient rooms.</strong></figcaption>
       </figure>
     </section>
 
     <section class="wrap">
-      <div class="proof-row" aria-label="Operating notes">
-        <div><span class="label">Origin</span><strong>SoCal kid, PNW operator, downtown Vancouver desk.</strong></div>
-        <div><span class="label">Work</span><strong>AI, robotics, LiDAR, rooms, products, hospitality, and systems.</strong></div>
-        <div><span class="label">Standard</span><strong>Useful, unhurried, specific, and allergic to decorative complexity.</strong></div>
-        <div><span class="label">Next move</span><strong>Help people ship the thing they have been circling for months.</strong></div>
+      <div class="proof-row" aria-label="drift focus">
+        <div><span class="label">01 / Coast</span><strong>Muted light, shifting weather, quiet roads, and salt in the edges.</strong></div>
+        <div><span class="label">02 / Coffee</span><strong>Careful coffee for people who would rather stay a little longer.</strong></div>
+        <div><span class="label">03 / Room</span><strong>Hospitality that feels discovered, useful, warm, and patient.</strong></div>
+        <div><span class="label">04 / Pace</span><strong>A slower rhythm that belongs to the day instead of fighting it.</strong></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="elements">
+      <div class="section-head">
+        <h2>Hospitality for weather and wandering.</h2>
+        <p>drift is not trying to be loud. It is a place for the hour after a walk, the coffee before the drive, the table near the window, and the feeling that the room was waiting.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card"><span class="label">Element 01</span><div><h3>Coast</h3><p>Salt air, softened edges, muted palettes, weather, distance, and a rhythm that belongs near the water.</p></div></article>
+        <article class="card"><span class="label">Element 02</span><div><h3>Coffee</h3><p>Careful, quietly excellent coffee that supports the moment without turning the moment into a lecture.</p></div></article>
+        <article class="card"><span class="label">Element 03</span><div><h3>Room</h3><p>A hospitality experience that feels discovered, not announced: warm, useful, patient, and a little hard to leave.</p></div></article>
       </div>
     </section>
 
     <section class="section wrap">
-      <div class="section-head">
-        <h2>Different rooms. Same work.</h2>
-        <p>Four ventures, one operating instinct: make the technical thing humane, make the beautiful thing accountable, and keep the room honest.</p>
-      </div>
-      <div class="venture-grid">
-        <a class="venture" href="fwr.html">
-          <span class="label">01 / fw/r</span>
-          <div>
-            <h3>Intelligent Systems</h3>
-            <p>AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.</p>
-          </div>
-        </a>
-        <a class="venture" href="pine.html">
-          <span class="label">02 / pine</span>
-          <div>
-            <h3>Local Roots</h3>
-            <p>A Pacific Northwest coffee haus built around light, pace, seating, sound, and return visits.</p>
-          </div>
-        </a>
-        <a class="venture" href="nrthrn.html">
-          <span class="label">03 / nrthrn</span>
-          <div>
-            <h3>Designed Objects</h3>
-            <p>Objects with real materials, real weight, and a reason for every millimeter.</p>
-          </div>
-        </a>
-        <a class="venture" href="drift.html">
-          <span class="label">04 / drift</span>
-          <div>
-            <h3>Coastal Rituals</h3>
-            <p>Coastal rooms and rituals with slower mornings, sharper details, and fewer distractions.</p>
-          </div>
-        </a>
+      <div class="split">
+        <div class="split-copy">
+          <span class="label">What makes it different</span>
+          <h2>A smaller signal, stronger atmosphere.</h2>
+          <p>Where pine is daily return, drift is the coastal pause. The concept is built around environmental rhythm: light, weather, materials, silence, service, and the gentle permission to be slower.</p>
+        </div>
+        <ul class="list">
+          <li><span class="label">01</span><div><strong>Designed for the in-between.</strong><p>Morning after the storm, late coffee after the beach, quiet table before the drive, or a soft reset when the day has gotten too loud.</p></div></li>
+          <li><span class="label">02</span><div><strong>Weather-aware by default.</strong><p>The room changes with light, rain, fog, sound, wind, and season instead of pretending hospitality happens in a vacuum.</p></div></li>
+          <li><span class="label">03</span><div><strong>Local without shouting.</strong><p>Coastal materials, restrained signage, simple food, careful coffee, and enough mystery to keep the place from feeling over-explained.</p></div></li>
+          <li><span class="label">04</span><div><strong>Built to be found twice.</strong><p>The first visit should feel like discovery. The second should feel like returning to something that already knew your pace.</p></div></li>
+        </ul>
       </div>
     </section>
 
-    <section class="section wrap" id="letter">
-      <div class="letter-shell">
-        <aside class="sticky-title">
-          <span class="label">Long-form / personal signal</span>
-          <h2>In lieu of a press release.</h2>
-          <p>A longer note about the work, the taste, the ventures, the trail, and the useful thing I am probably trying to build next.</p>
-        </aside>
-
-        <article class="prose">
-          <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
-
-          <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
-
-          <p><strong>fw/r</strong> is robotics, LiDAR, and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
-
-          <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
-
-          <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
-
-          <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
-
-          <div class="pull">
-            <span class="label">Signal / 01</span>
-            <p>Four bat-shit ideas, one guy stupid enough to try and run all of them.</p>
-          </div>
-
-          <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
-
-          <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
-
-          <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
-
-          <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
-
-          <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
-
-          <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
-
-          <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
-
-          <div class="pull">
-            <span class="label">Signal / 02</span>
-            <p>Geocities had more personality than 90% of the Y Combinator portfolio.</p>
-          </div>
-
-          <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
-
-          <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
-
-          <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
-
-          <div class="signoff">
-            <p class="signoff-line">Don't let the wheels fall off.</p>
-            <div class="signature-mark">Jereme</div>
-            <span class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</span>
-            <span class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked.</span>
-          </div>
-        </article>
+    <section class="section wrap">
+      <div class="brief">
+        <span class="label">Operating brief</span>
+        <h2>The plan is patience.</h2>
+        <p>drift is built around the feeling of finding exactly the right room at exactly the right hour. It is slower, saltier, more weather-aware, and allergic to over-polished hospitality theater.</p>
+        <div class="brief-grid">
+          <div><span class="label">Audience</span><strong>Locals, travelers, readers, walkers, remote workers, and people who notice when a room is doing its job.</strong></div>
+          <div><span class="label">Mood</span><strong>Coastal, quiet, warm, personal, unhurried, slightly hidden, and better when the weather changes.</strong></div>
+          <div><span class="label">Offer</span><strong>Coffee, small food, quiet tables, useful rituals, good light, and a room people want to keep in their mental map.</strong></div>
+          <div><span class="label">Relationship to pine</span><strong>Same hospitality brain. Different weather, slower tempo, more salt in the sentence.</strong></div>
+        </div>
       </div>
     </section>
 
-    <section class="quote-band">
-      <p>The way a thing looks is the way it thinks.</p>
-    </section>
+    <section class="quote-band"><p>Not a stop along the way. The reason to take the long way.</p></section>
 
     <section class="section wrap">
       <div class="final-panel">
-        <div>
-          <span class="label">Still here?</span>
-          <h2>Then we probably have enough overlap.</h2>
-          <p>Talk to me about systems, spaces, machines, coffee, product work, or the useful thing you are trying to ship.</p>
-        </div>
-        <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=Hello%20from%20jereme.xyz">Write Me</a>
+        <div><span class="label">Signal / drift</span><h2>If the coast is calling, answer calmly.</h2><p>For location ideas, collaboration, partnership, or a quiet note about the coastal coffee room that should exist, send a signal.</p></div>
+        <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=drift%20Coastal%20Concept">Get in Touch</a>
       </div>
     </section>
   </main>
 
   <footer class="wrap">
-    <div class="footer-meta">
-      <strong>jereme.xyz</strong>
-      <span>915 Broadway St, Vancouver, WA 98660</span>
-      <span>&copy; 2026 Jereme Abernathy</span>
-    </div>
-    <div class="footer-stack">
-      <div class="socials">
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-        <a href="https://x.com/jeremedotxyz">X</a>
-        <a href="https://github.com/jeremedotxyz">GitHub</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-      </div>
-      <div class="footer-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-      </div>
-    </div>
+    <div><strong>drift</strong><br><span>Coastal coffee, slower mornings, and weather-aware rooms.</span></div>
+    <div class="footer-links"><a href="jereme-landing.html">home</a><a href="fwr.html">fw/r</a><a href="pine.html">pine</a><a href="nrthrn.html">nrthrn</a></div>
   </footer>
 </body>
 </html>
