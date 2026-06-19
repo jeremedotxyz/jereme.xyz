@@ -421,12 +421,14 @@
     }
 
     .signature-mark {
-      width: fit-content;
+      width: min(220px, 64vw);
       margin: 0 0 18px;
-      font-size: clamp(38px, 6vw, 68px);
-      line-height: 1;
-      letter-spacing: -.07em;
-      font-weight: 800;
+    }
+
+    .signature-mark img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .stage-note {
@@ -643,7 +645,7 @@
         </div>
       </div>
       <figure class="robot-panel">
-        <img src="assets/og-robot-inverted-sharp-transparent.png" alt="Robot illustration">
+        <img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/og-robot-inverted-sharp-transparent.png" alt="Robot illustration">
       </figure>
     </section>
 
@@ -746,7 +748,7 @@
 
           <div class="signoff">
             <p class="signoff-line">Don't let the wheels fall off.</p>
-            <div class="signature-mark">Jereme</div>
+            <div class="signature-mark"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/signature.png" alt="Jereme"></div>
             <span class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</span>
             <span class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked.</span>
           </div>
