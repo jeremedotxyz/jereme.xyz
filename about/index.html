@@ -207,14 +207,10 @@
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(45,95,140,.14) 1px, transparent 1px),
-        linear-gradient(rgba(45,95,140,.1) 1px, transparent 1px),
-        linear-gradient(145deg, #f5f1e7, #1b1b1b);
-      background-size: 42px 42px, 42px 42px, auto;
-      box-shadow: 0 34px 90px rgba(25, 24, 23, .18);
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
     }
 
     .robot-panel img {
@@ -312,6 +308,7 @@
 
     .venture:nth-child(2) { border-top-color: var(--green); }
     .venture:nth-child(3) { border-top-color: var(--brown); }
+
     .venture:nth-child(4) {
       border-top-color: var(--red);
       background: var(--ink);
@@ -748,7 +745,9 @@
 
           <div class="signoff">
             <p class="signoff-line">Don't let the wheels fall off.</p>
-            <div class="signature-mark"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/signature.png" alt="Jereme"></div>
+            <div class="signature-mark">
+              <img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/signature.png" alt="Jereme">
+            </div>
             <span class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</span>
             <span class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative about me, it wokred even better. 🫶🏼</span>
           </div>
