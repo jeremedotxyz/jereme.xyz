@@ -1,1134 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-NTH4464X6R");
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#e9e6df">
-
-  <title>jereme.xyz🤖</title>
-
-  <meta name="description" content="Jereme Abernathy helps founders, teams, and organizations turn fuzzy technical ideas into clear, buildable systems across AI, robotics, LiDAR, product thinking, hospitality, objects, and emerging technology.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <title>JEREME ABERNATHY / FOUNDATION SYSTEM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --paper: #e9e6df;
-      --ink: #191817;
-      --soft: rgba(25, 24, 23, .68);
-      --quiet: rgba(25, 24, 23, .46);
-      --line: rgba(25, 24, 23, .14);
-      --black: #11100f;
-      --white: #f7f5ef;
-      --orange: #ff611a;
-      --blue: #2d5f8c;
-      --green: #66724d;
-      --red: #b9342e;
-      --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      /* THE HIGH-VIS LIME PALETTE */
+      --bg: #00ff11;         /* Foundation-style neon green */
+      --text: #000000;       /* High-contrast Black */
+      --border: #000000;     /* Sharp 1px borders */
+      --mono: "Fragment Mono", monospace;
+      --sans: "Manrope", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      background: var(--paper);
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    
     body {
       margin: 0;
-      color: var(--ink);
-      background: var(--paper);
+      background: var(--bg);
+      color: var(--text);
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      pointer-events: none;
-      opacity: .035;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    /* THE MODULAR GRID */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-left: 1px solid var(--border);
+      max-width: 100%;
+      margin: 0;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .cell {
+      padding: clamp(20px, 5vw, 60px);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
     }
 
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .col-12 { grid-column: span 12; }
+    .col-8 { grid-column: span 8; }
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+    .col-3 { grid-column: span 3; }
 
-    .wrap {
-      width: min(1360px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 20;
-      border-bottom: 1px solid rgba(247, 245, 239, .16);
-      color: rgba(247, 245, 239, .78);
-      mix-blend-mode: normal;
-    }
-
-    .topbar-inner {
-      min-height: 72px;
+    /* TYPOGRAPHY */
+    .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 30px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      font-size: 13px;
+      gap: 8px;
+      font-weight: 400;
+    }
+
+    .label::before {
+      content: "[";
+    }
+
+    .label::after {
+      content: "]";
+    }
+
+    h1, h2, h3 {
+      margin: 0;
       font-weight: 800;
+      line-height: 0.88;
+      letter-spacing: -0.06em; /* Tight tracking like Foundation */
     }
 
-    .brand-lockup {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: #fff;
+    h1 { font-size: clamp(68px, 15vw, 220px); }
+    h2 { font-size: clamp(40px, 8vw, 90px); }
+    h3 { font-size: 24px; letter-spacing: -0.03em; }
+
+    p {
+      font-size: clamp(18px, 2vw, 20px);
+      line-height: 1.2;
+      max-width: 500px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
-    .brand-dot {
-      width: 36px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
+    /* HEADER */
+    header {
+      padding: 20px 20px 0;
     }
 
     nav {
       display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .brand-mark {
+      letter-spacing: 0.1em;
+      padding-top: 2px;
+    }
+
+    .nav-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
     }
 
     nav a {
-      opacity: .82;
+      text-decoration: none;
+      color: inherit;
+      font-family: var(--sans);
+      font-size: clamp(34px, 5vw, 68px);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      font-weight: 800;
     }
 
-    nav a:hover {
-      opacity: 1;
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #000;
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: opacity 0.2s;
     }
 
-    .nav-cta {
-      color: #fff;
-      opacity: 1;
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    /* DATA ELEMENTS */
+    .data-point {
+      font-family: var(--mono);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+      margin-top: 20px;
+      display: block;
+    }
+
+    /* VENTURE CARDS */
+    .venture-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    
+    .venture-link:hover {
+        opacity: 0.92;
+        transform: translateY(-2px);
+    }
+
+    .venture-card {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .venture-cell {
+      border-right: none;
+      border-bottom: none;
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+
+    .venture-preview {
+      position: relative;
+      aspect-ratio: 8 / 5;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+    }
+
+    .venture-preview::before,
+    .venture-preview::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.9;
+    }
+
+    .venture-preview.fwr {
+      background: linear-gradient(135deg, #202020 0%, #454545 100%);
+    }
+
+    .venture-preview.fwr::before {
+      width: 46%;
+      height: 46%;
+      background: radial-gradient(circle at 35% 35%, #8af8ff 0%, #0a5cff 78%);
+      top: 18%;
+      left: 8%;
+    }
+
+    .venture-preview.fwr::after {
+      width: 34%;
+      height: 68%;
+      background: linear-gradient(180deg, #d9f8ff 0%, #3ef0b5 100%);
+      right: 10%;
+      top: 14%;
+      border-radius: 28px;
+    }
+
+    .venture-preview.pine {
+      background: linear-gradient(135deg, #f0e3c8 0%, #dcb786 100%);
+    }
+
+    .venture-preview.pine::before {
+      width: 58%;
+      height: 58%;
+      background: radial-gradient(circle at center, #274a28 0%, #162717 72%);
+      left: -6%;
+      bottom: -12%;
+    }
+
+    .venture-preview.pine::after {
+      width: 46%;
+      height: 46%;
+      background: radial-gradient(circle at 40% 40%, #fff7d1 0%, #c96f2c 80%);
+      right: 8%;
+      top: 18%;
+    }
+
+    .venture-preview.nrthrn {
+      background: linear-gradient(135deg, #faf7f1 0%, #dbd7cf 100%);
+    }
+
+    .venture-preview.nrthrn::before {
+      inset: 16% 14% 20% 14%;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #111 0%, #444 100%);
+      position: absolute;
+      content: "";
+    }
+
+    .venture-preview.nrthrn::after {
+      width: 24%;
+      height: 24%;
+      background: #f8f4ee;
+      right: 18%;
+      top: 22%;
+      box-shadow: -88px 68px 0 0 #f8f4ee;
+    }
+
+    .venture-preview.drift {
+      background: linear-gradient(180deg, #8bd3ff 0%, #f6d79f 100%);
+    }
+
+    .venture-preview.drift::before {
+      width: 120%;
+      height: 54%;
+      background: linear-gradient(180deg, #1d3656 0%, #0c1f38 100%);
+      left: -10%;
+      bottom: -22%;
+      border-radius: 45% 45% 0 0;
+    }
+
+    .venture-preview.drift::after {
+      width: 34%;
+      height: 34%;
+      background: rgba(255, 244, 216, 0.95);
+      right: 12%;
+      top: 18%;
+    }
+
+    .venture-details {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .venture-badge {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      flex: 0 0 auto;
+      background: rgba(0, 0, 0, 0.9);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    .venture-badge img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      display: block;
+      filter: contrast(1.05);
+    }
+
+    .venture-copy {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .venture-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .venture-title {
+      font-size: clamp(24px, 2.4vw, 36px);
+      line-height: 0.95;
+    }
+
+    .venture-year {
+      font-family: var(--mono);
+      font-size: 12px;
+      opacity: 0.7;
+      white-space: nowrap;
+    }
+
+    .venture-summary {
+      margin: 0;
+      max-width: 26ch;
+      font-size: 16px;
+      line-height: 1.15;
+      font-weight: 500;
+      letter-spacing: -0.02em;
     }
 
     .hero {
-      position: relative;
-      min-height: 88svh;
-      display: grid;
-      align-items: end;
-      isolation: isolate;
-      overflow: hidden;
-      background: #101010;
-      color: #fff;
-    }
-
-    .hero img {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      opacity: .78;
-      filter: saturate(.9) contrast(1.05);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(7, 7, 7, .88) 0%,
-          rgba(7, 7, 7, .45) 43%,
-          rgba(7, 7, 7, .7) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(7, 7, 7, .12) 0%,
-          rgba(7, 7, 7, .18) 46%,
-          rgba(7, 7, 7, .9) 100%
-        );
-    }
-
-    .hero-content {
-      padding: 160px 0 clamp(44px, 8vw, 88px);
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .62);
-    }
-
-    h1 {
-      max-width: 10ch;
-      margin: 0;
-      font-size: clamp(64px, 9.6vw, 156px);
-      line-height: .82;
-      letter-spacing: -.07em;
-      font-weight: 800;
-    }
-
-    .hero-copy {
-      max-width: 760px;
-      margin: 26px 0 0;
-      color: rgba(255, 255, 255, .8);
-      font-size: clamp(20px, 2.2vw, 32px);
-      line-height: 1.12;
-      font-weight: 750;
-      letter-spacing: -.03em;
-    }
-
-    .actions {
+      min-height: 80vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 46px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      border: 1px solid currentColor;
-      border-radius: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .button.primary {
-      background: #fff;
-      color: var(--ink);
-      border-color: #fff;
-    }
-
-    .button.dark {
-      background: var(--ink);
-      color: #fff;
-      border-color: var(--ink);
-    }
-
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      margin-top: clamp(44px, 6vw, 72px);
-      border: 1px solid rgba(255, 255, 255, .16);
-      background: rgba(255, 255, 255, .16);
-    }
-
-    .hero-meta div {
-      min-height: 116px;
-      padding: 18px;
-      background: rgba(9, 9, 9, .55);
-      backdrop-filter: blur(12px);
-    }
-
-    .hero-meta small,
-    .label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--quiet);
-    }
-
-    .hero-meta small {
-      color: rgba(255, 255, 255, .48);
-    }
-
-    .hero-meta strong {
-      display: block;
-      margin-top: 14px;
-      font-size: clamp(17px, 1.6vw, 22px);
-      line-height: 1.08;
-      letter-spacing: -.035em;
-    }
-
-    section {
-      position: relative;
-    }
-
-    .section {
-      padding: clamp(72px, 9vw, 132px) 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
-      gap: clamp(32px, 7vw, 110px);
-      align-items: end;
-      margin-bottom: clamp(28px, 5vw, 64px);
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(42px, 6.4vw, 104px);
-      line-height: .86;
-      letter-spacing: -.065em;
-      font-weight: 800;
-    }
-
-    .section-head p,
-    .large-copy {
-      margin: 0;
-      color: var(--soft);
-      font-size: clamp(19px, 2vw, 26px);
-      line-height: 1.2;
-      font-weight: 750;
-      letter-spacing: -.025em;
-    }
-
-    .signal-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .signal {
-      min-height: 178px;
-      padding: 24px;
-      border: 1px solid var(--line);
-      background: var(--white);
-    }
-
-    .signal strong {
-      display: block;
-      margin-top: 18px;
-      font-size: clamp(20px, 2vw, 28px);
-      line-height: .98;
-      letter-spacing: -.045em;
-    }
-
-    .split-feature {
-      display: grid;
-      grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr);
-      min-height: 620px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .split-copy {
-      display: grid;
-      align-content: center;
-      padding: clamp(44px, 7vw, 94px);
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .split-copy p {
-      max-width: 640px;
-      margin: 24px 0 0;
-      color: rgba(255, 255, 255, .72);
-      font-size: clamp(19px, 2vw, 26px);
-      line-height: 1.24;
-      font-weight: 720;
-      letter-spacing: -.02em;
-    }
-
-    .split-media {
-      position: relative;
-      overflow: hidden;
-      background: #0e0f10;
-    }
-
-    .split-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .22));
-      pointer-events: none;
-    }
-
-    .venture-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .venture {
-      min-height: 470px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: 22px;
-      border-radius: 8px;
-      color: #fff;
-      overflow: hidden;
-      background: #202024;
-    }
-
-    .venture:nth-child(2) {
-      background: var(--white);
-      color: var(--ink);
-    }
-
-    .venture:nth-child(3) {
-      background: #c9c9c6;
-      color: var(--ink);
-    }
-
-    .venture:nth-child(4) {
-      background: #111113;
-    }
-
-    .venture:nth-child(1),
-    .venture:nth-child(4) {
-      color: #fff;
-    }
-
-    .venture:nth-child(1) .label,
-    .venture:nth-child(4) .label,
-    .venture:nth-child(1) h3,
-    .venture:nth-child(4) h3 {
-      color: #fff;
-      opacity: 1;
-    }
-
-    .venture-visual {
-      min-height: 170px;
-      margin: 22px 0;
-      border-radius: 8px;
-      overflow: hidden;
-      background: rgba(0, 0, 0, .18);
-    }
-
-    .venture h3 {
-      margin: 0;
-      font-size: clamp(30px, 3vw, 46px);
-      line-height: .88;
-      letter-spacing: -.055em;
-    }
-
-    .venture p {
-      margin: 14px 0 0;
-      color: currentColor;
-      opacity: .68;
-      font-size: 15px;
-      line-height: 1.42;
-      font-weight: 700;
-    }
-
-    .venture-address {
-      display: block;
-      margin-top: 14px;
-      opacity: .86;
-    }
-
-    .matrix {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 3px;
-      height: 100%;
-      padding: 12px;
-      background: rgba(0, 0, 0, .2);
-    }
-
-    .matrix span {
-      min-height: 10px;
-      border-radius: 1px;
-      background: rgba(255, 255, 255, .08);
-    }
-
-    .venture:nth-child(2) .matrix span,
-    .venture:nth-child(3) .matrix span {
-      background: rgba(0, 0, 0, .08);
-    }
-
-    .matrix span:nth-child(7n),
-    .matrix span:nth-child(13n) {
-      background: var(--orange);
-      box-shadow: 0 0 14px rgba(255, 97, 26, .45);
-    }
-
-    .work-list {
-      display: grid;
-      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-      gap: clamp(32px, 7vw, 110px);
-      align-items: start;
-    }
-
-    .list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      border-top: 1px solid var(--line);
-    }
-
-    .list li {
-      display: grid;
-      grid-template-columns: 128px 1fr;
-      gap: 24px;
-      padding: 26px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .list strong {
-      display: block;
-      font-size: clamp(22px, 2.6vw, 38px);
-      line-height: .96;
-      letter-spacing: -.05em;
-    }
-
-    .list p {
-      margin: 10px 0 0;
-      color: var(--soft);
-      font-size: 16px;
-      line-height: 1.45;
-      font-weight: 700;
-    }
-
-    .quote-band {
-      min-height: 64svh;
-      display: grid;
-      place-items: center;
-      padding: clamp(80px, 11vw, 150px) 24px;
-      background: #171717;
-      color: var(--paper);
-      text-align: center;
-    }
-
-    .quote-band p {
-      max-width: 1120px;
-      margin: 0;
-      font-size: clamp(40px, 7vw, 112px);
-      line-height: .82;
-      letter-spacing: -.07em;
-      font-weight: 800;
-    }
-
-    .final {
-      padding: clamp(80px, 11vw, 150px) 0 56px;
-    }
-
-    .final-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
-      gap: clamp(32px, 7vw, 90px);
-      align-items: end;
-      padding: clamp(40px, 7vw, 86px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
-    }
-
-    .final-panel p {
-      max-width: 860px;
-      margin: 24px 0 0;
-      color: var(--soft);
-      font-size: clamp(19px, 2vw, 26px);
-      line-height: 1.22;
-      font-weight: 750;
-      letter-spacing: -.025em;
-    }
-
-    .contact-stack {
-      display: grid;
-      gap: 12px;
-    }
-
-    footer {
-      padding: 42px 0;
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      color: var(--soft);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      align-items: center;
+      flex-direction: column;
       justify-content: flex-end;
     }
 
-    .footer-socials a {
-      display: inline-flex;
-      width: 24px;
-      height: 24px;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink);
-      opacity: .72;
+    .hero-title {
+      line-height: 0.92;
+      max-width: 10ch;
     }
 
-    .footer-socials a:hover {
-      opacity: 1;
+    .hero-second-line,
+    .hero-word {
+      display: inline;
     }
 
-    .footer-socials svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
+    .hero-intro {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+      align-items: flex-end;
     }
 
-    @media (max-width: 1080px) {
-      .hero-meta,
-      .signal-grid,
-      .venture-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .section-head,
-      .work-list,
-      .final-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .split-feature {
-        grid-template-columns: 1fr;
-      }
-
-      .split-media {
-        min-height: 460px;
-      }
+    .hero-copy {
+      margin: 0;
     }
 
-    @media (max-width: 680px) {
-      .wrap {
-        width: min(100% - 32px, 1360px);
-      }
+    .hero-meta {
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
 
-      .topbar {
-        position: absolute;
-      }
+    .cta-title {
+      max-width: 8ch;
+    }
 
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 20px 0;
-      }
+    .ascii-footer {
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+      min-height: 420px;
+      display: flex;
+      align-items: flex-end;
+      padding-top: clamp(100px, 18vw, 240px);
+    }
 
+    .ascii-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: var(--bg);
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a,
+    .footer-meta a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1024px) {
+      .col-3, .col-4, .col-6, .col-8 { grid-column: span 12; }
+      .grid-container { border-left: none; }
       nav {
-        justify-content: flex-start;
-        gap: 14px;
-      }
-
-      .brand-lockup span:not(.brand-dot) {
-        display: none;
-      }
-
-      .hero {
-        min-height: 92svh;
-      }
-
-      .hero-content {
-        padding-top: 150px;
-      }
-
-      h1 {
-        max-width: 7ch;
-        font-size: clamp(56px, 17vw, 72px);
-      }
-
-      h2 {
-        max-width: 310px;
-        font-size: clamp(42px, 13vw, 58px);
-      }
-
-      .eyebrow {
-        max-width: 300px;
-        overflow-wrap: anywhere;
-      }
-
-      .hero-copy,
-      .section-head p,
-      .large-copy,
-      .split-copy p,
-      .final-panel p {
-        max-width: 300px;
-        font-size: 19px;
-      }
-
-      .actions,
-      .button {
-        width: 100%;
-      }
-
-      .hero-meta,
-      .signal-grid,
-      .venture-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-meta {
-        width: min(100%, 310px);
-      }
-
-      .hero-meta div,
-      .signal,
-      .venture {
-        min-width: 0;
-      }
-
-      .hero-meta strong,
-      .signal strong,
-      .venture p,
-      .list p {
-        overflow-wrap: anywhere;
-      }
-
-      .section {
-        padding: 76px 0;
-      }
-
-      .venture {
-        min-height: 390px;
-      }
-
-      .split-copy {
-        padding: 64px 24px;
-      }
-
-      .split-media {
-        min-height: 360px;
-      }
-
-      .list li {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
-      .final-panel {
-        padding: 30px 22px;
-      }
-
-      footer {
         flex-direction: column;
+        gap: 32px;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .footer-meta {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .footer-links {
+        justify-content: flex-start;
+        gap: 18px;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        scroll-behavior: auto !important;
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 16px 0;
+      }
+      .cell {
+        padding: 20px 16px;
+      }
+      nav {
+        gap: 20px;
+      }
+      .brand-mark {
+        font-size: 11px;
+      }
+      .nav-stack {
+        gap: 12px;
+      }
+      nav a {
+        font-size: clamp(24px, 10vw, 40px);
+        line-height: 0.95;
+      }
+      .hero {
+        min-height: auto;
+        justify-content: flex-start;
+        padding-top: 12px;
+      }
+      .hero-title {
+        max-width: 100%;
+        font-size: clamp(48px, 18vw, 72px);
+        line-height: 0.9;
+      }
+      .hero-second-line,
+      .hero-word {
+        display: block;
+      }
+      .hero-intro {
+        margin-top: 24px;
+        gap: 24px;
+      }
+      .hero-copy {
+        font-size: 16px;
+        max-width: 100%;
+      }
+      .venture-preview {
+        border-radius: 24px;
+      }
+      .venture-cell {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .venture-badge {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+        font-size: 11px;
+      }
+      .venture-heading {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+      }
+      .venture-summary {
+        font-size: 15px;
+      }
+      .hero-meta {
+        font-size: 11px;
+        line-height: 1.7;
+      }
+      h2 {
+        font-size: clamp(28px, 11vw, 48px);
+        line-height: 0.95;
+      }
+      .cta-title {
+        max-width: 6ch;
+      }
+      h3 {
+        font-size: 22px;
+      }
+      .ascii-footer {
+        min-height: 280px;
+        padding-top: 80px;
       }
     }
   </style>
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="topbar-inner wrap">
-      <a class="brand-lockup" href="#top" aria-label="Jereme Abernathy home">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <span>Jereme Abernathy</span>
-      </a>
 
-      <nav aria-label="Main">
-        <a href="#work">work</a>
-        <a href="#ventures">ventures</a>
-        <a href="#method">method</a>
-        <a href="#ventures" class="nav-cta">explore the work</a>
-      </nav>
-    </div>
+  <header>
+    <nav>
+      <div class="brand-mark">jereme.xyz / strategy & systems</div>
+      <div class="nav-stack">
+        <div class="nav-label">[ nav ]</div>
+        <div class="nav-links">
+          <a href="#ventures">ventures</a>
+          <a href="#work">about</a>
+          <a href="mailto:jeremedotxyz@gmail.com">contact</a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <img src="assets/jereme-hero-workbench.png" alt="">
-
-      <div class="hero-content wrap">
-        <p class="eyebrow">
-          AI / Robotics / LiDAR / Product / Rooms / Objects
-        </p>
-
-        <h1 id="hero-title">jer</h1>
-
-        <p class="hero-copy">
-          Helping founders, teams, and organizations turn fuzzy technical
-          ideas, strange product problems, and future-facing concepts into
-          clear, buildable, useful systems.
-        </p>
-
-        <div class="actions">
-          <a class="button primary" href="#ventures">
-            Explore the Work
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section wrap" id="work">
-      <div class="section-head">
-        <h2>The work lives between signal and substance.</h2>
-
-        <p>
-          I work where technical complexity, product judgment, creative
-          direction, and real-world constraints all have to sit at the
-          same table.
-        </p>
-      </div>
-
-    </section>
-
-    <section class="split-feature" aria-label="Field-ready systems">
-      <div class="split-copy">
-        <span class="label">fw/r / Field-Ready Systems</span>
-
-        <h2>Built where the easy answer stops.</h2>
-
-        <p>
-          AI, robotics, and LiDAR work for teams that need models, sensors,
-          robots, and evaluations to work outside the demo. Define the
-          problem. Instrument the behavior. Test what breaks. Build the
-          version that can be explained.
-        </p>
-
-        <div class="actions">
-          <a
-            class="button primary"
-            href="mailto:jeremedotxyz@gmail.com?subject=Work%20With%20Jereme%20/%20fw/r"
-          >
-            Talk Systems
-          </a>
-
-          <a
-            class="button"
-            href="https://jereme.xyz/site/fwr/fwr.html"
-          >
-            View fw/r
-          </a>
+  <main class="grid-container">
+    
+    <!-- HERO SECTION -->
+    <section class="cell col-12 hero">
+      <span class="label">Primary Operator / 2024</span>
+      <h1 class="hero-title">signal<br><span class="hero-second-line">&</span><span class="hero-word">substance</span></h1>
+      <div class="hero-intro">
+        <p class="hero-copy">Turning fuzzy technical ideas, strange product problems, and future-facing concepts into clear, buildable, useful systems.</p>
+        <div class="hero-meta">
+          Coord: 45.6387° N, 122.6615° W<br>
+          Status: Available Q1 2027<br>
+          Dept: AI / Robotics / LiDAR
         </div>
       </div>
-
-      <figure class="split-media">
-        <img src="assets/jereme-hero-lidar-robotics.png" alt="">
-      </figure>
     </section>
 
-    <section class="section wrap" id="ventures">
-      <div class="section-head">
-        <h2>Four names. One operating system.</h2>
-
-        <p>
-          Different rooms for the same instinct: make the technical thing
-          humane, make the beautiful thing accountable, and leave the room
-          clearer than it was.
-        </p>
-      </div>
-
-      <div class="venture-grid">
-        <a
-          class="venture"
-          href="https://jereme.xyz/site/fwr/fwr.html"
-        >
-          <span class="label">01 / fw/r</span>
-
-          <div class="venture-visual">
-            <div class="matrix" aria-hidden="true"></div>
-          </div>
-
-          <div>
-            <h3>Intelligent Systems</h3>
-
-            <p>
-              AI strategy, robotics, LiDAR, evaluation harnesses, and
-              technical systems for the field.
-
-              <span class="venture-address">
-                915 Broadway St, Vancouver, WA 98660
-              </span>
-            </p>
-          </div>
-        </a>
-
-        <a
-          class="venture"
-          href="https://jereme.xyz/site/pine/pine.html"
-        >
-          <span class="label">02 / pine</span>
-
-          <div class="venture-visual">
-            <div class="matrix" aria-hidden="true"></div>
-          </div>
-
-          <div>
-            <h3>Local Roots</h3>
-
-            <p>
-              A Pacific Northwest coffee haus shaped around hospitality,
-              pace, light, sound, seating, and return.
-            </p>
-          </div>
-        </a>
-
-        <a
-          class="venture"
-          href="https://jereme.xyz/site/nrthrn/nrthrn.html"
-        >
-          <span class="label">03 / nrthrn</span>
-
-          <div class="venture-visual">
-            <div class="matrix" aria-hidden="true"></div>
-          </div>
-
-          <div>
-            <h3>Designed Objects</h3>
-
-            <p>
-              Industrial and consumer products with real materials, real
-              weight, and a reason for every millimeter.
-            </p>
-          </div>
-        </a>
-
-        <a
-          class="venture"
-          href="https://jereme.xyz/site/drift/drift.html"
-        >
-          <span class="label">04 / drift</span>
-
-          <div class="venture-visual">
-            <div class="matrix" aria-hidden="true"></div>
-          </div>
-
-          <div>
-            <h3>Coastal Rituals</h3>
-
-            <p>
-              A coastal hospitality concept for slower mornings,
-              weather-aware rooms, careful coffee, and people who notice.
-
-              <span class="venture-address">
-                915 Broadway St, Vancouver, WA 98660
-              </span>
-            </p>
-          </div>
-        </a>
-      </div>
+    <!-- METHOD -->
+    <section id="work" class="cell col-8">
+      <span class="label">Methodology</span>
+      <h2>built where the easy answer stops.</h2>
     </section>
 
-    <section class="section wrap" id="method">
-      <div class="work-list">
-        <div>
-          <span class="label">Method / Not a framework, relax</span>
+    <section class="cell col-4">
+      <p style="font-size: 16px;">I work where technical complexity, product judgment, creative direction, and real-world constraints all have to sit at the same table.</p>
+      <div class="data-point">Process: Instrument > Test > Build</div>
+    </section>
 
-          <h2>Turn the fog into a buildable map.</h2>
+    <!-- VENTURES GRID -->
+    <div class="cell col-12" style="background: #000; color: var(--bg);">
+        <span class="label" style="margin-bottom: 0;">02 / Current Operating Ventures</span>
+    </div>
 
-          <p class="large-copy" style="margin-top: 24px;">
-            The job is to bring enough clarity, taste, technical judgment,
-            and operator pressure to make the next move obvious.
-          </p>
-        </div>
-
-        <ul class="list">
-          <li>
-            <span class="label">01</span>
-
-            <div>
-              <strong>Find the real problem.</strong>
-
-              <p>
-                Separate the actual system from the deck, the meeting, the
-                vibe, and the wishful thinking.
-              </p>
+    <a href="#" class="cell col-6 venture-link venture-cell">
+        <div class="venture-card">
+            <div class="venture-preview fwr"></div>
+            <div class="venture-details">
+                <div class="venture-badge"><img src="data:image/jpeg;base64,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" alt="fw/r robot icon"></div>
+                <div class="venture-copy">
+                    <div class="venture-heading">
+                        <h3 class="venture-title">fw/r</h3>
+                        <div class="venture-year">(est. 2019)</div>
+                    </div>
+                    <p class="venture-summary">Intelligent systems, robotics experiments, and buildable technical infrastructure.</p>
+                </div>
             </div>
-          </li>
-
-          <li>
-            <span class="label">02</span>
-
-            <div>
-              <strong>Make behavior measurable.</strong>
-
-              <p>
-                Define what should happen, what can break, what needs
-                evidence, and how the work earns trust.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <span class="label">03</span>
-
-            <div>
-              <strong>Shape the thing.</strong>
-
-              <p>
-                Turn strategy into prototypes, operating logic, product
-                direction, technical narrative, or the first version worth
-                testing.
-              </p>
-            </div>
-          </li>
-
-          <li>
-            <span class="label">04</span>
-
-            <div>
-              <strong>Keep the room honest.</strong>
-
-              <p>
-                Clear language. Good taste. No fake certainty. No decorative
-                complexity. No pretending the emperor is dressed.
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="quote-band">
-      <p>
-        Make the technical thing humane. Make the beautiful thing accountable.
-      </p>
-    </section>
-
-    <section class="final wrap" id="contact">
-      <div class="final-panel">
-        <div>
-          <span class="label">Signal / Open channel</span>
-
-          <h2>Bring me the fuzzy thing.</h2>
-
-          <p>
-            If you are holding a technical idea, product mess, robotics
-            question, AI strategy problem, room concept, object sketch, or
-            future-facing system that needs to become clear and buildable,
-            that is the work.
-          </p>
         </div>
+    </a>
 
-        <div class="contact-stack">
-          <a
-            class="button dark"
-            href="mailto:jeremedotxyz@gmail.com?subject=Ping%20Me"
-          >
-            Ping Me
-          </a>
-
-          <a class="button secondary" href="about">
-            About Me
-          </a>
+    <a href="#" class="cell col-6 venture-link venture-cell">
+        <div class="venture-card">
+            <div class="venture-preview pine"></div>
+            <div class="venture-details">
+                <div class="venture-badge">pine</div>
+                <div class="venture-copy">
+                    <div class="venture-heading">
+                        <h3 class="venture-title">pine</h3>
+                        <div class="venture-year">(est. 2022*)</div>
+                    </div>
+                    <p class="venture-summary">A slower local-world concept shaped around coffee, atmosphere, and neighborhood rituals.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </a>
+
+    <a href="#" class="cell col-6 venture-link venture-cell">
+        <div class="venture-card">
+            <div class="venture-preview nrthrn"></div>
+            <div class="venture-details">
+                <div class="venture-badge">nrthrn</div>
+                <div class="venture-copy">
+                    <div class="venture-heading">
+                        <h3 class="venture-title">nrthrn</h3>
+                        <div class="venture-year">(est. 2025)</div>
+                    </div>
+                    <p class="venture-summary">Designed objects and material ideas with a cleaner, more restrained physical language.</p>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <a href="#" class="cell col-6 venture-link venture-cell">
+        <div class="venture-card">
+            <div class="venture-preview drift"></div>
+            <div class="venture-details">
+                <div class="venture-badge">drift</div>
+                <div class="venture-copy">
+                    <div class="venture-heading">
+                        <h3 class="venture-title">drift</h3>
+                        <div class="venture-year">(est. 2026)</div>
+                    </div>
+                    <p class="venture-summary">Coastal rituals, sensory identity, and a softer world built around place and mood.</p>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <!-- CAPABILITIES LIST -->
+    <section class="cell col-6">
+        <span class="label">Capabilities</span>
+        <div style="font-family: var(--mono); font-weight: 800; font-size: 14px; line-height: 2;">
+            / AI STRATEGY & EVALS<br>
+            / ROBOTICS PROTOTYPING<br>
+            / LIDAR DATA PIPELINES<br>
+            / INDUSTRIAL DESIGN<br>
+            / BRAND WORLDS
+        </div>
     </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cell col-6">
+        <span class="label">Inquiry</span>
+        <h2 class="cta-title">bring the fuzzy thing.</h2>
+        <p style="margin: 20px 0;">If you have a project that needs technical narrative or buildable clarity.</p>
+        <a href="mailto:jeremedotxyz@gmail.com" class="btn">Open Brief</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="cell col-12 ascii-footer">
+        <canvas class="ascii-canvas" data-ascii-canvas data-bg="#00ff11" data-fg="#000000" aria-hidden="true"></canvas>
+    </footer>
+
   </main>
 
-  <footer class="wrap">
-    <div>
-      <strong>jereme.xyz</strong><br>
-      <span>915 Broadway St, Vancouver, WA 98660</span>
-    </div>
-
-    <div class="footer-socials" aria-label="Social links">
-      <a
-        href="https://instagram.com/jeremedotxyz"
-        aria-label="Instagram"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm5-2.45a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/>
-        </svg>
-      </a>
-
-      <a
-        href="https://www.threads.com/@jeremedotxyz"
-        aria-label="Threads"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12.2 2C6.62 2 3 5.74 3 11.52v.03C3 17.38 6.61 22 12.28 22c5.02 0 8.37-3.12 8.37-7.4 0-3.73-2.34-5.97-6.18-6.18-.33-.02-.65-.03-.97-.02-1.93.04-3.33.93-4.09 2.28l1.87.94c.4-.7 1.13-1.18 2.23-1.21.3-.01.61 0 .91.05 2.47.29 4.1 1.64 4.1 4.14 0 3.12-2.46 5.32-6.24 5.32-4.43 0-7.15-3.6-7.15-8.37v-.03C5.13 6.91 7.9 4.04 12.2 4.04c3.07 0 5.1 1.36 6.27 3.55l1.87-.95C18.86 3.77 16.06 2 12.2 2Zm.17 9.67c-2.75 0-4.53 1.32-4.53 3.35 0 1.96 1.61 3.26 4.02 3.26 2.78 0 4.43-1.54 4.43-4.05v-.46h-2.07v.38c0 1.36-.79 2.17-2.28 2.17-1.19 0-1.98-.52-1.98-1.36 0-.89.91-1.45 2.41-1.45h1.95v-1.84h-1.95Z"/>
-        </svg>
-      </a>
-
-      <a
-        href="https://x.com/jeremedotxyz"
-        aria-label="Twitter"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18.9 2.5h3.05l-6.66 7.61L23.12 21.5h-6.13l-4.8-6.27-5.49 6.27H3.64l7.12-8.14L3.25 2.5h6.29l4.34 5.74L18.9 2.5Zm-1.07 17h1.69L8.62 4.39H6.8L17.83 19.5Z"/>
-        </svg>
-      </a>
-
-      <a
-        href="https://github.com/jeremedotxyz"
-        aria-label="GitHub"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.57 9.57 0 0 1 12 7c.85 0 1.7.11 2.5.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.59c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/>
-        </svg>
-      </a>
-
-      <a
-        href="https://substack.com/@jeremedotxyz"
-        aria-label="Substack"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 3h16v2.6H4V3Zm0 4.4h16V10H4V7.4Zm0 4.4h16V21l-8-4.45L4 21v-9.2Z"/>
-        </svg>
-      </a>
-
-      <a
-        href="https://www.youtube.com/@jeremedotxyz"
-        aria-label="YouTube"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M21.58 7.18a2.75 2.75 0 0 0-1.94-1.95C17.93 4.78 12 4.78 12 4.78s-5.93 0-7.64.45a2.75 2.75 0 0 0-1.94 1.95A28.65 28.65 0 0 0 2 12a28.65 28.65 0 0 0 .42 4.82 2.75 2.75 0 0 0 1.94 1.95c1.71.45 7.64.45 7.64.45s5.93 0 7.64-.45a2.75 2.75 0 0 0 1.94-1.95A28.65 28.65 0 0 0 22 12a28.65 28.65 0 0 0-.42-4.82ZM10 15.2V8.8l5.33 3.2L10 15.2Z"/>
-        </svg>
-      </a>
-
-      <a
-        href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=d159e34b66424fa9"
-        aria-label="Spotify"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.59 14.42a.72.72 0 0 1-.99.24c-2.72-1.66-6.14-2.04-10.17-1.12a.72.72 0 1 1-.32-1.4c4.41-1 8.19-.56 11.24 1.3.34.21.45.65.24.98Zm1.22-2.72a.9.9 0 0 1-1.24.3c-3.11-1.91-7.85-2.47-11.53-1.35a.9.9 0 1 1-.52-1.72c4.2-1.27 9.42-.65 12.99 1.54.43.26.56.81.3 1.23Zm.1-2.83C14.18 8.65 8.02 8.45 4.46 9.52a1.08 1.08 0 0 1-.62-2.07c4.09-1.23 10.89-1 15.17 1.54a1.08 1.08 0 0 1-1.1 1.88Z"/>
-        </svg>
-      </a>
-    </div>
-  </footer>
-
   <script>
-    document.querySelectorAll(".matrix").forEach((matrix) => {
-      for (let i = 0; i < 96; i += 1) {
-        matrix.appendChild(document.createElement("span"));
+    const asciiChars = [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@", "■", "●", "▲", "✦"];
+    const asciiFont = '13px "Fragment Mono", monospace';
+
+    function noiseField(x, y, time) {
+      let value = Math.sin(x * 10 + time);
+      value += Math.sin((y * 10 + time) / 2);
+      value += Math.sin((x * 10 + y * 10 + time) / 2);
+
+      const warpedX = x + 0.5 * Math.sin(time / 3);
+      const warpedY = y + 0.5 * Math.cos(time / 2);
+
+      value += Math.sin(Math.sqrt(100 * (warpedX * warpedX + warpedY * warpedY) + 1) + time);
+      return value / 4;
+    }
+
+    function initAsciiFooter() {
+      const canvas = document.querySelector("[data-ascii-canvas]");
+      if (!canvas) return;
+
+      const context = canvas.getContext("2d");
+      if (!context) return;
+
+      const backgroundColor = canvas.dataset.bg || "#00ff11";
+      const foregroundColor = canvas.dataset.fg || "#000000";
+      const cellWidth = 8.4;
+      const cellHeight = 14.3;
+
+      let pointerX = 0.5;
+      let pointerY = 0.5;
+      let columns = 0;
+      let rows = 0;
+      let animationFrame = null;
+
+      function resizeCanvas() {
+        const scale = window.devicePixelRatio || 1;
+        const width = canvas.offsetWidth;
+        const height = canvas.offsetHeight;
+
+        canvas.width = width * scale;
+        canvas.height = height * scale;
+        context.setTransform(scale, 0, 0, scale, 0, 0);
+
+        columns = Math.floor(width / cellWidth);
+        rows = Math.floor(height / cellHeight);
       }
-    });
+
+      function updatePointer(event) {
+        const rect = canvas.getBoundingClientRect();
+        pointerX = (event.clientX - rect.left) / rect.width;
+        pointerY = (event.clientY - rect.top) / rect.height;
+      }
+
+      function render(frameTime) {
+        const time = frameTime * 0.001;
+        const width = canvas.offsetWidth;
+        const height = canvas.offsetHeight;
+
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, width, height);
+        context.fillStyle = foregroundColor;
+        context.font = asciiFont;
+        context.textBaseline = "top";
+
+        for (let row = 0; row < rows; row += 1) {
+          for (let column = 0; column < columns; column += 1) {
+            const x = column / columns;
+            const y = row / rows;
+            const dx = x - pointerX;
+            const dy = y - pointerY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const influence = Math.max(0, 1 - distance * 3) * 0.15;
+            const sampleX = x + Math.sin(time * 2 + y * 8) * influence;
+            const sampleY = y + Math.cos(time * 2 + x * 8) * influence;
+            const normalized = (noiseField(sampleX, sampleY, time) + 1) * 0.5;
+            const charIndex = Math.floor(normalized * (asciiChars.length - 1));
+            const char = asciiChars[charIndex];
+
+            if (char !== " ") {
+              context.fillText(char, column * cellWidth, row * cellHeight);
+            }
+          }
+        }
+
+        animationFrame = window.requestAnimationFrame(render);
+      }
+
+      resizeCanvas();
+      canvas.addEventListener("mousemove", updatePointer);
+      canvas.addEventListener("touchmove", function (event) {
+        if (event.touches[0]) updatePointer(event.touches[0]);
+      }, { passive: true });
+      window.addEventListener("resize", resizeCanvas);
+
+      animationFrame = window.requestAnimationFrame(render);
+
+      window.addEventListener("beforeunload", function () {
+        if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      }, { once: true });
+    }
+
+    window.addEventListener("DOMContentLoaded", initAsciiFooter);
   </script>
+
 </body>
 </html>
