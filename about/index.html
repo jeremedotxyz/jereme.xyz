@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>about - jereme.xyz</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <script>
@@ -9,778 +12,125 @@
     gtag("js", new Date());
     gtag("config", "G-NTH4464X6R");
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#e9e6df">
-  <title>About Jereme Abernathy - Useful Systems, Rooms, Objects, and Places</title>
-  <meta name="description" content="A longer letter from Jereme Abernathy about AI, robotics, LiDAR, product design, coffee, objects, coastal hospitality, taste, and useful things.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --paper: #e9e6df;
-      --ink: #191817;
-      --soft: rgba(25, 24, 23, .68);
-      --quiet: rgba(25, 24, 23, .46);
-      --line: rgba(25, 24, 23, .14);
-      --white: #f7f5ef;
-      --black: #11100f;
-      --orange: #ff611a;
-      --blue: #2d5f8c;
-      --green: #66724d;
-      --brown: #9b5a2d;
-      --red: #b9342e;
-      --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-
-    html {
-      background: var(--paper);
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      pointer-events: none;
-      opacity: .035;
-      background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; width: 100%; height: auto; }
-    figure { margin: 0; }
-
-    .wrap {
-      width: min(1360px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid rgba(25, 24, 23, .1);
-      background: rgba(233, 230, 223, .78);
-      backdrop-filter: blur(18px);
-    }
-
-    .topbar-inner {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .brand-lockup {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-dot {
-      width: 34px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 16px 34px rgba(255, 97, 26, .3);
-    }
-
-    nav,
-    .footer-links,
-    .socials {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    nav a,
-    .footer-links a,
-    .socials a {
-      color: var(--soft);
-    }
-
-    nav a:hover,
-    .footer-links a:hover,
-    .socials a:hover,
-    .nav-cta {
-      color: var(--ink);
-    }
-
-    .hero {
-      min-height: calc(84svh - 72px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
-      align-items: center;
-      gap: clamp(42px, 8vw, 120px);
-      padding: clamp(70px, 10vw, 148px) 0 clamp(46px, 8vw, 96px);
-    }
-
-    .eyebrow,
-    .label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--quiet);
-    }
-
-    .eyebrow { margin: 0 0 18px; }
-
-    h1,
-    h2,
-    h3,
-    p {
-      overflow-wrap: break-word;
-    }
-
-    h1 {
-      max-width: 8ch;
-      margin: 0;
-      font-size: clamp(70px, 13.6vw, 188px);
-      line-height: .79;
-      letter-spacing: -.08em;
-      font-weight: 800;
-    }
-
-    .lead {
-      max-width: 820px;
-      margin: 30px 0 0;
-      color: rgba(25, 24, 23, .82);
-      font-size: clamp(22px, 3vw, 38px);
-      line-height: 1.1;
-      letter-spacing: -.035em;
-      font-weight: 760;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 46px;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      border: 1px solid currentColor;
-      border-radius: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .button.primary {
-      background: var(--ink);
-      color: #fff;
-      border-color: var(--ink);
-    }
-
-    .robot-panel {
-      position: relative;
-      min-height: 520px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .robot-panel img {
-      width: min(78%, 330px);
-      filter: drop-shadow(0 34px 70px rgba(0,0,0,.24));
-    }
-
-    .robot-panel::after {
-      content: "ABOUT / SIGNAL";
-      position: absolute;
-      left: 22px;
-      bottom: 22px;
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.56);
-    }
-
-    .proof-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-
-    .proof-row a,
-    .proof-row div {
-      min-width: 0;
-      min-height: 140px;
-      padding: 18px;
-      background: rgba(247, 245, 239, .72);
-    }
-
-    .proof-row strong {
-      display: block;
-      margin-top: 14px;
-      font-size: clamp(17px, 1.55vw, 22px);
-      line-height: 1.08;
-      letter-spacing: -.035em;
-      overflow-wrap: anywhere;
-    }
-
-    .section {
-      padding: clamp(76px, 9vw, 132px) 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
-      gap: clamp(32px, 7vw, 110px);
-      align-items: end;
-      margin-bottom: clamp(28px, 5vw, 60px);
-    }
-
-    h2 {
-      max-width: 11ch;
-      margin: 0;
-      font-size: clamp(42px, 6.2vw, 100px);
-      line-height: .86;
-      letter-spacing: -.064em;
-      font-weight: 800;
-    }
-
-    .section-head p,
-    .large-copy,
-    .final-panel p {
-      margin: 0;
-      color: var(--soft);
-      font-size: clamp(18px, 2vw, 25px);
-      line-height: 1.22;
-      letter-spacing: -.02em;
-      font-weight: 650;
-    }
-
-    .venture-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .venture {
-      min-height: 360px;
-      display: grid;
-      align-content: space-between;
-      gap: 24px;
-      padding: 24px;
-      border: 1px solid rgba(25, 24, 23, .1);
-      border-top: 5px solid var(--blue);
-      border-radius: 8px;
-      background: rgba(247, 245, 239, .74);
-      backdrop-filter: blur(18px);
-    }
-
-    .venture:nth-child(2) { border-top-color: var(--green); }
-    .venture:nth-child(3) { border-top-color: var(--brown); }
-
-    .venture:nth-child(4) {
-      border-top-color: var(--red);
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .venture:nth-child(4) .label,
-    .venture:nth-child(4) p {
-      color: rgba(255,255,255,.64);
-    }
-
-    .venture h3 {
-      margin: 0;
-      font-size: clamp(27px, 3vw, 38px);
-      line-height: .95;
-      letter-spacing: -.04em;
-    }
-
-    .venture p {
-      margin: 18px 0 0;
-      color: var(--soft);
-      font-size: 15px;
-      line-height: 1.45;
-      font-weight: 700;
-    }
-
-    .letter-shell {
-      display: grid;
-      grid-template-columns: minmax(220px, 360px) minmax(0, 820px);
-      gap: clamp(34px, 8vw, 110px);
-      align-items: start;
-    }
-
-    .sticky-title {
-      position: sticky;
-      top: 116px;
-    }
-
-    .sticky-title h2 {
-      max-width: 8ch;
-    }
-
-    .sticky-title p {
-      margin: 22px 0 0;
-      color: var(--soft);
-      font-size: 16px;
-      line-height: 1.5;
-      font-weight: 650;
-    }
-
-    .prose {
-      max-width: 820px;
-      color: rgba(25, 24, 23, .88);
-      font-size: clamp(18px, 1.35vw, 22px);
-      line-height: 1.64;
-      font-weight: 560;
-    }
-
-    .prose p {
-      margin: 0 0 1.55em;
-    }
-
-    .prose strong {
-      color: var(--ink);
-      font-weight: 850;
-    }
-
-    .prose em {
-      color: var(--ink);
-    }
-
-    .pull {
-      position: relative;
-      margin: clamp(54px, 8vw, 88px) 0;
-      padding: clamp(32px, 5vw, 58px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .pull .label {
-      color: rgba(255,255,255,.56);
-    }
-
-    .pull p {
-      margin: 16px 0 0;
-      color: #fff;
-      font-size: clamp(32px, 4.5vw, 64px);
-      line-height: .9;
-      letter-spacing: -.06em;
-      font-weight: 800;
-    }
-
-    .signoff {
-      margin-top: clamp(64px, 8vw, 100px);
-      padding-top: 34px;
-      border-top: 1px solid var(--line);
-    }
-
-    .signoff-line {
-      margin: 0 0 24px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: .96;
-      letter-spacing: -.045em;
-      font-weight: 800;
-    }
-
-    .signature-mark {
-      width: min(220px, 64vw);
-      margin: 0 0 18px;
-    }
-
-    .signature-mark img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .stage-note {
-      display: block;
-      max-width: 620px;
-      margin-top: 10px;
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 1.5;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      color: var(--quiet);
-    }
-
-    .quote-band {
-      padding: clamp(64px, 9vw, 118px) max(24px, calc((100vw - 1360px) / 2));
-      background: var(--orange);
-      color: #fff;
-    }
-
-    .quote-band p {
-      max-width: 1040px;
-      margin: 0;
-      font-size: clamp(42px, 7.2vw, 112px);
-      line-height: .88;
-      letter-spacing: -.07em;
-      font-weight: 800;
-    }
-
-    .final-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-      gap: 28px;
-      padding: clamp(32px, 6vw, 66px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
-    }
-
-    .final-panel h2 {
-      margin: 14px 0 22px;
-    }
-
-    .final-panel p {
-      max-width: 780px;
-    }
-
-    footer {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px;
-      align-items: start;
-      padding: 28px 0 42px;
-      border-top: 1px solid var(--line);
-      color: var(--soft);
-      font-size: 13px;
-    }
-
-    .footer-meta {
-      display: grid;
-      gap: 5px;
-    }
-
-    .footer-stack {
-      display: grid;
-      justify-items: end;
-      gap: 14px;
-    }
-
-    @media (max-width: 1040px) {
-      .hero,
-      .section-head,
-      .letter-shell,
-      .final-panel,
-      footer {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .robot-panel {
-        min-height: 420px;
-        max-width: 520px;
-      }
-
-      .sticky-title {
-        position: static;
-      }
-
-      .venture-grid,
-      .proof-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .footer-stack {
-        justify-items: start;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .wrap {
-        width: min(1360px, calc(100% - 32px));
-      }
-
-      .topbar {
-        position: relative;
-      }
-
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 16px;
-        padding: 20px 0;
-      }
-
-      nav {
-        justify-content: flex-start;
-        gap: 12px 16px;
-      }
-
-      .brand-lockup span:not(.brand-dot) {
-        display: none;
-      }
-
-      h1 {
-        max-width: 7ch;
-        font-size: clamp(58px, 18vw, 86px);
-      }
-
-      h2 {
-        max-width: 310px;
-        font-size: clamp(42px, 13vw, 58px);
-      }
-
-      .lead,
-      .section-head p,
-      .large-copy,
-      .final-panel p {
-        max-width: 310px;
-        font-size: 19px;
-      }
-
-      .actions,
-      .button {
-        width: 100%;
-      }
-
-      .proof-row,
-      .venture-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .proof-row strong {
-        max-width: 280px;
-        font-size: 17px;
-      }
-
-      .robot-panel {
-        min-height: 340px;
-      }
-
-      .prose {
-        font-size: 17px;
-        line-height: 1.62;
-      }
-
-      .pull,
-      .final-panel {
-        padding: 30px 22px;
-      }
-
-      .quote-band p {
-        max-width: 330px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        scroll-behavior: auto !important;
-      }
-    }
+    :root { --bg:#00ff11; --fg:#000; --muted:rgba(0,0,0,.76); --line:rgba(0,0,0,.18); --mono:"Fragment Mono", monospace; --sans:"Manrope", sans-serif; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden; } a { color:inherit; text-decoration:none; }
+    .page { min-height:100vh; padding:18px; } .header { display:flex; justify-content:space-between; align-items:flex-start; gap:24px; } .brand,.nav-label,.label,.meta { font-family:var(--mono); font-size:12px; letter-spacing:.08em; }
+    .nav { display:flex; flex-direction:column; gap:14px; } .nav-links { display:flex; flex-direction:column; gap:2px; } .nav-links a { font-size:clamp(34px,5vw,68px); line-height:.9; letter-spacing:-.06em; }
+    .page-title { position:relative; margin:108px 0 40px; } .page-title-ghost { visibility:hidden; display:block; font-size:clamp(52px,8vw,144px); line-height:.9; letter-spacing:-.065em; font-weight:700; } .page-title-live { position:absolute; inset:0; font-size:clamp(52px,8vw,144px); line-height:.9; letter-spacing:-.065em; font-weight:700; white-space:nowrap; }
+    .content { display:grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr); gap:48px; padding-bottom:40px; }
+    .label { margin-bottom:22px; display:inline-flex; gap:8px; } .label::before { content:"["; } .label::after { content:"]"; }
+    h1,h2 { margin:0; font-weight:700; line-height:.9; letter-spacing:-.065em; }
+    h1 { font-size:clamp(46px,7vw,116px); } p { margin:0; font-size:clamp(20px,2.2vw,42px); line-height:1.06; letter-spacing:-.03em; }
+    .meta { display:flex; flex-direction:column; gap:12px; color:var(--muted); align-self:end; }
+    hr { border:0; border-top:1px solid var(--line); margin:0; }
+    .notes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:38px; padding:28px 0; }
+    .notes p { font-size:clamp(18px,2vw,34px); color:var(--muted); }
+    .letter-shell { display:grid; grid-template-columns:minmax(220px,360px) minmax(0,820px); gap:38px; padding:28px 0; border-top:1px solid var(--line); }
+    .sticky-title { position:sticky; top:116px; align-self:start; }
+    .sticky-title h2 { font-size:clamp(28px,4vw,56px); }
+    .sticky-title p { margin-top:22px; font-size:16px; line-height:1.45; color:var(--muted); }
+    .prose { max-width:820px; }
+    .prose p { margin:0 0 1.5em; font-size:clamp(16px,1.35vw,24px); line-height:1.42; color:var(--muted); }
+    .prose strong, .prose em { color:var(--fg); }
+    .pull { margin:46px 0; padding:28px; border:1px solid var(--line); background:rgba(0,0,0,.08); }
+    .pull p { margin:14px 0 0; max-width:12ch; font-size:clamp(34px,6vw,88px); line-height:.88; letter-spacing:-.06em; color:var(--fg); }
+    .signoff { margin-top:56px; padding-top:28px; }
+    .signoff-line { margin:0 0 24px; font-size:clamp(22px,2.5vw,40px); line-height:1; color:var(--fg); }
+    .signature-placeholder { display:inline-flex; align-items:center; justify-content:center; width:min(240px,70vw); min-height:74px; padding:18px 20px; border:1px dashed rgba(0,0,0,.4); font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .stage-note { display:block; margin-top:12px; font-family:var(--mono); font-size:11px; line-height:1.5; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+    .ascii-footer { min-height:320px; position:relative; overflow:hidden; cursor:crosshair; margin-top:28px; }
+    .ascii-canvas { position:absolute; inset:0; width:100%; height:100%; display:block; background:var(--bg); }
+    .footer-inner { position:relative; z-index:1; padding:120px 18px 18px; } .footer-title { font-size:clamp(22px,7vw,120px); line-height:.88; letter-spacing:-.07em; }
+    @media (max-width:760px){ .header{position:relative; min-height:150px;} .nav{position:absolute; top:0; right:0; width:140px; align-items:flex-end;} .nav-label,.nav-links{width:100%; text-align:right; align-items:flex-end;} .nav-links a{display:block; width:100%; font-size:26px;} .page-title{margin:46px 0 22px;} .content,.notes,.letter-shell{grid-template-columns:1fr;} .sticky-title{position:static;} p{font-size:18px;} }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner wrap">
-      <a class="brand-lockup" href="jereme-landing.html" aria-label="Jereme Abernathy home">
-        <span class="brand-dot" aria-hidden="true"></span>
-        <span>Jereme Abernathy</span>
-      </a>
-      <nav aria-label="Main">
-        <a href="fwr.html">fw/r</a>
-        <a href="pine.html">pine</a>
-        <a href="nrthrn.html">nrthrn</a>
-        <a href="drift.html">drift</a>
-        <a class="nav-cta" href="about.html">about</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero wrap">
+  <main class="page">
+    <header class="header">
+      <a class="brand" href="ai_studio_code%20(5).html">jereme.xyz</a>
+      <nav class="nav"><div class="nav-label">[ nav ]</div><div class="nav-links"><a href="ventures.html">ventures</a><a href="about.html">about</a><a href="contact.html">contact</a></div></nav>
+    </header>
+    <section class="page-title" aria-label="/about"><span class="page-title-ghost">/about</span><h1 class="page-title-live" data-title-text="/about"></h1></section>
+    <section class="content">
       <div>
-        <p class="eyebrow">About / Jereme Abernathy / Useful things</p>
-        <h1>About things.</h1>
-        <p class="lead">The work, the rooms, the machines, the coffee, the objects, and the Pacific Northwest weather that keeps having opinions.</p>
-        <div class="actions">
-          <a class="button primary" href="#letter">Read the Letter</a>
-          <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Hello%20from%20jereme.xyz">Write Me</a>
+        <span class="label">about</span>
+        <h1>built where the easy answer stops.</h1>
+      </div>
+      <div class="meta">
+        <div>coord: 45.6387° n, 122.6615° w</div>
+        <div>status: available q1 2027</div>
+        <div>dept: ai / robotics / lidar</div>
+      </div>
+    </section>
+    <hr>
+    <section class="notes">
+      <p>Four ventures, one operating instinct: make the technical thing humane, make the beautiful thing accountable, and keep the room honest.</p>
+    </section>
+
+    <section class="letter-shell">
+      <aside class="sticky-title">
+        <span class="label">long-form / personal signal</span>
+        <h2>in lieu of a press release.</h2>
+        <p>A longer note about the work, the taste, the ventures, the trail, and the useful thing I am probably trying to build next.</p>
+      </aside>
+
+      <article class="prose">
+        <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
+
+        <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
+
+        <p><strong>fw/r</strong> is robotics, LiDAR, and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
+
+        <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
+
+        <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
+
+        <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
+
+        <div class="pull">
+          <span class="label">signal / 01</span>
+          <p>Four bat-shit ideas, one guy stupid enough to try and run all of them.</p>
         </div>
-      </div>
-      <figure class="robot-panel">
-        <img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/og-robot-inverted-sharp-transparent.png" alt="Robot illustration">
-      </figure>
-    </section>
 
-    <section class="section wrap">
-      <div class="section-head">
-        <h2>Different rooms. Same work.</h2>
-        <p>Four ventures, one operating instinct: make the technical thing humane, make the beautiful thing accountable, and keep the room honest.</p>
-      </div>
-      <div class="venture-grid">
-        <a class="venture" href="https://jereme.xyz/site/fwr/fwr.html">
-          <span class="label">01 / fw/r</span>
-          <div>
-            <h3>Intelligent Systems</h3>
-            <p>AI, robotics, LiDAR, evaluation, and tools that survive contact with actual work.</p>
-          </div>
-        </a>
-        <a class="venture" href="https://jereme.xyz/site/pine/pine.html">
-          <span class="label">02 / pine</span>
-          <div>
-            <h3>Local Roots</h3>
-            <p>A Pacific Northwest coffee haus built around light, pace, seating, sound, and return visits.</p>
-          </div>
-        </a>
-        <a class="venture" href="https://jereme.xyz/site/nrthrn/nrthrn.html">
-          <span class="label">03 / nrthrn</span>
-          <div>
-            <h3>Designed Objects</h3>
-            <p>Objects with real materials, real weight, and a reason for every millimeter.</p>
-          </div>
-        </a>
-        <a class="venture" href="https://jereme.xyz/site/drift/drift.html">
-          <span class="label">04 / drift</span>
-          <div>
-            <h3>Coastal Rituals</h3>
-            <p>Coastal rooms and rituals with slower mornings, sharper details, and fewer distractions.</p>
-          </div>
-        </a>
-      </div>
-    </section>
+        <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
 
-    <section class="section wrap" id="letter">
-      <div class="letter-shell">
-        <aside class="sticky-title">
-          <span class="label">Long-form / personal signal</span>
-          <h2>In lieu of a press release.</h2>
-          <p>A longer note about the work, the taste, the ventures, the trail, and the useful thing I am probably trying to build next.</p>
-        </aside>
+        <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
 
-        <article class="prose">
-          <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
+        <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
 
-          <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
+        <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
 
-          <p><strong>fw/r</strong> is robotics, LiDAR, and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
+        <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
 
-          <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
+        <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
 
-          <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
+        <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
 
-          <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
-
-          <div class="pull">
-            <span class="label">Signal / 01</span>
-            <p>Four bat-shit ideas, one guy stupid enough to try and run all of them.</p>
-          </div>
-
-          <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
-
-          <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
-
-          <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
-
-          <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
-
-          <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
-
-          <p>Opinions below. Skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
-
-          <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
-
-          <div class="pull">
-            <span class="label">Signal / 02</span>
-            <p>Geocities had more personality than 90% of the Y Combinator portfolio.</p>
-          </div>
-
-          <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
-
-          <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
-
-          <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
-
-          <div class="signoff">
-            <p class="signoff-line">Don't let the wheels fall off.</p>
-            <div class="signature-mark">
-              <img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/signature.png" alt="Jereme">
-            </div>
-            <span class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</span>
-            <span class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative about me, it wokred even better. 🫶🏼</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="quote-band">
-      <p>The way a thing looks is the way it thinks.</p>
-    </section>
-
-    <section class="section wrap">
-      <div class="final-panel">
-        <div>
-          <span class="label">Still here?</span>
-          <h2>Then we probably have enough overlap.</h2>
-          <p>Talk to me about systems, spaces, machines, coffee, product work, or the useful thing you are trying to ship.</p>
+        <div class="pull">
+          <span class="label">signal / 02</span>
+          <p>Geocities had more personality than 90% of the Y Combinator portfolio.</p>
         </div>
-        <a class="button primary" href="mailto:jeremedotxyz@gmail.com?subject=Hello%20from%20jereme.xyz">Write Me</a>
-      </div>
+
+        <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
+
+        <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
+
+        <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
+
+        <div class="signoff">
+          <p class="signoff-line">Don't let the wheels fall off.</p>
+          <div class="signature-placeholder">signature.png placeholder</div>
+          <span class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</span>
+          <span class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative about me, it worked even better.</span>
+        </div>
+      </article>
     </section>
   </main>
-
-  <footer class="wrap">
-    <div class="footer-meta">
-      <strong>jereme.xyz</strong>
-      <span>915 Broadway St, Vancouver, WA 98660</span>
-      <span>&copy; 2026 Jereme Abernathy</span>
-    </div>
-    <div class="footer-stack">
-      <div class="socials">
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://instagram.com/jeremedotxyz">Instagram</a>
-        <a href="https://x.com/jeremedotxyz">X</a>
-        <a href="https://github.com/jeremedotxyz">GitHub</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-      </div>
-      <div class="footer-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-      </div>
-    </div>
-  </footer>
+  <footer class="ascii-footer"><canvas class="ascii-canvas" data-ascii-canvas data-bg="#00ff11" data-fg="#000000" aria-hidden="true"></canvas><div class="footer-inner"><div class="footer-title">about<br>jereme.xyz</div></div></footer>
+  <script>
+    const asciiChars=[" ",".",":","-","=","+","*","#","%","@","■","●","▲","✦"],asciiFont='13px "Fragment Mono", monospace';function noiseField(x,y,t){let v=Math.sin(x*10+t);v+=Math.sin((y*10+t)/2);v+=Math.sin((x*10+y*10+t)/2);const wx=x+.5*Math.sin(t/3),wy=y+.5*Math.cos(t/2);v+=Math.sin(Math.sqrt(100*(wx*wx+wy*wy)+1)+t);return v/4}function initAsciiFooter(){const c=document.querySelector("[data-ascii-canvas]");if(!c)return;const x=c.getContext("2d");if(!x)return;const bg=c.dataset.bg||"#00ff11",fg=c.dataset.fg||"#000000",cw=8.4,ch=14.3;let px=.5,py=.5,cols=0,rows=0;function size(){const s=window.devicePixelRatio||1,w=c.offsetWidth,h=c.offsetHeight;c.width=w*s;c.height=h*s;x.setTransform(s,0,0,s,0,0);cols=Math.floor(w/cw);rows=Math.floor(h/ch)}function point(e){const r=c.getBoundingClientRect();px=(e.clientX-r.left)/r.width;py=(e.clientY-r.top)/r.height}function draw(f){const t=f*.001,w=c.offsetWidth,h=c.offsetHeight;x.fillStyle=bg;x.fillRect(0,0,w,h);x.fillStyle=fg;x.font=asciiFont;x.textBaseline="top";for(let r=0;r<rows;r++)for(let col=0;col<cols;col++){const nx=col/cols,ny=r/rows,dx=nx-px,dy=ny-py,d=Math.sqrt(dx*dx+dy*dy),i=Math.max(0,1-d*3)*.15,sx=nx+Math.sin(t*2+ny*8)*i,sy=ny+Math.cos(t*2+nx*8)*i,chv=asciiChars[Math.floor(((noiseField(sx,sy,t)+1)*.5)*(asciiChars.length-1))];if(chv!==" ")x.fillText(chv,col*cw,r*ch)}requestAnimationFrame(draw)}size();c.addEventListener("mousemove",point);window.addEventListener("resize",size);requestAnimationFrame(draw)}function initPageTitle(){document.querySelectorAll("[data-title-text]").forEach(function(n){const t=n.getAttribute("data-title-text")||"";let i=0;function tick(){n.textContent=t.slice(0,i);if(i<=t.length){i+=1;window.setTimeout(tick,i<4?165:92)}}tick()})}window.addEventListener("DOMContentLoaded",function(){initPageTitle();initAsciiFooter();});
+  </script>
 </body>
 </html>
