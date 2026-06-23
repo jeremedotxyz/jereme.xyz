@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drift - jereme.xyz</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-NTH4464X6R");
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#bfd7dc; --fg:#17314b; --muted:rgba(23,49,75,.72); --line:rgba(23,49,75,.16); --footer-bg:#1f3451; --footer-fg:#f5ead1; --mono:"Fragment Mono", monospace; --sans:"Manrope", sans-serif; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); -webkit-font-smoothing:antialiased; } a{color:inherit;text-decoration:none;}
+    .page{min-height:100vh;padding:18px;} .header{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;} .brand,.nav-label,.year{font-family:var(--mono);font-size:12px;letter-spacing:.08em;} .nav{display:flex;flex-direction:column;gap:14px;} .nav-links{display:flex;flex-direction:column;gap:2px;} .nav-links a{font-size:clamp(34px,5vw,68px);line-height:.9;letter-spacing:-.06em;}
+    .hero{display:flex;flex-direction:column;gap:28px;padding:12px 0 24px;} .page-title{position:relative;margin:108px 0 40px;} .page-title-ghost{visibility:hidden;display:block;font-size:clamp(52px, 8vw, 144px);line-height:.9;letter-spacing:-.065em;font-weight:700;} .page-title-live{position:absolute;inset:0;font-size:clamp(52px, 8vw, 144px);line-height:.9;letter-spacing:-.065em;font-weight:700;white-space:nowrap;} .hero-badge{width:clamp(92px,13vw,190px);height:clamp(92px,13vw,190px);border-radius:clamp(28px,3vw,40px);background:#233a58;color:#f6ecd4;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(18px,2vw,32px);box-shadow:0 12px 34px rgba(0,0,0,.12);} .hero-copy{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;} .hero-title-wrap{display:flex;align-items:flex-start;gap:10px;}
+    h1{margin:0;font-size:clamp(54px,8vw,126px);line-height:.9;letter-spacing:-.065em;font-weight:700;} .summary{max-width:430px;margin:0;font-size:clamp(20px,2.4vw,38px);line-height:1.05;letter-spacing:-.03em;color:var(--muted);font-weight:500;}
+    hr{border:0;border-top:1px solid var(--line);margin:0;} .gallery{display:flex;flex-direction:column;gap:18px;padding:18px 0;} .frame{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 12px 28px rgba(0,0,0,.10);} .frame.large{aspect-ratio:16/9;background:linear-gradient(180deg,#93c8ed 0%,#f1d39c 100%);} .frame.medium{aspect-ratio:16/9;width:min(68%,880px);} .frame.right{margin-left:auto;}
+    .frame::before,.frame::after{content:"";position:absolute;} .frame.large::before{inset:auto -6% -20% -6%;height:44%;background:#2b4364;border-radius:44% 44% 0 0;} .frame.large::after{inset:14% 10% auto auto;width:24%;height:24%;background:#f8edcd;border-radius:999px;}
+    .frame.a{background:linear-gradient(180deg,#84bfd7 0%,#c6d0cc 100%);} .frame.a::before{inset:auto auto 14% 12%;width:58%;height:18%;background:#233b59;border-radius:999px;} .frame.a::after{inset:16% 11% auto auto;width:18%;height:46%;background:#f8ebc9;border-radius:24px;}
+    .frame.b{background:linear-gradient(180deg,#d5d6c9 0%,#94bad1 100%);} .frame.b::before{inset:18% auto auto 16%;width:42%;height:48%;background:rgba(255,255,255,.5);border-radius:999px;} .frame.b::after{inset:auto 12% 16% auto;width:34%;height:18%;background:#1d3552;border-radius:999px;}
+    .notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:42px;padding:26px 0 12px;} .notes p{margin:0;font-size:clamp(18px,2vw,34px);line-height:1.08;letter-spacing:-.03em;color:var(--muted);}
+    .ascii-footer{margin-top:96px;min-height:360px;position:relative;overflow:hidden;cursor:crosshair;background:var(--footer-bg);color:var(--footer-fg);} .ascii-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:var(--footer-bg);} .footer-inner{position:relative;z-index:1;padding:clamp(90px,18vw,240px) 18px 24px;display:flex;align-items:flex-end;} .footer-title{font-size:clamp(52px,9vw,180px);line-height:.86;letter-spacing:-.07em;}
+    @media (max-width:760px){.header{position:relative;min-height:150px;}.nav{position:absolute;top:0;right:0;width:140px;align-items:flex-end;}.brand{max-width:calc(100% - 164px);}.nav-label,.nav-links{width:100%;text-align:right;align-items:flex-end;}.nav-links a{display:block;width:100%;font-size:26px;}.page-title{margin:46px 0 22px;}.hero{padding-top:24px;}.hero-badge{width:92px;height:92px;border-radius:28px;font-size:18px;}.hero-copy{flex-direction:column;gap:18px;}.hero-title-wrap{flex-direction:column;gap:8px;}h1{font-size:clamp(46px,16vw,72px);}.year{font-size:11px;}.summary{max-width:100%;font-size:18px;line-height:1.12;}.notes{grid-template-columns:1fr;gap:18px;}.notes p{font-size:17px;line-height:1.24;}.gallery{gap:14px;}.frame{border-radius:18px;}.frame.medium{width:100%;}.footer-title{font-size:22px;line-height:1;font-family:var(--mono);text-transform:uppercase;}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <a class="brand" href="ai_studio_code%20(5).html">jereme.xyz</a>
+      <nav class="nav"><div class="nav-label">[ nav ]</div><div class="nav-links"><a href="ventures.html">ventures</a><a href="about.html">about</a><a href="contact.html">contact</a></div></nav>
+    </header>
+    <section class="page-title" aria-label="/drift"><span class="page-title-ghost">/drift</span><h1 class="page-title-live" data-title-text="/drift"></h1></section>
+    <section class="hero">
+      <div class="hero-badge">drift</div>
+      <div class="hero-copy"><div class="hero-title-wrap"><h1>drift</h1><span class="year">(est. 2026)</span></div><p class="summary">coastal rituals, sensory identity, and a softer world built around place and mood.</p></div>
+    </section>
+    <hr>
+    <section class="gallery"><div class="frame large"></div><div class="frame medium a"></div><div class="frame medium right b"></div></section>
+    <hr>
+    <section class="notes">
+      <p>drift leans into the quieter side of the Foundation case-study template: broad scenic fields, sparse forms, and enough calm negative space for future product, editorial, or location imagery to carry the story.</p>
+      <p>The mockup is intentionally atmospheric. It suggests where identity, objects, and setting can eventually meet without forcing the page into a generic lifestyle-brand layout.</p>
+    </section>
+  </main>
+  <footer class="ascii-footer">
+    <canvas class="ascii-canvas" data-ascii-canvas data-bg="#1f3451" data-fg="#f5ead1" aria-hidden="true"></canvas>
+    <div class="footer-inner"><div class="footer-title">drift<br>coast</div></div>
+  </footer>
+  <script>
+    const asciiChars=[" ",".",":","-","=","+","*","#","%","@","■","●","▲","✦"],asciiFont='13px "Fragment Mono", monospace';function noiseField(x,y,t){let v=Math.sin(x*10+t);v+=Math.sin((y*10+t)/2);v+=Math.sin((x*10+y*10+t)/2);const wx=x+.5*Math.sin(t/3),wy=y+.5*Math.cos(t/2);v+=Math.sin(Math.sqrt(100*(wx*wx+wy*wy)+1)+t);return v/4}function initAsciiFooter(){const c=document.querySelector("[data-ascii-canvas]");if(!c)return;const x=c.getContext("2d");if(!x)return;const bg=c.dataset.bg||"#1f3451",fg=c.dataset.fg||"#f5ead1",cw=8.4,ch=14.3;let px=.5,py=.5,cols=0,rows=0;function size(){const s=window.devicePixelRatio||1,w=c.offsetWidth,h=c.offsetHeight;c.width=w*s;c.height=h*s;x.setTransform(s,0,0,s,0,0);cols=Math.floor(w/cw);rows=Math.floor(h/ch)}function point(e){const r=c.getBoundingClientRect();px=(e.clientX-r.left)/r.width;py=(e.clientY-r.top)/r.height}function draw(f){const t=f*.001,w=c.offsetWidth,h=c.offsetHeight;x.fillStyle=bg;x.fillRect(0,0,w,h);x.fillStyle=fg;x.font=asciiFont;x.textBaseline="top";for(let r=0;r<rows;r++)for(let col=0;col<cols;col++){const nx=col/cols,ny=r/rows,dx=nx-px,dy=ny-py,d=Math.sqrt(dx*dx+dy*dy),i=Math.max(0,1-d*3)*.15,sx=nx+Math.sin(t*2+ny*8)*i,sy=ny+Math.cos(t*2+nx*8)*i,chv=asciiChars[Math.floor(((noiseField(sx,sy,t)+1)*.5)*(asciiChars.length-1))];if(chv!==" ")x.fillText(chv,col*cw,r*ch)}requestAnimationFrame(draw)}size();c.addEventListener("mousemove",point);window.addEventListener("resize",size);requestAnimationFrame(draw)}function initPageTitle(){document.querySelectorAll("[data-title-text]").forEach(function(n){const t=n.getAttribute("data-title-text")||"";let i=0;function tick(){n.textContent=t.slice(0,i);if(i<=t.length){i+=1;window.setTimeout(tick,i<4?90:42)}}tick()})}window.addEventListener("DOMContentLoaded",function(){initPageTitle();initAsciiFooter();});
+  </script>
+</body>
+</html>
 
