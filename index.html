@@ -196,6 +196,10 @@
       padding-bottom: 28px;
     }
 
+    .group-open {
+      border-right: none;
+    }
+
     .venture-preview {
       position: relative;
       aspect-ratio: 8 / 5;
@@ -322,6 +326,7 @@
       object-fit: contain;
       display: block;
       filter: contrast(1.05);
+      mix-blend-mode: screen;
     }
 
     .venture-copy {
@@ -601,10 +606,6 @@
     </section>
 
     <!-- VENTURES GRID -->
-    <div class="cell col-12" style="background: #000; color: var(--bg);">
-        <span class="label" style="margin-bottom: 0;">02 / Current Operating Ventures</span>
-    </div>
-
     <a href="#" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
             <div class="venture-preview fwr"></div>
@@ -670,7 +671,7 @@
     </a>
 
     <!-- CAPABILITIES LIST -->
-    <section class="cell col-6">
+    <section class="cell col-6 group-open">
         <span class="label">Capabilities</span>
         <div style="font-family: var(--mono); font-weight: 800; font-size: 14px; line-height: 2;">
             / AI STRATEGY & EVALS<br>
@@ -682,7 +683,7 @@
     </section>
 
     <!-- CALL TO ACTION -->
-    <section class="cell col-6">
+    <section class="cell col-6 group-open">
         <span class="label">Inquiry</span>
         <h2 class="cta-title">bring the fuzzy thing.</h2>
         <p style="margin: 20px 0;">If you have a project that needs technical narrative or buildable clarity.</p>
