@@ -15,17 +15,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* THE HIGH-VIS LIME PALETTE */
-      --bg: #ffffff;         /* Clean white foundation */
-      --text: #000000;       /* High-contrast Black */
-      --border: #000000;     /* Sharp 1px borders */
+      --bg: #ffffff;
+      --text: #000000;
+      --border: #000000;
       --mono: "Fragment Mono", monospace;
       --sans: "Manrope", sans-serif;
     }
 
     * { box-sizing: border-box; }
     a { color: inherit; text-decoration: none; }
-    
+
     body {
       margin: 0;
       background: var(--bg);
@@ -35,7 +34,6 @@
       overflow-x: hidden;
     }
 
-    /* THE MODULAR GRID */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -58,7 +56,6 @@
     .col-4 { grid-column: span 4; }
     .col-3 { grid-column: span 3; }
 
-    /* TYPOGRAPHY */
     .label {
       font-family: var(--mono);
       font-size: 11px;
@@ -98,7 +95,6 @@
       letter-spacing: -0.02em;
     }
 
-    /* HEADER */
     header {
       padding: 18px 18px 0;
       display: grid;
@@ -147,7 +143,6 @@
       letter-spacing: -0.06em;
     }
 
-    /* BUTTONS */
     .btn {
       display: inline-block;
       padding: 15px 30px;
@@ -164,7 +159,6 @@
       opacity: 0.8;
     }
 
-    /* DATA ELEMENTS */
     .data-point {
       font-family: var(--mono);
       font-size: 12px;
@@ -174,17 +168,16 @@
       display: block;
     }
 
-    /* VENTURE CARDS */
     .venture-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-        transition: opacity 0.15s ease, transform 0.15s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: opacity 0.15s ease, transform 0.15s ease;
     }
-    
+
     .venture-link:hover {
-        opacity: 0.92;
-        transform: translateY(-2px);
+      opacity: 0.92;
+      transform: translateY(-2px);
     }
 
     .venture-card {
@@ -637,8 +630,7 @@
   </header>
 
   <main class="grid-container">
-    
-    <!-- HERO SECTION -->
+
     <section class="cell col-12 hero borderless-bottom">
       <h1 class="hero-title" aria-label="signal. substance.">
         <span class="hero-title-ghost">signal.
@@ -656,7 +648,6 @@ substance."></span>
       </div>
     </section>
 
-    <!-- METHOD -->
     <section id="work" class="cell col-8 borderless-bottom">
       <h2>built where the easy answer stops.</h2>
     </section>
@@ -666,116 +657,112 @@ substance."></span>
       <div class="data-point">Process: Instrument > Test > Build</div>
     </section>
 
-    <!-- VENTURES GRID -->
     <div id="ventures" class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview fwr has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/robot.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="venture-details">
-                <div class="venture-badge fwr-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon"></div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">fw/r</h3>
-                        <div class="venture-year">(est. 2019)</div>
-                    </div>
-                    <p class="venture-summary">Intelligent systems, robotics experiments, and buildable technical infrastructure.</p>
-                </div>
-            </div>
+      <div class="venture-card">
+        <div class="venture-preview fwr has-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/robot.mp4" type="video/mp4">
+          </video>
         </div>
+        <div class="venture-details">
+          <div class="venture-badge fwr-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon"></div>
+          <div class="venture-copy">
+            <div class="venture-heading">
+              <h3 class="venture-title">fw/r</h3>
+              <div class="venture-year">(est. 2019)</div>
+            </div>
+            <p class="venture-summary">Intelligent systems, robotics experiments, and buildable technical infrastructure.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview pine has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/pine.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="venture-details">
-                <div class="venture-badge pine-badge" aria-label="pine mark">
-                    <svg viewBox="0 0 64 64" aria-hidden="true">
-                        <path d="M32 10 44 26H20L32 10Z" fill="#f4ecd6"/>
-                        <path d="M32 21 47 40H17L32 21Z" fill="#f4ecd6"/>
-                        <path d="M32 33 51 56H13L32 33Z" fill="#f4ecd6"/>
-                    </svg>
-                </div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">pine</h3>
-                        <div class="venture-year">(est. 2022*)</div>
-                    </div>
-                    <p class="venture-summary">A slower local-world concept shaped around coffee, atmosphere, and neighborhood rituals.</p>
-                </div>
-            </div>
+      <div class="venture-card">
+        <div class="venture-preview pine has-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/pine.mp4" type="video/mp4">
+          </video>
         </div>
+        <div class="venture-details">
+          <div class="venture-badge pine-badge" aria-label="pine mark">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M32 10 44 26H20L32 10Z" fill="#f4ecd6"/>
+              <path d="M32 21 47 40H17L32 21Z" fill="#f4ecd6"/>
+              <path d="M32 33 51 56H13L32 33Z" fill="#f4ecd6"/>
+            </svg>
+          </div>
+          <div class="venture-copy">
+            <div class="venture-heading">
+              <h3 class="venture-title">pine</h3>
+              <div class="venture-year">(est. 2022*)</div>
+            </div>
+            <p class="venture-summary">A slower local-world concept shaped around coffee, atmosphere, and neighborhood rituals.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview nrthrn has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/nrthrn.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="venture-details">
-                <div class="venture-badge">nrthrn</div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">nrthrn</h3>
-                        <div class="venture-year">(est. 2025)</div>
-                    </div>
-                    <p class="venture-summary">Designed objects and material ideas with a cleaner, more restrained physical language.</p>
-                </div>
-            </div>
+      <div class="venture-card">
+        <div class="venture-preview nrthrn has-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/nrthrn.mp4" type="video/mp4">
+          </video>
         </div>
+        <div class="venture-details">
+          <div class="venture-badge">nrthrn</div>
+          <div class="venture-copy">
+            <div class="venture-heading">
+              <h3 class="venture-title">nrthrn</h3>
+              <div class="venture-year">(est. 2025)</div>
+            </div>
+            <p class="venture-summary">Designed objects and material ideas with a cleaner, more restrained physical language.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview drift has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/coast.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="venture-details">
-                <div class="venture-badge drift-badge"><img src="drift-logo.svg" alt="drift logo"></div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">drift</h3>
-                        <div class="venture-year">(coming soon)</div>
-                    </div>
-                    <p class="venture-summary">Coastal rituals, sensory identity, and a softer world built around place and mood.</p>
-                </div>
-            </div>
+      <div class="venture-card">
+        <div class="venture-preview drift has-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/coast.mp4" type="video/mp4">
+          </video>
         </div>
+        <div class="venture-details">
+          <div class="venture-badge drift-badge"><img src="drift-logo.svg" alt="drift logo"></div>
+          <div class="venture-copy">
+            <div class="venture-heading">
+              <h3 class="venture-title">drift</h3>
+              <div class="venture-year">(coming soon)</div>
+            </div>
+            <p class="venture-summary">Coastal rituals, sensory identity, and a softer world built around place and mood.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- CAPABILITIES LIST -->
     <section class="cell col-6 group-open borderless-bottom">
-        <span class="label">Capabilities</span>
-        <div style="font-family: var(--mono); font-weight: 800; font-size: 14px; line-height: 2;">
-            / AI STRATEGY & EVALS<br>
-            / ROBOTICS PROTOTYPING<br>
-            / LIDAR DATA PIPELINES<br>
-            / INDUSTRIAL DESIGN<br>
-            / COFFEE + SPACES
-        </div>
+      <span class="label">Capabilities</span>
+      <div style="font-family: var(--mono); font-weight: 800; font-size: 14px; line-height: 2;">
+        / AI STRATEGY & EVALS<br>
+        / ROBOTICS PROTOTYPING<br>
+        / LIDAR DATA PIPELINES<br>
+        / INDUSTRIAL DESIGN<br>
+        / COFFEE + SPACES
+      </div>
     </section>
 
-    <!-- CALL TO ACTION -->
     <section class="cell col-6 group-open borderless-bottom">
-        <span class="label">Inquiry</span>
-        <h2 class="cta-title">bring the fuzzy thing.</h2>
-        <p style="margin: 20px 0;">If you have a project that needs technical narrative or buildable clarity.</p>
-        <a href="mailto:jeremedotxyz@gmail.com" class="btn">Open Brief</a>
+      <span class="label">Inquiry</span>
+      <h2 class="cta-title">bring the fuzzy thing.</h2>
+      <p style="margin: 20px 0;">If you have a project that needs technical narrative or buildable clarity.</p>
+      <a href="mailto:jeremedotxyz@gmail.com" class="btn">Open Brief</a>
     </section>
 
-    <!-- FOOTER -->
     <footer class="cell col-12 ascii-footer borderless-bottom">
-        <canvas class="ascii-canvas" data-ascii-canvas data-bg="#ffffff" data-fg="#000000" aria-hidden="true"></canvas>
+      <canvas class="ascii-canvas" data-ascii-canvas data-bg="#ffffff" data-fg="#000000" aria-hidden="true"></canvas>
     </footer>
 
   </main>
@@ -784,16 +771,14 @@ substance."></span>
     const asciiChars = [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@", "■", "●", "▲", "✦"];
     const asciiFont = '13px "Fragment Mono", monospace';
 
-    function noiseField(x, y, time) {
-      let value = Math.sin(x * 10 + time);
-      value += Math.sin((y * 10 + time) / 2);
-      value += Math.sin((x * 10 + y * 10 + time) / 2);
-
-      const warpedX = x + 0.5 * Math.sin(time / 3);
-      const warpedY = y + 0.5 * Math.cos(time / 2);
-
-      value += Math.sin(Math.sqrt(100 * (warpedX * warpedX + warpedY * warpedY) + 1) + time);
-      return value / 4;
+    function noiseField(x, y, t) {
+      let v = Math.sin(x * 10 + t);
+      v += Math.sin((y * 10 + t) / 2);
+      v += Math.sin((x * 10 + y * 10 + t) / 2);
+      const wx = x + 0.5 * Math.sin(t / 3);
+      const wy = y + 0.5 * Math.cos(t / 2);
+      v += Math.sin(Math.sqrt(100 * (wx * wx + wy * wy) + 1) + t);
+      return v / 4;
     }
 
     function initAsciiFooter() {
@@ -803,7 +788,7 @@ substance."></span>
       const context = canvas.getContext("2d");
       if (!context) return;
 
-      const backgroundColor = canvas.dataset.bg || "#00ff11";
+      const backgroundColor = canvas.dataset.bg || "#ffffff";
       const foregroundColor = canvas.dataset.fg || "#000000";
       const cellWidth = 8.4;
       const cellHeight = 14.3;
@@ -812,7 +797,7 @@ substance."></span>
       let pointerY = 0.5;
       let columns = 0;
       let rows = 0;
-      let animationFrame = null;
+      let animationFrame = 0;
 
       function resizeCanvas() {
         const scale = window.devicePixelRatio || 1;
