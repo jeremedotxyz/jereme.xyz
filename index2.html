@@ -856,7 +856,7 @@ substance."></span>
       }, { once: true });
     }
 
-    function initTypeAudio() {
+    function initTypeAudio(onUnlock) {
       const AudioContextRef = window.AudioContext || window.webkitAudioContext;
       if (!AudioContextRef) {
         return {
@@ -872,6 +872,8 @@ substance."></span>
         if (unlocked) return;
         context.resume().then(function () {
           unlocked = true;
+          burst("key");
+          if (typeof onUnlock === "function") onUnlock();
         }).catch(function () {});
       }
 
@@ -883,23 +885,23 @@ substance."></span>
         const gain = context.createGain();
         const filter = context.createBiquadFilter();
 
-        oscillator.type = "square";
-        oscillator.frequency.value = kind === "backspace" ? 420 : 780;
+        oscillator.type = kind === "backspace" ? "sawtooth" : "square";
+        oscillator.frequency.value = kind === "backspace" ? 320 : 980;
 
         filter.type = "bandpass";
-        filter.frequency.value = kind === "backspace" ? 900 : 1800;
-        filter.Q.value = 0.7;
+        filter.frequency.value = kind === "backspace" ? 720 : 2200;
+        filter.Q.value = 1.1;
 
         gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.linearRampToValueAtTime(kind === "backspace" ? 0.018 : 0.012, now + 0.004);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + (kind === "backspace" ? 0.09 : 0.05));
+        gain.gain.linearRampToValueAtTime(kind === "backspace" ? 0.085 : 0.06, now + 0.006);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + (kind === "backspace" ? 0.14 : 0.1));
 
         oscillator.connect(filter);
         filter.connect(gain);
         gain.connect(context.destination);
 
         oscillator.start(now);
-        oscillator.stop(now + (kind === "backspace" ? 0.1 : 0.06));
+        oscillator.stop(now + (kind === "backspace" ? 0.15 : 0.11));
       }
 
       window.addEventListener("pointerdown", unlock, { once: true });
@@ -916,6 +918,9 @@ substance."></span>
     }
 
     function initPageTitle(typeAudio) {
+      window.__titleRunId = (window.__titleRunId || 0) + 1;
+      const runId = window.__titleRunId;
+
       document.querySelectorAll("[data-title-text]").forEach(function (node) {
         const text = node.getAttribute("data-title-text") || "";
         const typoSequence = text === "signal.\nsubstance."
@@ -952,6 +957,7 @@ substance."></span>
           let previousText = "";
 
           function playSequence() {
+            if (runId !== window.__titleRunId) return;
             const frame = typoSequence[step];
             if (!frame) return;
             node.textContent = frame.text;
@@ -975,6 +981,7 @@ substance."></span>
         let previousText = "";
 
         function tick() {
+          if (runId !== window.__titleRunId) return;
           const nextText = text.slice(0, index);
           node.textContent = nextText;
           if (nextText.length < previousText.length) {
@@ -994,7 +1001,10 @@ substance."></span>
     }
 
     window.addEventListener("DOMContentLoaded", function () {
-      const typeAudio = initTypeAudio();
+      let typeAudio;
+      typeAudio = initTypeAudio(function () {
+        initPageTitle(typeAudio);
+      });
       initPageTitle(typeAudio);
       initAsciiFooter();
     });
