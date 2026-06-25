@@ -214,6 +214,15 @@
       display: block;
     }
 
+    .venture-preview.has-video {
+      background: #000;
+    }
+
+    .venture-preview.has-video::before,
+    .venture-preview.has-video::after {
+      display: none;
+    }
+
     .venture-preview::before,
     .venture-preview::after {
       content: "";
@@ -624,7 +633,11 @@
     <!-- VENTURES GRID -->
     <a id="ventures" href="fw-r.html" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
-            <div class="venture-preview fwr"></div>
+            <div class="venture-preview fwr has-video">
+                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/robot.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="venture-details">
                 <div class="venture-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon"></div>
                 <div class="venture-copy">
@@ -640,7 +653,11 @@
 
     <a href="pine.html" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
-            <div class="venture-preview pine"></div>
+            <div class="venture-preview pine has-video">
+                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/pine.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="venture-details">
                 <div class="venture-badge">pine</div>
                 <div class="venture-copy">
@@ -656,7 +673,11 @@
 
     <a href="nrthrn.html" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
-            <div class="venture-preview nrthrn"></div>
+            <div class="venture-preview nrthrn has-video">
+                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/nrthrn.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="venture-details">
                 <div class="venture-badge">nrthrn</div>
                 <div class="venture-copy">
@@ -672,7 +693,7 @@
 
     <a href="drift.html" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
-            <div class="venture-preview drift">
+            <div class="venture-preview drift has-video">
                 <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
                     <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/coast.mp4" type="video/mp4">
                 </video>
