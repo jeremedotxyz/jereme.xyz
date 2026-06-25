@@ -16,7 +16,7 @@
   <style>
     :root {
       /* THE HIGH-VIS LIME PALETTE */
-      --bg: #00ff11;         /* Foundation-style neon green */
+      --bg: #ffffff;         /* Clean white foundation */
       --text: #000000;       /* High-contrast Black */
       --border: #000000;     /* Sharp 1px borders */
       --mono: "Fragment Mono", monospace;
@@ -395,13 +395,20 @@
     }
 
     .hero-title {
+      position: relative;
       line-height: 0.92;
       max-width: 10ch;
     }
 
-    .hero-second-line,
-    .hero-word {
-      display: inline;
+    .hero-title-ghost {
+      visibility: hidden;
+      display: block;
+    }
+
+    .hero-title-live {
+      position: absolute;
+      inset: 0;
+      white-space: pre-line;
     }
 
     .hero-intro {
@@ -540,9 +547,8 @@
         font-size: clamp(48px, 18vw, 72px);
         line-height: 0.9;
       }
-      .hero-second-line,
-      .hero-word {
-        display: block;
+      .hero-title-live {
+        white-space: pre-line;
       }
       .hero-intro {
         margin-top: 24px;
@@ -615,7 +621,12 @@
     
     <!-- HERO SECTION -->
     <section class="cell col-12 hero borderless-bottom">
-      <h1 class="hero-title">signal.<br><span class="hero-second-line"></span><span class="hero-word">substance.</span></h1>
+      <h1 class="hero-title" aria-label="signal. substance.">
+        <span class="hero-title-ghost">signal.
+substance.</span>
+        <span class="hero-title-live" data-title-text="signal.
+substance."></span>
+      </h1>
       <div class="hero-intro">
         <p class="hero-copy">Turning fuzzy technical ideas, strange product problems, and future-facing concepts into clear, buildable, useful systems.</p>
         <div class="hero-meta">
@@ -739,7 +750,7 @@
 
     <!-- FOOTER -->
     <footer class="cell col-12 ascii-footer borderless-bottom">
-        <canvas class="ascii-canvas" data-ascii-canvas data-bg="#00ff11" data-fg="#000000" aria-hidden="true"></canvas>
+        <canvas class="ascii-canvas" data-ascii-canvas data-bg="#ffffff" data-fg="#000000" aria-hidden="true"></canvas>
     </footer>
 
   </main>
@@ -845,7 +856,148 @@
       }, { once: true });
     }
 
-    window.addEventListener("DOMContentLoaded", initAsciiFooter);
+    function initTypeAudio() {
+      const AudioContextRef = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextRef) {
+        return {
+          playKey: function () {},
+          playBackspace: function () {}
+        };
+      }
+
+      const context = new AudioContextRef();
+      let unlocked = false;
+
+      function unlock() {
+        if (unlocked) return;
+        context.resume().then(function () {
+          unlocked = true;
+        }).catch(function () {});
+      }
+
+      function burst(kind) {
+        if (!unlocked || context.state !== "running") return;
+
+        const now = context.currentTime;
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const filter = context.createBiquadFilter();
+
+        oscillator.type = "square";
+        oscillator.frequency.value = kind === "backspace" ? 420 : 780;
+
+        filter.type = "bandpass";
+        filter.frequency.value = kind === "backspace" ? 900 : 1800;
+        filter.Q.value = 0.7;
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(kind === "backspace" ? 0.018 : 0.012, now + 0.004);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + (kind === "backspace" ? 0.09 : 0.05));
+
+        oscillator.connect(filter);
+        filter.connect(gain);
+        gain.connect(context.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + (kind === "backspace" ? 0.1 : 0.06));
+      }
+
+      window.addEventListener("pointerdown", unlock, { once: true });
+      window.addEventListener("keydown", unlock, { once: true });
+
+      return {
+        playKey: function () {
+          burst("key");
+        },
+        playBackspace: function () {
+          burst("backspace");
+        }
+      };
+    }
+
+    function initPageTitle(typeAudio) {
+      document.querySelectorAll("[data-title-text]").forEach(function (node) {
+        const text = node.getAttribute("data-title-text") || "";
+        const typoSequence = text === "signal.\nsubstance."
+          ? [
+              { text: "s", delay: 260 },
+              { text: "si", delay: 240 },
+              { text: "sig", delay: 250 },
+              { text: "sign", delay: 210 },
+              { text: "signl", delay: 210 },
+              { text: "signla", delay: 520 },
+              { text: "signl", delay: 220 },
+              { text: "signa", delay: 180 },
+              { text: "signal", delay: 190 },
+              { text: "signal.", delay: 680 },
+              { text: "signal.\ns", delay: 280 },
+              { text: "signal.\nsu", delay: 230 },
+              { text: "signal.\nsub", delay: 220 },
+              { text: "signal.\nsubs", delay: 210 },
+              { text: "signal.\nsubst", delay: 200 },
+              { text: "signal.\nsubstn", delay: 210 },
+              { text: "signal.\nsubstna", delay: 210 },
+              { text: "signal.\nsubstnac", delay: 220 },
+              { text: "signal.\nsubstnace", delay: 620 },
+              { text: "signal.\nsubstnac", delay: 200 },
+              { text: "signal.\nsubstna", delay: 180 },
+              { text: "signal.\nsubstan", delay: 170 },
+              { text: "signal.\nsubstance", delay: 180 },
+              { text: "signal.\nsubstance.", delay: 0 }
+            ]
+          : null;
+
+        if (typoSequence) {
+          let step = 0;
+          let previousText = "";
+
+          function playSequence() {
+            const frame = typoSequence[step];
+            if (!frame) return;
+            node.textContent = frame.text;
+            if (frame.text.length < previousText.length) {
+              typeAudio.playBackspace();
+            } else if (frame.text !== previousText) {
+              typeAudio.playKey();
+            }
+            previousText = frame.text;
+            step += 1;
+            if (step < typoSequence.length) {
+              window.setTimeout(playSequence, frame.delay);
+            }
+          }
+
+          playSequence();
+          return;
+        }
+
+        let index = 0;
+        let previousText = "";
+
+        function tick() {
+          const nextText = text.slice(0, index);
+          node.textContent = nextText;
+          if (nextText.length < previousText.length) {
+            typeAudio.playBackspace();
+          } else if (nextText !== previousText) {
+            typeAudio.playKey();
+          }
+          previousText = nextText;
+          if (index <= text.length) {
+            index += 1;
+            window.setTimeout(tick, index < 4 ? 240 : 150);
+          }
+        }
+
+        tick();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      const typeAudio = initTypeAudio();
+      initPageTitle(typeAudio);
+      initAsciiFooter();
+    });
   </script>
 
 </body>
