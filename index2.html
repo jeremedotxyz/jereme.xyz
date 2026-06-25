@@ -205,6 +205,15 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
     }
 
+    .venture-preview video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .venture-preview::before,
     .venture-preview::after {
       content: "";
@@ -289,11 +298,7 @@
     }
 
     .venture-preview.drift::after {
-      width: 34%;
-      height: 34%;
-      background: rgba(255, 244, 216, 0.95);
-      right: 12%;
-      top: 18%;
+      display: none;
     }
 
     .venture-details {
@@ -667,7 +672,11 @@
 
     <a href="drift.html" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
-            <div class="venture-preview drift"></div>
+            <div class="venture-preview drift">
+                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                    <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/coast.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="venture-details">
                 <div class="venture-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/drift-logo.svg" alt="drift logo"></div>
                 <div class="venture-copy">
