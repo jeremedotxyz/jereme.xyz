@@ -1,816 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>hi*</title>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-NTH4464X6R");
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      /* THE HIGH-VIS LIME PALETTE */
-      --bg: #00ff11;         /* Foundation-style neon green */
-      --text: #000000;       /* High-contrast Black */
-      --border: #000000;     /* Sharp 1px borders */
-      --mono: "Fragment Mono", monospace;
-      --sans: "Manrope", sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Status - Unexpected Traffic Surge</title>
+    <style>
+        :root {
+            /* Apple-inspired clean palette */
+            --bg-color: #ffffff; 
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --ball-size: 100px;
+        }
 
-    * { box-sizing: border-box; }
-    a { color: inherit; text-decoration: none; }
-    
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
 
-    /* THE MODULAR GRID */
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      border-left: 1px solid var(--border);
-      max-width: 100%;
-      margin: 0;
-    }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            max-width: 500px;
+        }
 
-    .cell {
-      padding: clamp(20px, 5vw, 60px);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-    }
+        /* High-Fidelity Beachball */
+        .beachball {
+            width: var(--ball-size);
+            height: var(--ball-size);
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 40px;
+            
+            /* The 6-segment rainbow */
+            background: conic-gradient(
+                #ff5a52 0deg 60deg,    /* Red */
+                #ffd400 60deg 120deg,  /* Yellow */
+                #24d039 120deg 180deg, /* Green */
+                #10b5e8 180deg 240deg, /* Cyan */
+                #3d5afe 240deg 300deg, /* Blue */
+                #e040fb 300deg 360deg  /* Magenta */
+            );
 
-    .col-12 { grid-column: span 12; }
-    .col-8 { grid-column: span 8; }
-    .col-6 { grid-column: span 6; }
-    .col-4 { grid-column: span 4; }
-    .col-3 { grid-column: span 3; }
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05), 
+                        0 8px 25px rgba(0,0,0,0.1);
+            
+            animation: spin 1.2s linear infinite;
+        }
 
-    /* TYPOGRAPHY */
-    .label {
-      font-family: var(--mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 400;
-    }
+        /* 3D Gloss Effect */
+        .beachball::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle at 35% 30%, 
+                rgba(255,255,255,0.6) 0%, 
+                rgba(255,255,255,0.1) 40%, 
+                transparent 75%
+            );
+        }
 
-    .label::before {
-      content: "[";
-    }
+        /* Inner depth shadow */
+        .beachball::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            box-shadow: inset 0 -6px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
 
-    .label::after {
-      content: "]";
-    }
+        /* Text Styling */
+        .headline {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0 0 12px 0;
+            letter-spacing: -0.015em;
+        }
 
-    h1, h2, h3 {
-      margin: 0;
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.065em;
-    }
+        .subtext {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin: 0;
+            font-weight: 400;
+        }
 
-    h1 { font-size: clamp(68px, 15vw, 220px); }
-    h2 { font-size: clamp(40px, 8vw, 90px); }
-    h3 { font-size: 24px; letter-spacing: -0.03em; }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-    p {
-      font-size: clamp(18px, 2vw, 20px);
-      line-height: 1.2;
-      max-width: 500px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    /* HEADER */
-    header {
-      padding: 18px 18px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 24px;
-    }
-
-    .nav {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .brand-mark,
-    .nav-label {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .nav-links a {
-      font-size: clamp(34px, 5vw, 68px);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-block;
-      padding: 15px 30px;
-      background: #000;
-      color: var(--bg);
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 800;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-
-    .btn:hover {
-      opacity: 0.8;
-    }
-
-    /* DATA ELEMENTS */
-    .data-point {
-      font-family: var(--mono);
-      font-size: 12px;
-      border-top: 1px solid var(--border);
-      padding-top: 10px;
-      margin-top: 20px;
-      display: block;
-    }
-
-    /* VENTURE CARDS */
-    .venture-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-        transition: opacity 0.15s ease, transform 0.15s ease;
-    }
-    
-    .venture-link:hover {
-        opacity: 0.92;
-        transform: translateY(-2px);
-    }
-
-    .venture-card {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .venture-cell {
-      border-right: none;
-      border-bottom: none;
-      padding-top: 28px;
-      padding-bottom: 28px;
-    }
-
-    .group-open {
-      border-right: none;
-    }
-
-    .borderless-bottom {
-      border-bottom: none;
-    }
-
-    .venture-preview {
-      position: relative;
-      aspect-ratio: 8 / 5;
-      border-radius: 32px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
-    }
-
-    .venture-preview::before,
-    .venture-preview::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      opacity: 0.9;
-    }
-
-    .venture-preview.fwr {
-      background: linear-gradient(135deg, #202020 0%, #454545 100%);
-    }
-
-    .venture-preview.fwr::before {
-      width: 46%;
-      height: 46%;
-      background: radial-gradient(circle at 35% 35%, #8af8ff 0%, #0a5cff 78%);
-      top: 18%;
-      left: 8%;
-    }
-
-    .venture-preview.fwr::after {
-      width: 34%;
-      height: 68%;
-      background: linear-gradient(180deg, #d9f8ff 0%, #3ef0b5 100%);
-      right: 10%;
-      top: 14%;
-      border-radius: 28px;
-    }
-
-    .venture-preview.pine {
-      background: linear-gradient(135deg, #f0e3c8 0%, #dcb786 100%);
-    }
-
-    .venture-preview.pine::before {
-      width: 58%;
-      height: 58%;
-      background: radial-gradient(circle at center, #274a28 0%, #162717 72%);
-      left: -6%;
-      bottom: -12%;
-    }
-
-    .venture-preview.pine::after {
-      width: 46%;
-      height: 46%;
-      background: radial-gradient(circle at 40% 40%, #fff7d1 0%, #c96f2c 80%);
-      right: 8%;
-      top: 18%;
-    }
-
-    .venture-preview.nrthrn {
-      background: linear-gradient(135deg, #faf7f1 0%, #dbd7cf 100%);
-    }
-
-    .venture-preview.nrthrn::before {
-      inset: 16% 14% 20% 14%;
-      border-radius: 28px;
-      background: linear-gradient(145deg, #111 0%, #444 100%);
-      position: absolute;
-      content: "";
-    }
-
-    .venture-preview.nrthrn::after {
-      width: 24%;
-      height: 24%;
-      background: #f8f4ee;
-      right: 18%;
-      top: 22%;
-      box-shadow: -88px 68px 0 0 #f8f4ee;
-    }
-
-    .venture-preview.drift {
-      background: linear-gradient(180deg, #8bd3ff 0%, #f6d79f 100%);
-    }
-
-    .venture-preview.drift::before {
-      width: 120%;
-      height: 54%;
-      background: linear-gradient(180deg, #1d3656 0%, #0c1f38 100%);
-      left: -10%;
-      bottom: -22%;
-      border-radius: 45% 45% 0 0;
-    }
-
-    .venture-preview.drift::after {
-      width: 34%;
-      height: 34%;
-      background: rgba(255, 244, 216, 0.95);
-      right: 12%;
-      top: 18%;
-    }
-
-    .venture-details {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .venture-badge {
-      width: 62px;
-      height: 62px;
-      border-radius: 18px;
-      flex: 0 0 auto;
-      background: rgba(0, 0, 0, 0.9);
-      color: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-    }
-
-    .venture-badge img {
-      width: 72%;
-      height: 72%;
-      object-fit: contain;
-      display: block;
-      filter: contrast(1.05);
-      mix-blend-mode: screen;
-    }
-
-    .venture-copy {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .venture-heading {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .venture-title {
-      font-size: clamp(24px, 2.4vw, 36px);
-      line-height: 0.95;
-    }
-
-    .venture-year {
-      font-family: var(--mono);
-      font-size: 12px;
-      opacity: 0.7;
-      white-space: nowrap;
-    }
-
-    .venture-summary {
-      margin: 0;
-      max-width: 26ch;
-      font-size: 16px;
-      line-height: 1.15;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-    }
-
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    .hero-title {
-      line-height: 0.92;
-      max-width: 10ch;
-    }
-
-    .hero-second-line,
-    .hero-word {
-      display: inline;
-    }
-
-    .hero-intro {
-      margin-top: 40px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 60px;
-      align-items: flex-end;
-    }
-
-    .hero-copy {
-      margin: 0;
-      font-size: clamp(20px, 2.2vw, 40px);
-      line-height: 1.06;
-      letter-spacing: -0.03em;
-      font-weight: 400;
-    }
-
-    .hero-meta {
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.6;
-      text-transform: uppercase;
-    }
-
-    .cta-title {
-      max-width: 8ch;
-    }
-
-    .ascii-footer {
-      position: relative;
-      overflow: hidden;
-      cursor: crosshair;
-      min-height: 420px;
-      display: flex;
-      align-items: flex-end;
-      padding-top: clamp(100px, 18vw, 240px);
-    }
-
-    .ascii-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      background: var(--bg);
-    }
-
-    .footer-content {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 24px;
-      font-family: var(--mono);
-      font-size: 10px;
-    }
-
-    .footer-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-end;
-      text-align: right;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .footer-links a,
-    .footer-meta a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    @media (max-width: 1024px) {
-      .col-3, .col-4, .col-6, .col-8 { grid-column: span 12; }
-      .grid-container { border-left: none; }
-      nav {
-        flex-direction: column;
-        gap: 32px;
-      }
-      .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .footer-meta {
-        align-items: flex-start;
-        text-align: left;
-      }
-      .footer-links {
-        justify-content: flex-start;
-        gap: 18px;
-      }
-    }
-
-    @media (max-width: 760px) {
-      header {
-        padding: 18px 18px 0;
-        position: relative;
-        min-height: 150px;
-      }
-      .cell {
-        padding: 20px 16px;
-      }
-      .nav {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 140px;
-        align-items: flex-end;
-      }
-      .brand-mark {
-        max-width: calc(100% - 164px);
-      }
-      .nav-label,
-      .nav-links {
-        width: 100%;
-        align-items: flex-end;
-        text-align: right;
-      }
-      .nav a {
-        display: block;
-        width: 100%;
-        font-size: 26px;
-        line-height: 0.92;
-      }
-      .hero {
-        min-height: auto;
-        justify-content: flex-start;
-        padding-top: 24px;
-      }
-      .hero-title {
-        max-width: 100%;
-        font-size: clamp(48px, 18vw, 72px);
-        line-height: 0.9;
-      }
-      .hero-second-line,
-      .hero-word {
-        display: block;
-      }
-      .hero-intro {
-        margin-top: 24px;
-        gap: 24px;
-      }
-      .hero-copy {
-        font-size: 18px;
-        line-height: 1.06;
-        letter-spacing: -0.03em;
-        font-weight: 400;
-        max-width: 100%;
-      }
-      .venture-preview {
-        border-radius: 24px;
-      }
-      .venture-cell {
-        padding-top: 20px;
-        padding-bottom: 20px;
-      }
-      .venture-badge {
-        width: 52px;
-        height: 52px;
-        border-radius: 16px;
-        font-size: 11px;
-      }
-      .venture-heading {
-        flex-direction: column;
-        gap: 6px;
-        align-items: flex-start;
-      }
-      .venture-summary {
-        font-size: 15px;
-      }
-      .hero-meta {
-        font-size: 12px;
-        line-height: 1.7;
-      }
-      h2 {
-        font-size: clamp(28px, 11vw, 48px);
-        line-height: 0.95;
-      }
-      .cta-title {
-        max-width: 6ch;
-      }
-      h3 {
-        font-size: 22px;
-      }
-      .ascii-footer {
-        min-height: 280px;
-        padding-top: 80px;
-      }
-    }
-  </style>
+        /* Small screen optimization */
+        @media (max-width: 480px) {
+            .headline { font-size: 20px; }
+            .subtext { font-size: 15px; }
+            --ball-size: 80px;
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <a class="brand-mark" href="ai_studio_code%20(5).html">jereme.xyz</a>
-    <nav class="nav" aria-label="Main">
-      <div class="nav-label">[ nav ]</div>
-      <div class="nav-links">
-        <a href="#ventures">ventures</a>
-        <a href="https://jereme.xyz/about/">about</a>
-        <a href="https://jereme.xyz/contact.html">contact</a>
-      </div>
-    </nav>
-  </header>
-
-  <main class="grid-container">
-    
-    <!-- HERO SECTION -->
-    <section class="cell col-12 hero borderless-bottom">
-      <h1 class="hero-title">signal.<br><span class="hero-second-line"></span><span class="hero-word">substance.</span></h1>
-      <div class="hero-intro">
-        <p class="hero-copy">Turning fuzzy technical ideas, strange product problems, and future-facing concepts into clear, buildable, useful systems.</p>
-        <div class="hero-meta">
-          Coord: 45.6387° N, 122.6615° W<br>
-          Status: Available Q1 2027<br>
-          Dept: AI / Robotics / LiDAR
-        </div>
-      </div>
-    </section>
-
-    <!-- METHOD -->
-    <section id="work" class="cell col-8 borderless-bottom">
-      <h2>built where the easy answer stops.</h2>
-    </section>
-
-    <section class="cell col-4 borderless-bottom">
-      <p style="font-size: clamp(20px, 2.2vw, 40px); line-height: 1.06; letter-spacing: -0.03em; font-weight: 400;">Work where technical complexity, product judgment, creative direction, and real-world constraints all have to sit at the same table.</p>
-      <div class="data-point">Process: Instrument > Test > Build</div>
-    </section>
-
-    <!-- VENTURES GRID -->
-    <a id="ventures" href="fw-r.html" class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview fwr"></div>
-            <div class="venture-details">
-                <div class="venture-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon"></div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">fw/r</h3>
-                        <div class="venture-year">(est. 2019)</div>
-                    </div>
-                    <p class="venture-summary">Intelligent systems, robotics experiments, and buildable technical infrastructure.</p>
-                </div>
-            </div>
-        </div>
-    </a>
-
-    <a href="pine.html" class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview pine"></div>
-            <div class="venture-details">
-                <div class="venture-badge">pine</div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">pine</h3>
-                        <div class="venture-year">(est. 2022*)</div>
-                    </div>
-                    <p class="venture-summary">A slower local-world concept shaped around coffee, atmosphere, and neighborhood rituals.</p>
-                </div>
-            </div>
-        </div>
-    </a>
-
-    <a href="nrthrn.html" class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview nrthrn"></div>
-            <div class="venture-details">
-                <div class="venture-badge">nrthrn</div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">nrthrn</h3>
-                        <div class="venture-year">(est. 2025)</div>
-                    </div>
-                    <p class="venture-summary">Designed objects and material ideas with a cleaner, more restrained physical language.</p>
-                </div>
-            </div>
-        </div>
-    </a>
-
-    <a href="drift.html" class="cell col-6 venture-link venture-cell">
-        <div class="venture-card">
-            <div class="venture-preview drift"></div>
-            <div class="venture-details">
-                <div class="venture-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/drift-logo.svg" alt="drift logo"></div>
-                <div class="venture-copy">
-                    <div class="venture-heading">
-                        <h3 class="venture-title">drift</h3>
-                        <div class="venture-year">(coming soon)</div>
-                    </div>
-                    <p class="venture-summary">Coastal rituals, sensory identity, and a softer world built around place and mood.</p>
-                </div>
-            </div>
-        </div>
-    </a>
-
-    <!-- CAPABILITIES LIST -->
-    <section class="cell col-6 group-open borderless-bottom">
-        <span class="label">Capabilities</span>
-        <div style="font-family: var(--mono); font-weight: 800; font-size: 14px; line-height: 2;">
-            / AI STRATEGY & EVALS<br>
-            / ROBOTICS PROTOTYPING<br>
-            / LIDAR DATA PIPELINES<br>
-            / INDUSTRIAL DESIGN<br>
-            / COFFEE + SPACES
-        </div>
-    </section>
-
-    <!-- CALL TO ACTION -->
-    <section class="cell col-6 group-open borderless-bottom">
-        <span class="label">Inquiry</span>
-        <h2 class="cta-title">bring the fuzzy thing.</h2>
-        <p style="margin: 20px 0;">If you have a project that needs technical narrative or buildable clarity.</p>
-        <a href="mailto:jeremedotxyz@gmail.com" class="btn">Open Brief</a>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="cell col-12 ascii-footer borderless-bottom">
-        <canvas class="ascii-canvas" data-ascii-canvas data-bg="#00ff11" data-fg="#000000" aria-hidden="true"></canvas>
-    </footer>
-
-  </main>
-
-  <script>
-    const asciiChars = [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@", "■", "●", "▲", "✦"];
-    const asciiFont = '13px "Fragment Mono", monospace';
-
-    function noiseField(x, y, time) {
-      let value = Math.sin(x * 10 + time);
-      value += Math.sin((y * 10 + time) / 2);
-      value += Math.sin((x * 10 + y * 10 + time) / 2);
-
-      const warpedX = x + 0.5 * Math.sin(time / 3);
-      const warpedY = y + 0.5 * Math.cos(time / 2);
-
-      value += Math.sin(Math.sqrt(100 * (warpedX * warpedX + warpedY * warpedY) + 1) + time);
-      return value / 4;
-    }
-
-    function initAsciiFooter() {
-      const canvas = document.querySelector("[data-ascii-canvas]");
-      if (!canvas) return;
-
-      const context = canvas.getContext("2d");
-      if (!context) return;
-
-      const backgroundColor = canvas.dataset.bg || "#00ff11";
-      const foregroundColor = canvas.dataset.fg || "#000000";
-      const cellWidth = 8.4;
-      const cellHeight = 14.3;
-
-      let pointerX = 0.5;
-      let pointerY = 0.5;
-      let columns = 0;
-      let rows = 0;
-      let animationFrame = null;
-
-      function resizeCanvas() {
-        const scale = window.devicePixelRatio || 1;
-        const width = canvas.offsetWidth;
-        const height = canvas.offsetHeight;
-
-        canvas.width = width * scale;
-        canvas.height = height * scale;
-        context.setTransform(scale, 0, 0, scale, 0, 0);
-
-        columns = Math.floor(width / cellWidth);
-        rows = Math.floor(height / cellHeight);
-      }
-
-      function updatePointer(event) {
-        const rect = canvas.getBoundingClientRect();
-        pointerX = (event.clientX - rect.left) / rect.width;
-        pointerY = (event.clientY - rect.top) / rect.height;
-      }
-
-      function render(frameTime) {
-        const time = frameTime * 0.001;
-        const width = canvas.offsetWidth;
-        const height = canvas.offsetHeight;
-
-        context.fillStyle = backgroundColor;
-        context.fillRect(0, 0, width, height);
-        context.fillStyle = foregroundColor;
-        context.font = asciiFont;
-        context.textBaseline = "top";
-
-        for (let row = 0; row < rows; row += 1) {
-          for (let column = 0; column < columns; column += 1) {
-            const x = column / columns;
-            const y = row / rows;
-            const dx = x - pointerX;
-            const dy = y - pointerY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            const influence = Math.max(0, 1 - distance * 3) * 0.15;
-            const sampleX = x + Math.sin(time * 2 + y * 8) * influence;
-            const sampleY = y + Math.cos(time * 2 + x * 8) * influence;
-            const normalized = (noiseField(sampleX, sampleY, time) + 1) * 0.5;
-            const charIndex = Math.floor(normalized * (asciiChars.length - 1));
-            const char = asciiChars[charIndex];
-
-            if (char !== " ") {
-              context.fillText(char, column * cellWidth, row * cellHeight);
-            }
-          }
-        }
-
-        animationFrame = window.requestAnimationFrame(render);
-      }
-
-      resizeCanvas();
-      canvas.addEventListener("mousemove", updatePointer);
-      canvas.addEventListener("touchmove", function (event) {
-        if (event.touches[0]) updatePointer(event.touches[0]);
-      }, { passive: true });
-      window.addEventListener("resize", resizeCanvas);
-
-      animationFrame = window.requestAnimationFrame(render);
-
-      window.addEventListener("beforeunload", function () {
-        if (animationFrame) window.cancelAnimationFrame(animationFrame);
-      }, { once: true });
-    }
-
-    window.addEventListener("DOMContentLoaded", initAsciiFooter);
-  </script>
+    <div class="content-wrapper">
+        <div class="beachball"></div>
+        
+        <h1 class="headline">Unexpected traffic surge detected.</h1>
+        <p class="subtext">
+            Network traffic is currently exceeding normal thresholds. <br>
+            Please contact Cloudflare Support for assistance.
+        </p>
+    </div>
 
 </body>
 </html>
