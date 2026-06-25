@@ -670,7 +670,7 @@ substance."></span>
     <div id="ventures" class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
             <div class="venture-preview fwr has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
                     <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/robot.mp4" type="video/mp4">
                 </video>
             </div>
@@ -690,7 +690,7 @@ substance."></span>
     <div class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
             <div class="venture-preview pine has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
                     <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/pine.mp4" type="video/mp4">
                 </video>
             </div>
@@ -716,7 +716,7 @@ substance."></span>
     <div class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
             <div class="venture-preview nrthrn has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
                     <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/nrthrn.mp4" type="video/mp4">
                 </video>
             </div>
@@ -736,7 +736,7 @@ substance."></span>
     <div class="cell col-6 venture-link venture-cell">
         <div class="venture-card">
             <div class="venture-preview drift has-video">
-                <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
                     <source src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/coast.mp4" type="video/mp4">
                 </video>
             </div>
@@ -1025,13 +1025,37 @@ substance."></span>
       });
     }
 
+    function ensureCardVideosPlaying() {
+      document.querySelectorAll(".venture-preview video").forEach(function (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.loop = true;
+        video.playsInline = true;
+        const playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === "function") {
+          playAttempt.catch(function () {});
+        }
+      });
+    }
+
     window.addEventListener("DOMContentLoaded", function () {
       let typeAudio;
       typeAudio = initTypeAudio(function () {
         initPageTitle(typeAudio);
       });
       initPageTitle(typeAudio);
+      ensureCardVideosPlaying();
       initAsciiFooter();
+    });
+
+    window.addEventListener("pageshow", function () {
+      ensureCardVideosPlaying();
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) {
+        ensureCardVideosPlaying();
+      }
     });
   </script>
 
