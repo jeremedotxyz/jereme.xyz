@@ -351,6 +351,25 @@
       mix-blend-mode: screen;
     }
 
+    .venture-badge.pine-badge svg {
+      width: 78%;
+      height: 78%;
+      display: block;
+      transform: translateY(-1px) rotate(-4deg);
+    }
+
+    .venture-badge.drift-badge img {
+      width: 74%;
+      height: 74%;
+      filter: none;
+      mix-blend-mode: normal;
+    }
+
+    .venture-badge.fwr-badge img {
+      width: 82%;
+      height: 82%;
+    }
+
     .venture-copy {
       display: flex;
       flex: 1;
@@ -656,7 +675,7 @@ substance."></span>
                 </video>
             </div>
             <div class="venture-details">
-                <div class="venture-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon"></div>
+                <div class="venture-badge fwr-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon"></div>
                 <div class="venture-copy">
                     <div class="venture-heading">
                         <h3 class="venture-title">fw/r</h3>
@@ -676,7 +695,13 @@ substance."></span>
                 </video>
             </div>
             <div class="venture-details">
-                <div class="venture-badge">pine</div>
+                <div class="venture-badge pine-badge" aria-label="pine mark">
+                    <svg viewBox="0 0 64 64" aria-hidden="true">
+                        <path d="M32 10 44 26H20L32 10Z" fill="#f4ecd6"/>
+                        <path d="M32 21 47 40H17L32 21Z" fill="#f4ecd6"/>
+                        <path d="M32 33 51 56H13L32 33Z" fill="#f4ecd6"/>
+                    </svg>
+                </div>
                 <div class="venture-copy">
                     <div class="venture-heading">
                         <h3 class="venture-title">pine</h3>
@@ -716,7 +741,7 @@ substance."></span>
                 </video>
             </div>
             <div class="venture-details">
-                <div class="venture-badge"><img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/drift-logo.svg" alt="drift logo"></div>
+                <div class="venture-badge drift-badge"><img src="drift-logo.svg" alt="drift logo"></div>
                 <div class="venture-copy">
                     <div class="venture-heading">
                         <h3 class="venture-title">drift</h3>
