@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -629,10 +629,22 @@
 
       video.muted = true;
       video.defaultMuted = true;
+      video.autoplay = true;
+      video.loop = true;
       video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
+      video.setAttribute("playsinline", "");
+      video.preload = "auto";
+
+      const playVideo = () => {
+        const attempt = video.play();
+        if (attempt && typeof attempt.catch === "function") attempt.catch(() => {});
+      };
 
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = source;
+        video.load();
       } else if (window.Hls && window.Hls.isSupported()) {
         const hls = new Hls({
           autoStartLoad: true,
@@ -640,11 +652,18 @@
         });
         hls.loadSource(source);
         hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, playVideo);
+        hls.on(Hls.Events.LEVEL_LOADED, playVideo);
       }
 
-      const playVideo = () => video.play().catch(() => {});
-      video.addEventListener("loadedmetadata", playVideo, { once: true });
-      window.addEventListener("pageshow", playVideo, { once: true });
+      video.addEventListener("loadedmetadata", playVideo);
+      video.addEventListener("canplay", playVideo);
+      video.addEventListener("playing", playVideo);
+      window.addEventListener("load", playVideo);
+      window.addEventListener("pageshow", playVideo);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) playVideo();
+      });
       playVideo();
     })();
   </script>
