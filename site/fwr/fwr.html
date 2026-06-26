@@ -196,78 +196,27 @@
     .frame.medium { aspect-ratio: 16 / 9; width: min(68%, 880px); }
     .frame.medium.right { margin-left: auto; }
 
+    .frame {
+      background-position: center;
+      background-size: cover;
+    }
+
     .frame.fwr-a {
-      background:
-        radial-gradient(circle at 22% 42%, rgba(142, 232, 255, 0.82), transparent 18%),
-        linear-gradient(135deg, #23252b 0%, #2c2f38 100%);
-    }
-
-    .frame.fwr-a::before,
-    .frame.fwr-a::after,
-    .frame.fwr-b::before,
-    .frame.fwr-b::after,
-    .frame.fwr-c::before,
-    .frame.fwr-c::after {
-      content: "";
-      position: absolute;
-      border-radius: 28px;
-    }
-
-    .frame.fwr-a::before {
-      inset: 17% auto auto 8%;
-      width: 38%;
-      height: 48%;
-      background: linear-gradient(135deg, #63a2ff 0%, #1257f0 100%);
-      border-radius: 999px;
-    }
-
-    .frame.fwr-a::after {
-      inset: 14% 9% auto auto;
-      width: 29%;
-      height: 72%;
-      background: linear-gradient(180deg, #dff8ff 0%, #54e2bf 100%);
+      background-image:
+        linear-gradient(180deg, rgba(6, 10, 12, 0.08), rgba(6, 10, 12, 0.34)),
+        url("fwr-portland-max-tracks.jpg");
+      background-position: center 58%;
+      background-blend-mode: multiply, normal;
     }
 
     .frame.fwr-b {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0)),
-        #111216;
-    }
-
-    .frame.fwr-b::before {
-      inset: auto auto 12% 7%;
-      width: 58%;
-      height: 24%;
-      background: linear-gradient(90deg, #091d39 0%, #0e63ff 100%);
-      border-radius: 999px;
-    }
-
-    .frame.fwr-b::after {
-      inset: 12% 9% auto auto;
-      width: 26%;
-      height: 60%;
-      background: linear-gradient(180deg, #f0ffff 0%, #7df7d6 100%);
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(6, 10, 12, 0.08));
+      background-blend-mode: normal;
     }
 
     .frame.fwr-c {
-      background:
-        radial-gradient(circle at 70% 34%, rgba(113, 255, 210, 0.35), transparent 20%),
-        #0f1014;
-    }
-
-    .frame.fwr-c::before {
-      inset: 18% auto auto 10%;
-      width: 30%;
-      height: 56%;
-      background: linear-gradient(180deg, #d4f6ff 0%, #48e3b5 100%);
-    }
-
-    .frame.fwr-c::after {
-      inset: auto 11% 14% auto;
-      width: 44%;
-      height: 28%;
-      background: linear-gradient(90deg, #0b3f9f 0%, #7ec2ff 100%);
-      border-radius: 999px;
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(6, 10, 12, 0.08));
+      background-blend-mode: normal;
     }
 
     .notes {
@@ -423,6 +372,16 @@
       letter-spacing: -0.07em;
     }
 
+    .image-credits {
+      max-width: 340px;
+      margin: 0;
+      color: rgba(223, 248, 255, 0.54);
+      font: 11px/1.5 var(--mono);
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
     @media (max-width: 760px) {
       .header { position: relative; min-height: 150px; }
       .nav { position: absolute; top: 0; right: 0; align-items: flex-end; width: 140px; }
@@ -472,7 +431,7 @@
     </header>
 
     <section class="page-title" aria-label="/fw-r">
-      <span class="page-title-ghost">/fw/r</span>
+      <span class="page-title-ghost">/fw-r</span>
       <h1 class="page-title-live" data-title-text="/fw-r"></h1>
     </section>
 
@@ -551,6 +510,7 @@
     <canvas class="ascii-canvas" data-ascii-canvas data-bg="#0a1220" data-fg="#dff8ff" aria-hidden="true"></canvas>
     <div class="footer-inner">
       <div class="footer-title">fw/r<br>systems</div>
+      <p class="image-credits">Images: M.O. Stevens / Wikimedia Commons.</p>
     </div>
   </footer>
 
