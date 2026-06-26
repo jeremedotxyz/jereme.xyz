@@ -470,7 +470,7 @@
 
     <section class="gallery">
       <div class="frame large fwr-a"></div>
-      <div class="frame medium fwr-b"><video class="frame-media" id="fwr-slot-2-video" autoplay muted loop playsinline preload="metadata"></video><span class="frame-video-overlay" aria-hidden="true"></span></div>
+      <div class="frame medium fwr-b"><video class="frame-media" id="fwr-slot-2-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload noplaybackrate noremoteplayback"></video><span class="frame-video-overlay" aria-hidden="true"></span></div>
     </section>
 
     <hr>
@@ -632,7 +632,11 @@
       video.autoplay = true;
       video.loop = true;
       video.playsInline = true;
+      video.disablePictureInPicture = true;
+      video.disableRemotePlayback = true;
       video.setAttribute("muted", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("x-webkit-airplay", "deny");
       video.setAttribute("autoplay", "");
       video.setAttribute("playsinline", "");
       video.preload = "auto";
@@ -657,14 +661,22 @@
       }
 
       video.addEventListener("loadedmetadata", playVideo);
+      video.addEventListener("loadeddata", playVideo);
       video.addEventListener("canplay", playVideo);
-      video.addEventListener("playing", playVideo);
+      video.addEventListener("canplaythrough", playVideo);
+      video.addEventListener("suspend", playVideo);
       window.addEventListener("load", playVideo);
       window.addEventListener("pageshow", playVideo);
       document.addEventListener("visibilitychange", () => {
         if (!document.hidden) playVideo();
       });
+      document.addEventListener("readystatechange", () => {
+        if (document.readyState === "complete") playVideo();
+      });
       playVideo();
+      window.setTimeout(playVideo, 120);
+      window.setTimeout(playVideo, 600);
+      window.setTimeout(playVideo, 1400);
     })();
   </script>
 </body>
