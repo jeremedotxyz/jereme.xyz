@@ -4,39 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>signal - jereme.xyz</title>
-  <meta name="description" content="A portfolio signal page for jereme.xyz: systems, spaces, objects, and the ventures built where the easy answer stops.">
+  <meta name="description" content="A Photon-structured portfolio signal page for jereme.xyz: ventures, systems work, hospitality, objects, and proof surfaces built where the easy answer stops.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #07090d;
-      --panel: #0d1118;
-      --panel-2: #101722;
-      --panel-3: #121c2a;
-      --fg: #f5f7fb;
-      --muted: rgba(245, 247, 251, 0.72);
-      --soft: rgba(245, 247, 251, 0.48);
-      --line: rgba(245, 247, 251, 0.12);
-      --line-strong: rgba(245, 247, 251, 0.2);
-      --accent: #8cc8ff;
-      --accent-2: #98ffd2;
+      --bg: #040506;
+      --panel: #0a0c10;
+      --panel-2: #0f131a;
+      --panel-3: #121720;
+      --fg: #f4f7fb;
+      --muted: rgba(244, 247, 251, 0.72);
+      --soft: rgba(244, 247, 251, 0.48);
+      --line: rgba(244, 247, 251, 0.1);
+      --line-strong: rgba(244, 247, 251, 0.18);
+      --accent: #7eb8ff;
+      --accent-2: #9af8c6;
+      --pink: #f290ff;
       --mono: "Fragment Mono", monospace;
       --sans: "Manrope", sans-serif;
-      --radius-lg: 34px;
-      --radius-md: 22px;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       background:
-        radial-gradient(circle at top, rgba(61, 96, 145, 0.22), transparent 34%),
-        linear-gradient(180deg, #0a0d13 0%, var(--bg) 20%, #05070b 100%);
+        radial-gradient(circle at top, rgba(76, 116, 188, 0.18), transparent 28%),
+        linear-gradient(180deg, #050608 0%, #040506 18%, #06070a 100%);
       color: var(--fg);
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
@@ -45,44 +43,42 @@
     }
 
     a { color: inherit; text-decoration: none; }
-
     img, video { display: block; max-width: 100%; }
-
-    .shell {
-      width: min(1440px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 22px 0 64px;
-    }
 
     .scroll-progress {
       position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 40;
+      inset: 0 auto auto 0;
+      z-index: 60;
       width: 100%;
       height: 3px;
       transform-origin: 0 50%;
       transform: scaleX(var(--scroll-progress));
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 24px rgba(140, 200, 255, 0.35);
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--pink));
+      box-shadow: 0 0 22px rgba(126, 184, 255, 0.42);
       pointer-events: none;
+    }
+
+    .page {
+      width: min(1480px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 18px 0 56px;
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
       padding: 14px 18px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(7, 9, 13, 0.8);
+      background: rgba(4, 5, 6, 0.78);
       backdrop-filter: blur(18px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 14px 44px rgba(0, 0, 0, 0.24);
     }
 
     .brand {
@@ -95,11 +91,11 @@
     }
 
     .brand-dot {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 0 6px rgba(152, 255, 210, 0.08);
+      box-shadow: 0 0 0 6px rgba(126, 184, 255, 0.08);
     }
 
     .nav {
@@ -110,30 +106,36 @@
       justify-content: flex-end;
     }
 
-    .nav a,
-    .nav span {
+    .nav a {
+      color: var(--soft);
       font: 12px/1 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--soft);
       transition: color 160ms ease;
     }
 
-    .nav a:hover { color: var(--fg); }
+    .nav a:hover,
+    .nav a[aria-current="page"] { color: var(--fg); }
+
+    section { position: relative; }
+    h1, h2, h3, p { margin: 0; }
 
     .hero {
+      padding: 48px 0 18px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+      gap: 26px;
       align-items: end;
-      padding: 48px 0 34px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       color: var(--soft);
       font: 12px/1 var(--mono);
       letter-spacing: 0.08em;
@@ -148,34 +150,37 @@
       background: var(--line-strong);
     }
 
-    h1,
-    h2,
-    h3,
-    p { margin: 0; }
-
-    .hero-title {
-      max-width: 12ch;
-      font-size: clamp(58px, 8vw, 132px);
+    .hero h1 {
+      max-width: 10ch;
+      font-size: clamp(58px, 8.2vw, 126px);
       line-height: 0.92;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.065em;
       font-weight: 700;
     }
 
     .hero-copy {
-      max-width: 58ch;
+      max-width: 46ch;
       margin-top: 24px;
       color: var(--muted);
-      font-size: clamp(18px, 2vw, 28px);
+      font-size: clamp(18px, 2.1vw, 28px);
       line-height: 1.18;
       letter-spacing: -0.03em;
+    }
+
+    .surface {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(15, 19, 26, 0.96), rgba(8, 10, 14, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
     .hero-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 30px;
+      margin-top: 28px;
     }
 
     .button,
@@ -183,19 +188,19 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
+      min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
       font: 12px/1 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      transition: transform 180ms ease, border-color 180ms ease;
     }
 
     .button {
-      color: #051018;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 16px 40px rgba(140, 200, 255, 0.2);
+      color: #071018;
+      background: linear-gradient(135deg, #ffffff, var(--accent));
+      box-shadow: 0 18px 42px rgba(126, 184, 255, 0.22);
     }
 
     .button-muted {
@@ -205,304 +210,90 @@
     }
 
     .button:hover,
-    .button-muted:hover {
-      transform: translateY(-2px);
-      border-color: rgba(245, 247, 251, 0.28);
-    }
+    .button-muted:hover { transform: translateY(-2px); }
 
-    .hero-rail {
-      position: sticky;
-      top: 88px;
-      display: grid;
-      gap: 14px;
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-rail .stat {
-      display: grid;
-      gap: 8px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .hero-rail .stat:last-child { border-bottom: 0; padding-bottom: 0; }
-
-    .label {
-      color: var(--soft);
-      font: 11px/1.4 var(--mono);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .value {
-      font-size: clamp(20px, 2vw, 32px);
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .section {
-      padding: 30px 0;
-    }
-
-    .hero-media {
-      display: grid;
-      gap: 16px;
-      margin-top: 8px;
-    }
-
-    .hero-frame {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background: #0b0f16;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-frame img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 8.6;
-      object-fit: cover;
-      transform: scale(1.02) translate3d(0, calc(var(--parallax-shift, 0px) * 1), 0);
-      transition: transform 220ms ease-out;
-    }
-
-    .frame-caption {
+    .hero-platforms {
       display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 16px 18px 18px;
-      border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015));
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
     }
 
-    .frame-caption strong {
-      display: block;
-      font-size: 15px;
-      letter-spacing: -0.02em;
-    }
-
-    .frame-caption span {
-      display: block;
-      margin-top: 6px;
-      color: var(--soft);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .frame-kicker {
-      color: var(--soft);
-      white-space: nowrap;
-      font: 11px/1.4 var(--mono);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .venture-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .venture-card,
-    .proof-card,
-    .system-card,
-    .note-card,
-    .capability-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(16, 23, 34, 0.9), rgba(10, 14, 20, 0.98));
-      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
-    }
-
-    [data-reveal] {
-      opacity: 0;
-      transform: translate3d(0, 42px, 0);
-      transition:
-        opacity 720ms cubic-bezier(0.2, 0.8, 0.2, 1),
-        transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
-      transition-delay: var(--reveal-delay, 0ms);
-      will-change: opacity, transform;
-    }
-
-    [data-reveal].is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-
-    [data-reveal="scale"] {
-      transform: translate3d(0, 34px, 0) scale(0.97);
-    }
-
-    [data-reveal="scale"].is-visible {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-
-    [data-reveal="slide-left"] {
-      transform: translate3d(-38px, 24px, 0);
-    }
-
-    [data-reveal="slide-left"].is-visible {
-      transform: translate3d(0, 0, 0);
-    }
-
-    [data-reveal="slide-right"] {
-      transform: translate3d(38px, 24px, 0);
-    }
-
-    [data-reveal="slide-right"].is-visible {
-      transform: translate3d(0, 0, 0);
-    }
-
-    .venture-card:hover,
-    .proof-card:hover,
-    .system-card:hover,
-    .note-card:hover,
-    .capability-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(245, 247, 251, 0.22);
-      background: linear-gradient(180deg, rgba(18, 26, 38, 0.96), rgba(10, 14, 20, 1));
-    }
-
-    .venture-card {
-      padding: 22px;
-      min-height: 280px;
-      display: grid;
-      align-content: space-between;
-      gap: 24px;
-    }
-
-    .venture-mark {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      border: 1px solid rgba(245, 247, 251, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      display: flex;
+    .pill {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .venture-mark img,
-    .venture-mark svg {
-      width: 72%;
-      height: 72%;
-      object-fit: contain;
-    }
-
-    .venture-mark.text-mark {
-      width: auto;
-      min-width: 72px;
-      padding: 0 16px;
-      font: 18px/1 var(--mono);
-      letter-spacing: -0.04em;
-    }
-
-    .venture-card h3 {
-      font-size: clamp(26px, 2.4vw, 38px);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-    }
-
-    .venture-card p {
-      margin-top: 12px;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
       color: var(--muted);
-      font-size: 17px;
-      line-height: 1.3;
-      letter-spacing: -0.02em;
+      font: 12px/1 var(--mono);
+      letter-spacing: 0.02em;
     }
 
-    .venture-meta {
-      color: var(--soft);
-      font: 11px/1.6 var(--mono);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .pill-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex: 0 0 auto;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
-      gap: 18px;
-    }
-
-    .note-card,
-    .system-card {
-      padding: 28px;
-    }
-
-    .section-title {
-      max-width: 14ch;
-      font-size: clamp(34px, 4.2vw, 68px);
-      line-height: 0.94;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-    }
-
-    .section-copy {
-      margin-top: 18px;
-      max-width: 56ch;
-      color: var(--muted);
-      font-size: clamp(17px, 1.5vw, 22px);
-      line-height: 1.42;
-      letter-spacing: -0.02em;
-    }
-
-    .code-window {
-      margin-top: 24px;
-      border: 1px solid rgba(245, 247, 251, 0.08);
-      border-radius: 22px;
-      overflow: hidden;
+    .hero-panel {
+      padding: 16px;
       background:
-        radial-gradient(circle at top left, rgba(91, 141, 214, 0.12), transparent 34%),
-        linear-gradient(180deg, #0a0d13 0%, #070a10 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.03),
-        0 22px 54px rgba(0, 0, 0, 0.3);
+        radial-gradient(circle at top right, rgba(122, 177, 255, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(13, 17, 23, 0.98), rgba(10, 12, 16, 0.98));
     }
 
-    .code-window-top {
+    .hero-panel-top {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(245, 247, 251, 0.06);
-      background: rgba(255, 255, 255, 0.02);
+      padding: 2px 2px 14px;
+      border-bottom: 1px solid rgba(244, 247, 251, 0.08);
     }
 
-    .code-window-top i {
+    .hero-panel-top i {
       width: 9px;
       height: 9px;
       border-radius: 50%;
       display: block;
     }
 
-    .code-window-top i:nth-child(1) { background: #ff5f57; }
-    .code-window-top i:nth-child(2) { background: #febc2e; }
-    .code-window-top i:nth-child(3) { background: #28c840; }
+    .hero-panel-top i:nth-child(1) { background: #ff5f57; }
+    .hero-panel-top i:nth-child(2) { background: #febc2e; }
+    .hero-panel-top i:nth-child(3) { background: #28c840; }
 
-    .code-window-label {
+    .hero-panel-label {
       margin-left: auto;
-      color: rgba(245, 247, 251, 0.4);
+      color: var(--soft);
       font: 11px/1 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .code-window pre {
+    .hero-panel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 92px;
+      gap: 18px;
+      padding-top: 18px;
+      align-items: stretch;
+    }
+
+    .code-card {
+      border: 1px solid rgba(244, 247, 251, 0.08);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.015);
+      overflow: hidden;
+    }
+
+    .code-card pre {
       margin: 0;
-      padding: 20px 18px 22px;
+      padding: 18px 18px 20px;
       overflow-x: auto;
       color: #d9e1f2;
-      font: 13px/1.65 var(--mono);
+      font: 13px/1.62 var(--mono);
     }
 
     .code-comment { color: #5f6c86; }
@@ -514,291 +305,504 @@
     .code-prop { color: #89ddff; }
     .code-plain { color: #d9e1f2; }
 
-    .proof-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .proof-card {
-      display: grid;
-      min-height: 100%;
-    }
-
-    .proof-card img {
-      width: 100%;
-      aspect-ratio: 16 / 10.5;
-      object-fit: cover;
-    }
-
-    .proof-copy {
+    .side-stats {
       display: grid;
       gap: 10px;
-      padding: 18px;
     }
 
-    .proof-copy h3 {
-      font-size: 23px;
+    .stat-box {
+      display: grid;
+      align-content: space-between;
+      min-height: 92px;
+      padding: 14px 12px;
+      border: 1px solid rgba(244, 247, 251, 0.08);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018));
+    }
+
+    .stat-box strong {
+      font-size: 22px;
       line-height: 1;
       letter-spacing: -0.04em;
     }
 
-    .proof-copy p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.42;
+    .stat-box span {
+      color: var(--soft);
+      font: 10px/1.45 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .signal-strip {
+    .section-block {
+      padding: 36px 0 0;
+    }
+
+    .section-title {
+      max-width: 12ch;
+      font-size: clamp(38px, 4.6vw, 72px);
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+    }
+
+    .section-lead {
+      max-width: 56ch;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: clamp(17px, 1.5vw, 22px);
+      line-height: 1.42;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      margin-top: 22px;
     }
 
-    .capability-card {
+    .feature-card {
       padding: 22px;
       min-height: 220px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(16, 22, 30, 0.96), rgba(9, 12, 17, 0.98));
+      transition: transform 220ms ease, border-color 220ms ease;
     }
 
-    .capability-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0 0;
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244, 247, 251, 0.2);
+    }
+
+    .feature-card h3 {
+      margin-top: 16px;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .feature-card p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.46;
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 18px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .media-card,
+    .copy-card,
+    .quote-card,
+    .case-card,
+    .cta-card,
+    .manifesto-card,
+    .ticker-card {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(15, 19, 26, 0.96), rgba(8, 10, 14, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .media-card img,
+    .media-card video {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .media-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px 18px;
+      border-top: 1px solid rgba(244, 247, 251, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .media-caption strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .media-caption span {
+      display: block;
+      margin-top: 6px;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .copy-card {
+      display: grid;
+      gap: 18px;
+      align-content: space-between;
+      padding: 26px;
+    }
+
+    .copy-card h3 {
+      max-width: 11ch;
+      font-size: clamp(30px, 3.4vw, 54px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .copy-card p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.48;
+    }
+
+    .metric-stack {
       display: grid;
       gap: 12px;
     }
 
-    .capability-card li {
+    .metric {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(244, 247, 251, 0.08);
+    }
+
+    .metric strong {
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .metric span {
+      color: var(--soft);
+      font: 11px/1.4 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .quote-card {
+      padding: 22px;
+      min-height: 240px;
+    }
+
+    .quote-card p {
+      font-size: 24px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .quote-meta {
+      margin-top: 18px;
+      color: var(--soft);
+      font: 11px/1.45 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .case-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .case-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .case-image {
+      overflow: hidden;
+      border-bottom: 1px solid rgba(244, 247, 251, 0.08);
+    }
+
+    .case-image img {
+      width: 100%;
+      aspect-ratio: 16 / 9.7;
+      object-fit: cover;
+    }
+
+    .case-copy {
+      display: grid;
+      gap: 12px;
+      padding: 22px;
+    }
+
+    .case-copy h3 {
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .case-copy p {
       color: var(--muted);
       font-size: 16px;
-      line-height: 1.36;
+      line-height: 1.46;
     }
 
-    .capability-card li strong {
+    .case-stats {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+    }
+
+    .case-stats strong {
       display: block;
-      margin-bottom: 4px;
-      color: var(--fg);
-      font-size: 16px;
-      line-height: 1.2;
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.04em;
     }
 
-    .closing {
+    .case-stats span {
+      display: block;
+      margin-top: 4px;
+      color: var(--soft);
+      font: 10px/1.45 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ticker-card {
+      padding: 20px 22px;
+      margin-top: 22px;
+      background:
+        radial-gradient(circle at center, rgba(242, 144, 255, 0.12), transparent 35%),
+        linear-gradient(180deg, rgba(18, 22, 29, 0.98), rgba(8, 10, 14, 0.98));
+    }
+
+    .ticker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 22px;
+      align-items: center;
+      color: var(--soft);
+      font: 12px/1.4 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ticker strong {
+      color: var(--fg);
+      font-size: 13px;
+    }
+
+    .manifesto-row {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .manifesto-card {
+      padding: 28px;
+    }
+
+    .manifesto-card h3 {
+      max-width: 10ch;
+      font-size: clamp(30px, 3.4vw, 56px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+
+    .manifesto-card p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .manifesto-image img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .cta-card {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 28px;
       align-items: end;
-      padding: 34px 34px 36px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
+      padding: 34px;
+      margin-top: 22px;
       background:
-        linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04)),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
-      box-shadow: var(--shadow);
+        linear-gradient(135deg, rgba(126, 184, 255, 0.08), rgba(154, 248, 198, 0.05)),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
     }
 
-    .closing h2 {
+    .cta-card h2 {
       max-width: 11ch;
       font-size: clamp(38px, 4.6vw, 72px);
       line-height: 0.94;
       letter-spacing: -0.05em;
     }
 
-    .closing p {
-      max-width: 52ch;
+    .cta-card p {
+      max-width: 56ch;
       margin-top: 16px;
       color: var(--muted);
       font-size: 18px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
-    .footer-note {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 18px 6px 0;
+    .footer {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      padding: 28px 0 16px;
+    }
+
+    .footer-column {
+      display: grid;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-column a,
+    .footer-column span {
       color: var(--soft);
-      font: 11px/1.5 var(--mono);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .footer-kicker {
+      color: var(--fg);
+      font: 11px/1.4 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
+    [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, 42px, 0);
+      transition:
+        opacity 760ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 760ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    [data-reveal="slide-left"] { transform: translate3d(-34px, 22px, 0); }
+    [data-reveal="slide-right"] { transform: translate3d(34px, 22px, 0); }
+    [data-reveal="scale"] { transform: translate3d(0, 26px, 0) scale(0.98); }
+    [data-reveal="slide-left"].is-visible,
+    [data-reveal="slide-right"].is-visible,
+    [data-reveal="scale"].is-visible { transform: translate3d(0, 0, 0) scale(1); }
+
+    [data-parallax] {
+      transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.03);
+      transform-origin: center;
+      transition: transform 200ms ease-out;
+    }
+
     @media (max-width: 1180px) {
-      .venture-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .proof-grid,
-      .signal-strip,
-      .split,
-      .hero { grid-template-columns: 1fr; }
-      .hero-title { max-width: 10.5ch; }
-      .closing { grid-template-columns: 1fr; }
-      .hero-rail { position: static; }
+      .hero-grid,
+      .feature-grid,
+      .quote-grid,
+      .proof-row,
+      .case-row,
+      .manifesto-row,
+      .footer,
+      .cta-card { grid-template-columns: 1fr; }
+      .hero-panel-grid { grid-template-columns: 1fr; }
+      .side-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (max-width: 760px) {
-      .shell {
-        width: min(100% - 20px, 1440px);
-        padding-top: 12px;
-        padding-bottom: 48px;
-      }
-
-      .topbar {
-        position: static;
-        align-items: flex-start;
-        border-radius: 28px;
-      }
-
-      .nav {
-        gap: 10px 14px;
-        justify-content: flex-start;
-      }
-
-      .hero {
-        padding-top: 28px;
-        gap: 18px;
-      }
-
-      .hero-title { font-size: clamp(44px, 13vw, 72px); }
-      .hero-copy { font-size: 18px; }
-      .hero-frame img { aspect-ratio: 16 / 10.8; }
-      .venture-grid,
-      .proof-grid,
-      .signal-strip { grid-template-columns: 1fr; }
-      .section,
-      .hero-media { gap: 14px; }
-      .venture-card,
-      .note-card,
-      .system-card,
-      .capability-card { border-radius: 22px; }
-      .closing { padding: 24px; border-radius: 24px; }
-      .footer-note { flex-direction: column; }
+      .page { width: min(100% - 20px, 1480px); padding-top: 12px; padding-bottom: 44px; }
+      .topbar { position: static; align-items: flex-start; border-radius: 28px; }
+      .nav { gap: 10px 14px; justify-content: flex-start; }
+      .hero { padding-top: 28px; }
+      .hero h1 { font-size: clamp(44px, 13vw, 70px); }
+      .hero-copy,
+      .section-lead,
+      .cta-card p,
+      .manifesto-card p,
+      .copy-card p { font-size: 17px; }
+      .surface,
+      .feature-card,
+      .media-card,
+      .copy-card,
+      .quote-card,
+      .case-card,
+      .ticker-card,
+      .manifesto-card,
+      .cta-card { border-radius: 24px; }
+      .side-stats { grid-template-columns: 1fr; }
+      .footer { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"></div>
-  <div class="shell">
+  <div class="page">
     <header class="topbar">
       <a class="brand" href="https://jereme.xyz">
         <span class="brand-dot"></span>
         <span>jereme.xyz / signal</span>
       </a>
-      <nav class="nav" aria-label="Page">
-        <a href="#overview">Overview</a>
-        <a href="#ventures">Ventures</a>
-        <a href="#proof">Proof</a>
-        <a href="https://jereme.xyz/about/">About</a>
-        <a href="https://jereme.xyz/contact.html">Contact</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="signal.html" aria-current="page">Signal</a>
+        <a href="about-signal.html">About</a>
+        <a href="contact-signal.html">Contact</a>
+        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
       </nav>
     </header>
 
-    <section class="hero" id="overview">
-      <div data-reveal="slide-left">
-        <div class="eyebrow">Portfolio Brief / Vancouver, WA</div>
-        <h1 class="hero-title">Build the thing that still works when the demo ends.</h1>
-        <p class="hero-copy">Four ventures, one operating instinct: make the technical thing humane, make the beautiful thing accountable, and keep the room honest. Systems, spaces, objects, and strange practical futures built where the easy answer stops.</p>
-        <div class="hero-actions">
-          <a class="button" href="https://jereme.xyz/site/fwr/fwr.html">Open fw/r</a>
-          <a class="button-muted" href="https://jereme.xyz/about/">Read the longer note</a>
+    <section class="hero">
+      <div class="hero-grid">
+        <div data-reveal="slide-left">
+          <div class="eyebrow">Signal / portfolio brief</div>
+          <h1>Bring serious work to the interfaces people actually live inside.</h1>
+          <p class="hero-copy">jereme.xyz is one operating system split across four ventures: robotics and applied AI, room-first hospitality, designed objects, and slower coastal worlds. The throughline is the same every time: find the wires, name the ghost, build the rig, and make the weird thing work.</p>
+          <div class="hero-platforms">
+            <div class="pill"><span class="pill-dot" style="background:#7eb8ff;"></span>fw/r</div>
+            <div class="pill"><span class="pill-dot" style="background:#9af8c6;"></span>pine</div>
+            <div class="pill"><span class="pill-dot" style="background:#f6cb83;"></span>nrthrn</div>
+            <div class="pill"><span class="pill-dot" style="background:#f290ff;"></span>drift</div>
+            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>and the work between them</div>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="https://jereme.xyz/site/fwr/fwr.html">Open fw/r</a>
+            <a class="button-muted" href="about-signal.html">Read the longer note</a>
+          </div>
         </div>
-      </div>
 
-      <aside class="hero-rail" aria-label="Profile details" data-reveal="slide-right" style="--reveal-delay: 100ms;">
-        <div class="stat">
-          <span class="label">Operating range</span>
-          <span class="value">AI, robotics, LiDAR, hospitality, objects</span>
-        </div>
-        <div class="stat">
-          <span class="label">Current signal</span>
-          <span class="value">Available for serious work in Q1 2027</span>
-        </div>
-        <div class="stat">
-          <span class="label">Base</span>
-          <span class="value">Downtown Vancouver, Washington</span>
-        </div>
-        <div class="stat">
-          <span class="label">Bias</span>
-          <span class="value">Less innovation theater. More finding the wires and making the weird thing work.</span>
-        </div>
-      </aside>
-    </section>
-
-    <section class="hero-media section" data-reveal="scale">
-      <figure class="hero-frame" data-parallax data-parallax-speed="0.1">
-        <img src="fwr-portland-max-tracks.jpg" alt="Transit tracks at a Portland MAX corridor">
-        <figcaption class="frame-caption">
-          <div>
-            <strong>Field conditions before the pitch deck.</strong>
-            <span>The portfolio begins where public infrastructure, sensing, product judgment, and real-world constraints all have to sit at the same table.</span>
+        <div class="hero-panel surface" data-reveal="slide-right" style="--reveal-delay:100ms;">
+          <div class="hero-panel-top">
+            <i></i><i></i><i></i>
+            <span class="hero-panel-label">signal-terminal</span>
           </div>
-          <div class="frame-kicker">Portland / TriMet MAX</div>
-        </figcaption>
-      </figure>
-    </section>
-
-    <section class="section" id="ventures" data-reveal>
-      <div class="eyebrow">Portfolio stack</div>
-      <div class="venture-grid">
-        <article class="venture-card" data-reveal="scale" style="--reveal-delay: 0ms;">
-          <div class="venture-mark">
-            <img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/OG%20Robot.JPG" alt="fw/r robot icon">
-          </div>
-          <div>
-            <div class="venture-meta">fw/r / est. 2019</div>
-            <h3>Systems-facing work for questions that have to survive reality.</h3>
-            <p>Robotics, applied AI, sensing, prototyping, and technical infrastructure shaped to ship outside the lab.</p>
-          </div>
-        </article>
-
-        <article class="venture-card" data-reveal="scale" style="--reveal-delay: 60ms;">
-          <div class="venture-mark">
-            <svg viewBox="0 0 64 64" aria-hidden="true">
-              <path d="M32 10 44 26H20L32 10Z" fill="#f4ecd6"></path>
-              <path d="M32 21 47 40H17L32 21Z" fill="#f4ecd6"></path>
-              <path d="M32 33 51 56H13L32 33Z" fill="#f4ecd6"></path>
-            </svg>
-          </div>
-          <div>
-            <div class="venture-meta">pine / est. 2022*</div>
-            <h3>A room-first coffee concept built around return, pace, and light.</h3>
-            <p>Hospitality without performance. Daily ritual, seating, sound, service flow, and a neighborhood reason to come back.</p>
-          </div>
-        </article>
-
-        <article class="venture-card" data-reveal="scale" style="--reveal-delay: 120ms;">
-          <div class="venture-mark text-mark">nrthrn</div>
-          <div>
-            <div class="venture-meta">nrthrn / est. 2025</div>
-            <h3>Designed objects with a cleaner, more restrained physical language.</h3>
-            <p>Material ideas, consumer goods, and industrial objects where every millimeter has a reason and every reason has a story.</p>
-          </div>
-        </article>
-
-        <article class="venture-card" data-reveal="scale" style="--reveal-delay: 180ms;">
-          <div class="venture-mark text-mark">drift</div>
-          <div>
-            <div class="venture-meta">drift / coming soon</div>
-            <h3>A softer coastal world built around place, mood, and patience.</h3>
-            <p>Smaller, slower, saltier. A sensory identity and ritual space that opens when the timing is right, not when the calendar says so.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section split">
-      <article class="note-card" data-reveal="slide-left">
-        <div class="eyebrow">Operating note</div>
-        <h2 class="section-title">Not a holding company. More like a shared nervous system.</h2>
-        <p class="section-copy">The same taste, technical judgment, and refusal to fake certainty moves across every page: from LiDAR corridor safety and evaluation harnesses to chairs chosen on purpose, material stories, and slower physical spaces. The medium changes. The standard doesn’t.</p>
-        <p class="section-copy">This is less about scale for its own sake and more about building a body of work that can be scrutinized closely and still feel deliberate. Useful and unhurried. Clear enough to ship. Quiet enough to last.</p>
-      </article>
-
-      <article class="system-card" data-reveal="slide-right" style="--reveal-delay: 80ms;">
-        <div class="eyebrow">Runbook</div>
-        <h2 class="section-title">The work usually starts fuzzy and ends specific.</h2>
-        <div class="code-window" aria-label="Process">
-          <div class="code-window-top"><i></i><i></i><i></i><span class="code-window-label">signal-terminal</span></div>
-          <pre><span class="code-comment"># process / inquiry intake</span>
-<span class="code-keyword">const</span> <span class="code-const">inquiry</span> <span class="code-plain">=</span> <span class="code-fn">bring</span><span class="code-plain">(</span><span class="code-string">"the fuzzy thing"</span><span class="code-plain">)</span>
+          <div class="hero-panel-grid">
+            <div class="code-card">
+              <pre><span class="code-comment"># operating sequence / live file</span>
+<span class="code-keyword">const</span> <span class="code-const">brief</span> <span class="code-plain">=</span> <span class="code-fn">bring</span><span class="code-plain">(</span><span class="code-string">"the fuzzy thing"</span><span class="code-plain">)</span>
 
 <span class="code-fn">scan</span><span class="code-plain">({</span>
   <span class="code-prop">constraints</span><span class="code-plain">:</span> <span class="code-array">[</span><span class="code-string">"field conditions"</span><span class="code-plain">,</span> <span class="code-string">"users"</span><span class="code-plain">,</span> <span class="code-string">"signal"</span><span class="code-plain">,</span> <span class="code-string">"systems"</span><span class="code-array">]</span><span class="code-plain">,</span>
@@ -811,92 +815,243 @@
   <span class="code-string">"LiDAR data pipelines"</span><span class="code-plain">,</span>
   <span class="code-string">"spatial + hospitality concepts"</span><span class="code-plain">,</span>
   <span class="code-string">"product and material direction"</span>
-<span class="code-array">]</span><span class="code-plain">)</span>
-
-<span class="code-fn">ship</span><span class="code-plain">({</span>
-  <span class="code-prop">standard</span><span class="code-plain">:</span> <span class="code-string">"useful, durable, accountable"</span><span class="code-plain">,</span>
-  <span class="code-prop">tone</span><span class="code-plain">:</span> <span class="code-string">"clear enough to survive contact with reality"</span>
-<span class="code-plain">})</span></pre>
+<span class="code-array">]</span><span class="code-plain">)</span></pre>
+            </div>
+            <div class="side-stats">
+              <div class="stat-box">
+                <strong>4</strong>
+                <span>ventures / one desk</span>
+              </div>
+              <div class="stat-box">
+                <strong>Q1 2027</strong>
+                <span>availability signal</span>
+              </div>
+              <div class="stat-box">
+                <strong>PNW</strong>
+                <span>base / Vancouver WA</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </article>
+      </div>
     </section>
 
-    <section class="section" id="proof" data-reveal>
-      <div class="eyebrow">Proof surfaces</div>
-      <div class="proof-grid">
-        <article class="proof-card" data-reveal="scale" style="--reveal-delay: 0ms;">
+    <section class="section-block" data-reveal>
+      <div class="eyebrow">Capabilities</div>
+      <h2 class="section-title">Simple interface. Serious operating range.</h2>
+      <p class="section-lead">The site may look like a portfolio, but the actual offer is broader: systems work, product judgment, physical environments, object language, technical narrative, and the ability to move between them without flattening everything into the same generic consulting sludge.</p>
+      <div class="feature-grid">
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:0ms;">
+          <div class="eyebrow">01 / systems</div>
+          <h3>Applied AI and evaluation logic</h3>
+          <p>Harnesses, prompts, RAG behavior, agent tooling, and release gates for teams that need more than “it seems pretty good.”</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:60ms;">
+          <div class="eyebrow">02 / sensing</div>
+          <h3>LiDAR, perception, and field constraint</h3>
+          <p>Corridor sensing, public infrastructure, sensor stacks, and technical problem-shaping when reality refuses to behave like the clean demo.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:120ms;">
+          <div class="eyebrow">03 / build</div>
+          <h3>Robotics prototyping and systems direction</h3>
+          <p>Hardware surfaces, instrumentation, rig logic, and the machinery required to turn vague future-facing ideas into buildable things.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:180ms;">
+          <div class="eyebrow">04 / room</div>
+          <h3>Hospitality and spatial identity</h3>
+          <p>Service flow, light, sound, seating, ritual, and the slower design decisions that determine how a space actually feels to return to.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:240ms;">
+          <div class="eyebrow">05 / object</div>
+          <h3>Product language and material restraint</h3>
+          <p>Consumer objects and industrial goods shaped with quieter physical intelligence and less dependence on trend-chasing.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:300ms;">
+          <div class="eyebrow">06 / narrative</div>
+          <h3>Technical story that still survives scrutiny</h3>
+          <p>Direction, positioning, internal language, and the ability to explain difficult work without reducing it to corporate wallpaper.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" data-reveal>
+      <div class="eyebrow">Proof / fw/r</div>
+      <h2 class="section-title">First-class for the part where the work touches reality.</h2>
+      <div class="proof-row">
+        <figure class="media-card" data-reveal="slide-left">
+          <img src="fwr-portland-max-tracks.jpg" alt="Portland MAX tracks" data-parallax data-parallax-speed="0.11">
+          <figcaption class="media-caption">
+            <div>
+              <strong>Transit infrastructure under actual constraint.</strong>
+              <span>LiDAR rail safety, corridor sensing, and agency-facing work built around what happens in the field, not what looks clean in slides.</span>
+            </div>
+            <div class="eyebrow" style="margin:0;">Portland / TriMet MAX</div>
+          </figcaption>
+        </figure>
+        <article class="copy-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
+          <div>
+            <div class="eyebrow">Latency / trust / signal</div>
+            <h3>Less innovation theater. More finding the wires.</h3>
+            <p>fw/r is the systems-facing wing of the portfolio: robotics, applied AI, sensing, prototyping, and the machinery required to turn abstract technical direction into something that can actually ship.</p>
+          </div>
+          <div class="metric-stack">
+            <div class="metric"><strong>6</strong><span>download artifacts / field files</span></div>
+            <div class="metric"><strong>2019</strong><span>fw/r operating signal</span></div>
+            <div class="metric"><strong>1 desk</strong><span>where the layers meet</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" data-reveal>
+      <div class="eyebrow">Surfaces</div>
+      <div class="proof-row">
+        <figure class="media-card" data-reveal="slide-left">
           <img src="fwr-lidar-corridor.png" alt="LiDAR corridor visualization" data-parallax data-parallax-speed="0.12">
-          <div class="proof-copy">
-            <div class="label">Sensor / corridor</div>
-            <h3>Transit perception under actual constraint.</h3>
-            <p>Rail safety logic, track-region interpretation, and the kind of environmental sensing work that gets serious the second it touches public infrastructure.</p>
-          </div>
-        </article>
-
-        <article class="proof-card" data-reveal="scale" style="--reveal-delay: 70ms;">
+          <figcaption class="media-caption">
+            <div>
+              <strong>Perception logic at corridor scale.</strong>
+              <span>Radar, LiDAR, vision, track regions, braking logic, and the practical work of understanding what the sensor thinks it sees.</span>
+            </div>
+            <div class="eyebrow" style="margin:0;">sensor / corridor</div>
+          </figcaption>
+        </figure>
+        <figure class="media-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
           <img src="fwr-evaluation-harness.png" alt="LLM evaluation harness interface" data-parallax data-parallax-speed="0.12">
-          <div class="proof-copy">
-            <div class="label">Evaluation / Sadie</div>
-            <h3>Language systems with tests, gates, and consequences.</h3>
-            <p>Harnesses for prompts, RAG flows, tool use, reports, and release decisions when AI output needs to be measured instead of admired.</p>
+          <figcaption class="media-caption">
+            <div>
+              <strong>Language systems with gates and consequences.</strong>
+              <span>Sadie and Narwhal harness work for prompts, reports, RAG flows, scores, traces, and release decisions that need evidence.</span>
+            </div>
+            <div class="eyebrow" style="margin:0;">evaluation / harness</div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-block" data-reveal>
+      <div class="eyebrow">Trusted by the work itself</div>
+      <h2 class="section-title">Four ventures, one operating instinct.</h2>
+      <div class="quote-grid">
+        <article class="quote-card" data-reveal="scale" style="--reveal-delay:0ms;">
+          <p>fw/r is the systems-facing wing: robotics, applied AI, sensing, prototyping, and technical infrastructure shaped to ship outside the lab.</p>
+          <div class="quote-meta">fw/r / systems / est. 2019</div>
+        </article>
+        <article class="quote-card" data-reveal="scale" style="--reveal-delay:60ms;">
+          <p>pine is a room-first coffee concept built around hospitality, pace, light, seating, sound, and the daily ritual of return.</p>
+          <div class="quote-meta">pine / room / est. 2022*</div>
+        </article>
+        <article class="quote-card" data-reveal="scale" style="--reveal-delay:120ms;">
+          <p>nrthrn and drift carry the physical side of the portfolio: objects with restraint and a coastal world with patience.</p>
+          <div class="quote-meta">nrthrn + drift / object + place</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" data-reveal>
+      <div class="eyebrow">Cases</div>
+      <h2 class="section-title">Built for teams, places, and ideas at different scales.</h2>
+      <div class="case-row">
+        <article class="case-card" data-reveal="slide-left">
+          <div class="case-image">
+            <img src="fwr-prototype-bench.png" alt="Prototype bench with instrumentation" data-parallax data-parallax-speed="0.1">
+          </div>
+          <div class="case-copy">
+            <div class="eyebrow">Case / fw/r</div>
+            <h3>From corridor sensing to harness logic.</h3>
+            <p>Research abstract, Portland/TriMet MAX RFP, Seattle/King County proof-of-concept, Sadie harness, Sadie data, and Narwhal all point at the same disposition: make the technical thing answerable.</p>
+            <div class="case-stats">
+              <div><strong>6</strong><span>artifacts on page</span></div>
+              <div><strong>AI + LiDAR</strong><span>primary signal</span></div>
+              <div><strong>Field-aware</strong><span>not lab-only</span></div>
+            </div>
           </div>
         </article>
 
-        <article class="proof-card" data-reveal="scale" style="--reveal-delay: 140ms;">
-          <img src="fwr-prototype-bench.png" alt="Prototype bench with robotics and instrumentation" data-parallax data-parallax-speed="0.12">
-          <div class="proof-copy">
-            <div class="label">Bench / prototype</div>
-            <h3>Hardware, wiring, and the machinery behind the idea.</h3>
-            <p>Prototyping surfaces where abstract direction becomes parts, rigs, sensors, and testable behavior instead of another clean room narrative.</p>
+        <article class="case-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
+          <div class="case-image">
+            <img src="fwr-prototyping-bench.jpg" alt="Workbench and prototyping environment" data-parallax data-parallax-speed="0.1">
+          </div>
+          <div class="case-copy">
+            <div class="eyebrow">Case / portfolio</div>
+            <h3>One taste system crossing very different mediums.</h3>
+            <p>That same judgment extends to coffee rooms, designed objects, quieter websites, and future-facing concepts that need to survive contact with users, materials, and time.</p>
+            <div class="case-stats">
+              <div><strong>4</strong><span>venture worlds</span></div>
+              <div><strong>1</strong><span>shared nervous system</span></div>
+              <div><strong>Quiet</strong><span>by design</span></div>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section" data-reveal>
-      <div class="eyebrow">Signals</div>
-      <div class="signal-strip">
-        <article class="capability-card" data-reveal="scale" style="--reveal-delay: 0ms;">
-          <div class="label">What shows up</div>
-          <ul>
-            <li><strong>Systems direction</strong> Technical narrative, architecture, and scope shaping for work that crosses hardware, software, and operations.</li>
-            <li><strong>Applied AI</strong> Evaluation logic, prompt systems, agent behavior, and tooling where correctness matters.</li>
-          </ul>
-        </article>
-
-        <article class="capability-card" data-reveal="scale" style="--reveal-delay: 60ms;">
-          <div class="label">What gets pressure-tested</div>
-          <ul>
-            <li><strong>Sensing + autonomy</strong> LiDAR, signals, corridor interpretation, robotics experiments, and field-aware prototyping.</li>
-            <li><strong>Objects + spaces</strong> Hospitality, product language, material restraint, and environments shaped to be lived with.</li>
-          </ul>
-        </article>
-
-        <article class="capability-card" data-reveal="scale" style="--reveal-delay: 120ms;">
-          <div class="label">What it should feel like</div>
-          <ul>
-            <li><strong>Clear</strong> Strong hierarchy, specific language, and interfaces that do not need hype to hold attention.</li>
-            <li><strong>Deliberate</strong> Every decision should feel like it belongs to the same person, even when the medium changes.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" data-reveal="scale">
-      <div class="closing">
-        <div>
-          <div class="eyebrow">Inquiry</div>
-          <h2>Bring the fuzzy thing. We can make it answerable.</h2>
-          <p>If the project is technical, physical, future-facing, difficult to explain, or stuck between strategy and reality, that is usually where the useful work starts.</p>
+    <section class="section-block" data-reveal>
+      <div class="ticker-card">
+        <div class="ticker">
+          <span><strong>Base</strong> Vancouver, WA</span>
+          <span><strong>Status</strong> Available Q1 2027</span>
+          <span><strong>PCT</strong> Northbound / April 2027</span>
+          <span><strong>Bias</strong> Useful and unhurried</span>
+          <span><strong>Room tone</strong> Less hype, more clarity</span>
         </div>
-        <a class="button" href="https://jereme.xyz/contact.html">Open contact</a>
-      </div>
-      <div class="footer-note">
-        <span>Built from the current jereme.xyz venture world</span>
-        <span>Page signal / standalone concept</span>
       </div>
     </section>
+
+    <section class="section-block" data-reveal>
+      <div class="eyebrow">Manifesto</div>
+      <div class="manifesto-row">
+        <article class="manifesto-card" data-reveal="slide-left">
+          <h3>The work is quieter than the discourse. On purpose.</h3>
+          <p>There is a lot of aesthetic theater in the world right now: product language pretending to be strategy, metrics pretending to be taste, and AI discourse pretending to be understanding. The portfolio is built in reaction to that.</p>
+          <p>Good work does not need to shout to prove that it has a point of view. It needs to be specific, legible, durable, and strange in the right places.</p>
+          <p>This is not about being everywhere. It is about being good in the spots that actually matter.</p>
+        </article>
+        <figure class="media-card manifesto-image" data-reveal="slide-right" style="--reveal-delay:80ms;">
+          <img src="fwr-jpl-rover-test.jpg" alt="Rover and testing environment" data-parallax data-parallax-speed="0.1">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-block" data-reveal="scale">
+      <div class="cta-card">
+        <div>
+          <div class="eyebrow">Next step</div>
+          <h2>Bring the fuzzy thing. We can make it answerable.</h2>
+          <p>If the work is technical, physical, future-facing, hard to explain, or stuck in the gap between strategy and reality, that is usually where the useful work starts.</p>
+        </div>
+        <a class="button" href="contact-signal.html">Open contact</a>
+      </div>
+    </section>
+
+    <footer class="footer" data-reveal>
+      <div class="footer-column">
+        <div class="footer-kicker">Pages</div>
+        <a href="signal.html">signal</a>
+        <a href="about-signal.html">about-signal</a>
+        <a href="contact-signal.html">contact-signal</a>
+      </div>
+      <div class="footer-column">
+        <div class="footer-kicker">Ventures</div>
+        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
+        <span>pine</span>
+        <span>nrthrn</span>
+        <span>drift</span>
+      </div>
+      <div class="footer-column">
+        <div class="footer-kicker">Signal</div>
+        <span>AI / robotics / LiDAR</span>
+        <span>hospitality / objects / place</span>
+        <span>technical narrative / build logic</span>
+      </div>
+      <div class="footer-column">
+        <div class="footer-kicker">Contact</div>
+        <a href="mailto:jeremedotxyz@gmail.com">jeremedotxyz@gmail.com</a>
+        <span>Vancouver, Washington</span>
+      </div>
+    </footer>
   </div>
+
   <script>
     (() => {
       const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
