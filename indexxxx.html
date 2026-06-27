@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>signal - jereme.xyz</title>
-  <meta name="description" content="A Photon-structured portfolio signal page for jereme.xyz: ventures, systems work, hospitality, objects, and proof surfaces built where the easy answer stops.">
+  <meta name="description" content="A Photon-structured portfolio signal page for jereme.xyz: ventures, systems work, coffee spaces, objects, and proof surfaces built where the easy answer stops.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -506,152 +506,6 @@
       object-fit: cover;
     }
 
-    .rail-tint {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .rail-tint img {
-      filter: saturate(0.78) hue-rotate(188deg) brightness(0.72) contrast(1.08);
-    }
-
-    .rail-tint::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(10, 18, 34, 0.12), rgba(84, 126, 255, 0.16) 54%, rgba(86, 229, 205, 0.12));
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .surface-visual {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .surface-visual::before,
-    .surface-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-    }
-
-    .surface-transit {
-      background:
-        radial-gradient(circle at 80% 14%, rgba(126, 184, 255, 0.34), transparent 24%),
-        radial-gradient(circle at 18% 84%, rgba(154, 248, 198, 0.14), transparent 30%),
-        linear-gradient(160deg, #09111c 0%, #0e1e33 52%, #091019 100%);
-    }
-
-    .surface-transit::before {
-      inset: 14% -8% 18% -8%;
-      background: repeating-linear-gradient(104deg, transparent 0 11%, rgba(255, 255, 255, 0.09) 11% 11.8%, transparent 11.8% 15.5%);
-      opacity: 0.78;
-      transform: skewY(-9deg);
-    }
-
-    .surface-transit::after {
-      inset: auto 8% 12% 14%;
-      height: 22%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(86, 229, 205, 0), rgba(86, 229, 205, 0.72), rgba(126, 184, 255, 0));
-      filter: blur(18px);
-      opacity: 0.74;
-    }
-
-    .surface-perception {
-      background:
-        linear-gradient(180deg, rgba(244, 247, 251, 0.06), rgba(244, 247, 251, 0) 18%),
-        radial-gradient(circle at 20% 24%, rgba(154, 248, 198, 0.18), transparent 22%),
-        radial-gradient(circle at 78% 72%, rgba(126, 184, 255, 0.22), transparent 26%),
-        #070b12;
-    }
-
-    .surface-perception::before {
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(244, 247, 251, 0.78) 0 1.1px, transparent 1.2px);
-      background-size: 28px 28px;
-      opacity: 0.16;
-    }
-
-    .surface-perception::after {
-      inset: 18% 12%;
-      border: 1px solid rgba(154, 248, 198, 0.34);
-      border-radius: 22px;
-      box-shadow: 0 0 0 1px rgba(126, 184, 255, 0.16) inset;
-    }
-
-    .surface-language {
-      background:
-        radial-gradient(circle at 72% 20%, rgba(242, 144, 255, 0.22), transparent 24%),
-        linear-gradient(180deg, #0b0f17 0%, #0a1018 44%, #0a0d14 100%);
-    }
-
-    .surface-language::before {
-      inset: 14% 12% 18%;
-      border-radius: 22px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-        repeating-linear-gradient(180deg, rgba(126, 184, 255, 0.28) 0 2px, transparent 2px 24px),
-        linear-gradient(180deg, rgba(12, 16, 23, 0.94), rgba(10, 12, 18, 0.98));
-      border: 1px solid rgba(244, 247, 251, 0.08);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    }
-
-    .surface-language::after {
-      inset: 20% auto auto 16%;
-      width: 18%;
-      height: 8%;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(195, 232, 141, 0.86), rgba(130, 170, 255, 0.82));
-      box-shadow: 0 0 28px rgba(130, 170, 255, 0.24);
-    }
-
-    .surface-artifact {
-      background:
-        radial-gradient(circle at 84% 18%, rgba(246, 203, 131, 0.16), transparent 20%),
-        linear-gradient(160deg, #151018 0%, #1a1320 48%, #0d0d14 100%);
-    }
-
-    .surface-artifact::before {
-      inset: 12% 20% 26% 10%;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(244, 247, 251, 0.1);
-      box-shadow: 40px 34px 0 -8px rgba(242, 144, 255, 0.12), 84px 70px 0 -18px rgba(126, 184, 255, 0.12);
-    }
-
-    .surface-artifact::after {
-      inset: 22% 28% 36% 18%;
-      border-top: 1px solid rgba(244, 247, 251, 0.24);
-      border-bottom: 1px solid rgba(244, 247, 251, 0.08);
-      opacity: 0.72;
-    }
-
-    .surface-manifesto {
-      background:
-        radial-gradient(circle at 22% 24%, rgba(242, 144, 255, 0.24), transparent 24%),
-        radial-gradient(circle at 78% 76%, rgba(92, 210, 219, 0.18), transparent 28%),
-        linear-gradient(160deg, #101522 0%, #111a2e 52%, #0a0d15 100%);
-    }
-
-    .surface-manifesto::before {
-      inset: auto -6% 12% -6%;
-      height: 48%;
-      border-radius: 46% 46% 0 0;
-      background: linear-gradient(180deg, rgba(9, 20, 36, 0) 0%, rgba(9, 20, 36, 0.86) 100%);
-    }
-
-    .surface-manifesto::after {
-      inset: 16% 14%;
-      border: 1px solid rgba(244, 247, 251, 0.08);
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 52%);
-    }
-
     .media-caption {
       display: flex;
       justify-content: space-between;
@@ -773,10 +627,6 @@
       object-fit: cover;
     }
 
-    .case-image .surface-visual {
-      aspect-ratio: 16 / 9.7;
-    }
-
     .case-copy {
       display: grid;
       gap: 12px;
@@ -873,12 +723,6 @@
       height: 100%;
       aspect-ratio: 16 / 10;
       object-fit: cover;
-    }
-
-    .manifesto-image .surface-visual {
-      height: 100%;
-      min-height: 100%;
-      aspect-ratio: auto;
     }
 
     .cta-card {
@@ -1127,13 +971,17 @@
         <div data-reveal="slide-left">
           <div class="eyebrow">Personal site / venture signal</div>
           <h1>Bring serious work to the interfaces people actually live inside.</h1>
-          <p class="hero-copy">This is Jereme Abernathy's personal site: a bridge into four ventures across robotics and applied AI, room-first hospitality, designed objects, and slower coastal worlds. Each venture keeps its own identity; this page is the index, context, and connective tissue between them.</p>
+          <p class="hero-copy">This is Jereme Abernathy’s personal site: a bridge into four ventures across robotics and applied AI, room-first coffee spaces, designed objects, and slower coastal worlds. Each venture keeps its own identity; this page is the index, context, and connective tissue between them.</p>
           <div class="hero-platforms">
             <div class="pill"><span class="pill-dot" style="background:#7eb8ff;"></span>fw/r</div>
             <div class="pill"><span class="pill-dot" style="background:#9af8c6;"></span>pine</div>
             <div class="pill"><span class="pill-dot" style="background:#f6cb83;"></span>nrthrn</div>
             <div class="pill"><span class="pill-dot" style="background:#f290ff;"></span>drift</div>
-            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>personal index</div>
+            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>personal index / official pages branch from here</div>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="fwr-signal.html">Open fw/r</a>
+            <a class="button-muted" href="about-signal.html">Read the longer note</a>
           </div>
         </div>
 
@@ -1157,7 +1005,7 @@
 <span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;AI strategy and evals&quot;"></span><span class="code-plain" data-text=","></span></span>
 <span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;robotics prototyping&quot;"></span><span class="code-plain" data-text=","></span></span>
 <span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;LiDAR data pipelines&quot;"></span><span class="code-plain" data-text=","></span></span>
-<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;spatial + hospitality concepts&quot;"></span><span class="code-plain" data-text=","></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;spatial + coffee concepts&quot;"></span><span class="code-plain" data-text=","></span></span>
 <span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;product and material direction&quot;"></span></span>
 <span class="code-line"><span class="code-plain" data-text="])"></span></span>
               </pre>
@@ -1174,18 +1022,33 @@
       <div class="feature-grid">
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:0ms;">
           <div class="eyebrow">01 / systems</div>
-          <h3>fw/r</h3>
-          <p>LiDAR, applied AI, robotics, sensing, evaluation logic, and the systems-facing work built to survive contact with the real world.</p>
+          <h3>Applied AI and evaluation logic</h3>
+          <p>Harnesses, prompts, RAG behavior, agent tooling, and release gates for teams that need more than “it seems pretty good.”</p>
         </article>
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:60ms;">
-          <div class="eyebrow">02 / build</div>
-          <h3>nrthrn</h3>
-          <p>Objects, material direction, and quieter product language shaped with physical restraint instead of trend-chasing.</p>
+          <div class="eyebrow">02 / sensing</div>
+          <h3>LiDAR, perception, and field constraint</h3>
+          <p>Corridor sensing, public infrastructure, sensor stacks, and technical problem-shaping when reality refuses to behave like the clean demo.</p>
         </article>
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:120ms;">
-          <div class="eyebrow">03 / room</div>
-          <h3>pine + drift</h3>
-          <p>Hospitality, atmosphere, coastal ritual, and slower environments designed around how a place feels, functions, and is remembered.</p>
+          <div class="eyebrow">03 / build</div>
+          <h3>Robotics prototyping and systems direction</h3>
+          <p>Hardware surfaces, instrumentation, rig logic, and the machinery required to turn vague future-facing ideas into buildable things.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:180ms;">
+          <div class="eyebrow">04 / room</div>
+          <h3>Coffee spaces and spatial identity</h3>
+          <p>Service flow, light, sound, seating, ritual, and the slower design decisions that determine how a room actually feels to return to.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:240ms;">
+          <div class="eyebrow">05 / object</div>
+          <h3>Product language and material restraint</h3>
+          <p>Consumer objects and industrial goods shaped with quieter physical intelligence and less dependence on trend-chasing.</p>
+        </article>
+        <article class="feature-card" data-reveal="scale" style="--reveal-delay:300ms;">
+          <div class="eyebrow">06 / narrative</div>
+          <h3>Technical story that still survives scrutiny</h3>
+          <p>Direction, positioning, internal language, and the ability to explain difficult work without reducing it to corporate wallpaper.</p>
         </article>
       </div>
     </section>
@@ -1195,13 +1058,13 @@
       <h2 class="section-title">First-class for the part where the work touches reality.</h2>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
-          <div class="surface-visual surface-transit" aria-hidden="true"></div>
+          <img src="fwr-portland-max-tracks.jpg" alt="Portland MAX tracks" data-parallax data-parallax-speed="0.11">
           <figcaption class="media-caption">
             <div>
-              <strong>Field systems under actual constraint.</strong>
-              <span>Infrastructure, signal logic, and public-facing systems work shaped by reality before rhetoric.</span>
+              <strong>Transit infrastructure under actual constraint.</strong>
+              <span>LiDAR rail safety, corridor sensing, and agency-facing work built around what happens in the field, not what looks clean in slides.</span>
             </div>
-            <div class="eyebrow" style="margin:0;">systems / field</div>
+            <div class="eyebrow" style="margin:0;">Portland / TriMet MAX</div>
           </figcaption>
         </figure>
         <article class="copy-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
@@ -1223,7 +1086,7 @@
       <div class="eyebrow">Surfaces</div>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
-          <div class="surface-visual surface-perception" aria-hidden="true"></div>
+          <img src="fwr-lidar-corridor.png" alt="LiDAR corridor visualization" data-parallax data-parallax-speed="0.12">
           <figcaption class="media-caption">
             <div>
               <strong>Perception logic at corridor scale.</strong>
@@ -1233,7 +1096,7 @@
           </figcaption>
         </figure>
         <figure class="media-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
-          <div class="surface-visual surface-language" aria-hidden="true"></div>
+          <img src="fwr-evaluation-harness.png" alt="LLM evaluation harness interface" data-parallax data-parallax-speed="0.12">
           <figcaption class="media-caption">
             <div>
               <strong>Language systems with gates and consequences.</strong>
@@ -1245,6 +1108,24 @@
       </div>
     </section>
 
+    <section class="section-block tone-rose" data-reveal>
+      <div class="eyebrow">Trusted by the work itself</div>
+      <h2 class="section-title">Four ventures, one operating instinct.</h2>
+      <div class="quote-grid">
+        <article class="quote-card" data-reveal="scale" style="--reveal-delay:0ms;">
+          <p>fw/r is the systems-facing wing: robotics, applied AI, sensing, prototyping, and technical infrastructure shaped to ship outside the lab.</p>
+          <div class="quote-meta">fw/r / systems / est. 2019</div>
+        </article>
+        <article class="quote-card" data-reveal="scale" style="--reveal-delay:60ms;">
+          <p>pine is a room-first coffee concept built around pace, light, seating, sound, service rhythm, and the daily ritual of return.</p>
+          <div class="quote-meta">pine / room / est. 2022*</div>
+        </article>
+        <article class="quote-card" data-reveal="scale" style="--reveal-delay:120ms;">
+          <p>nrthrn and drift carry the physical side of the portfolio: objects with restraint and a coastal world with patience.</p>
+          <div class="quote-meta">nrthrn + drift / object + place</div>
+        </article>
+      </div>
+    </section>
 
     <section class="section-block tone-rose" data-reveal>
       <div class="eyebrow">Cases</div>
@@ -1252,7 +1133,7 @@
       <div class="case-row">
         <article class="case-card" data-reveal="slide-left">
           <div class="case-image">
-            <div class="surface-visual surface-artifact" aria-hidden="true"></div>
+            <img src="fwr-prototype-bench.png" alt="Prototype bench with instrumentation" data-parallax data-parallax-speed="0.1">
           </div>
           <div class="case-copy">
             <div class="eyebrow">Case / fw/r</div>
@@ -1266,17 +1147,32 @@
           </div>
         </article>
 
+        <article class="case-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
+          <div class="case-image">
+            <img src="fwr-prototyping-bench.jpg" alt="Workbench and prototyping environment" data-parallax data-parallax-speed="0.1">
+          </div>
+          <div class="case-copy">
+            <div class="eyebrow">Case / portfolio</div>
+            <h3>One taste system crossing very different mediums.</h3>
+            <p>That same judgment extends to coffee rooms, designed objects, quieter websites, and future-facing concepts that need to survive contact with users, materials, and time.</p>
+            <div class="case-stats">
+              <div><strong>4</strong><span>venture worlds</span></div>
+              <div><strong>1</strong><span>shared nervous system</span></div>
+              <div><strong>Quiet</strong><span>by design</span></div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="section-block tone-rose" data-reveal>
       <div class="ticker-card">
         <div class="ticker">
-          <span><strong>Base</strong> Pacific Northwest</span>
+          <span><strong>Base</strong> Vancouver, WA</span>
           <span><strong>Status</strong> Available Q1 2027</span>
+          <span><strong>PCT</strong> Northbound / April 2027</span>
           <span><strong>Bias</strong> Useful and unhurried</span>
           <span><strong>Room tone</strong> Less hype, more clarity</span>
-          <span><strong>PCT</strong> Northbound / April 2027</span>
         </div>
       </div>
     </section>
@@ -1291,7 +1187,7 @@
           <p>This is not about being everywhere. It is about being good in the spots that actually matter.</p>
         </article>
         <figure class="media-card manifesto-image" data-reveal="slide-right" style="--reveal-delay:80ms;">
-          <div class="surface-visual surface-manifesto" aria-hidden="true"></div>
+          <img src="fwr-jpl-rover-test.jpg" alt="Rover and testing environment" data-parallax data-parallax-speed="0.1">
         </figure>
       </div>
     </section>
@@ -1316,17 +1212,16 @@
         <a href="fwr-signal.html">fwr-signal</a>
       </div>
       <div class="footer-column">
-        <div class="footer-kicker">Connect</div>
-        <a href="https://www.instagram.com/jeremedotxyz/">Instagram</a>
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://x.com/jeremedotxyz">X</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=e23a1ba3a75848ce">Spotify</a>
+        <div class="footer-kicker">Ventures</div>
+        <a href="fwr-signal.html">fw/r</a>
+        <span>pine</span>
+        <span>nrthrn</span>
+        <span>drift</span>
       </div>
       <div class="footer-column">
         <div class="footer-kicker">Signal</div>
         <span>AI / robotics / LiDAR</span>
-        <span>hospitality / objects / place</span>
+        <span>coffee spaces / objects / place</span>
         <span>technical narrative / build logic</span>
       </div>
       <div class="footer-column">
