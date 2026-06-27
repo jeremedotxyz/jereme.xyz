@@ -506,6 +506,24 @@
       object-fit: cover;
     }
 
+    .rail-tint {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rail-tint img {
+      filter: saturate(0.78) hue-rotate(188deg) brightness(0.72) contrast(1.08);
+    }
+
+    .rail-tint::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 18, 34, 0.12), rgba(84, 126, 255, 0.16) 54%, rgba(86, 229, 205, 0.12));
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
     .media-caption {
       display: flex;
       justify-content: space-between;
@@ -977,11 +995,7 @@
             <div class="pill"><span class="pill-dot" style="background:#9af8c6;"></span>pine</div>
             <div class="pill"><span class="pill-dot" style="background:#f6cb83;"></span>nrthrn</div>
             <div class="pill"><span class="pill-dot" style="background:#f290ff;"></span>drift</div>
-            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>personal index / official pages branch from here</div>
-          </div>
-          <div class="hero-actions">
-            <a class="button" href="fwr-signal.html">Open fw/r</a>
-            <a class="button-muted" href="about-signal.html">Read the longer note</a>
+            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>personal index</div>
           </div>
         </div>
 
@@ -1022,23 +1036,18 @@
       <div class="feature-grid">
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:0ms;">
           <div class="eyebrow">01 / systems</div>
-          <h3>Applied AI and evaluation logic</h3>
-          <p>Harnesses, prompts, RAG behavior, agent tooling, and release gates for teams that need more than “it seems pretty good.”</p>
+          <h3>fw/r</h3>
+          <p>LiDAR, applied AI, robotics, sensing, evaluation logic, and the systems-facing work built to survive contact with the real world.</p>
         </article>
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:60ms;">
-          <div class="eyebrow">02 / sensing</div>
-          <h3>LiDAR, perception, and field constraint</h3>
-          <p>Corridor sensing, public infrastructure, sensor stacks, and technical problem-shaping when reality refuses to behave like the clean demo.</p>
+          <div class="eyebrow">02 / build</div>
+          <h3>nrthrn</h3>
+          <p>Objects, material direction, and quieter product language shaped with physical restraint instead of trend-chasing.</p>
         </article>
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:120ms;">
-          <div class="eyebrow">03 / build</div>
-          <h3>Robotics prototyping and systems direction</h3>
-          <p>Hardware surfaces, instrumentation, rig logic, and the machinery required to turn vague future-facing ideas into buildable things.</p>
-        </article>
-        <article class="feature-card" data-reveal="scale" style="--reveal-delay:180ms;">
-          <div class="eyebrow">04 / room</div>
-          <h3>Hospitality and spatial identity</h3>
-          <p>Service flow, light, sound, seating, ritual, and the slower design decisions that determine how a space actually feels to return to.</p>
+          <div class="eyebrow">03 / room</div>
+          <h3>pine + drift</h3>
+          <p>Hospitality, atmosphere, coastal ritual, and slower environments designed around how a place feels, functions, and is remembered.</p>
         </article>
       </div>
     </section>
@@ -1047,7 +1056,7 @@
       <div class="eyebrow">Proof / fw/r</div>
       <h2 class="section-title">First-class for the part where the work touches reality.</h2>
       <div class="proof-row">
-        <figure class="media-card" data-reveal="slide-left">
+        <figure class="media-card rail-tint" data-reveal="slide-left">
           <img src="fwr-portland-max-tracks.jpg" alt="Portland MAX tracks" data-parallax data-parallax-speed="0.11">
           <figcaption class="media-caption">
             <div>
@@ -1125,11 +1134,11 @@
     <section class="section-block tone-rose" data-reveal>
       <div class="ticker-card">
         <div class="ticker">
-          <span><strong>Base</strong> Vancouver, WA</span>
+          <span><strong>Base</strong> Pacific Northwest</span>
           <span><strong>Status</strong> Available Q1 2027</span>
-          <span><strong>PCT</strong> Northbound / April 2027</span>
           <span><strong>Bias</strong> Useful and unhurried</span>
           <span><strong>Room tone</strong> Less hype, more clarity</span>
+          <span><strong>PCT</strong> Northbound / April 2027</span>
         </div>
       </div>
     </section>
@@ -1169,11 +1178,12 @@
         <a href="fwr-signal.html">fwr-signal</a>
       </div>
       <div class="footer-column">
-        <div class="footer-kicker">Ventures</div>
-        <a href="fwr-signal.html">fw/r</a>
-        <span>pine</span>
-        <span>nrthrn</span>
-        <span>drift</span>
+        <div class="footer-kicker">Connect</div>
+        <a href="https://www.instagram.com/jeremedotxyz/">Instagram</a>
+        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
+        <a href="https://x.com/jeremedotxyz">X</a>
+        <a href="https://substack.com/@jeremedotxyz">Substack</a>
+        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=e23a1ba3a75848ce">Spotify</a>
       </div>
       <div class="footer-column">
         <div class="footer-kicker">Signal</div>
