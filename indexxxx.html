@@ -334,7 +334,96 @@
     }
 
     .section-block {
-      padding: 36px 0 0;
+      padding: 44px 0 0;
+      isolation: isolate;
+    }
+
+    .section-block::before,
+    .section-block::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .section-block::before {
+      top: 18px;
+      width: min(1600px, 100vw);
+      height: 220px;
+      border-radius: 40px;
+      opacity: 0;
+      filter: blur(12px);
+    }
+
+    .section-block::after {
+      top: -40px;
+      width: min(1320px, 94vw);
+      height: 360px;
+      opacity: 0;
+      filter: blur(56px);
+      z-index: -3;
+    }
+
+    .tone-lime::before {
+      opacity: 0.9;
+      background: linear-gradient(90deg, rgba(233, 246, 250, 0.82), rgba(214, 255, 163, 0.88), rgba(245, 230, 131, 0.82));
+    }
+
+    .tone-lime::after {
+      opacity: 0.38;
+      background: radial-gradient(circle at center, rgba(214, 255, 163, 0.55), transparent 68%);
+    }
+
+    .tone-blue::before {
+      opacity: 0.78;
+      background: linear-gradient(90deg, rgba(31, 83, 167, 0.62), rgba(72, 133, 255, 0.72), rgba(93, 240, 214, 0.58));
+    }
+
+    .tone-blue::after {
+      opacity: 0.34;
+      background: radial-gradient(circle at center, rgba(99, 159, 255, 0.46), transparent 66%);
+    }
+
+    .tone-rose::before {
+      opacity: 0.86;
+      background: linear-gradient(90deg, rgba(237, 122, 94, 0.8), rgba(242, 144, 255, 0.86), rgba(120, 180, 255, 0.7));
+    }
+
+    .tone-rose::after {
+      opacity: 0.34;
+      background: radial-gradient(circle at center, rgba(242, 144, 255, 0.4), transparent 68%);
+    }
+
+    .tone-cyan::before {
+      opacity: 0.82;
+      background: linear-gradient(90deg, rgba(246, 167, 121, 0.72), rgba(243, 124, 181, 0.78), rgba(92, 210, 219, 0.68));
+    }
+
+    .tone-cyan::after {
+      opacity: 0.36;
+      background: radial-gradient(circle at right, rgba(92, 210, 219, 0.32), transparent 64%);
+    }
+
+    .tone-lime .feature-card {
+      background: linear-gradient(180deg, rgba(20, 28, 22, 0.96), rgba(10, 13, 16, 0.99));
+    }
+
+    .tone-blue .media-card,
+    .tone-blue .copy-card {
+      background: linear-gradient(180deg, rgba(12, 20, 31, 0.97), rgba(8, 11, 16, 0.99));
+    }
+
+    .tone-rose .quote-card,
+    .tone-rose .case-card,
+    .tone-rose .ticker-card {
+      background: linear-gradient(180deg, rgba(24, 16, 24, 0.96), rgba(10, 10, 14, 0.99));
+    }
+
+    .tone-cyan .manifesto-card,
+    .tone-cyan .cta-card {
+      background: linear-gradient(180deg, rgba(16, 21, 28, 0.97), rgba(10, 11, 15, 0.99));
     }
 
     .section-title {
@@ -836,7 +925,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-lime" data-reveal>
       <div class="eyebrow">Capabilities</div>
       <h2 class="section-title">Simple interface. Serious operating range.</h2>
       <p class="section-lead">The site may look like a portfolio, but the actual offer is broader: systems work, product judgment, physical environments, object language, technical narrative, and the ability to move between them without flattening everything into the same generic consulting sludge.</p>
@@ -874,7 +963,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-blue" data-reveal>
       <div class="eyebrow">Proof / fw/r</div>
       <h2 class="section-title">First-class for the part where the work touches reality.</h2>
       <div class="proof-row">
@@ -903,7 +992,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-blue" data-reveal>
       <div class="eyebrow">Surfaces</div>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
@@ -929,7 +1018,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-rose" data-reveal>
       <div class="eyebrow">Trusted by the work itself</div>
       <h2 class="section-title">Four ventures, one operating instinct.</h2>
       <div class="quote-grid">
@@ -948,7 +1037,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-rose" data-reveal>
       <div class="eyebrow">Cases</div>
       <h2 class="section-title">Built for teams, places, and ideas at different scales.</h2>
       <div class="case-row">
@@ -986,7 +1075,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-rose" data-reveal>
       <div class="ticker-card">
         <div class="ticker">
           <span><strong>Base</strong> Vancouver, WA</span>
@@ -998,7 +1087,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal>
+    <section class="section-block tone-cyan" data-reveal>
       <div class="eyebrow">Manifesto</div>
       <div class="manifesto-row">
         <article class="manifesto-card" data-reveal="slide-left">
@@ -1013,7 +1102,7 @@
       </div>
     </section>
 
-    <section class="section-block" data-reveal="scale">
+    <section class="section-block tone-cyan" data-reveal="scale">
       <div class="cta-card">
         <div>
           <div class="eyebrow">Next step</div>
@@ -1032,13 +1121,11 @@
         <a href="contact-signal.html">contact-signal</a>
       </div>
       <div class="footer-column">
-        <div class="footer-kicker">Socials</div>
-        <a href="https://www.instagram.com/jeremedotxyz/">Instagram</a>
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://x.com/jeremedotxyz">X</a>
-        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=e23a1ba3a75848ce">Spotify</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-        <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
+        <div class="footer-kicker">Ventures</div>
+        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
+        <span>pine</span>
+        <span>nrthrn</span>
+        <span>drift</span>
       </div>
       <div class="footer-column">
         <div class="footer-kicker">Signal</div>
