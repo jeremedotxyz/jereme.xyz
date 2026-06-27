@@ -40,6 +40,7 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       --scroll-progress: 0;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -129,6 +130,13 @@
       grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
       gap: 26px;
       align-items: end;
+    }
+
+    .hero-grid > *,
+    .proof-row > *,
+    .case-row > *,
+    .manifesto-row > * {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -825,15 +833,120 @@
 
     @media (max-width: 760px) {
       .page { width: min(100% - 20px, 1480px); padding-top: 12px; padding-bottom: 44px; }
-      .topbar { position: static; align-items: flex-start; border-radius: 28px; }
-      .nav { gap: 10px 14px; justify-content: flex-start; }
-      .hero { padding-top: 28px; }
-      .hero h1 { font-size: clamp(44px, 13vw, 70px); }
+      .topbar {
+        position: static;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 14px 14px 16px;
+        border-radius: 24px;
+      }
+      .brand { font-size: 11px; }
+      .nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        justify-content: stretch;
+      }
+      .nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.02);
+        white-space: nowrap;
+      }
+      .hero { padding-top: 24px; }
+      .hero-grid > div:first-child { padding-right: 8px; }
+      .hero h1 {
+        max-width: 8ch;
+        font-size: clamp(34px, 11.4vw, 58px);
+        line-height: 0.94;
+      }
       .hero-copy,
       .section-lead,
       .cta-card p,
       .manifesto-card p,
-      .copy-card p { font-size: 17px; }
+      .copy-card p {
+        max-width: 100%;
+        padding-right: 6px;
+        font-size: 16px;
+      }
+      .hero-platforms {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .pill {
+        min-height: 42px;
+        padding: 10px 12px;
+        justify-content: flex-start;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .button,
+      .button-muted {
+        width: 100%;
+        min-height: 48px;
+      }
+      .hero-panel { padding: 12px; }
+      .hero-panel-grid,
+      .feature-grid,
+      .quote-grid,
+      .proof-row,
+      .case-row,
+      .manifesto-row,
+      .footer,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+      .section-block { padding-top: 28px; }
+      .section-title {
+        max-width: 10ch;
+        font-size: clamp(28px, 9vw, 42px);
+        line-height: 0.98;
+      }
+      .feature-card,
+      .copy-card,
+      .quote-card,
+      .case-copy,
+      .manifesto-card,
+      .cta-card,
+      .ticker-card { padding: 18px; }
+      .feature-card { min-height: 0; }
+      .feature-card h3,
+      .case-copy h3 { font-size: 24px; }
+      .copy-card h3,
+      .manifesto-card h3 {
+        max-width: none;
+        font-size: clamp(26px, 8vw, 38px);
+      }
+      .quote-card {
+        min-height: 0;
+      }
+      .quote-card p {
+        font-size: 20px;
+        line-height: 1.12;
+      }
+      .media-caption {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .metric {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .case-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
       .surface,
       .feature-card,
       .media-card,
@@ -844,7 +957,8 @@
       .manifesto-card,
       .cta-card { border-radius: 24px; }
       .side-stats { grid-template-columns: 1fr; }
-      .footer { grid-template-columns: 1fr 1fr; }
+      .footer { grid-template-columns: 1fr; gap: 10px; }
+      .footer-column { gap: 8px; padding-top: 14px; }
     }
   </style>
 </head>
