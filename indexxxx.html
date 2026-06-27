@@ -524,6 +524,134 @@
       pointer-events: none;
     }
 
+    .surface-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .surface-visual::before,
+    .surface-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .surface-transit {
+      background:
+        radial-gradient(circle at 80% 14%, rgba(126, 184, 255, 0.34), transparent 24%),
+        radial-gradient(circle at 18% 84%, rgba(154, 248, 198, 0.14), transparent 30%),
+        linear-gradient(160deg, #09111c 0%, #0e1e33 52%, #091019 100%);
+    }
+
+    .surface-transit::before {
+      inset: 14% -8% 18% -8%;
+      background: repeating-linear-gradient(104deg, transparent 0 11%, rgba(255, 255, 255, 0.09) 11% 11.8%, transparent 11.8% 15.5%);
+      opacity: 0.78;
+      transform: skewY(-9deg);
+    }
+
+    .surface-transit::after {
+      inset: auto 8% 12% 14%;
+      height: 22%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(86, 229, 205, 0), rgba(86, 229, 205, 0.72), rgba(126, 184, 255, 0));
+      filter: blur(18px);
+      opacity: 0.74;
+    }
+
+    .surface-perception {
+      background:
+        linear-gradient(180deg, rgba(244, 247, 251, 0.06), rgba(244, 247, 251, 0) 18%),
+        radial-gradient(circle at 20% 24%, rgba(154, 248, 198, 0.18), transparent 22%),
+        radial-gradient(circle at 78% 72%, rgba(126, 184, 255, 0.22), transparent 26%),
+        #070b12;
+    }
+
+    .surface-perception::before {
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(244, 247, 251, 0.78) 0 1.1px, transparent 1.2px);
+      background-size: 28px 28px;
+      opacity: 0.16;
+    }
+
+    .surface-perception::after {
+      inset: 18% 12%;
+      border: 1px solid rgba(154, 248, 198, 0.34);
+      border-radius: 22px;
+      box-shadow: 0 0 0 1px rgba(126, 184, 255, 0.16) inset;
+    }
+
+    .surface-language {
+      background:
+        radial-gradient(circle at 72% 20%, rgba(242, 144, 255, 0.22), transparent 24%),
+        linear-gradient(180deg, #0b0f17 0%, #0a1018 44%, #0a0d14 100%);
+    }
+
+    .surface-language::before {
+      inset: 14% 12% 18%;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+        repeating-linear-gradient(180deg, rgba(126, 184, 255, 0.28) 0 2px, transparent 2px 24px),
+        linear-gradient(180deg, rgba(12, 16, 23, 0.94), rgba(10, 12, 18, 0.98));
+      border: 1px solid rgba(244, 247, 251, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .surface-language::after {
+      inset: 20% auto auto 16%;
+      width: 18%;
+      height: 8%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(195, 232, 141, 0.86), rgba(130, 170, 255, 0.82));
+      box-shadow: 0 0 28px rgba(130, 170, 255, 0.24);
+    }
+
+    .surface-artifact {
+      background:
+        radial-gradient(circle at 84% 18%, rgba(246, 203, 131, 0.16), transparent 20%),
+        linear-gradient(160deg, #151018 0%, #1a1320 48%, #0d0d14 100%);
+    }
+
+    .surface-artifact::before {
+      inset: 12% 20% 26% 10%;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(244, 247, 251, 0.1);
+      box-shadow: 40px 34px 0 -8px rgba(242, 144, 255, 0.12), 84px 70px 0 -18px rgba(126, 184, 255, 0.12);
+    }
+
+    .surface-artifact::after {
+      inset: 22% 28% 36% 18%;
+      border-top: 1px solid rgba(244, 247, 251, 0.24);
+      border-bottom: 1px solid rgba(244, 247, 251, 0.08);
+      opacity: 0.72;
+    }
+
+    .surface-manifesto {
+      background:
+        radial-gradient(circle at 22% 24%, rgba(242, 144, 255, 0.24), transparent 24%),
+        radial-gradient(circle at 78% 76%, rgba(92, 210, 219, 0.18), transparent 28%),
+        linear-gradient(160deg, #101522 0%, #111a2e 52%, #0a0d15 100%);
+    }
+
+    .surface-manifesto::before {
+      inset: auto -6% 12% -6%;
+      height: 48%;
+      border-radius: 46% 46% 0 0;
+      background: linear-gradient(180deg, rgba(9, 20, 36, 0) 0%, rgba(9, 20, 36, 0.86) 100%);
+    }
+
+    .surface-manifesto::after {
+      inset: 16% 14%;
+      border: 1px solid rgba(244, 247, 251, 0.08);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 52%);
+    }
+
     .media-caption {
       display: flex;
       justify-content: space-between;
@@ -645,6 +773,10 @@
       object-fit: cover;
     }
 
+    .case-image .surface-visual {
+      aspect-ratio: 16 / 9.7;
+    }
+
     .case-copy {
       display: grid;
       gap: 12px;
@@ -741,6 +873,12 @@
       height: 100%;
       aspect-ratio: 16 / 10;
       object-fit: cover;
+    }
+
+    .manifesto-image .surface-visual {
+      height: 100%;
+      min-height: 100%;
+      aspect-ratio: auto;
     }
 
     .cta-card {
@@ -1056,14 +1194,14 @@
       <div class="eyebrow">Proof / fw/r</div>
       <h2 class="section-title">First-class for the part where the work touches reality.</h2>
       <div class="proof-row">
-        <figure class="media-card rail-tint" data-reveal="slide-left">
-          <img src="fwr-portland-max-tracks.jpg" alt="Portland MAX tracks" data-parallax data-parallax-speed="0.11">
+        <figure class="media-card" data-reveal="slide-left">
+          <div class="surface-visual surface-transit" aria-hidden="true"></div>
           <figcaption class="media-caption">
             <div>
-              <strong>Transit infrastructure under actual constraint.</strong>
-              <span>LiDAR rail safety, corridor sensing, and agency-facing work built around what happens in the field, not what looks clean in slides.</span>
+              <strong>Field systems under actual constraint.</strong>
+              <span>Infrastructure, signal logic, and public-facing systems work shaped by reality before rhetoric.</span>
             </div>
-            <div class="eyebrow" style="margin:0;">Portland / TriMet MAX</div>
+            <div class="eyebrow" style="margin:0;">systems / field</div>
           </figcaption>
         </figure>
         <article class="copy-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
@@ -1085,7 +1223,7 @@
       <div class="eyebrow">Surfaces</div>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
-          <img src="fwr-lidar-corridor.png" alt="LiDAR corridor visualization" data-parallax data-parallax-speed="0.12">
+          <div class="surface-visual surface-perception" aria-hidden="true"></div>
           <figcaption class="media-caption">
             <div>
               <strong>Perception logic at corridor scale.</strong>
@@ -1095,7 +1233,7 @@
           </figcaption>
         </figure>
         <figure class="media-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
-          <img src="fwr-evaluation-harness.png" alt="LLM evaluation harness interface" data-parallax data-parallax-speed="0.12">
+          <div class="surface-visual surface-language" aria-hidden="true"></div>
           <figcaption class="media-caption">
             <div>
               <strong>Language systems with gates and consequences.</strong>
@@ -1114,7 +1252,7 @@
       <div class="case-row">
         <article class="case-card" data-reveal="slide-left">
           <div class="case-image">
-            <img src="fwr-prototype-bench.png" alt="Prototype bench with instrumentation" data-parallax data-parallax-speed="0.1">
+            <div class="surface-visual surface-artifact" aria-hidden="true"></div>
           </div>
           <div class="case-copy">
             <div class="eyebrow">Case / fw/r</div>
@@ -1153,7 +1291,7 @@
           <p>This is not about being everywhere. It is about being good in the spots that actually matter.</p>
         </article>
         <figure class="media-card manifesto-image" data-reveal="slide-right" style="--reveal-delay:80ms;">
-          <img src="fwr-jpl-rover-test.jpg" alt="Rover and testing environment" data-parallax data-parallax-speed="0.1">
+          <div class="surface-visual surface-manifesto" aria-hidden="true"></div>
         </figure>
       </div>
     </section>
