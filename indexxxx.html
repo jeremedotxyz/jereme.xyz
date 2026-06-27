@@ -283,8 +283,8 @@
 
     .hero-panel-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 92px;
-      gap: 18px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
       padding-top: 18px;
       align-items: stretch;
     }
@@ -302,6 +302,24 @@
       overflow-x: auto;
       color: #d9e1f2;
       font: 13px/1.62 var(--mono);
+      white-space: pre-wrap;
+    }
+
+    .code-line { display: block; min-height: 1.62em; }
+    .code-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.08em;
+      margin-left: 2px;
+      vertical-align: -0.16em;
+      background: #d9e1f2;
+      box-shadow: 0 0 12px rgba(217, 225, 242, 0.34);
+      animation: blink-cursor 1s steps(1, end) infinite;
+    }
+
+    @keyframes blink-cursor {
+      0%, 48% { opacity: 1; }
+      50%, 100% { opacity: 0; }
     }
 
     .code-comment { color: #5f6c86; }
@@ -312,34 +330,6 @@
     .code-array { color: #f78c6c; }
     .code-prop { color: #89ddff; }
     .code-plain { color: #d9e1f2; }
-
-    .side-stats {
-      display: grid;
-      gap: 10px;
-    }
-
-    .stat-box {
-      display: grid;
-      align-content: space-between;
-      min-height: 92px;
-      padding: 14px 12px;
-      border: 1px solid rgba(244, 247, 251, 0.08);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018));
-    }
-
-    .stat-box strong {
-      font-size: 22px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .stat-box span {
-      color: var(--soft);
-      font: 10px/1.45 var(--mono);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
 
     .section-block {
       padding: 44px 0 0;
@@ -828,7 +818,6 @@
       .footer,
       .cta-card { grid-template-columns: 1fr; }
       .hero-panel-grid { grid-template-columns: 1fr; }
-      .side-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (max-width: 760px) {
@@ -956,7 +945,6 @@
       .ticker-card,
       .manifesto-card,
       .cta-card { border-radius: 24px; }
-      .side-stats { grid-template-columns: 1fr; }
       .footer { grid-template-columns: 1fr; gap: 10px; }
       .footer-column { gap: 8px; padding-top: 14px; }
     }
@@ -968,31 +956,31 @@
     <header class="topbar">
       <a class="brand" href="https://jereme.xyz">
         <span class="brand-dot"></span>
-        <span>jereme.xyz / signal</span>
+        <span>jereme.xyz / personal site</span>
       </a>
       <nav class="nav" aria-label="Primary">
         <a href="signal.html" aria-current="page">Signal</a>
         <a href="about-signal.html">About</a>
         <a href="contact-signal.html">Contact</a>
-        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
+        <a href="fwr-signal.html">fw/r</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-grid">
         <div data-reveal="slide-left">
-          <div class="eyebrow">Signal / portfolio brief</div>
+          <div class="eyebrow">Personal site / venture signal</div>
           <h1>Bring serious work to the interfaces people actually live inside.</h1>
-          <p class="hero-copy">jereme.xyz is one operating system split across four ventures: robotics and applied AI, room-first hospitality, designed objects, and slower coastal worlds. The throughline is the same every time: find the wires, name the ghost, build the rig, and make the weird thing work.</p>
+          <p class="hero-copy">This is Jereme Abernathy's personal site: a bridge into four ventures across robotics and applied AI, room-first hospitality, designed objects, and slower coastal worlds. Each venture keeps its own identity; this page is the index, context, and connective tissue between them.</p>
           <div class="hero-platforms">
             <div class="pill"><span class="pill-dot" style="background:#7eb8ff;"></span>fw/r</div>
             <div class="pill"><span class="pill-dot" style="background:#9af8c6;"></span>pine</div>
             <div class="pill"><span class="pill-dot" style="background:#f6cb83;"></span>nrthrn</div>
             <div class="pill"><span class="pill-dot" style="background:#f290ff;"></span>drift</div>
-            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>and the work between them</div>
+            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>personal index / official pages branch from here</div>
           </div>
           <div class="hero-actions">
-            <a class="button" href="https://jereme.xyz/site/fwr/fwr.html">Open fw/r</a>
+            <a class="button" href="fwr-signal.html">Open fw/r</a>
             <a class="button-muted" href="about-signal.html">Read the longer note</a>
           </div>
         </div>
@@ -1004,35 +992,23 @@
           </div>
           <div class="hero-panel-grid">
             <div class="code-card">
-              <pre><span class="code-comment"># operating sequence / live file</span>
-<span class="code-keyword">const</span> <span class="code-const">brief</span> <span class="code-plain">=</span> <span class="code-fn">bring</span><span class="code-plain">(</span><span class="code-string">"the fuzzy thing"</span><span class="code-plain">)</span>
-
-<span class="code-fn">scan</span><span class="code-plain">({</span>
-  <span class="code-prop">constraints</span><span class="code-plain">:</span> <span class="code-array">[</span><span class="code-string">"field conditions"</span><span class="code-plain">,</span> <span class="code-string">"users"</span><span class="code-plain">,</span> <span class="code-string">"signal"</span><span class="code-plain">,</span> <span class="code-string">"systems"</span><span class="code-array">]</span><span class="code-plain">,</span>
-  <span class="code-prop">failureModes</span><span class="code-plain">:</span> <span class="code-array">[</span><span class="code-string">"demo-only"</span><span class="code-plain">,</span> <span class="code-string">"hand-wavy"</span><span class="code-plain">,</span> <span class="code-string">"premature certainty"</span><span class="code-array">]</span>
-<span class="code-plain">})</span>
-
-<span class="code-fn">build</span><span class="code-plain">(</span><span class="code-array">[</span>
-  <span class="code-string">"AI strategy and evals"</span><span class="code-plain">,</span>
-  <span class="code-string">"robotics prototyping"</span><span class="code-plain">,</span>
-  <span class="code-string">"LiDAR data pipelines"</span><span class="code-plain">,</span>
-  <span class="code-string">"spatial + hospitality concepts"</span><span class="code-plain">,</span>
-  <span class="code-string">"product and material direction"</span>
-<span class="code-array">]</span><span class="code-plain">)</span></pre>
-            </div>
-            <div class="side-stats">
-              <div class="stat-box">
-                <strong>4</strong>
-                <span>ventures / one desk</span>
-              </div>
-              <div class="stat-box">
-                <strong>Q1 2027</strong>
-                <span>availability signal</span>
-              </div>
-              <div class="stat-box">
-                <strong>PNW</strong>
-                <span>base / Vancouver WA</span>
-              </div>
+              <pre data-type-code aria-live="polite">
+<span class="code-line"><span class="code-comment" data-text="# operating sequence / live file"></span></span>
+<span class="code-line"><span class="code-keyword" data-text="const"></span><span class="code-plain" data-text=" "></span><span class="code-const" data-text="brief"></span><span class="code-plain" data-text=" = "></span><span class="code-fn" data-text="bring"></span><span class="code-plain" data-text="("></span><span class="code-string" data-text="&quot;the fuzzy thing&quot;"></span><span class="code-plain" data-text=")"></span></span>
+<span class="code-line"><span class="code-plain" data-text=""></span></span>
+<span class="code-line"><span class="code-fn" data-text="scan"></span><span class="code-plain" data-text="({"></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-prop" data-text="constraints"></span><span class="code-plain" data-text=": "></span><span class="code-array" data-text="["></span><span class="code-string" data-text="&quot;field conditions&quot;"></span><span class="code-plain" data-text=", "></span><span class="code-string" data-text="&quot;users&quot;"></span><span class="code-plain" data-text=", "></span><span class="code-string" data-text="&quot;signal&quot;"></span><span class="code-plain" data-text=", "></span><span class="code-string" data-text="&quot;systems&quot;"></span><span class="code-array" data-text="],"></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-prop" data-text="failureModes"></span><span class="code-plain" data-text=": "></span><span class="code-array" data-text="["></span><span class="code-string" data-text="&quot;demo-only&quot;"></span><span class="code-plain" data-text=", "></span><span class="code-string" data-text="&quot;hand-wavy&quot;"></span><span class="code-plain" data-text=", "></span><span class="code-string" data-text="&quot;premature certainty&quot;"></span><span class="code-array" data-text="]"></span></span>
+<span class="code-line"><span class="code-plain" data-text="})"></span></span>
+<span class="code-line"><span class="code-plain" data-text=""></span></span>
+<span class="code-line"><span class="code-fn" data-text="build"></span><span class="code-plain" data-text="(["></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;AI strategy and evals&quot;"></span><span class="code-plain" data-text=","></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;robotics prototyping&quot;"></span><span class="code-plain" data-text=","></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;LiDAR data pipelines&quot;"></span><span class="code-plain" data-text=","></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;spatial + hospitality concepts&quot;"></span><span class="code-plain" data-text=","></span></span>
+<span class="code-line"><span class="code-plain" data-text="  "></span><span class="code-string" data-text="&quot;product and material direction&quot;"></span></span>
+<span class="code-line"><span class="code-plain" data-text="])"></span></span>
+              </pre>
             </div>
           </div>
         </div>
@@ -1233,10 +1209,11 @@
         <a href="signal.html">signal</a>
         <a href="about-signal.html">about-signal</a>
         <a href="contact-signal.html">contact-signal</a>
+        <a href="fwr-signal.html">fwr-signal</a>
       </div>
       <div class="footer-column">
         <div class="footer-kicker">Ventures</div>
-        <a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a>
+        <a href="fwr-signal.html">fw/r</a>
         <span>pine</span>
         <span>nrthrn</span>
         <span>drift</span>
@@ -1259,6 +1236,7 @@
     (() => {
       const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
       const parallaxNodes = Array.from(document.querySelectorAll("[data-parallax]"));
+      const codePanel = document.querySelector("[data-type-code]");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const setScrollProgress = () => {
@@ -1303,8 +1281,84 @@
         updateParallax();
       };
 
+      const initTypedCode = () => {
+        if (!codePanel) return;
+        const cursor = document.createElement("span");
+        cursor.className = "code-cursor";
+        const plainText = codePanel.textContent || "";
+
+        const spans = Array.from(codePanel.querySelectorAll("[data-text]"));
+        const instructions = spans.map((span) => {
+          const value = span.getAttribute("data-text") || "";
+          span.textContent = "";
+          return { span, value };
+        });
+        codePanel.setAttribute("aria-label", plainText.trim());
+
+        if (reducedMotion) {
+          instructions.forEach(({ span, value }) => {
+            span.textContent = value
+              .replaceAll("&quot;", "\"")
+              .replaceAll("&amp;", "&");
+          });
+          return;
+        }
+
+        let tokenIndex = 0;
+        let charIndex = 0;
+        let started = false;
+
+        const focusCursor = (span) => {
+          if (span.parentElement) span.parentElement.appendChild(cursor);
+        };
+
+        const tick = () => {
+          const current = instructions[tokenIndex];
+          if (!current) {
+            cursor.remove();
+            return;
+          }
+
+          const resolved = current.value
+            .replaceAll("&quot;", "\"")
+            .replaceAll("&amp;", "&");
+
+          focusCursor(current.span);
+
+          if (charIndex < resolved.length) {
+            current.span.textContent += resolved.charAt(charIndex);
+            charIndex += 1;
+            const delay = /[\s]/.test(resolved.charAt(charIndex - 1)) ? 20 : 28;
+            window.setTimeout(tick, delay);
+            return;
+          }
+
+          tokenIndex += 1;
+          charIndex = 0;
+          window.setTimeout(tick, resolved.length === 0 ? 110 : 40);
+        };
+
+        const startTyping = () => {
+          if (started) return;
+          started = true;
+          tick();
+        };
+
+        const codeObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              startTyping();
+              codeObserver.disconnect();
+            }
+          });
+        }, { threshold: 0.45 });
+
+        codeObserver.observe(codePanel);
+      };
+
       setScrollProgress();
       updateParallax();
+      initTypedCode();
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener("resize", updateParallax);
     })();
