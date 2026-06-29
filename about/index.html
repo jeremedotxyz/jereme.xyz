@@ -1,182 +1,719 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>about - jereme.xyz</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-NTH4464X6R");
+    gtag('js', new Date());
+    gtag('config', 'G-NTH4464X6R');
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>about signal - jereme.xyz</title>
+  <meta name="description" content="An editorial about page for jereme.xyz: ventures, background, work, and the operating philosophy behind the portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --bg:#ffffff; --fg:#000; --muted:rgba(0,0,0,.76); --line:rgba(0,0,0,.18); --mono:"Fragment Mono", monospace; --sans:"Manrope", sans-serif; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--sans); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-    a { color:inherit; text-decoration:none; }
-    .page { min-height:100vh; padding:18px; }
-    .header { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:flex-start; gap:24px; width:100%; }
-    .brand,.nav-label,.label,.meta { font-family:var(--mono); font-size:12px; letter-spacing:.08em; }
-    .nav { display:flex; flex-direction:column; gap:14px; align-items:flex-end; }
-    .brand,.nav-label { line-height:1; }
-    .brand { display:block; padding-top:2px; }
-    .nav-links { display:flex; flex-direction:column; gap:2px; align-items:flex-end; text-align:right; }
-    .nav-links a { font-size:clamp(34px,5vw,68px); line-height:.9; letter-spacing:-.06em; }
-    .page-title { position:relative; margin:108px 0 40px; }
-    .page-title-ghost { visibility:hidden; display:block; font-size:clamp(52px,8vw,144px); line-height:.9; letter-spacing:-.065em; font-weight:700; }
-    .page-title-live { position:absolute; inset:0; font-size:clamp(52px,8vw,144px); line-height:.9; letter-spacing:-.065em; font-weight:700; white-space:nowrap; }
-    .content { display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr); gap:48px; padding-bottom:40px; }
-    .label { margin-bottom:22px; display:inline-flex; gap:8px; }
-    .label::before { content:"["; }
-    .label::after { content:"]"; }
-    h1,h2 { margin:0; font-weight:700; line-height:.9; letter-spacing:-.065em; }
-    h1 { font-size:clamp(46px,7vw,116px); }
-    p { margin:0; font-size:clamp(20px,2.2vw,42px); line-height:1.06; letter-spacing:-.03em; }
-    .meta { display:flex; flex-direction:column; gap:12px; color:var(--muted); align-self:end; }
-    hr { border:0; border-top:1px solid var(--line); margin:0; }
-    .notes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:38px; padding:28px 0; }
-    .notes p { font-size:clamp(18px,2vw,34px); color:var(--muted); }
-    .letter-shell { display:grid; grid-template-columns:minmax(220px,360px) minmax(0,820px); gap:38px; padding:28px 0; border-top:1px solid var(--line); }
-    .sticky-title { position:sticky; top:116px; align-self:start; }
-    .sticky-title h2 { font-size:clamp(28px,4vw,56px); }
-    .sticky-title p { margin-top:22px; font-size:16px; line-height:1.45; color:var(--muted); }
-    .prose { max-width:820px; }
-    .prose p { margin:0 0 1.5em; font-size:clamp(16px,1.35vw,24px); line-height:1.42; color:var(--muted); }
-    .prose strong, .prose em { color:var(--fg); }
-    .pull { margin:46px 0; padding:28px; border:1px solid var(--line); background:rgba(0,0,0,.04); }
-    .pull p { margin:14px 0 0; max-width:12ch; font-size:clamp(34px,6vw,88px); line-height:.92; letter-spacing:-.05em; color:var(--fg); }
-    .signoff { margin-top:56px; padding-top:28px; }
-    .signoff-line { margin:0 0 24px; font-size:clamp(22px,2.5vw,40px); line-height:1; color:var(--fg); }
-    .signature-mark { width:min(240px,70vw); }
-    .signature-mark img { display:block; width:100%; height:auto; }
-    .stage-note { display:block; margin-top:12px; font-family:var(--mono); font-size:11px; line-height:1.5; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
-    .ascii-footer { min-height:320px; position:relative; overflow:hidden; cursor:crosshair; margin-top:28px; }
-    .ascii-canvas { position:absolute; inset:0; width:100%; height:100%; display:block; background:var(--bg); }
-    .footer-inner { position:relative; z-index:1; padding:120px 18px 18px; }
-    .footer-title { font-size:clamp(22px,7vw,120px); line-height:.88; letter-spacing:-.07em; }
-    .footer-whispers { position:relative; z-index:1; height:92px; margin-top:18px; overflow:hidden; border-top:1px solid rgba(0,0,0,.1); }
-    .footer-whisper { position:absolute; left:0; font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:#d60000; text-shadow:0 0 12px rgba(214,0,0,.28); white-space:nowrap; animation:whisperDrift 18s linear infinite; }
-    .footer-whisper:nth-child(1) { top:12px; animation-delay:0s; }
-    .footer-whisper:nth-child(2) { top:38px; animation-delay:-6s; }
-    .footer-whisper:nth-child(3) { top:64px; animation-delay:-11s; }
-    @keyframes whisperDrift {
-      0% { transform:translateX(-34%); opacity:0; }
-      10% { opacity:.45; }
-      28% { opacity:.95; }
-      55% { opacity:.4; }
-      100% { transform:translateX(108%); opacity:0; }
+    :root {
+      --bg: #07090d;
+      --fg: #f5f7fb;
+      --muted: rgba(245, 247, 251, 0.72);
+      --soft: rgba(245, 247, 251, 0.48);
+      --line: rgba(245, 247, 251, 0.12);
+      --line-strong: rgba(245, 247, 251, 0.2);
+      --accent: #8cc8ff;
+      --accent-2: #98ffd2;
+      --mono: "Fragment Mono", monospace;
+      --sans: "Manrope", sans-serif;
+      --shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
     }
-    @media (max-width:760px){
-      .header{position:relative; min-height:150px; grid-template-columns:minmax(0,1fr) auto;}
-      .nav{position:absolute; top:0; right:0; width:140px; align-items:flex-end;}
-      .nav-label,.nav-links{width:100%; text-align:right; align-items:flex-end;}
-      .nav-links a{display:block; width:100%; font-size:26px;}
-      .page-title{margin:46px 0 22px;}
-      .content,.notes,.letter-shell{grid-template-columns:1fr;}
-      .sticky-title{position:static;}
-      .pull{padding:22px 18px;}
-      .pull p{max-width:100%; font-size:clamp(26px,10vw,44px); line-height:1.02; letter-spacing:-.04em;}
-      .footer-whispers{height:84px;}
-      .footer-whisper{font-size:10px; letter-spacing:.15em;}
-      p{font-size:18px;}
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(61, 96, 145, 0.22), transparent 34%),
+        linear-gradient(180deg, #0a0d13 0%, var(--bg) 20%, #05070b 100%);
+      color: var(--fg);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      --scroll-progress: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    :focus-visible {
+      outline: 2px solid rgba(152, 255, 210, 0.9);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 40;
+      width: 100%;
+      height: 3px;
+      transform-origin: 0 50%;
+      transform: scaleX(var(--scroll-progress));
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(140, 200, 255, 0.35);
+      pointer-events: none;
+    }
+
+    .shell {
+      width: min(1440px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 22px 0 64px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(7, 9, 13, 0.8);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 12px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(152, 255, 210, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px 22px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      font: 12px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--soft);
+      transition: color 160ms ease, opacity 160ms ease;
+      position: relative;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      opacity: 0.9;
+    }
+
+    .nav a:hover,
+    .nav a[aria-current="page"] { color: var(--fg); }
+
+    .nav a:hover::after,
+    .nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+    h1, h2, h3, p { margin: 0; }
+
+    .hero {
+      display: block;
+      padding: 48px 0 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: var(--soft);
+      font: 12px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    .hero-title {
+      max-width: 10ch;
+      font-size: clamp(58px, 8vw, 128px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      font-weight: 700;
+    }
+
+    .hero-copy {
+      max-width: 52ch;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 27px);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-rail {
+      transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+      position: sticky;
+      top: 88px;
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      display: grid;
+      gap: 8px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .label {
+      color: var(--soft);
+      font: 11px/1.4 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .value {
+      font-size: clamp(20px, 2vw, 32px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section {
+      position: relative;
+      padding: 30px 0;
+      isolation: isolate;
+    }
+
+    .section[data-tone]::before,
+    .section[data-tone]::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .section[data-tone]::before {
+      top: 10px;
+      width: min(1540px, 100vw);
+      height: 200px;
+      border-radius: 36px;
+      opacity: 0;
+      filter: blur(12px);
+    }
+
+    .section[data-tone]::after {
+      top: -34px;
+      width: min(1260px, 92vw);
+      height: 320px;
+      opacity: 0;
+      filter: blur(52px);
+      z-index: -3;
+    }
+
+    .section[data-tone="blue"]::before {
+      opacity: 0.74;
+      background: linear-gradient(90deg, rgba(34, 86, 168, 0.58), rgba(93, 147, 255, 0.66), rgba(92, 210, 219, 0.52));
+    }
+
+    .section[data-tone="blue"]::after {
+      opacity: 0.28;
+      background: radial-gradient(circle at center, rgba(93, 147, 255, 0.38), transparent 66%);
+    }
+
+    .section[data-tone="rose"]::before {
+      opacity: 0.68;
+      background: linear-gradient(90deg, rgba(232, 134, 116, 0.58), rgba(204, 132, 255, 0.66), rgba(119, 181, 255, 0.52));
+    }
+
+    .section[data-tone="rose"]::after {
+      opacity: 0.28;
+      background: radial-gradient(circle at center, rgba(204, 132, 255, 0.34), transparent 68%);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .panel,
+    .pull,
+    .sticky-card,
+    .closing {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(16, 23, 34, 0.9), rgba(10, 14, 20, 0.98));
+      box-shadow: var(--shadow);
+      transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::after,
+    .pull::after,
+    .sticky-card::after,
+    .closing::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04) 42%, rgba(140, 200, 255, 0.03));
+      opacity: 0;
+      transition: opacity 240ms ease;
+      pointer-events: none;
+    }
+
+    .panel:hover,
+    .pull:hover,
+    .sticky-card:hover,
+    .closing:hover,
+    .hero-rail:hover {
+      transform: translateY(-4px);
+      border-color: rgba(152, 255, 210, 0.16);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42);
+    }
+
+    .panel:hover::after,
+    .pull:hover::after,
+    .sticky-card:hover::after,
+    .closing:hover::after {
+      opacity: 1;
+    }
+
+    .panel {
+      padding: 26px;
+      min-height: 100%;
+    }
+
+    .panel p {
+      color: var(--muted);
+      font-size: clamp(18px, 1.6vw, 24px);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1.45fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .body-grid > * {
+      min-width: 0;
+    }
+
+    .sticky-card {
+      position: sticky;
+      top: 88px;
+      padding: 26px;
+    }
+
+    .sticky-card h2 {
+      margin-top: 12px;
+      max-width: 8ch;
+      font-size: clamp(30px, 3.5vw, 56px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+
+    .sticky-card p {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .essay {
+      display: grid;
+      gap: 16px;
+    }
+
+    .essay-block {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(140, 200, 255, 0.05), rgba(152, 255, 210, 0.02) 42%, rgba(140, 200, 255, 0.02)),
+        linear-gradient(180deg, rgba(16, 23, 34, 0.88), rgba(10, 14, 20, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .essay-block p {
+      color: var(--muted);
+      font-size: clamp(17px, 1.3vw, 21px);
+      line-height: 1.55;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2em;
+    }
+
+    .essay-block p:last-child { margin-bottom: 0; }
+
+    .essay-block strong,
+    .essay-block em { color: var(--fg); }
+
+    .essay-block .pull {
+      margin: 26px 0;
+    }
+
+    .essay-block .pull:last-child {
+      margin-bottom: 0;
+    }
+
+    .pull {
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04)),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+    }
+
+    .pull h3 {
+      margin-top: 14px;
+      max-width: 10ch;
+      font-size: clamp(32px, 5vw, 76px);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .closing {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04)),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+    }
+
+    .closing h2 {
+      max-width: 9ch;
+      font-size: clamp(38px, 4.6vw, 72px);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .closing p {
+      max-width: 58ch;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      color: #051018;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 16px 40px rgba(140, 200, 255, 0.2);
+      font: 12px/1 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); box-shadow: 0 20px 46px rgba(140, 200, 255, 0.26); }
+
+    .signature-mark {
+      width: min(220px, 48vw);
+      height: auto;
+      margin-bottom: 10px;
+      opacity: 0.94;
+      filter: brightness(1.05) contrast(1.02);
+    }
+
+    .signature-note {
+      max-width: 46ch;
+      color: var(--soft);
+      font: 10px/1.45 var(--mono);
+      letter-spacing: 0.04em;
+    }
+
+    .button:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 1px rgba(152, 255, 210, 0.55), 0 0 0 6px rgba(152, 255, 210, 0.12), 0 20px 46px rgba(140, 200, 255, 0.26);
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.48fr);
+      gap: 20px;
+      padding: 28px 0 16px;
+      align-items: start;
+    }
+
+    .footer-column {
+      display: grid;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      align-content: start;
+    }
+
+    .footer-column:first-child {
+      max-width: 560px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: 8px 22px;
+      justify-content: start;
+    }
+
+    .footer-column a,
+    .footer-column span {
+      color: var(--soft);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .footer-kicker {
+      color: var(--fg);
+      font: 11px/1.4 var(--mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translate3d(0, 42px, 0);
+      transition:
+        opacity 720ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    [data-reveal="slide-left"] { transform: translate3d(-38px, 24px, 0); }
+    [data-reveal="slide-right"] { transform: translate3d(38px, 24px, 0); }
+    [data-reveal="slide-left"].is-visible,
+    [data-reveal="slide-right"].is-visible { transform: translate3d(0, 0, 0); }
+
+
+    @media (max-width: 1120px) {
+      .hero,
+      .intro-grid,
+      .body-grid,
+      .closing { grid-template-columns: 1fr; }
+      .hero-rail,
+      .sticky-card { position: static; }
+    }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 24px, 1440px); padding-top: 12px; padding-bottom: 48px; }
+      .topbar { position: static; flex-direction: column; align-items: flex-start; gap: 14px; border-radius: 28px; padding: 14px 14px 16px; }
+      .nav { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; justify-content: stretch; }
+      .nav a { display: inline-flex; align-items: center; min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, 0.02); white-space: nowrap; }
+      .nav a::after { display: none; }
+      .hero { padding-top: 28px; }
+      .hero-title { max-width: 8ch; font-size: clamp(38px, 11.8vw, 60px); line-height: 0.95; }
+      .hero-copy { max-width: 100%; font-size: 17px; line-height: 1.2; padding-right: 4px; }
+      .body-grid { gap: 14px; }
+      .sticky-card { padding: 18px; }
+      .sticky-card h2 { max-width: none; font-size: clamp(26px, 8vw, 38px); }
+      .essay-block { padding: 18px; }
+      .essay-block p { font-size: 16px; line-height: 1.58; padding-right: 6px; }
+      .pull { padding: 20px; }
+      .pull h3 { max-width: none; font-size: clamp(24px, 8.2vw, 40px); line-height: 0.98; }
+      .signature-mark { width: min(180px, 52vw); }
+      .signature-note { max-width: 100%; font-size: 9px; line-height: 1.5; }
+      .closing { gap: 18px; padding: 20px; }
+      .closing h2 { max-width: none; font-size: clamp(28px, 9vw, 42px); line-height: 0.98; }
+      .closing p { max-width: 100%; font-size: 16px; }
+      .button { width: 100%; min-height: 48px; }
+      .panel, .essay-block, .sticky-card, .pull, .closing { border-radius: 22px; }
+      .footer-column { gap: 8px; padding-top: 14px; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <header class="header">
-      <a class="brand" href="https://jereme.xyz">jereme.xyz</a>
-      <nav class="nav"><div class="nav-label">[ nav ]</div><div class="nav-links"><a href="https://jereme.xyz">ventures</a><a href="https://jereme.xyz/about/">about</a><a href="https://jereme.xyz/contact.html">contact</a></div></nav>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="https://jereme.xyz">
+        <span class="brand-dot"></span>
+        <span>jereme.xyz</span>
+      </a>
+      <nav class="nav" aria-label="Page">
+        <a href="signal.html">Signal</a>
+        <a href="https://jereme.xyz/site/fwr/fwr.html">work</a>
+        <a href="https://jereme.xyz/contact.html">Contact</a>
+      </nav>
     </header>
-    <section class="page-title" aria-label="/about"><span class="page-title-ghost">/about</span><h1 class="page-title-live" data-title-text="/about"></h1></section>
-    <section class="content">
-      <div>
-        <span class="label">about</span>
-        <h1>built where the easy answer stops.</h1>
+
+    <section class="hero">
+      <div data-reveal="slide-left">
+        <div class="eyebrow">Long-form / personal signal</div>
+        <h1 class="hero-title">In lieu of a press release.</h1>
+        <p class="hero-copy">The venture pages tell you what the work is. This page is for the operating instinct behind it: SoCal origin story, PNW recalibration, four ventures on one desk, and a bias toward work that survives contact with reality.</p>
       </div>
-      <div class="meta">
-        <div>coord: 45.6387° n, 122.6615° w</div>
-        <div>status: available q1 2027</div>
-        <div>dept: ai / robotics / lidar</div>
-      </div>
-    </section>
-    <hr>
-    <section class="notes">
-      <p>Four ventures, endless side quests, one operating instinct: make the technical thing humane, make the beautiful thing accountable, and keep the room honest.</p>
+
     </section>
 
-    <section class="letter-shell">
-      <aside class="sticky-title">
-        <span class="label">long-form / personal signal</span>
-        <h2>in lieu of a press release.</h2>
+
+    <section class="section body-grid" data-tone="blue">
+      <aside class="sticky-card" data-reveal="slide-left">
+        <div class="label">Outline</div>
+        <h2>Four ventures, one desk, no appetite for fake certainty.</h2>
       </aside>
 
-      <article class="prose">
-        <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
+      <div class="essay">
+        <article class="essay-block" data-reveal>
+          <p>I'm a SoCal kid. Born there, raised there, shaped by it in ways my therapist and I are still mapping out. Never "cali" - that word's for people who saw the place in a movie. Packed it all up in March of 2020 and traded the freeways for fir trees. Now I live in the PNW, where the weather has opinions, the trees are old enough to know better, and the silence is loud enough that you can actually hear yourself think - which is the best part.</p>
+          <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
+          <p>fw/r is robotics, LiDAR, and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
+          <p>pine is the coffee shop, and listen, she's moved four times in four years and still hasn't technically opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
+          <p>nrthrn is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
+          <p>drift is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
 
-        <p>Four ventures now, all running out of the same desk in downtown Vancouver. Not Canada, the other one. The block has range: an overpriced pizza shop named after the almighty hairy creature of the woods on one side, the witch shop on the other - where, for the record, I once overheard a lady asking, very seriously, for a potion to help her get laid. True story. Nothing against witches, by the way. Know a few. Haven't met a bad one yet.</p>
-
-        <p><strong>fw/r</strong> is robotics, LiDAR, and AI - the team I take into rooms where the questions are real and the answers actually have to work. Boutique by design, not by accident. We don't pitch, we don't deck, we don't do the dance. We get called when somebody's tried the obvious and the obvious didn't hold. Government, enterprise, the occasional founder showing up with a real problem and the patience to let us solve it properly. The work that doesn't make the press release. The work the press release wouldn't exist without.</p>
-
-        <p><strong>pine</strong> is the coffee shop, and listen, she's moved four times in four years and still hasn't <em>technically</em> opened. She's a money pit with a personality and a delta that still needs to be paid. We're on location five now, and I just sourced a set of antique brass floor sinks, which any coffee person will tell you means it's finally happening, maybe. Or that I've lost it. Both could be true.</p>
-
-        <p><strong>nrthrn</strong> is the product design studio - consumer goods for the people who'll use them, industrial goods for the companies that make them, the kind of work where every millimeter has a reason and every reason has a story. Real materials, real weight, things that earn their place on a counter or a shelf. The opposite of whatever a focus group recently rubber-stamped. Slower to make. Better to live with. Super obsessed with toasters right now. Don't ask. Okay, fine - if you must know, the answer is still no.</p>
-
-        <p><strong>drift</strong> is pine's little sister, hiding out on the coast in a town I'm not naming yet. She's still picking her block. Smaller, slower, more salt in the air. The kind of place you don't find unless you're already looking, and even then, only if you're paying attention. She'll open when the tide tells her to, and not a minute before. No grand opening. No press. No marketing budget to speak of. The plan is no plan. The plan is patience.</p>
-
-        <div class="pull">
-          <span class="label">signal / 01</span>
-          <p>Four bat-shit ideas, one guy stupid enough to try and run all of them.</p>
-        </div>
-
-        <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
-
-        <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
-
-        <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
-
-        <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
-
-        <p>What I make tends to come out <em>useful</em> and <em>unhurried</em>. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
-
-        <p>Opinions ahead, skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
-
-        <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
-
-        <div class="pull">
-          <span class="label">signal / 02</span>
-          <p>Geocities had more personality than 90% of the Y Combinator portfolio.</p>
-        </div>
-
-        <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
-
-        <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
-
-        <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
-
-        <div class="signoff">
-          <p class="signoff-line">Don't let the wheels fall off.</p>
-          <div class="signature-mark">
-            <img src="https://raw.githubusercontent.com/jeremedotxyz/jereme.xyz/main/about/signature.png" alt="Jereme signature">
+          <div class="pull" data-reveal style="--reveal-delay:120ms;">
+            <div class="label">Signal / 01</div>
+            <h3>The work the press release wouldn't exist without.</h3>
           </div>
-          <span class="stage-note">(Ethel Cain's "American Teenager" plays. Fade to black.)</span>
-          <span class="stage-note">Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative about me, it worked even better.🫶🏼</span>
-        </div>
-      </article>
+
+          <p>Mornings are Blue Bottle, or that Sun-Dried Ethiopia Highlands from the big chain rooted just north of me. Black Rock if I feel like venturing east. Caspian currently runs most of the evenings. Russian Circles when it's cold and gray. Cult of Luna when it's worse than that. Ethel Cain when the drive's long enough to be honest with myself. Taylor Swift when none of the above is up to the task - and yes, you read that correctly. SoCal taught me how to walk into a room. The PNW taught me when to stay quiet in it. Both showed up in the work eventually.</p>
+          <p>April 2027, I'm walking from Campo, California to Manning Park, British Columbia. 2,650-ish miles, on foot, by choice - apparently. PCT, northbound, solo, with a drone for the pretty parts and an iPhone for the parts I'll regret later. Filming a wannabe YouTube documentary along the way, because of course I am. I know the trail won't be what I'm picturing. That's the entire point. Whatever I think it's going to be, it'll be harder, weirder, longer, and more interesting than that.</p>
+          <p>The version of me that finishes in Manning Park isn't the version that starts in Campo, and frankly, I'm rooting for the new guy. I'm not going looking for myself - I've met that guy, and contrary to what you may have heard he's doing just fine. I'm going because five months on foot has a way of clearing out everything that wasn't actually mine to begin with, and I want to see what's left when I get there. Who or what's still standing. That's where the honest parts - and the honest people - show up. It's not a test for me. It's a test for everything and everyone else.</p>
+          <p>I read more than I post about it. I write more than I publish. I code more than I hit commit. There's a vinyl bookcase in my house - full of vinyl, of course - a working theory that taste is a discipline you practice not a vibe you wear, and a frankly indefensible amount of opinions about typography. People who treat aesthetic like decoration give themselves away in the first ten seconds. The way a thing looks is the way it thinks. If your work is loud, your thinking is loud. I try to keep mine quiet - partly out of principle, partly because the room is usually full of people doing the opposite, and somebody's gotta balance the levels.</p>
+          <p>What I make tends to come out useful and unhurried. The speed of a beam of light returning with the exact measurement. A coffee shop where someone - finally, mercifully - chose the chairs on purpose. A quiet thing in a noisy room. A piece of hardware you didn't know you needed until you held it, and then can't put down. I'm not interested in being everywhere. I'm interested in being good, in the spots I actually show up. And I will show up. I'll just be across the street, seeing if you did.</p>
+          <p>Opinions ahead, skip if you bruise easy. "North star" and "roadmap" are the two worst fucking ways to describe anything anyone is actually building, and I will die on this hill, in monospace. Nobody who has ever said "let's take this offline" has ever taken anything offline. They just didn't want to lose the argument in front of people. "Move fast and break things" was always a stupid motto, but at least it was honest - now the motto is "move slowly, break nothing, and call it a sprint." Most product managers are translators who don't speak either language. I say that with love and also accuracy.</p>
+          <p>The fucking obsession with metrics has turned every creative decision into a math problem solved by people who were bad at math. "Data-driven" is just "I don't trust my own judgment" in a Patagonia vest. AI is extraordinary. AI discourse is insufferable. Somewhere between "it's going to kill us all" and "it's just autocomplete" is the truth, and nobody wants to live there because it's boring and correct. The web used to have soul. Geocities had more personality than 90% of the Y Combinator portfolio. That's not nostalgia - that's a fucking measurement.</p>
+
+          <div class="pull" data-reveal style="--reveal-delay:120ms;">
+            <div class="label">Signal / 02</div>
+            <h3>Taste is a discipline you practice, not a vibe you wear.</h3>
+          </div>
+
+          <p>The best work happens when somebody says "I don't know" out loud and means it. The worst work happens right after someone says "I have a framework for that." Every "culture deck" is a suicide note written by the culture it killed. I'm not smarter than anybody else. I just refuse to pretend the emperor's clothes are fire when the man is clearly standing there in his underwear.</p>
+          <p>I'm not chasing scale. I'm chasing a body of work. The kind you can point at when somebody asks what you did with the time. Most of what I want to do - what I've always wanted to do - is help other people ship the thing they've been circling for months. The product that's almost there. The system that works on paper but won't behave in the field. The idea that's good enough to deserve better than where it's stuck.</p>
+          <p>I show up with light that runs out ahead and tells you what's there. Robots that do the work people shouldn't have to. Language tuned tight enough to make a frontier model do exactly what you meant. Models that read the room before the room knows it's being read. Coffee made slowly, on purpose, in a place where someone actually chose the chairs. Some of it is mine - fw/r, pine, nrthrn, drift, the trail, the toaster. Most of it isn't. Most of it was never supposed to be. That's the job. I don't need a reason. I just know I'm not done.</p>
+          <p>Don't let the wheels fall off.</p>
+          <img class="signature-mark" src="signature.png" alt="Jereme signature">
+          <div class="signature-note">(Ethel Cain's "American Teenager" plays. Fade to black.)<br><br>Of course I had to end this dramatically. If you rolled your eyes and laughed, it worked. If you rolled your eyes and said something negative about me, it worked even better.🫶🏼</div>
+        </article>
+      </div>
     </section>
-  </main>
-  <footer class="ascii-footer"><canvas class="ascii-canvas" data-ascii-canvas data-bg="#ffffff" data-fg="#000000" aria-hidden="true"></canvas><div class="footer-inner"><div class="footer-title"><br></div><div class="footer-whispers" aria-hidden="true"><div class="footer-whisper"></div><div class="footer-whisper"></div><div class="footer-whisper"></div></div></div></footer>
+
+    <section class="section" data-reveal data-tone="rose">
+      <div class="closing">
+        <div>
+          <div class="label">Sign-off</div>
+          <h2>I'm not chasing scale. I'm chasing a body of work.</h2>
+          <p>Some of this work is mine. Most of it won’t be. That’s part of the point. The job is to help other people ship the thing they’ve been circling for months, then leave behind something clear enough to survive after the meeting ends.</p>
+        </div>
+        <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Email%20from%20jereme.xyz%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F">Ping Me</a>
+      </div>
+    </section>
+
+    <footer class="footer" data-reveal>
+      <div class="footer-column">
+        <div class="footer-kicker">Connect</div>
+        <div class="footer-links">
+          <a href="https://www.instagram.com/jeremedotxyz/">Instagram</a>
+          <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
+          <a href="https://github.com/jeremedotxyz">GitHub</a>
+          <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
+          <a href="https://substack.com/@jeremedotxyz">Substack</a>
+          <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=e23a1ba3a75848ce">Spotify</a>
+          <a href="https://x.com/jeremedotxyz">X</a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <div class="footer-kicker">Contact</div>
+        <span>915 Broadway St,<br>Vancouver, WA 98660</span>
+      </div>
+    </footer>
+  </div>
+
   <script>
-    const asciiChars=[" ",".",":","-","=","+","*","#","%","@","■","●","▲","✦"],asciiFont='13px "Fragment Mono", monospace';
-    function noiseField(x,y,t){let v=Math.sin(x*10+t);v+=Math.sin((y*10+t)/2);v+=Math.sin((x*10+y*10+t)/2);const wx=x+.5*Math.sin(t/3),wy=y+.5*Math.cos(t/2);v+=Math.sin(Math.sqrt(100*(wx*wx+wy*wy)+1)+t);return v/4}
-    function initAsciiFooter(){const c=document.querySelector("[data-ascii-canvas]");if(!c)return;const x=c.getContext("2d");if(!x)return;const bg=c.dataset.bg||"#ffffff",fg=c.dataset.fg||"#000000",cw=8.4,ch=14.3;let px=.5,py=.5,cols=0,rows=0;function size(){const s=window.devicePixelRatio||1,w=c.offsetWidth,h=c.offsetHeight;c.width=w*s;c.height=h*s;x.setTransform(s,0,0,s,0,0);cols=Math.floor(w/cw);rows=Math.floor(h/ch)}function point(e){const r=c.getBoundingClientRect();px=(e.clientX-r.left)/r.width;py=(e.clientY-r.top)/r.height}function draw(f){const t=f*.001,w=c.offsetWidth,h=c.offsetHeight;x.fillStyle=bg;x.fillRect(0,0,w,h);x.fillStyle=fg;x.font=asciiFont;x.textBaseline="top";for(let r=0;r<rows;r++)for(let col=0;col<cols;col++){const nx=col/cols,ny=r/rows,dx=nx-px,dy=ny-py,d=Math.sqrt(dx*dx+dy*dy),i=Math.max(0,1-d*3)*.15,sx=nx+Math.sin(t*2+ny*8)*i,sy=ny+Math.cos(t*2+nx*8)*i,chv=asciiChars[Math.floor(((noiseField(sx,sy,t)+1)*.5)*(asciiChars.length-1))];if(chv!==" ")x.fillText(chv,col*cw,r*ch)}requestAnimationFrame(draw)}size();c.addEventListener("mousemove",point);window.addEventListener("resize",size);requestAnimationFrame(draw)}
-    function initTypeAudio(onUnlock){const A=window.AudioContext||window.webkitAudioContext;if(!A)return{playKey:function(){},playBackspace:function(){}};const c=new A;let u=!1;function unlock(){u||c.resume().then(function(){u=!0,burst("key"),"function"==typeof onUnlock&&onUnlock()}).catch(function(){})}function burst(kind){if(!u||"running"!==c.state)return;const now=c.currentTime,o=c.createOscillator(),g=c.createGain(),f=c.createBiquadFilter();o.type="backspace"===kind?"sawtooth":"square";o.frequency.value="backspace"===kind?320:980;f.type="bandpass";f.frequency.value="backspace"===kind?720:2200;f.Q.value=1.1;g.gain.setValueAtTime(.0001,now);g.gain.linearRampToValueAtTime("backspace"===kind?.085:.06,now+.006);g.gain.exponentialRampToValueAtTime(.0001,now+("backspace"===kind?.14:.1));o.connect(f);f.connect(g);g.connect(c.destination);o.start(now);o.stop(now+("backspace"===kind?.15:.11))}window.addEventListener("pointerdown",unlock,{once:!0});window.addEventListener("keydown",unlock,{once:!0});return{playKey:function(){burst("key")},playBackspace:function(){burst("backspace")}}}
-    function initPageTitle(typeAudio){window.__titleRunId=(window.__titleRunId||0)+1;const runId=window.__titleRunId;document.querySelectorAll("[data-title-text]").forEach(function(n){const t=n.getAttribute("data-title-text")||"";let i=0,p="";function tick(){if(runId!==window.__titleRunId)return;const next=t.slice(0,i);n.textContent=next;next.length<p.length?typeAudio.playBackspace():next!==p&&typeAudio.playKey();p=next;if(i<=t.length){i+=1;window.setTimeout(tick,i<4?165:92)}}tick()})}
-    window.addEventListener("DOMContentLoaded",function(){let typeAudio;typeAudio=initTypeAudio(function(){initPageTitle(typeAudio)});initPageTitle(typeAudio);initAsciiFooter();});
+    (() => {
+      const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const setScrollProgress = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+        document.body.style.setProperty("--scroll-progress", String(Math.min(Math.max(progress, 0), 1)));
+      };
+
+      if (revealNodes.length) {
+        if (reducedMotion) {
+          revealNodes.forEach((node) => node.classList.add("is-visible"));
+        } else {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+          revealNodes.forEach((node) => observer.observe(node));
+        }
+      }
+
+      setScrollProgress();
+      window.addEventListener("scroll", setScrollProgress, { passive: true });
+    })();
   </script>
 </body>
 </html>
