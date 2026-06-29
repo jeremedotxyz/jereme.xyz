@@ -281,6 +281,16 @@
       color: var(--fg);
     }
 
+    .pill-quiet {
+      border-style: dashed;
+      color: var(--soft);
+      opacity: 0.82;
+    }
+
+    .pill-quiet:hover {
+      opacity: 1;
+    }
+
     .pill-dot {
       width: 9px;
       height: 9px;
@@ -426,8 +436,8 @@
     }
 
     .tone-rose::before {
-      opacity: 0.86;
-      background: linear-gradient(90deg, rgba(237, 122, 94, 0.8), rgba(242, 144, 255, 0.86), rgba(120, 180, 255, 0.7));
+      opacity: 0.74;
+      background: linear-gradient(90deg, rgba(237, 122, 94, 0.7), rgba(242, 144, 255, 0.76), rgba(120, 180, 255, 0.62));
     }
 
     .tone-rose::after {
@@ -436,8 +446,8 @@
     }
 
     .tone-cyan::before {
-      opacity: 0.82;
-      background: linear-gradient(90deg, rgba(246, 167, 121, 0.72), rgba(243, 124, 181, 0.78), rgba(92, 210, 219, 0.68));
+      opacity: 0.72;
+      background: linear-gradient(90deg, rgba(246, 167, 121, 0.62), rgba(243, 124, 181, 0.7), rgba(92, 210, 219, 0.58));
     }
 
     .tone-cyan::after {
@@ -709,6 +719,33 @@
       opacity: 0.72;
     }
 
+    .surface-portfolio {
+      background:
+        radial-gradient(circle at 20% 18%, rgba(242, 144, 255, 0.18), transparent 20%),
+        radial-gradient(circle at 84% 74%, rgba(126, 184, 255, 0.18), transparent 26%),
+        linear-gradient(155deg, #10131d 0%, #151923 48%, #0c0d13 100%);
+    }
+
+    .surface-portfolio::before {
+      inset: 10% 10% 14%;
+      border-radius: 26px;
+      border: 1px solid rgba(244, 247, 251, 0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)),
+        linear-gradient(135deg, rgba(126, 184, 255, 0.12), transparent 40%),
+        linear-gradient(180deg, rgba(14, 18, 26, 0.96), rgba(10, 12, 18, 0.98));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .surface-portfolio::after {
+      inset: 18% 18% 22%;
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(180deg, rgba(244, 247, 251, 0.08) 0 2px, transparent 2px 18px),
+        linear-gradient(180deg, rgba(86, 229, 205, 0.08), rgba(86, 229, 205, 0));
+      opacity: 0.84;
+    }
+
     .surface-manifesto {
       background:
         radial-gradient(circle at 22% 24%, rgba(242, 144, 255, 0.24), transparent 24%),
@@ -772,6 +809,14 @@
       color: var(--muted);
       font-size: 17px;
       line-height: 1.48;
+    }
+
+    .copy-card-compact {
+      align-content: center;
+    }
+
+    .copy-card-compact p {
+      max-width: 42ch;
     }
 
     .metric-stack {
@@ -873,6 +918,14 @@
       line-height: 1.46;
     }
 
+    .case-copy-compact {
+      align-content: center;
+    }
+
+    .case-copy-compact p {
+      max-width: 42ch;
+    }
+
     .case-stats {
       display: flex;
       gap: 18px;
@@ -905,14 +958,18 @@
     }
 
     .ticker {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px 22px;
       align-items: center;
       color: var(--soft);
       font: 12px/1.4 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    .ticker span {
+      min-width: 0;
     }
 
     .ticker strong {
@@ -988,9 +1045,10 @@
 
     .footer {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.48fr);
+      gap: 20px;
       padding: 28px 0 16px;
+      align-items: start;
     }
 
     .footer-column {
@@ -998,6 +1056,18 @@
       gap: 10px;
       padding-top: 18px;
       border-top: 1px solid var(--line);
+      align-content: start;
+    }
+
+    .footer-column:first-child {
+      max-width: 560px;
+    }
+
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: 8px 22px;
+      justify-content: start;
     }
 
     .footer-column a,
@@ -1170,6 +1240,10 @@
         grid-template-columns: 1fr 1fr;
         gap: 12px;
       }
+      .ticker {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
       .surface,
       .feature-card,
       .media-card,
@@ -1181,6 +1255,7 @@
       .cta-card { border-radius: 24px; }
       .footer { grid-template-columns: 1fr; gap: 10px; }
       .footer-column { gap: 8px; padding-top: 14px; }
+      .footer-links { grid-template-columns: 1fr 1fr; gap: 8px 14px; }
     }
   </style>
 </head>
@@ -1190,28 +1265,26 @@
     <header class="topbar">
       <a class="brand" href="https://jereme.xyz">
         <span class="brand-dot"></span>
-        <span>jereme.xyz / personal site</span>
+        <span>jereme.xyz</span>
       </a>
       <nav class="nav" aria-label="Primary">
-        <a href="signal.html" aria-current="page">Signal</a>
+        <a href="fwr-signal.html">work</a>
         <a href="about-signal.html">About</a>
         <a href="contact-signal.html">Contact</a>
-        <a href="fwr-signal.html">fw/r</a>
       </nav>
     </header>
 
     <section class="hero">
       <div class="hero-grid">
         <div data-reveal="slide-left">
-          <div class="eyebrow">Personal site / venture signal</div>
           <h1>Bring serious work to the interfaces people actually live inside.</h1>
-          <p class="hero-copy">This is Jereme Abernathy’s personal site: a bridge into four ventures across robotics and applied AI, room-first coffee spaces, designed objects, and slower coastal worlds. Each venture keeps its own identity; this page is the index, context, and connective tissue between them.</p>
+          <p class="hero-copy">A connective index for four ventures across robotics and applied AI, room-first coffee spaces, designed objects, and slower coastal worlds. Each venture stands on its own; for now, this page serves as a temporary marker, offering context, signal, and connective tissue while the full ecosystem comes into focus.</p>
           <div class="hero-platforms">
             <div class="pill"><span class="pill-dot" style="background:#7eb8ff;"></span>fw/r</div>
             <div class="pill"><span class="pill-dot" style="background:#9af8c6;"></span>pine</div>
             <div class="pill"><span class="pill-dot" style="background:#f6cb83;"></span>nrthrn</div>
             <div class="pill"><span class="pill-dot" style="background:#f290ff;"></span>drift</div>
-            <div class="pill"><span class="pill-dot" style="background:#ffffff;"></span>personal index / official pages branch from here</div>
+            <div class="pill pill-quiet"><span class="pill-dot" style="background:#ffffff;"></span>personal index</div>
           </div>
         </div>
 
@@ -1246,9 +1319,8 @@
     </section>
 
     <section class="section-block tone-lime" data-reveal>
-      <div class="eyebrow">Capabilities</div>
       <h2 class="section-title">Simple interface. Serious operating range.</h2>
-      <p class="section-lead">The site may look like a portfolio, but the actual offer is broader: systems work, product judgment, physical environments, object language, technical narrative, and the ability to move between them without flattening everything into the same generic consulting sludge.</p>
+      <p class="section-lead">A small surface for systems work, physical environments, object language, and technical narrative that still has to survive contact with reality.</p>
       <div class="feature-grid">
         <article class="feature-card" data-reveal="scale" style="--reveal-delay:0ms;">
           <div class="eyebrow">01 / systems</div>
@@ -1284,7 +1356,6 @@
     </section>
 
     <section class="section-block tone-blue" data-reveal>
-      <div class="eyebrow">Proof / fw/r</div>
       <h2 class="section-title">First-class for the part where the work touches reality.</h2>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
@@ -1297,23 +1368,16 @@
             <div class="eyebrow" style="margin:0;">systems / field</div>
           </figcaption>
         </figure>
-        <article class="copy-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
+        <article class="copy-card copy-card-compact" data-reveal="slide-right" style="--reveal-delay:80ms;">
           <div>
-            <div class="eyebrow">Latency / trust / signal</div>
             <h3>Less innovation theater. More finding the wires.</h3>
             <p>fw/r is the systems-facing wing of the portfolio: robotics, applied AI, sensing, prototyping, and the machinery required to turn abstract technical direction into something that can actually ship.</p>
-          </div>
-          <div class="metric-stack">
-            <div class="metric"><strong>6</strong><span>download artifacts / field files</span></div>
-            <div class="metric"><strong>2019</strong><span>fw/r operating signal</span></div>
-            <div class="metric"><strong>1 desk</strong><span>where the layers meet</span></div>
           </div>
         </article>
       </div>
     </section>
 
     <section class="section-block tone-blue" data-reveal>
-      <div class="eyebrow">Surfaces</div>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
           <div class="surface-visual surface-perception" aria-hidden="true"></div>
@@ -1340,22 +1404,16 @@
 
 
     <section class="section-block tone-rose" data-reveal>
-      <div class="eyebrow">Cases</div>
       <h2 class="section-title">Built for teams, places, and ideas at different scales.</h2>
       <div class="case-row">
         <article class="case-card" data-reveal="slide-left">
           <div class="case-image">
-            <div class="surface-visual surface-artifact" aria-hidden="true"></div>
+            <div class="surface-visual surface-portfolio" aria-hidden="true"></div>
           </div>
-          <div class="case-copy">
+          <div class="case-copy case-copy-compact">
             <div class="eyebrow">Case / fw/r</div>
             <h3>From corridor sensing to harness logic.</h3>
             <p>Research abstract, Portland/TriMet MAX RFP, Seattle/King County proof-of-concept, Sadie harness, Sadie data, and Narwhal all point at the same disposition: make the technical thing answerable.</p>
-            <div class="case-stats">
-              <div><strong>6</strong><span>artifacts on page</span></div>
-              <div><strong>AI + LiDAR</strong><span>primary signal</span></div>
-              <div><strong>Field-aware</strong><span>not lab-only</span></div>
-            </div>
           </div>
         </article>
 
@@ -1363,15 +1421,10 @@
           <div class="case-image">
             <div class="surface-visual surface-artifact" aria-hidden="true"></div>
           </div>
-          <div class="case-copy">
+          <div class="case-copy case-copy-compact">
             <div class="eyebrow">Case / portfolio</div>
             <h3>One taste system crossing very different mediums.</h3>
             <p>That same judgment extends to coffee rooms, designed objects, quieter websites, and future-facing concepts that need to survive contact with users, materials, and time.</p>
-            <div class="case-stats">
-              <div><strong>4</strong><span>venture worlds</span></div>
-              <div><strong>1</strong><span>shared nervous system</span></div>
-              <div><strong>Quiet</strong><span>by design</span></div>
-            </div>
           </div>
         </article>
       </div>
@@ -1384,7 +1437,6 @@
           <span><strong>Status</strong> Available Q1 2027</span>
           <span><strong>Bias</strong> Useful and unhurried</span>
           <span><strong>Room tone</strong> Less hype, more clarity</span>
-          <span><strong>PCT</strong> Northbound / April 2027</span>
         </div>
       </div>
     </section>
@@ -1407,9 +1459,8 @@
     <section class="section-block tone-cyan" data-reveal="scale">
       <div class="cta-card">
         <div>
-          <div class="eyebrow">Next step</div>
-          <h2>Bring the fuzzy thing. We can make it answerable.</h2>
-          <p>If the work is technical, physical, future-facing, hard to explain, or stuck in the gap between strategy and reality, that is usually where the useful work starts.</p>
+          <h2>Bring the fuzzy thing.</h2>
+          <p>Technical, physical, future-facing, hard to explain, stuck between strategy and reality. That is usually where the useful work starts.</p>
         </div>
         <a class="button" href="contact-signal.html">Open contact</a>
       </div>
@@ -1417,29 +1468,20 @@
 
     <footer class="footer" data-reveal>
       <div class="footer-column">
-        <div class="footer-kicker">Pages</div>
-        <a href="signal.html">signal</a>
-        <a href="about-signal.html">about-signal</a>
-        <a href="contact-signal.html">contact-signal</a>
-        <a href="fwr-signal.html">fwr-signal</a>
-      </div>
-      <div class="footer-column">
         <div class="footer-kicker">Connect</div>
-        <a href="https://www.instagram.com/jeremedotxyz/">Instagram</a>
-        <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
-        <a href="https://x.com/jeremedotxyz">X</a>
-        <a href="https://substack.com/@jeremedotxyz">Substack</a>
-        <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=e23a1ba3a75848ce">Spotify</a>
-      </div>
-      <div class="footer-column">
-        <div class="footer-kicker">Signal</div>
-        <span>AI / robotics / LiDAR</span>
-        <span>coffee spaces / objects / place</span>
-        <span>technical narrative / build logic</span>
+        <div class="footer-links">
+          <a href="https://www.instagram.com/jeremedotxyz/">Instagram</a>
+          <a href="https://www.threads.com/@jeremedotxyz">Threads</a>
+          <a href="https://github.com/jeremedotxyz">GitHub</a>
+          <a href="https://www.youtube.com/@jeremedotxyz">YouTube</a>
+          <a href="https://substack.com/@jeremedotxyz">Substack</a>
+          <a href="https://open.spotify.com/user/n33yr4uhw04g512be8lr9vq72?si=e23a1ba3a75848ce">Spotify</a>
+          <a href="https://x.com/jeremedotxyz">X</a>
+        </div>
       </div>
       <div class="footer-column">
         <div class="footer-kicker">Contact</div>
-        <a href="mailto:jeremedotxyz@gmail.com">jeremedotxyz@gmail.com</a>
+        <span>915 Broadway St,<br>Vancouver, WA 98660</span>
       </div>
     </footer>
   </div>
