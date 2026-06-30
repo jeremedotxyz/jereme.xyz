@@ -323,9 +323,11 @@
 
     @media (max-width: 760px) {
       .shell { width: min(100% - 24px, 1440px); padding-top: 12px; padding-bottom: 48px; }
-      .topbar { position: static; flex-direction: column; align-items: flex-start; gap: 14px; border-radius: 28px; padding: 14px 14px 16px; }
+      .topbar { position: static; flex-direction: column; align-items: flex-start; gap: 14px; border-radius: 24px; padding: 14px 14px 16px; }
+      .brand { font-size: 11px; }
       .nav { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; justify-content: stretch; }
       .nav a { display: inline-flex; justify-content: center; align-items: center; min-height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255, 255, 255, 0.02); white-space: nowrap; }
+      .nav a::after { display: none; }
       .hero { padding-top: 28px; gap: 18px; }
       .hero-title { font-size: clamp(44px, 13vw, 72px); }
       .hero-copy { font-size: 18px; }
@@ -345,7 +347,7 @@
       </a>
       <nav class="nav" aria-label="Page">
         <a href="https://jereme.xyz/">Signal</a>
-        <a href="about-signal.html">About</a>
+        <a href="https://jereme.xyz/about/">About</a>
         <a href="https://jereme.xyz/site/fwr/fwr.html">work</a>
       </nav>
     </header>
