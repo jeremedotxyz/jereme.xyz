@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTH4464X6R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NTH4464X6R');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>contact signal - jereme.xyz</title>
@@ -42,17 +34,10 @@
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
-      overflow-x: hidden;
       --scroll-progress: 0;
     }
 
     a { color: inherit; text-decoration: none; }
-
-    :focus-visible {
-      outline: 2px solid rgba(152, 255, 210, 0.9);
-      outline-offset: 3px;
-      border-radius: 12px;
-    }
 
     .scroll-progress {
       position: fixed;
@@ -120,29 +105,11 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--soft);
-      transition: color 160ms ease, opacity 160ms ease;
-      position: relative;
-    }
-
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      transform: scaleX(0);
-      transform-origin: 0 50%;
-      transition: transform 180ms ease;
-      opacity: 0.9;
+      transition: color 160ms ease;
     }
 
     .nav a:hover,
     .nav a[aria-current="page"] { color: var(--fg); }
-
-    .nav a:hover::after,
-    .nav a[aria-current="page"]::after { transform: scaleX(1); }
 
     h1, h2, h3, p { margin: 0; }
 
@@ -152,11 +119,6 @@
       gap: 28px;
       align-items: end;
       padding: 48px 0 34px;
-    }
-
-    .hero > *,
-    .closing > * {
-      min-width: 0;
     }
 
     .eyebrow {
@@ -201,7 +163,6 @@
       justify-content: center;
       min-height: 50px;
       padding: 0 20px;
-      margin-top: 28px;
       border-radius: 999px;
       color: #051018;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -212,12 +173,7 @@
       transition: transform 180ms ease;
     }
 
-    .button:hover { transform: translateY(-2px); box-shadow: 0 20px 46px rgba(140, 200, 255, 0.26); }
-
-    .button:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 1px rgba(152, 255, 210, 0.55), 0 0 0 6px rgba(152, 255, 210, 0.12), 0 20px 46px rgba(140, 200, 255, 0.26);
-    }
+    .button:hover { transform: translateY(-2px); }
 
     .footer {
       display: grid;
@@ -260,35 +216,18 @@
       text-transform: uppercase;
     }
 
+    .closing,
+    .footer {
+      min-width: 0;
+    }
+
+    .card,
+    .social-card,
     .closing {
       border: 1px solid var(--line);
       border-radius: 28px;
       background: linear-gradient(180deg, rgba(16, 23, 34, 0.9), rgba(10, 14, 20, 0.98));
       box-shadow: var(--shadow);
-      transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .closing::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04) 42%, rgba(140, 200, 255, 0.03));
-      opacity: 0;
-      transition: opacity 240ms ease;
-      pointer-events: none;
-    }
-
-    .closing:hover {
-      transform: translateY(-4px);
-      border-color: rgba(152, 255, 210, 0.16);
-      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42);
-    }
-
-    .closing:hover::after {
-      opacity: 1;
     }
 
     .label {
@@ -298,66 +237,13 @@
       text-transform: uppercase;
     }
 
-
-    .section {
-      position: relative;
-      padding: 30px 0;
-      isolation: isolate;
-    }
-
-    .section[data-tone]::before,
-    .section[data-tone]::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    .section[data-tone]::before {
-      top: 10px;
-      width: min(1540px, 100vw);
-      height: 200px;
-      border-radius: 36px;
-      opacity: 0;
-      filter: blur(12px);
-    }
-
-    .section[data-tone]::after {
-      top: -34px;
-      width: min(1260px, 92vw);
-      height: 320px;
-      opacity: 0;
-      filter: blur(52px);
-      z-index: -3;
-    }
-
-    .section[data-tone="blue"]::before {
-      opacity: 0.74;
-      background: linear-gradient(90deg, rgba(34, 86, 168, 0.58), rgba(93, 147, 255, 0.66), rgba(92, 210, 219, 0.52));
-    }
-
-    .section[data-tone="blue"]::after {
-      opacity: 0.28;
-      background: radial-gradient(circle at center, rgba(93, 147, 255, 0.38), transparent 66%);
-    }
-
-    .section[data-tone="cyan"]::before {
-      opacity: 0.68;
-      background: linear-gradient(90deg, rgba(246, 167, 121, 0.54), rgba(243, 124, 181, 0.62), rgba(92, 210, 219, 0.52));
-    }
-
-    .section[data-tone="cyan"]::after {
-      opacity: 0.3;
-      background: radial-gradient(circle at right, rgba(92, 210, 219, 0.3), transparent 64%);
-    }
+    .section { padding: 30px 0; }
 
     .closing {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       gap: 28px;
       align-items: end;
-      justify-content: space-between;
       padding: 34px;
       background:
         linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04)),
@@ -368,6 +254,12 @@
       max-width: 54ch;
       margin-left: auto;
       text-align: right;
+    }
+
+    .closing .button {
+      align-self: end;
+      justify-self: start;
+      margin-top: 0;
     }
 
     .closing h2 {
@@ -406,22 +298,28 @@
     [data-reveal="slide-left"].is-visible,
     [data-reveal="slide-right"].is-visible { transform: translate3d(0, 0, 0); }
 
-
     @media (max-width: 1120px) {
       .hero { grid-template-columns: 1fr; }
-      .closing { flex-direction: column; align-items: stretch; }
-      .closing-copy { margin-left: 0; max-width: 100%; text-align: left; }
+      .closing { grid-template-columns: 1fr; }
+      .closing-copy {
+        margin-left: 0;
+        max-width: 100%;
+        text-align: left;
+      }
       .closing h2 { margin-left: 0; }
-      .closing .button { align-self: flex-start; order: 2; }
+      .closing .button {
+        align-self: flex-start;
+        order: 2;
+      }
     }
 
     @media (max-width: 760px) {
-      .shell { width: min(100% - 24px, 1440px); padding-top: 12px; padding-bottom: 48px; }
+      .shell { width: min(100% - 20px, 1440px); padding-top: 12px; padding-bottom: 48px; }
       .topbar { position: static; align-items: flex-start; border-radius: 28px; }
       .nav { gap: 10px 14px; justify-content: flex-start; }
       .hero { padding-top: 28px; gap: 18px; }
       .hero-title { font-size: clamp(44px, 13vw, 72px); }
-      .hero-copy { max-width: 100%; font-size: 18px; padding-right: 6px; }
+      .hero-copy { font-size: 18px; }
       .closing { border-radius: 22px; }
       .closing p { max-width: 100%; }
       .footer-column { gap: 8px; padding-top: 14px; }
@@ -434,28 +332,27 @@
     <header class="topbar">
       <a class="brand" href="https://jereme.xyz">
         <span class="brand-dot"></span>
-        <span>jereme.xyz</span>
+        <span>jereme.xyz / contact signal</span>
       </a>
       <nav class="nav" aria-label="Page">
-        <a href="signal.html">Signal</a>
-        <a href="https://jereme.xyz/about/">About</a>
+        <a href="https://jereme.xyz/">Signal</a>
+        <a href="about-signal.html">About</a>
         <a href="https://jereme.xyz/site/fwr/fwr.html">work</a>
+        <a href="contact-signal.html" aria-current="page">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
       <div data-reveal="slide-left">
-        <div class="eyebrow">Inquiry / next step</div>
         <h1 class="hero-title">Bring the fuzzy thing.</h1>
         <p class="hero-copy">If the project sits somewhere between technical complexity, product judgment, physical reality, and the need for taste, send it over. Good starting material includes a rough brief, a broken workflow, a field problem, or simply the thing that keeps refusing to become clear.</p>
       </div>
     </section>
 
-    <section class="section" data-reveal data-tone="cyan">
+    <section class="section" data-reveal>
       <div class="closing">
         <a class="button" href="mailto:jeremedotxyz@gmail.com?subject=Email%20from%20jereme.xyz%20%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F">Ping Me</a>
         <div class="closing-copy">
-          <div class="label">Working preference</div>
           <h2>Clear problem statements are great. Weird half-formed ones are also welcome.</h2>
           <p>Some of the best projects start as an uncomfortable sentence, a strange constraint, or a thing that keeps failing in the field. That is enough to begin. The first step is usually making the actual problem legible.</p>
         </div>
