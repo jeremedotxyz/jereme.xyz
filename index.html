@@ -1146,12 +1146,13 @@
       .nav {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
         justify-content: stretch;
       }
       .nav a {
         display: inline-flex;
+        justify-content: center;
         align-items: center;
         min-height: 38px;
         padding: 0 12px;
@@ -1159,6 +1160,17 @@
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.02);
         white-space: nowrap;
+      }
+      [data-reveal],
+      [data-reveal="slide-left"],
+      [data-reveal="slide-right"],
+      [data-reveal="scale"],
+      [data-reveal].is-visible,
+      [data-reveal="slide-left"].is-visible,
+      [data-reveal="slide-right"].is-visible,
+      [data-reveal="scale"].is-visible {
+        opacity: 1;
+        transform: none;
       }
       .hero { padding-top: 24px; }
       .hero-grid > div:first-child { padding-right: 8px; min-width: 0; }
@@ -1197,6 +1209,16 @@
         min-height: 48px;
       }
       .hero-panel { padding: 12px; }
+      .hero-panel,
+      .code-card,
+      .media-card,
+      .copy-card,
+      .case-card,
+      .manifesto-card,
+      .feature-card,
+      .quote-card,
+      .ticker-card,
+      .cta-card { min-width: 0; }
       .hero-panel-grid,
       .feature-grid,
       .quote-grid,
