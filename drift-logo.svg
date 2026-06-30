@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
-  <title>drift logo</title>
-  <rect width="128" height="128" rx="26" fill="#10243d"/>
-  <path d="M31 76c8-13 18-20 31-20 14 0 22 8 33 8 4 0 8-1 14-4-5 16-18 34-42 34-17 0-28-5-36-18Z" fill="#9fd5ef"/>
-  <path d="M39 53c7-11 15-17 25-17 10 0 18 4 27 12-6 3-12 5-18 5-13 0-21-5-34 0Z" fill="#9fd5ef"/>
-  <circle cx="61" cy="75" r="12" fill="#9fd5ef" stroke="none"/>
-</svg>
