@@ -628,6 +628,58 @@
       isolation: isolate;
     }
 
+    .surface-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0;
+      transition: opacity 280ms ease;
+    }
+
+    .surface-visual.is-primed .surface-canvas {
+      opacity: 0.98;
+    }
+
+    .surface-overlay {
+      position: absolute;
+      inset: 8% 7%;
+      border-radius: 24px;
+      border: 1px solid rgba(244, 247, 251, 0.07);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%),
+        linear-gradient(180deg, rgba(5, 7, 10, 0.08), rgba(5, 7, 10, 0.02));
+      pointer-events: none;
+    }
+
+    .surface-badge {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(244, 247, 251, 0.1);
+      background: rgba(5, 8, 13, 0.84);
+      color: rgba(244, 247, 251, 0.74);
+      font: 10px/1 var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .surface-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 12px rgba(126, 184, 255, 0.26);
+    }
+
     .surface-visual::before,
     .surface-visual::after {
       content: "";
@@ -708,68 +760,63 @@
 
     .surface-artifact {
       background:
-        radial-gradient(circle at 84% 18%, rgba(246, 203, 131, 0.16), transparent 20%),
-        linear-gradient(160deg, #151018 0%, #1a1320 48%, #0d0d14 100%);
+        radial-gradient(circle at 84% 18%, rgba(246, 203, 131, 0.18), transparent 20%),
+        radial-gradient(circle at 22% 82%, rgba(242, 144, 255, 0.08), transparent 24%),
+        linear-gradient(160deg, #181118 0%, #16131b 42%, #0f1117 100%);
     }
 
     .surface-artifact::before {
-      inset: 12% 20% 26% 10%;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(244, 247, 251, 0.1);
-      box-shadow: 40px 34px 0 -8px rgba(242, 144, 255, 0.12), 84px 70px 0 -18px rgba(126, 184, 255, 0.12);
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 28%),
+        radial-gradient(circle at 20% 18%, rgba(242, 144, 255, 0.12), transparent 20%);
+      opacity: 0.92;
     }
 
     .surface-artifact::after {
-      inset: 22% 28% 36% 18%;
-      border-top: 1px solid rgba(244, 247, 251, 0.24);
-      border-bottom: 1px solid rgba(244, 247, 251, 0.08);
-      opacity: 0.72;
+      inset: 8% 7%;
+      border: 1px solid rgba(244, 247, 251, 0.06);
+      border-radius: 24px;
+      opacity: 0.7;
     }
 
     .surface-portfolio {
       background:
-        radial-gradient(circle at 20% 18%, rgba(242, 144, 255, 0.18), transparent 20%),
-        radial-gradient(circle at 84% 74%, rgba(126, 184, 255, 0.18), transparent 26%),
-        linear-gradient(155deg, #10131d 0%, #151923 48%, #0c0d13 100%);
+        radial-gradient(circle at 20% 18%, rgba(242, 144, 255, 0.14), transparent 18%),
+        radial-gradient(circle at 84% 74%, rgba(126, 184, 255, 0.16), transparent 22%),
+        linear-gradient(155deg, #0c121c 0%, #111724 48%, #090b11 100%);
     }
 
     .surface-portfolio::before {
-      inset: 10% 10% 14%;
-      border-radius: 26px;
-      border: 1px solid rgba(244, 247, 251, 0.1);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)),
-        linear-gradient(135deg, rgba(126, 184, 255, 0.12), transparent 40%),
-        linear-gradient(180deg, rgba(14, 18, 26, 0.96), rgba(10, 12, 18, 0.98));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 26%),
+        radial-gradient(circle at 76% 24%, rgba(154, 248, 198, 0.1), transparent 18%);
+      opacity: 0.92;
     }
 
     .surface-portfolio::after {
-      inset: 18% 18% 22%;
-      border-radius: 18px;
-      background:
-        repeating-linear-gradient(180deg, rgba(244, 247, 251, 0.08) 0 2px, transparent 2px 18px),
-        linear-gradient(180deg, rgba(86, 229, 205, 0.08), rgba(86, 229, 205, 0));
-      opacity: 0.84;
+      inset: 7%;
+      border: 1px solid rgba(244, 247, 251, 0.06);
+      border-radius: 24px;
+      opacity: 0.7;
     }
 
     .surface-manifesto {
       background:
-        radial-gradient(circle at 22% 24%, rgba(242, 144, 255, 0.24), transparent 24%),
-        radial-gradient(circle at 78% 76%, rgba(92, 210, 219, 0.18), transparent 28%),
-        linear-gradient(160deg, #101522 0%, #111a2e 52%, #0a0d15 100%);
+        radial-gradient(circle at 18% 20%, rgba(242, 144, 255, 0.26), transparent 18%),
+        radial-gradient(circle at 84% 74%, rgba(92, 210, 219, 0.12), transparent 26%),
+        linear-gradient(160deg, #11101b 0%, #16152a 52%, #0a0c14 100%);
     }
 
     .surface-manifesto::before {
-      inset: auto -6% 12% -6%;
-      height: 48%;
-      border-radius: 46% 46% 0 0;
-      background: linear-gradient(180deg, rgba(9, 20, 36, 0) 0%, rgba(9, 20, 36, 0.86) 100%);
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%),
+        radial-gradient(circle at 30% 80%, rgba(126, 184, 255, 0.12), transparent 24%);
     }
 
     .surface-manifesto::after {
-      inset: 16% 14%;
+      inset: 7%;
       border: 1px solid rgba(244, 247, 251, 0.08);
       border-radius: 28px;
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 52%);
@@ -1389,7 +1436,12 @@
       <h2 class="section-title">First-class for the part where the work touches reality.</h2>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
-          <div class="surface-visual surface-transit" aria-hidden="true"></div>
+          <div class="surface-visual surface-transit" aria-hidden="true">
+            <canvas class="surface-canvas" data-surface-canvas="transit"></canvas>
+            <span class="surface-overlay"></span>
+            <span class="surface-badge" style="top:13%; left:13%;">corridor / live</span>
+            <span class="surface-badge" style="right:13%; bottom:13%;">constraint / field</span>
+          </div>
           <figcaption class="media-caption">
             <div>
               <strong>Field systems under actual constraint.</strong>
@@ -1410,7 +1462,12 @@
     <section class="section-block tone-blue" data-reveal>
       <div class="proof-row">
         <figure class="media-card" data-reveal="slide-left">
-          <div class="surface-visual surface-perception" aria-hidden="true"></div>
+          <div class="surface-visual surface-perception" aria-hidden="true">
+            <canvas class="surface-canvas" data-surface-canvas="perception"></canvas>
+            <span class="surface-overlay"></span>
+            <span class="surface-badge" style="top:13%; left:13%;">scan / track</span>
+            <span class="surface-badge" style="right:13%; bottom:13%;">confidence / live</span>
+          </div>
           <figcaption class="media-caption">
             <div>
               <strong>Perception logic at corridor scale.</strong>
@@ -1420,7 +1477,12 @@
           </figcaption>
         </figure>
         <figure class="media-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
-          <div class="surface-visual surface-language" aria-hidden="true"></div>
+          <div class="surface-visual surface-language" aria-hidden="true">
+            <canvas class="surface-canvas" data-surface-canvas="language"></canvas>
+            <span class="surface-overlay"></span>
+            <span class="surface-badge" style="top:13%; left:13%;">trace / gate</span>
+            <span class="surface-badge" style="right:13%; bottom:13%;">release / score</span>
+          </div>
           <figcaption class="media-caption">
             <div>
               <strong>Language systems with gates and consequences.</strong>
@@ -1438,7 +1500,12 @@
       <div class="case-row">
         <article class="case-card" data-reveal="slide-left">
           <div class="case-image">
-            <div class="surface-visual surface-portfolio" aria-hidden="true"></div>
+            <div class="surface-visual surface-portfolio" aria-hidden="true">
+              <canvas class="surface-canvas" data-surface-canvas="portfolio"></canvas>
+              <span class="surface-overlay"></span>
+              <span class="surface-badge" style="top:13%; left:13%;">pnw / route</span>
+              <span class="surface-badge" style="right:13%; bottom:13%;">systems / connective</span>
+            </div>
           </div>
           <div class="case-copy case-copy-compact">
             <h3>From corridor sensing to harness logic.</h3>
@@ -1448,7 +1515,12 @@
 
         <article class="case-card" data-reveal="slide-right" style="--reveal-delay:80ms;">
           <div class="case-image">
-            <div class="surface-visual surface-artifact" aria-hidden="true"></div>
+            <div class="surface-visual surface-artifact" aria-hidden="true">
+              <canvas class="surface-canvas" data-surface-canvas="artifact"></canvas>
+              <span class="surface-overlay"></span>
+              <span class="surface-badge" style="top:13%; left:13%;">taste / materials</span>
+              <span class="surface-badge" style="right:13%; bottom:13%;">objects / room tone</span>
+            </div>
           </div>
           <div class="case-copy case-copy-compact">
             <h3>One taste system crossing very different mediums.</h3>
@@ -1478,7 +1550,12 @@
           <p>This is not about being everywhere. It is about being good in the spots that actually matter.</p>
         </article>
         <figure class="media-card manifesto-image" data-reveal="slide-right" style="--reveal-delay:80ms;">
-          <div class="surface-visual surface-manifesto" aria-hidden="true"></div>
+          <div class="surface-visual surface-manifesto" aria-hidden="true">
+            <canvas class="surface-canvas" data-surface-canvas="manifesto"></canvas>
+            <span class="surface-overlay"></span>
+            <span class="surface-badge" style="top:13%; left:13%;">signal / live</span>
+            <span class="surface-badge" style="right:13%; bottom:13%;">substance / authored</span>
+          </div>
         </figure>
       </div>
     </section>
@@ -1518,7 +1595,10 @@
       const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
       const parallaxNodes = Array.from(document.querySelectorAll("[data-parallax]"));
       const codePanel = document.querySelector("[data-type-code]");
+      const surfaceCanvases = Array.from(document.querySelectorAll("[data-surface-canvas]"));
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const mobileMedia = window.matchMedia("(max-width: 760px)");
+      const isMobileViewport = () => mobileMedia.matches;
 
       const setScrollProgress = () => {
         const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -1637,9 +1717,727 @@
         codeObserver.observe(codePanel);
       };
 
+      const initSurfaceAnimations = () => {
+        if (!surfaceCanvases.length) return;
+
+        const manifests = [
+          [
+            "signal / substance",
+            "bring the fuzzy thing",
+            "find the wires",
+            "less hype / more clarity",
+            "useful and unhurried",
+            "pacific northwest / live",
+            "taste is a discipline",
+            "field logic / no theater",
+            "real rooms / chosen on purpose",
+            "public systems / actual stakes",
+            "quiet work / loud outcomes",
+            "build the rig",
+            "name the ghost",
+            "make the weird thing work"
+          ],
+          [
+            "robotics / applied ai",
+            "sensing / prototyping",
+            "corridor scale / live",
+            "operators before optics",
+            "proof over posture",
+            "hardware has opinions",
+            "signals under pressure",
+            "models that meet reality",
+            "systems that survive contact",
+            "constraints are the brief",
+            "infrastructure / not rhetoric",
+            "actual field conditions",
+            "evidence before adjectives",
+            "the hard part / first"
+          ],
+          [
+            "pine / room first",
+            "drift / slower coast",
+            "nrthrn / designed objects",
+            "fw/r / systems facing",
+            "coffee with a memory",
+            "chairs chosen on purpose",
+            "materials with a reason",
+            "light / pace / return",
+            "objects that earn a counter",
+            "rooms that reset the nervous system",
+            "quiet corners / long mornings",
+            "hospitality without performance",
+            "slower worlds / sharper taste",
+            "built to be lived with"
+          ],
+          [
+            "language systems / gates and consequences",
+            "perception logic / corridor scale",
+            "evaluation / traces / scores",
+            "release decisions / evidence",
+            "sadie / harness logic",
+            "narwhal / report pressure",
+            "rag flows / held accountable",
+            "prompts that can answer back",
+            "frontier models / tight language",
+            "the trace matters",
+            "the score matters",
+            "the release matters",
+            "make the technical thing answerable",
+            "clarity is part of the build"
+          ],
+          [
+            "so cal / origin point",
+            "pnw / current signal",
+            "downtown vancouver / not canada",
+            "915 broadway st",
+            "one desk / four venture worlds",
+            "the block has range",
+            "witch shop on one side",
+            "hairy creature pizza on the other",
+            "blue bottle mornings",
+            "caspian after dark",
+            "russian circles / gray weather",
+            "ethel cain / long drive honesty",
+            "taylor swift / yes correctly",
+            "taste carries across mediums"
+          ],
+          [
+            "northbound / april 2027",
+            "campo to manning park",
+            "2,650-ish miles / by choice",
+            "pct / solo signal",
+            "boots / dust / notebooks",
+            "drone for the pretty parts",
+            "iphone for the regret later",
+            "the trail clears the static",
+            "movement as editing",
+            "distance as authorship",
+            "go until the story changes",
+            "route line / live body",
+            "weather has opinions",
+            "keep moving north"
+          ],
+          [
+            "product language is not strategy",
+            "metrics are not taste",
+            "ai discourse is mostly noise",
+            "geocities had more soul",
+            "north star / banned phrase",
+            "roadmap / another bad one",
+            "take this offline / never offline",
+            "frameworks can hide fear",
+            "culture decks kill culture",
+            "most demos lie politely",
+            "judgment still matters",
+            "the room can tell",
+            "if it is loud it thinks loud",
+            "keep the levels balanced"
+          ],
+          [
+            "not chasing scale",
+            "chasing a body of work",
+            "useful / not ubiquitous",
+            "show up where it matters",
+            "temporary marker / live site",
+            "personal index / connective tissue",
+            "ventures stand on their own",
+            "this page holds the signal",
+            "serious work / lived interfaces",
+            "future facing / physically grounded",
+            "temporary front door / real point of view",
+            "signal page / not brochure",
+            "authored surfaces / no filler",
+            "substance before polish"
+          ]
+        ];
+
+        const configs = surfaceCanvases.map((canvas, index) => {
+          const context = canvas.getContext("2d");
+          const container = canvas.parentElement;
+          if (!context || !container) return null;
+
+          const type = canvas.dataset.surfaceCanvas || "";
+          const mobile = isMobileViewport();
+          const state = {
+            canvas,
+            context,
+            container,
+            type,
+            width: 0,
+            height: 0,
+            dpr: 1,
+            phase: index * 0.93,
+            points: Array.from({ length: type === "perception" ? (mobile ? 18 : 28) : (mobile ? 12 : 18) }, (_, pointIndex) => ({
+              x: ((pointIndex * 73) % 97) / 100,
+              y: ((pointIndex * 41) % 89) / 100,
+              seed: pointIndex * 0.31 + index
+            })),
+            rows: Array.from({ length: mobile ? 5 : 6 }, (_, rowIndex) => rowIndex),
+            active: !mobile,
+            primed: false
+          };
+
+          return state;
+        }).filter(Boolean);
+
+        if (!configs.length) return;
+
+        const activeStates = new Set(configs.filter((state) => state.active));
+        const frameInterval = isMobileViewport() ? 1000 / 18 : 1000 / 30;
+        let lastFrameTime = 0;
+        let rafId = 0;
+
+        const updateStateMode = () => {
+          const mobile = isMobileViewport();
+          activeStates.clear();
+          configs.forEach((state) => {
+            state.rows = Array.from({ length: mobile ? 5 : 6 }, (_, rowIndex) => rowIndex);
+            if (state.type === "perception") {
+              state.points = Array.from({ length: mobile ? 18 : 28 }, (_, pointIndex) => ({
+                x: ((pointIndex * 73) % 97) / 100,
+                y: ((pointIndex * 41) % 89) / 100,
+                seed: pointIndex * 0.31 + configs.indexOf(state)
+              }));
+            } else {
+              state.points = Array.from({ length: mobile ? 12 : 18 }, (_, pointIndex) => ({
+                x: ((pointIndex * 73) % 97) / 100,
+                y: ((pointIndex * 41) % 89) / 100,
+                seed: pointIndex * 0.31 + configs.indexOf(state)
+              }));
+            }
+            if (!mobile) state.active = true;
+            if (state.active) activeStates.add(state);
+          });
+        };
+
+        const resizeSurface = (state) => {
+          const rect = state.container.getBoundingClientRect();
+          const nextWidth = Math.max(Math.round(rect.width), 1);
+          const nextHeight = Math.max(Math.round(rect.height), 1);
+          const nextDpr = Math.min(window.devicePixelRatio || 1, isMobileViewport() ? 1 : 1.5);
+
+          if (state.width === nextWidth && state.height === nextHeight && state.dpr === nextDpr) return;
+
+          state.width = nextWidth;
+          state.height = nextHeight;
+          state.dpr = nextDpr;
+          state.canvas.width = Math.round(nextWidth * nextDpr);
+          state.canvas.height = Math.round(nextHeight * nextDpr);
+          state.canvas.style.width = `${nextWidth}px`;
+          state.canvas.style.height = `${nextHeight}px`;
+          state.context.setTransform(nextDpr, 0, 0, nextDpr, 0, 0);
+        };
+
+        const primeSurface = (state) => {
+          if (state.primed) return;
+          state.primed = true;
+          state.container.classList.add("is-primed");
+        };
+
+        const drawRoundedRect = (ctx, x, y, width, height, radius) => {
+          const r = Math.min(radius, width / 2, height / 2);
+          ctx.beginPath();
+          ctx.moveTo(x + r, y);
+          ctx.arcTo(x + width, y, x + width, y + height, r);
+          ctx.arcTo(x + width, y + height, x, y + height, r);
+          ctx.arcTo(x, y + height, x, y, r);
+          ctx.arcTo(x, y, x + width, y, r);
+          ctx.closePath();
+        };
+
+        const drawTransit = (state, t) => {
+          const { context: ctx, width: w, height: h } = state;
+          ctx.clearRect(0, 0, w, h);
+
+          const grad = ctx.createLinearGradient(0, 0, w, h);
+          grad.addColorStop(0, "#08111b");
+          grad.addColorStop(0.45, "#0e1c2d");
+          grad.addColorStop(1, "#081018");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, w, h);
+
+          const vanishingX = w * 0.54;
+          const deckY = h * 0.78;
+
+          ctx.strokeStyle = "rgba(244,247,251,0.08)";
+          ctx.lineWidth = 1;
+          for (let i = -3; i < 8; i += 1) {
+            const startX = w * (0.08 + i * 0.1);
+            ctx.beginPath();
+            ctx.moveTo(startX, h);
+            ctx.lineTo(vanishingX, h * 0.2);
+            ctx.stroke();
+          }
+
+          const railOffsets = [-0.17, -0.09, 0.09, 0.17];
+          railOffsets.forEach((offset, idx) => {
+            const bottomX = vanishingX + offset * w * 1.08;
+            const topX = vanishingX + offset * w * 0.06;
+            ctx.strokeStyle = idx % 2 === 0 ? "rgba(168,116,78,0.92)" : "rgba(188,132,92,0.82)";
+            ctx.lineWidth = idx % 2 === 0 ? 4.4 : 3.2;
+            ctx.beginPath();
+            ctx.moveTo(bottomX, h);
+            ctx.lineTo(topX, h * 0.18);
+            ctx.stroke();
+          });
+
+          for (let i = 0; i < 7; i += 1) {
+            const depth = i / 6;
+            const y = deckY - depth * h * 0.44;
+            const half = w * (0.32 - depth * 0.22);
+            ctx.strokeStyle = "rgba(244,247,251,0.1)";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(vanishingX - half, y);
+            ctx.lineTo(vanishingX + half, y);
+            ctx.stroke();
+          }
+
+          const scanY = h * (0.62 + Math.sin(t * 0.9) * 0.06);
+          const beam = ctx.createLinearGradient(w * 0.1, scanY, w * 0.9, scanY);
+          beam.addColorStop(0, "rgba(154,248,198,0)");
+          beam.addColorStop(0.5, "rgba(154,248,198,0.9)");
+          beam.addColorStop(1, "rgba(154,248,198,0)");
+          ctx.strokeStyle = beam;
+          ctx.lineWidth = 2.2;
+          ctx.shadowBlur = 18;
+          ctx.shadowColor = "rgba(154,248,198,0.22)";
+          ctx.beginPath();
+          ctx.moveTo(w * 0.14, scanY);
+          ctx.lineTo(w * 0.86, scanY);
+          ctx.stroke();
+          ctx.shadowBlur = 0;
+
+          [0.28, 0.44, 0.63, 0.74].forEach((xp, idx) => {
+            const px = w * xp;
+            const py = scanY - (idx % 2 === 0 ? 12 : -8);
+            ctx.fillStyle = idx === 2 ? "rgba(242,144,255,0.88)" : "rgba(126,184,255,0.86)";
+            ctx.beginPath();
+            ctx.arc(px, py, 3.4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "rgba(244,247,251,0.12)";
+            ctx.strokeRect(px - 14, py - 10, 28, 20);
+          });
+        };
+
+        const drawPerception = (state, t) => {
+          const { context: ctx, width: w, height: h, points } = state;
+          ctx.clearRect(0, 0, w, h);
+          ctx.fillStyle = "#070b12";
+          ctx.fillRect(0, 0, w, h);
+
+          ctx.strokeStyle = "rgba(126,184,255,0.08)";
+          ctx.lineWidth = 1;
+          for (let x = 0; x < w; x += 28) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+          }
+          for (let y = 0; y < h; y += 28) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+          }
+
+          const sweep = ((t * 0.12) % 1) * Math.PI * 2;
+          ctx.save();
+          ctx.translate(w * 0.48, h * 0.58);
+          ctx.strokeStyle = "rgba(154,248,198,0.22)";
+          ctx.lineWidth = 1.2;
+          for (let r = 36; r < Math.min(w, h) * 0.42; r += 32) {
+            ctx.beginPath();
+            ctx.arc(0, 0, r, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.arc(0, 0, Math.min(w, h) * 0.42, sweep - 0.22, sweep + 0.22);
+          ctx.closePath();
+          const radar = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.min(w, h) * 0.42);
+          radar.addColorStop(0, "rgba(154,248,198,0.18)");
+          radar.addColorStop(1, "rgba(154,248,198,0)");
+          ctx.fillStyle = radar;
+          ctx.fill();
+          ctx.restore();
+
+          points.forEach((point, idx) => {
+            const px = (point.x * 0.72 + 0.14 + Math.sin(t * 0.6 + point.seed) * 0.018) * w;
+            const py = (point.y * 0.62 + 0.18 + Math.cos(t * 0.7 + point.seed) * 0.024) * h;
+            const active = idx % 7 === 0;
+            ctx.fillStyle = active ? "rgba(154,248,198,0.94)" : "rgba(244,247,251,0.58)";
+            ctx.beginPath();
+            ctx.arc(px, py, active ? 2.8 : 1.7, 0, Math.PI * 2);
+            ctx.fill();
+            if (active) {
+              ctx.strokeStyle = "rgba(154,248,198,0.28)";
+              ctx.strokeRect(px - 18, py - 12, 36, 24);
+            }
+          });
+        };
+
+        const drawLanguage = (state, t) => {
+          const { context: ctx, width: w, height: h, rows } = state;
+          ctx.clearRect(0, 0, w, h);
+          const grad = ctx.createLinearGradient(0, 0, 0, h);
+          grad.addColorStop(0, "#0b0f17");
+          grad.addColorStop(1, "#090d14");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, w, h);
+
+          const panelX = w * 0.12;
+          const panelY = h * 0.16;
+          const panelW = w * 0.76;
+          const panelH = h * 0.66;
+          drawRoundedRect(ctx, panelX, panelY, panelW, panelH, 22);
+          ctx.fillStyle = "rgba(11, 15, 22, 0.96)";
+          ctx.fill();
+          ctx.strokeStyle = "rgba(244,247,251,0.08)";
+          ctx.stroke();
+
+          rows.forEach((row, idx) => {
+            const y = panelY + 24 + idx * ((panelH - 48) / rows.length);
+            const length = panelW * (0.28 + ((idx * 19) % 10) / 18);
+            ctx.fillStyle = idx % 3 === 0 ? "rgba(126,184,255,0.82)" : "rgba(244,247,251,0.18)";
+            ctx.fillRect(panelX + 22, y, length, 3);
+            ctx.fillStyle = idx % 2 === 0 ? "rgba(195,232,141,0.74)" : "rgba(242,144,255,0.68)";
+            ctx.fillRect(panelX + panelW - 110, y - 5, 72 + Math.sin(t * 2 + idx) * 18, 10);
+          });
+
+          const cursorY = panelY + 26 + (((t * 0.8) % rows.length) * ((panelH - 48) / rows.length));
+          ctx.fillStyle = "rgba(195,232,141,0.92)";
+          ctx.fillRect(panelX + 18, cursorY - 5, 5, 13);
+        };
+
+        const drawPortfolio = (state, t) => {
+          const { context: ctx, width: w, height: h } = state;
+          ctx.clearRect(0, 0, w, h);
+          const grad = ctx.createLinearGradient(0, 0, w, h);
+          grad.addColorStop(0, "#0c121c");
+          grad.addColorStop(1, "#0a0c12");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, w, h);
+
+          ctx.strokeStyle = "rgba(126,184,255,0.1)";
+          ctx.lineWidth = 1;
+          for (let x = w * 0.12; x < w * 0.9; x += 38) {
+            ctx.beginPath();
+            ctx.moveTo(x, h * 0.14);
+            ctx.lineTo(x, h * 0.86);
+            ctx.stroke();
+          }
+          for (let y = h * 0.14; y < h * 0.86; y += 34) {
+            ctx.beginPath();
+            ctx.moveTo(w * 0.12, y);
+            ctx.lineTo(w * 0.88, y);
+            ctx.stroke();
+          }
+
+          const routes = [
+            [[0.18, 0.24], [0.34, 0.4], [0.48, 0.36], [0.67, 0.56]],
+            [[0.24, 0.68], [0.38, 0.6], [0.55, 0.72], [0.76, 0.62]],
+            [[0.14, 0.5], [0.3, 0.46], [0.46, 0.54], [0.62, 0.42]]
+          ];
+
+          routes.forEach((route, routeIndex) => {
+            ctx.beginPath();
+            route.forEach(([rx, ry], pointIndex) => {
+              const px = rx * w;
+              const py = ry * h;
+              if (pointIndex === 0) ctx.moveTo(px, py);
+              else ctx.lineTo(px, py);
+            });
+            ctx.strokeStyle = routeIndex === 1 ? "rgba(242,144,255,0.6)" : "rgba(154,248,198,0.72)";
+            ctx.lineWidth = routeIndex === 2 ? 1.6 : 2.2;
+            ctx.stroke();
+          });
+
+          const progress = (t * 0.18) % 1;
+          const pulsePoints = [
+            [0.18 + progress * 0.49, 0.24 + progress * 0.32],
+            [0.24 + progress * 0.52, 0.68 - progress * 0.06],
+            [0.14 + progress * 0.48, 0.5 - progress * 0.08]
+          ];
+          pulsePoints.forEach(([pxn, pyn], idx) => {
+            const px = pxn * w;
+            const py = pyn * h;
+            ctx.beginPath();
+            ctx.fillStyle = idx === 1 ? "rgba(242,144,255,0.95)" : "rgba(154,248,198,0.95)";
+            ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "rgba(244,247,251,0.12)";
+            ctx.beginPath();
+            ctx.arc(px, py, 12 + Math.sin(t * 3 + idx) * 4, 0, Math.PI * 2);
+            ctx.stroke();
+          });
+        };
+
+        const drawArtifact = (state, t) => {
+          const { context: ctx, width: w, height: h } = state;
+          ctx.clearRect(0, 0, w, h);
+          const grad = ctx.createLinearGradient(0, 0, w, h);
+          grad.addColorStop(0, "#171117");
+          grad.addColorStop(0.55, "#11151d");
+          grad.addColorStop(1, "#0c1016");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, w, h);
+
+          const boardX = w * 0.09;
+          const boardY = h * 0.12;
+          const boardW = w * 0.82;
+          const boardH = h * 0.76;
+          drawRoundedRect(ctx, boardX, boardY, boardW, boardH, 24);
+          ctx.fillStyle = "rgba(8, 10, 14, 0.34)";
+          ctx.fill();
+          ctx.strokeStyle = "rgba(244,247,251,0.07)";
+          ctx.stroke();
+
+          const strips = [
+            { y: 0.18, speed: 18, color: "rgba(246,203,131,0.85)", label: "brass" },
+            { y: 0.36, speed: 24, color: "rgba(244,247,251,0.72)", label: "linen" },
+            { y: 0.54, speed: 20, color: "rgba(242,144,255,0.82)", label: "glass" },
+            { y: 0.72, speed: 28, color: "rgba(126,184,255,0.82)", label: "walnut" }
+          ];
+
+          strips.forEach((strip, idx) => {
+            const y = boardY + boardH * strip.y;
+            const drift = ((t * strip.speed) + idx * 80) % (boardW * 0.42);
+            ctx.strokeStyle = "rgba(244,247,251,0.08)";
+            ctx.beginPath();
+            ctx.moveTo(boardX + 20, y);
+            ctx.lineTo(boardX + boardW - 20, y);
+            ctx.stroke();
+
+            const cardW = boardW * 0.26;
+            const cardH = 34;
+            const x = boardX + 26 + drift;
+            drawRoundedRect(ctx, x, y - cardH / 2, cardW, cardH, 10);
+            ctx.fillStyle = "rgba(12, 14, 20, 0.88)";
+            ctx.fill();
+            ctx.strokeStyle = strip.color;
+            ctx.stroke();
+            ctx.fillStyle = strip.color;
+            ctx.fillRect(x + 12, y - 5, 54 + idx * 10, 2);
+            ctx.fillRect(x + 12, y + 5, 88 + ((idx + 1) % 3) * 18, 2);
+            ctx.font = "10px Fragment Mono, monospace";
+            ctx.fillText(strip.label, x + cardW - 46, y + 3.5);
+          });
+
+          const wheelCx = boardX + boardW * 0.78;
+          const wheelCy = boardY + boardH * 0.28;
+          const wheelR = 42;
+          for (let i = 0; i < 5; i += 1) {
+            const angle = t * 0.6 + i * (Math.PI * 2 / 5);
+            const x = wheelCx + Math.cos(angle) * wheelR;
+            const y = wheelCy + Math.sin(angle) * wheelR;
+            ctx.beginPath();
+            ctx.fillStyle = [
+              "rgba(246,203,131,0.92)",
+              "rgba(244,247,251,0.78)",
+              "rgba(242,144,255,0.9)",
+              "rgba(126,184,255,0.88)",
+              "rgba(154,248,198,0.88)"
+            ][i];
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(244,247,251,0.12)";
+          ctx.arc(wheelCx, wheelCy, wheelR, 0, Math.PI * 2);
+          ctx.stroke();
+
+          const noteX = boardX + 18;
+          const noteY = boardY + boardH - 62;
+          const notes = [
+            "object language / quiet",
+            "room tone / slow",
+            "chair spec / saved"
+          ];
+          ctx.font = "10px Fragment Mono, monospace";
+          notes.forEach((note, idx) => {
+            const y = noteY + idx * 16;
+            ctx.fillStyle = idx === 0 ? "rgba(244,247,251,0.76)" : "rgba(244,247,251,0.48)";
+            ctx.fillText(note, noteX, y);
+          });
+        };
+
+        const drawManifesto = (state, t) => {
+          const { context: ctx, width: w, height: h } = state;
+          ctx.clearRect(0, 0, w, h);
+          const grad = ctx.createLinearGradient(0, 0, w, h);
+          grad.addColorStop(0, "#120f1b");
+          grad.addColorStop(0.5, "#141223");
+          grad.addColorStop(1, "#0a0c14");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, w, h);
+
+          const glow = ctx.createRadialGradient(w * 0.54, h * 0.44, 0, w * 0.54, h * 0.44, w * 0.54);
+          glow.addColorStop(0, "rgba(242,144,255,0.12)");
+          glow.addColorStop(1, "rgba(242,144,255,0)");
+          ctx.fillStyle = glow;
+          ctx.fillRect(0, 0, w, h);
+
+          const ribbons = [
+            { y: 0.18, speed: 34, color: "rgba(244,247,251,0.82)", size: 0.037 },
+            { y: 0.27, speed: -24, color: "rgba(154,248,198,0.74)", size: 0.033 },
+            { y: 0.36, speed: 20, color: "rgba(126,184,255,0.72)", size: 0.032 },
+            { y: 0.45, speed: -18, color: "rgba(242,144,255,0.74)", size: 0.035 },
+            { y: 0.54, speed: 28, color: "rgba(244,247,251,0.66)", size: 0.031 },
+            { y: 0.63, speed: -22, color: "rgba(246,203,131,0.74)", size: 0.03 },
+            { y: 0.72, speed: 16, color: "rgba(154,248,198,0.64)", size: 0.03 },
+            { y: 0.81, speed: -14, color: "rgba(126,184,255,0.62)", size: 0.029 }
+          ];
+
+          ribbons.forEach((ribbon, idx) => {
+            const y = h * ribbon.y + Math.sin(t * 0.8 + idx) * 4;
+            ctx.font = `700 ${Math.max(18, w * ribbon.size)}px Manrope, sans-serif`;
+            const text = `${manifests[idx].join("   //   ")}   //   `;
+            const metrics = ctx.measureText(text);
+            const unit = Math.max(metrics.width, 1);
+            const raw = ((t * ribbon.speed) % unit + unit) % unit;
+            const offset = ribbon.speed > 0 ? -raw : raw - unit;
+            ctx.fillStyle = ribbon.color;
+            ctx.textBaseline = "middle";
+            for (let x = offset - unit; x < w + unit; x += unit) {
+              ctx.fillText(text, x, y);
+            }
+          });
+
+          ctx.strokeStyle = "rgba(244,247,251,0.1)";
+          ctx.beginPath();
+          ctx.moveTo(w * 0.1, h * 0.14);
+          ctx.lineTo(w * 0.9, h * 0.14);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(w * 0.1, h * 0.88);
+          ctx.lineTo(w * 0.9, h * 0.88);
+          ctx.stroke();
+
+          ctx.fillStyle = "rgba(244,247,251,0.42)";
+          ctx.font = "10px Fragment Mono, monospace";
+          ctx.fillText("signal / authored surface", w * 0.1, h * 0.11);
+        };
+
+        const drawFrame = (now) => {
+          if (!reducedMotion && now - lastFrameTime < frameInterval) {
+            rafId = window.requestAnimationFrame(drawFrame);
+            return;
+          }
+          lastFrameTime = now;
+          rafId = 0;
+
+          const t = now / 1000;
+          const statesToDraw = reducedMotion ? configs : Array.from(activeStates);
+          statesToDraw.forEach((state) => {
+            resizeSurface(state);
+            if (!state.width || !state.height) return;
+            switch (state.type) {
+              case "transit":
+                drawTransit(state, reducedMotion ? 0.8 : t + state.phase);
+                break;
+              case "perception":
+                drawPerception(state, reducedMotion ? 0.6 : t + state.phase);
+                break;
+              case "language":
+                drawLanguage(state, reducedMotion ? 0.5 : t + state.phase);
+                break;
+              case "portfolio":
+                drawPortfolio(state, reducedMotion ? 0.4 : t + state.phase);
+                break;
+              case "artifact":
+                drawArtifact(state, reducedMotion ? 0.3 : t + state.phase);
+                break;
+              case "manifesto":
+                drawManifesto(state, reducedMotion ? 0.2 : t + state.phase);
+                break;
+              default:
+                break;
+            }
+            primeSurface(state);
+          });
+
+          if (!reducedMotion && document.visibilityState === "visible") {
+            rafId = window.requestAnimationFrame(drawFrame);
+          }
+        };
+
+        const resizeAll = () => configs.forEach((state) => {
+          resizeSurface(state);
+          if (state.width && state.height) {
+            switch (state.type) {
+              case "transit":
+                drawTransit(state, 0.8 + state.phase);
+                break;
+              case "perception":
+                drawPerception(state, 0.6 + state.phase);
+                break;
+              case "language":
+                drawLanguage(state, 0.5 + state.phase);
+                break;
+              case "portfolio":
+                drawPortfolio(state, 0.4 + state.phase);
+                break;
+              case "artifact":
+                drawArtifact(state, 0.3 + state.phase);
+                break;
+              case "manifesto":
+                drawManifesto(state, 0.2 + state.phase);
+                break;
+              default:
+                break;
+            }
+            primeSurface(state);
+          }
+        });
+
+        if (isMobileViewport()) {
+          const surfaceObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              const state = configs.find((candidate) => candidate.container === entry.target);
+              if (!state) return;
+              state.active = entry.isIntersecting;
+              if (entry.isIntersecting) activeStates.add(state);
+              else activeStates.delete(state);
+            });
+          }, {
+            rootMargin: "180px 0px 180px 0px",
+            threshold: 0.02
+          });
+          configs.forEach((state) => surfaceObserver.observe(state.container));
+        }
+
+        const handleVisibilityChange = () => {
+          if (reducedMotion) return;
+          if (document.visibilityState === "visible") {
+            lastFrameTime = 0;
+            if (!rafId) rafId = window.requestAnimationFrame(drawFrame);
+          } else if (rafId) {
+            window.cancelAnimationFrame(rafId);
+            rafId = 0;
+          }
+        };
+
+        resizeAll();
+        if (reducedMotion) drawFrame(0);
+        else {
+          window.setTimeout(() => {
+            if (!rafId && document.visibilityState === "visible") {
+              rafId = window.requestAnimationFrame(drawFrame);
+            }
+          }, isMobileViewport() ? 220 : 120);
+        }
+        window.addEventListener("resize", () => {
+          updateStateMode();
+          resizeAll();
+        });
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+      };
+
       setScrollProgress();
       updateParallax();
       initTypedCode();
+      initSurfaceAnimations();
       window.addEventListener("scroll", onScroll, { passive: true });
       window.addEventListener("resize", updateParallax);
     })();
