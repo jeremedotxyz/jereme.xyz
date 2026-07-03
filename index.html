@@ -822,6 +822,11 @@
       background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 52%);
     }
 
+    .surface-manifesto::after,
+    .surface-manifesto .surface-overlay {
+      display: none;
+    }
+
     .media-caption {
       display: flex;
       justify-content: space-between;
@@ -1180,29 +1185,30 @@
     }
 
     @media (max-width: 760px) {
-      .page { width: min(100% - 24px, 1480px); padding-top: 12px; padding-bottom: 44px; }
+      .page { width: min(100% - 20px, 1480px); padding-top: 10px; padding-bottom: 40px; }
       .topbar {
         position: static;
         flex-direction: column;
         align-items: flex-start;
-        gap: 14px;
-        padding: 14px 14px 16px;
-        border-radius: 24px;
+        gap: 12px;
+        padding: 12px 12px 14px;
+        margin-bottom: 18px;
+        border-radius: 22px;
       }
       .brand { font-size: 11px; }
       .nav {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+        gap: 8px;
         justify-content: stretch;
       }
       .nav a {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        min-height: 38px;
-        padding: 0 12px;
+        min-height: 40px;
+        padding: 0 10px;
         border: 1px solid var(--line);
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.02);
@@ -1219,12 +1225,12 @@
         opacity: 1;
         transform: none;
       }
-      .hero { padding-top: 24px; }
+      .hero { padding-top: 18px; }
       .hero-grid > div:first-child { padding-right: 8px; min-width: 0; }
       .hero h1 {
         max-width: 8ch;
-        font-size: clamp(34px, 11.4vw, 58px);
-        line-height: 0.94;
+        font-size: clamp(34px, 11vw, 54px);
+        line-height: 0.95;
       }
       .hero-copy,
       .section-lead,
@@ -1232,28 +1238,29 @@
       .manifesto-card p,
       .copy-card p {
         max-width: 100%;
-        padding-right: 6px;
-        font-size: 16px;
+        padding-right: 2px;
+        font-size: 15px;
+        line-height: 1.42;
       }
       .hero-platforms {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 8px;
       }
       .pill {
-        min-height: 42px;
-        padding: 10px 12px;
+        min-height: 40px;
+        padding: 10px 11px;
         justify-content: flex-start;
       }
       .hero-actions {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 10px;
+        gap: 8px;
       }
       .button,
       .button-muted {
         width: 100%;
-        min-height: 48px;
+        min-height: 46px;
       }
       .hero-panel { padding: 12px; }
       .hero-panel,
@@ -1275,11 +1282,12 @@
       .footer,
       .cta-card {
         grid-template-columns: 1fr;
+        gap: 14px;
       }
-      .section-block { padding-top: 28px; }
+      .section-block { padding-top: 24px; }
       .section-title {
-        max-width: 10ch;
-        font-size: clamp(28px, 9vw, 42px);
+        max-width: 11ch;
+        font-size: clamp(28px, 8.4vw, 40px);
         line-height: 0.98;
       }
       .feature-card,
@@ -1288,14 +1296,14 @@
       .case-copy,
       .manifesto-card,
       .cta-card,
-      .ticker-card { padding: 18px; }
+      .ticker-card { padding: 16px; }
       .feature-card { min-height: 0; }
       .feature-card h3,
-      .case-copy h3 { font-size: 24px; }
+      .case-copy h3 { font-size: 22px; }
       .copy-card h3,
       .manifesto-card h3 {
         max-width: none;
-        font-size: clamp(26px, 8vw, 38px);
+        font-size: clamp(25px, 7.8vw, 36px);
       }
       .quote-card {
         min-height: 0;
@@ -1319,7 +1327,7 @@
       }
       .ticker {
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        gap: 10px 12px;
       }
       .surface,
       .feature-card,
@@ -1330,10 +1338,49 @@
       .ticker-card,
       .manifesto-card,
       .cta-card { border-radius: 24px; }
+      .surface-visual { aspect-ratio: 16 / 11; }
+      .surface-badge {
+        gap: 6px;
+        padding: 6px 8px 5px;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        backdrop-filter: blur(4px);
+      }
+      .surface-badge::before {
+        width: 5px;
+        height: 5px;
+      }
+      .surface-overlay { inset: 6% 5%; border-radius: 20px; }
+      .hero-panel-top { padding-bottom: 12px; }
+      .hero-panel-label { font-size: 10px; }
+      .code-card pre {
+        padding: 14px 14px 16px;
+        font-size: 11.5px;
+        line-height: 1.58;
+      }
+      .media-caption {
+        gap: 10px;
+        padding: 14px 14px 16px;
+      }
+      .media-caption strong { font-size: 14px; }
+      .media-caption span { font-size: 12px; line-height: 1.42; }
+      .feature-card:hover,
+      .media-card:hover,
+      .copy-card:hover,
+      .quote-card:hover,
+      .case-card:hover,
+      .ticker-card:hover,
+      .manifesto-card:hover,
+      .cta-card:hover,
+      .button:hover,
+      .button-muted:hover,
+      .pill:hover {
+        transform: none;
+      }
       .manifesto-image .surface-visual {
         height: auto;
         min-height: 0;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 16 / 11;
       }
       .footer { grid-template-columns: 1fr; gap: 10px; }
       .footer-column { gap: 8px; padding-top: 14px; }
@@ -1558,8 +1605,8 @@
           <div class="surface-visual surface-manifesto" aria-hidden="true">
             <canvas class="surface-canvas" data-surface-canvas="manifesto"></canvas>
             <span class="surface-overlay"></span>
-            <span class="surface-badge" style="top:13%; left:13%;">signal / live</span>
-            <span class="surface-badge" style="right:13%; bottom:13%;">substance / authored</span>
+            <span class="surface-badge" style="top:5%; left:5%;">signal / live</span>
+            <span class="surface-badge" style="right:5%; bottom:5%;">substance / aquired</span>
           </div>
         </figure>
       </div>
@@ -2252,19 +2299,6 @@
           ctx.arc(wheelCx, wheelCy, wheelR, 0, Math.PI * 2);
           ctx.stroke();
 
-          const noteX = boardX + 18;
-          const noteY = boardY + boardH - 62;
-          const notes = [
-            "object language / quiet",
-            "room tone / slow",
-            "chair spec / saved"
-          ];
-          ctx.font = "10px Fragment Mono, monospace";
-          notes.forEach((note, idx) => {
-            const y = noteY + idx * 16;
-            ctx.fillStyle = idx === 0 ? "rgba(244,247,251,0.76)" : "rgba(244,247,251,0.48)";
-            ctx.fillText(note, noteX, y);
-          });
         };
 
         const drawManifesto = (state, t) => {
@@ -2319,9 +2353,6 @@
           ctx.lineTo(w * 0.9, h * 0.88);
           ctx.stroke();
 
-          ctx.fillStyle = "rgba(244,247,251,0.42)";
-          ctx.font = "10px Fragment Mono, monospace";
-          ctx.fillText("signal / authored surface", w * 0.1, h * 0.11);
         };
 
         const drawFrame = (now) => {
