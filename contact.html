@@ -123,8 +123,8 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.72fr);
+      gap: 18px;
       align-items: end;
       padding: 48px 0 34px;
     }
@@ -165,6 +165,44 @@
       letter-spacing: -0.03em;
     }
 
+    .contact-rail {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(140, 200, 255, 0.08), rgba(152, 255, 210, 0.04)),
+        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012));
+      box-shadow: var(--shadow);
+      align-self: stretch;
+    }
+
+    .contact-rail-item {
+      display: grid;
+      gap: 8px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-rail-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .contact-rail strong {
+      font-size: clamp(20px, 2vw, 30px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .contact-rail span {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
     .button {
       display: inline-flex;
       align-items: center;
@@ -181,7 +219,9 @@
       transition: transform 180ms ease;
     }
 
-    .button:hover { transform: translateY(-2px); }
+    @media (hover: hover) and (pointer: fine) {
+      .button:hover { transform: translateY(-1px); }
+    }
 
     .footer {
       display: grid;
@@ -308,6 +348,7 @@
 
     @media (max-width: 1120px) {
       .hero { grid-template-columns: 1fr; }
+      .contact-rail { padding: 20px; }
       .closing { grid-template-columns: 1fr; }
       .closing-copy {
         margin-left: 0;
@@ -357,6 +398,23 @@
         <h1 class="hero-title">Bring the fuzzy thing.</h1>
         <p class="hero-copy">If the project sits somewhere between technical complexity, product judgment, physical reality, and the need for taste, send it over. Good starting material includes a rough brief, a broken workflow, a field problem, or simply the thing that keeps refusing to become clear.</p>
       </div>
+      <aside class="contact-rail" data-reveal="slide-right" style="--reveal-delay:80ms;">
+        <div class="contact-rail-item">
+          <div class="label">Best input</div>
+          <strong>Half-formed is fine.</strong>
+          <span>A rough problem statement, a dead end, or the thing that keeps failing in the real world is enough to start.</span>
+        </div>
+        <div class="contact-rail-item">
+          <div class="label">Useful shape</div>
+          <strong>Constraint beats polish.</strong>
+          <span>The more specific the friction, environment, or risk, the faster the actual work gets legible.</span>
+        </div>
+        <div class="contact-rail-item">
+          <div class="label">Working bias</div>
+          <strong>Clarity before theater.</strong>
+          <span>Good projects usually start by naming the real problem before anybody rushes into a performance of certainty.</span>
+        </div>
+      </aside>
     </section>
 
     <section class="section" data-reveal>
