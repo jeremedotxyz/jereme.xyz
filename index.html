@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -300,7 +301,7 @@
     .terminal-lights i { display: block; width: 8px; height: 8px; border-radius: 50%; background: #e8e8df; }
     .terminal-lights i:nth-child(2) { background: var(--acid); }
     .terminal-lights i:nth-child(3) { background: var(--red); }
-    .terminal-code { flex: 1; margin: 0; padding: clamp(28px, 5vw, 68px) clamp(22px, 5vw, 62px); overflow: hidden; font: 400 clamp(13px, 1.33vw, 19px)/1.68 var(--mono); white-space: pre-wrap; }
+    .terminal-code { flex: 1; margin: 0; padding: clamp(28px, 5vw, 68px) clamp(22px, 5vw, 62px); overflow: hidden; font: 400 clamp(13px, 1.33vw, 19px)/1.68 var(--mono); overflow-wrap: anywhere; white-space: pre-wrap; }
     .terminal-code .comment { color: #8f8f88; }
     .terminal-code .syntax-key { color: var(--acid); }
     .terminal-code .syntax-fn { color: #9bb1ff; }
@@ -389,7 +390,7 @@
       .sequence-list p { max-width: 39ch; }
       .instrument-copy { min-height: 390px; }
       .terminal { min-height: 410px; }
-      .terminal-code { font-size: 12px; line-height: 1.63; }
+      .terminal-code { font-size: 12px; line-height: 1.63; overflow-wrap: anywhere; }
       .field-visual { min-height: 400px; }
       .field-copy { min-height: 420px; }
       .split-proof { grid-template-columns: 1fr; }
@@ -413,11 +414,6 @@
   <div class="site-shell">
     <header class="site-header">
       <a class="identity" href="https://jereme.xyz/" aria-label="jereme.xyz home"><span class="identity-mark"></span><span>jereme.xyz / personal index</span></a>
-      <nav class="primary-nav" aria-label="Primary navigation">
-        <a href="https://jereme.xyz/site/fwr/fwr.html">Work</a>
-        <a href="https://jereme.xyz/about/">About</a>
-        <a href="https://jereme.xyz/contact.html">Contact</a>
-      </nav>
     </header>
 
     <main>
@@ -565,6 +561,7 @@
       const fieldCanvas = document.getElementById('fieldCanvas');
       const status = document.getElementById('heroStatus');
       const typed = document.getElementById('typedCode');
+      const terminal = document.querySelector('.terminal');
       const typeMarkup = [
         '<span class="comment">// operating sequence / live file</span>\n',
         '<span class="syntax-key">const</span> brief = <span class="syntax-fn">bring</span>(<span class="syntax-str">"the fuzzy thing"</span>)\n\n',
@@ -614,7 +611,18 @@
         };
         tick();
       };
-      typeCode();
+      if (reduce) {
+        typeCode();
+      } else if (terminal) {
+        const terminalObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            typeCode();
+            terminalObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.35, rootMargin: '0px 0px -12% 0px' });
+        terminalObserver.observe(terminal);
+      }
 
       const configure = (canvas) => {
         const rect = canvas.getBoundingClientRect();
