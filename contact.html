@@ -21,6 +21,15 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
   <style>.contact-art{background:var(--blue)}.contact-art:before{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),rgba(244,243,238,.18) calc(25% - 1px),rgba(244,243,238,.18) 25%),repeating-linear-gradient(0deg,transparent 0,transparent calc(20% - 1px),rgba(244,243,238,.18) calc(20% - 1px),rgba(244,243,238,.18) 20%);content:""}.contact-art .art-caption{max-width:14ch}.contact-art .orbit{position:absolute;width:min(58vw,420px);aspect-ratio:1;border:1px solid rgba(217,255,63,.9);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}.contact-art .orbit:before,.contact-art .orbit:after{position:absolute;border:1px solid rgba(217,255,63,.7);border-radius:50%;content:""}.contact-art .orbit:before{inset:16%}.contact-art .orbit:after{inset:34%;background:var(--acid)}.contact-art .line{position:absolute;top:50%;left:0;width:100%;height:2px;background:var(--acid);box-shadow:0 0 20px var(--acid);animation:scan 3.6s ease-in-out infinite}@keyframes scan{0%,100%{transform:translateY(-72px)}50%{transform:translateY(72px)}}.contact-direct{background:var(--ink);color:var(--paper)}.contact-direct h2{color:var(--paper)}.contact-direct p{color:rgba(244,243,238,.64)}.contact-direct .button{background:var(--acid);color:var(--ink)}.contact-direct .button:hover{background:var(--paper)}@media (prefers-reduced-motion:reduce){.contact-art .line{animation:none}}</style>
+  <style>
+    .site-header{display:flex;min-height:57px;align-items:center}.identity{white-space:nowrap}
+    .page-hero{min-height:calc(100svh - 57px);max-height:860px}.hero-copy{gap:48px}
+    .button{border:1px solid transparent}.button:active{transform:translateY(0)}
+    .contact-direct .label{color:rgba(244,243,238,.5)}.quote .button{align-self:flex-end}
+    footer{min-height:240px;align-items:start;padding-top:42px}.footer-links{grid-template-columns:repeat(2,minmax(0,140px))}
+    @media(max-width:800px){.page-hero{min-height:0;max-height:none}.hero-copy{min-height:auto;padding-top:72px;padding-bottom:64px}.hero-art{min-height:400px}footer{min-height:0}}
+    @media(max-width:600px){.site-header{min-height:52px}.hero-copy{min-height:0;gap:40px;padding:48px var(--gutter) 52px}.hero-copy h1{margin:38px 0 24px}.hero-art{min-height:360px}.contact-art .orbit{width:76vw}.split>*{min-height:260px;padding-top:38px;padding-bottom:42px}.split h2{margin-top:54px}.quote{min-height:0;gap:40px;padding:50px var(--gutter)}.quote .button{width:100%}footer{gap:40px;padding:36px var(--gutter) 42px}.footer-links{width:100%;grid-template-columns:1fr 1fr;column-gap:24px}}
+  </style>
 </head><body>
 <div class="progress" aria-hidden="true"></div><header class="site-header"><a class="identity" href="https://jereme.xyz/">jereme.xyz / personal index</a></header>
 <main>
