@@ -30,8 +30,16 @@
     @media(max-width:800px){.page-hero{min-height:0;max-height:none}.hero-copy{min-height:auto;padding-top:72px;padding-bottom:64px}.hero-art{min-height:400px}footer{min-height:0}}
     @media(max-width:600px){.site-header{min-height:52px}.hero-copy{min-height:0;gap:40px;padding:48px var(--gutter) 52px}.hero-copy h1{margin:38px 0 24px}.hero-art{min-height:360px}.contact-art .orbit{width:76vw}.split>*{min-height:260px;padding-top:38px;padding-bottom:42px}.split h2{margin-top:54px}.quote{min-height:0;gap:40px;padding:50px var(--gutter)}.quote .button{width:100%}footer{gap:40px;padding:36px var(--gutter) 42px}.footer-links{width:100%;grid-template-columns:1fr 1fr;column-gap:24px}}
   </style>
+  <style>
+    .primary-nav{display:flex;gap:clamp(14px,2.8vw,38px);margin-left:auto}
+    .primary-nav a{position:relative;padding:3px 0;font:500 12px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+    .primary-nav a:after{position:absolute;right:0;bottom:-2px;left:0;height:1px;background:var(--ink);content:"";transform:scaleX(0);transform-origin:left;transition:transform 180ms ease}
+    .primary-nav a:hover:after{transform:scaleX(1)}
+    @media(max-width:600px){.primary-nav{gap:13px}.primary-nav a{font-size:10px}}
+    @media(max-width:430px){.site-header{gap:10px}.identity{font-size:9px;letter-spacing:.03em}.identity:before{width:7px;height:7px}.primary-nav{gap:9px}.primary-nav a{font-size:9px;letter-spacing:.03em}}
+  </style>
 </head><body>
-<div class="progress" aria-hidden="true"></div><header class="site-header"><a class="identity" href="https://jereme.xyz/">jereme.xyz / personal index</a></header>
+<div class="progress" aria-hidden="true"></div><header class="site-header"><a class="identity" href="https://jereme.xyz/">jereme.xyz / personal index</a><nav class="primary-nav" aria-label="Primary"><a href="https://jereme.xyz/">Index</a><a href="https://jereme.xyz/site/fwr/fwr.html">Work</a><a href="https://jereme.xyz/about/">About</a></nav></header>
 <main>
   <section class="page-hero"><div class="hero-copy"><div><div class="section-no">Contact / start here</div><h1>Bring the fuzzy thing.</h1><p>If the project sits somewhere between technical complexity, product judgment, physical reality, and the need for taste, send it over. Good starting material includes a rough brief, a broken workflow, a field problem, or simply the thing that keeps refusing to become clear.</p></div><p class="hero-caption">The first step is rarely having the answer. It is getting specific enough about the question.</p></div><aside class="hero-art contact-art"><div class="art-label label">Signal / open channel</div><div class="orbit"></div><div class="line"></div><div class="art-caption">Half-formed is fine. Reality is the useful part.</div></aside></section>
   <section class="split contact-direct"><article><div class="label">Best input</div><h2>Half-formed is fine.</h2><p>A rough problem statement, a dead end, or the thing that keeps failing in the real world is enough to start.</p></article><article><div class="label">Working bias</div><h2>Clarity before theater.</h2><p>Good projects usually start by naming the real problem before anybody rushes into a performance of certainty.</p></article></section>
