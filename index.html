@@ -408,12 +408,26 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
+  <style>
+    @media (max-width: 430px) {
+      .site-header { gap: 10px; }
+      .identity { font-size: 9px; letter-spacing: 0.03em; }
+      .identity-mark { width: 7px; height: 7px; flex-basis: 7px; }
+      .primary-nav { gap: 9px; }
+      .primary-nav a { font-size: 9px; letter-spacing: 0.03em; }
+    }
+  </style>
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
   <div class="site-shell">
     <header class="site-header">
       <a class="identity" href="https://jereme.xyz/" aria-label="jereme.xyz home"><span class="identity-mark"></span><span>jereme.xyz / personal index</span></a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="https://jereme.xyz/site/fwr/fwr.html">Work</a>
+        <a href="https://jereme.xyz/about/">About</a>
+        <a href="https://jereme.xyz/contact.html">Contact</a>
+      </nav>
     </header>
 
     <main>
