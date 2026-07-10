@@ -33,8 +33,16 @@
     @media(max-width:800px){.page-hero{min-height:0;max-height:none}.hero-copy{min-height:auto;padding-top:72px;padding-bottom:64px}.hero-copy h1{font-size:68px}.hero-art{min-height:400px}footer{min-height:0}}
     @media(max-width:600px){.site-header{min-height:52px}.hero-copy{min-height:0;gap:40px;padding:48px var(--gutter) 52px}.hero-copy h1{margin:38px 0 24px;font-size:54px;line-height:.94}.hero-copy p{font-size:17px;line-height:1.48}.hero-art{min-height:360px}.essay-intro{padding-top:36px;padding-bottom:36px}.essay-intro h2{font-size:36px;line-height:1.02}.essay{padding:64px var(--gutter) 80px}.essay p{margin-bottom:24px;font-size:17px;line-height:1.58}.pull{margin:52px 0;padding:24px 0}.pull strong{font-size:38px;line-height:.98}.signature{width:180px;margin-top:36px}.about-closer{gap:40px}.about-closer h2{font-size:46px;line-height:.94}.about-closer .button{width:100%}footer{gap:40px;padding:36px var(--gutter) 42px}.footer-links{width:100%;grid-template-columns:1fr 1fr;column-gap:24px}.label,.section-no,.footer-kicker,.file-type{letter-spacing:.04em}}
   </style>
+  <style>
+    .primary-nav{display:flex;gap:clamp(14px,2.8vw,38px);margin-left:auto}
+    .primary-nav a{position:relative;padding:3px 0;font:500 12px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase}
+    .primary-nav a:after{position:absolute;right:0;bottom:-2px;left:0;height:1px;background:var(--ink);content:"";transform:scaleX(0);transform-origin:left;transition:transform 180ms ease}
+    .primary-nav a:hover:after{transform:scaleX(1)}
+    @media(max-width:600px){.primary-nav{gap:13px}.primary-nav a{font-size:10px}}
+    @media(max-width:430px){.site-header{gap:10px}.identity{font-size:9px;letter-spacing:.03em}.identity:before{width:7px;height:7px}.primary-nav{gap:9px}.primary-nav a{font-size:9px;letter-spacing:.03em}}
+  </style>
 </head><body>
-<div class="progress" aria-hidden="true"></div><header class="site-header"><a class="identity" href="https://jereme.xyz/">jereme.xyz / personal index</a></header>
+<div class="progress" aria-hidden="true"></div><header class="site-header"><a class="identity" href="https://jereme.xyz/">jereme.xyz / personal index</a><nav class="primary-nav" aria-label="Primary"><a href="https://jereme.xyz/">Index</a><a href="https://jereme.xyz/site/fwr/fwr.html">Work</a><a href="https://jereme.xyz/contact.html">Contact</a></nav></header>
 <main>
   <section class="page-hero"><div class="hero-copy"><div><div class="section-no">About / personal signal</div><h1>In lieu of a press release.</h1><p>The venture pages tell you what the work is. This page is for the operating instinct behind it: SoCal origin story, PNW recalibration, four ventures on one desk, and a bias toward work that survives contact with reality.</p></div></div><aside class="hero-art about-art"><div class="art-label label">Origin / route / return</div><div class="map"></div></aside></section>
   <section class="essay-intro"><div class="section-no">01 / the long version</div><h2>Four ventures, one desk, no appetite for fake certainty.</h2></section>
