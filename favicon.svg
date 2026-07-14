@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">jereme.xyz mark</title>
+  <rect width="512" height="512" fill="#f3f3f5"/>
+  <g fill="#09090a" transform="translate(256 256) skewX(-12) translate(-256 -256)">
+    <rect x="166" y="84" width="72" height="150"/>
+    <rect x="274" y="84" width="72" height="150"/>
+    <rect x="166" y="278" width="72" height="150"/>
+    <rect x="274" y="278" width="72" height="150"/>
+  </g>
+</svg>
