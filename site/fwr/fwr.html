@@ -95,6 +95,770 @@
       .cta-actions .button{width:auto}
     }
   </style>
+  <style id="environment-card-mockup">
+    .use-cases{padding:124px 0 150px}
+    .use-cases h2{max-width:840px}
+    .use-rail{
+      display:grid;
+      grid-template-columns:repeat(12,minmax(0,1fr));
+      gap:22px 18px;
+      margin-top:58px;
+      overflow:visible;
+      scroll-snap-type:none;
+    }
+    .use-card{
+      min-width:0;
+      transition:transform .45s cubic-bezier(.2,.75,.25,1);
+    }
+    .use-card:nth-child(1),.use-card:nth-child(4){grid-column:span 7}
+    .use-card:nth-child(2),.use-card:nth-child(3){grid-column:span 5}
+    .use-card:hover{transform:translateY(-5px)}
+    .use-visual{
+      height:430px;
+      border:1px solid rgba(255,255,255,.32);
+      border-radius:16px;
+      box-shadow:0 22px 54px rgba(10,14,18,.08);
+      isolation:isolate;
+    }
+    .use-visual:before{display:none}
+    .use-card h3{margin-top:18px;font-size:20px;font-weight:600;letter-spacing:-.02em}
+    .use-card p{max-width:510px;margin-top:7px;font-size:14px;line-height:1.5}
+    .instrument-topline,.instrument-footline{
+      position:absolute;
+      z-index:8;
+      right:20px;
+      left:20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:rgba(255,255,255,.86);
+      font:500 9px/1.3 "DM Mono",monospace;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .instrument-topline{top:18px}
+    .instrument-footline{bottom:18px}
+    .instrument-footline span{display:flex;align-items:center;gap:6px}
+    .instrument-footline i{
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:currentColor;
+      box-shadow:0 0 0 3px rgba(255,255,255,.11);
+    }
+
+    /* Corridor perception */
+    .corridor-instrument{background:#268757}
+    .corridor-stage{position:absolute;inset:54px 18px 48px;overflow:hidden;border-radius:9px;background:#0b261b}
+    .corridor-horizon{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg,rgba(93,224,153,.18),transparent 43%),
+        linear-gradient(90deg,transparent 49.8%,rgba(173,255,207,.28) 50%,transparent 50.2%);
+    }
+    .corridor-plane{
+      position:absolute;
+      left:-12%;
+      bottom:-37%;
+      width:124%;
+      height:105%;
+      transform:perspective(460px) rotateX(59deg);
+      transform-origin:50% 100%;
+      background:
+        repeating-linear-gradient(90deg,rgba(161,255,203,.2) 0 1px,transparent 1px 68px),
+        repeating-linear-gradient(0deg,rgba(161,255,203,.18) 0 1px,transparent 1px 48px);
+    }
+    .corridor-rail{
+      position:absolute;
+      top:19%;
+      bottom:-7%;
+      width:2px;
+      background:linear-gradient(#e7fff1,rgba(231,255,241,.25));
+      transform-origin:50% 0;
+    }
+    .corridor-rail.r1{left:42%;transform:rotate(8deg)}
+    .corridor-rail.r2{left:58%;transform:rotate(-8deg)}
+    .corridor-rail.r3{left:35%;opacity:.38;transform:rotate(13deg)}
+    .corridor-rail.r4{left:65%;opacity:.38;transform:rotate(-13deg)}
+    .corridor-scan{
+      position:absolute;
+      z-index:3;
+      top:19%;
+      left:50%;
+      width:130%;
+      height:2px;
+      background:#cfff36;
+      box-shadow:0 0 20px rgba(207,255,54,.75);
+      transform:translateX(-50%);
+      animation:corridor-scan 4.8s cubic-bezier(.45,.05,.2,1) infinite;
+    }
+    .detection{
+      position:absolute;
+      z-index:4;
+      width:34px;
+      height:22px;
+      border:1px solid #cfff36;
+      color:#eaff9a;
+      animation:detection-lock 2.8s ease-in-out infinite;
+    }
+    .detection small{
+      position:absolute;
+      top:26px;
+      left:-1px;
+      width:max-content;
+      font:500 8px/1.2 "DM Mono",monospace;
+    }
+    .detection.d1{top:48%;left:24%}
+    .detection.d2{top:59%;right:19%;border-color:#67e7ff;color:#a9f4ff;animation-delay:-1.1s}
+    .detection.d3{top:31%;right:38%;width:24px;height:16px;animation-delay:-2s}
+    @keyframes corridor-scan{0%,12%{top:19%;opacity:0}22%{opacity:1}78%{opacity:1}92%,100%{top:82%;opacity:0}}
+    @keyframes detection-lock{50%{box-shadow:0 0 0 4px rgba(207,255,54,.12)}}
+
+    /* Agent decision trace */
+    .trace-instrument{background:#5268cd}
+    .trace-stage{position:absolute;inset:54px 18px 48px;padding:22px;border-radius:9px;background:#141a3a;color:#fff}
+    .trace-input{
+      padding-bottom:15px;
+      border-bottom:1px solid rgba(255,255,255,.16);
+      color:#aeb9ff;
+      font:500 9px/1.4 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .trace-input strong{display:block;margin-top:6px;color:#fff;font-size:12px;font-weight:500;text-transform:none}
+    .trace-map{position:relative;margin-top:13px}
+    .trace-map:before{
+      position:absolute;
+      top:15px;
+      bottom:15px;
+      left:10px;
+      width:1px;
+      background:rgba(255,255,255,.18);
+      content:"";
+    }
+    .trace-pulse{
+      position:absolute;
+      z-index:3;
+      top:14px;
+      left:7px;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#cfff36;
+      box-shadow:0 0 14px rgba(207,255,54,.8);
+      animation:trace-pulse 4.6s ease-in-out infinite;
+    }
+    .trace-row{
+      position:relative;
+      display:grid;
+      grid-template-columns:22px minmax(0,1fr) auto;
+      align-items:center;
+      min-height:46px;
+      border-bottom:1px solid rgba(255,255,255,.09);
+      font:500 9px/1.25 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .trace-row:last-child{border-bottom:0}
+    .trace-node{
+      position:relative;
+      z-index:2;
+      width:7px;
+      height:7px;
+      margin-left:7px;
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:50%;
+      background:#141a3a;
+    }
+    .trace-row b{font-weight:500}
+    .trace-row em{color:#cfff36;font-style:normal}
+    .trace-release{
+      display:flex;
+      justify-content:space-between;
+      margin-top:12px;
+      padding:11px 12px;
+      border:1px solid rgba(207,255,54,.38);
+      border-radius:7px;
+      background:rgba(207,255,54,.08);
+      color:#dfff75;
+      font:500 9px/1.2 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    @keyframes trace-pulse{0%,8%{top:14px;opacity:0}15%{opacity:1}82%{opacity:1}94%,100%{top:198px;opacity:0}}
+
+    /* Physical prototype rig */
+    .rig-instrument{background:#159c9b}
+    .rig-stage{position:absolute;inset:54px 18px 48px;overflow:hidden;border-radius:9px;background:#082b2d}
+    .rig-bench{
+      position:absolute;
+      right:6%;
+      bottom:23%;
+      left:6%;
+      height:2px;
+      background:rgba(207,255,245,.24);
+    }
+    .rig-module{
+      position:absolute;
+      z-index:3;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(214,255,248,.52);
+      border-radius:7px;
+      background:#0b3c3d;
+      color:#d8fff8;
+      box-shadow:0 12px 28px rgba(0,0,0,.2);
+      font:500 8px/1.25 "DM Mono",monospace;
+      text-align:center;
+      text-transform:uppercase;
+    }
+    .rig-module.sensor{top:35px;left:8%;width:74px;height:74px;border-radius:50%}
+    .rig-module.sensor:before{
+      width:28px;
+      height:28px;
+      border:1px solid #8fffe9;
+      border-radius:50%;
+      box-shadow:inset 0 0 0 7px rgba(143,255,233,.08);
+      content:"";
+    }
+    .rig-module.sensor span{position:absolute;bottom:-23px}
+    .rig-module.controller{top:124px;left:39%;width:91px;height:68px}
+    .rig-module.recorder{right:7%;bottom:34px;width:94px;height:62px}
+    .rig-module .ports{display:flex;gap:6px;margin-top:7px}
+    .rig-module .ports i{width:7px;height:7px;border:1px solid #8fffe9;border-radius:50%}
+    .rig-wire{
+      position:absolute;
+      z-index:2;
+      height:2px;
+      background:#8fffe9;
+      transform-origin:0 50%;
+    }
+    .rig-wire.w1{top:104px;left:24%;width:137px;transform:rotate(28deg)}
+    .rig-wire.w2{top:158px;left:55%;width:128px;transform:rotate(26deg)}
+    .rig-wire.w3{top:70px;right:17%;width:118px;transform:rotate(90deg)}
+    .rig-signal{
+      position:absolute;
+      z-index:5;
+      top:101px;
+      left:24%;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#cfff36;
+      box-shadow:0 0 13px rgba(207,255,54,.9);
+      animation:rig-signal 4.2s ease-in-out infinite;
+    }
+    .rig-readout{
+      position:absolute;
+      top:32px;
+      right:7%;
+      color:#a8fff1;
+      font:500 8px/1.7 "DM Mono",monospace;
+      text-align:right;
+      text-transform:uppercase;
+    }
+    @keyframes rig-signal{0%,8%{transform:translate(0,0);opacity:0}15%{opacity:1}48%{transform:translate(125px,66px)}78%{transform:translate(250px,135px);opacity:1}90%,100%{transform:translate(250px,135px);opacity:0}}
+
+    /* Public infrastructure plan */
+    .plan-instrument{background:#a88842}
+    .plan-stage{position:absolute;inset:54px 18px 48px;overflow:hidden;border-radius:9px;background:#2b2618}
+    .plan-grid{
+      position:absolute;
+      inset:0;
+      opacity:.34;
+      background:
+        repeating-linear-gradient(90deg,rgba(255,244,197,.18) 0 1px,transparent 1px 34px),
+        repeating-linear-gradient(0deg,rgba(255,244,197,.18) 0 1px,transparent 1px 34px);
+    }
+    .plan-route{
+      position:absolute;
+      top:53%;
+      right:8%;
+      left:8%;
+      height:10px;
+      border-top:2px solid #fff2ba;
+      border-bottom:1px dashed rgba(255,242,186,.5);
+      transform:rotate(-7deg);
+    }
+    .plan-service{
+      position:absolute;
+      top:19%;
+      left:53%;
+      width:1px;
+      height:61%;
+      border-left:1px dashed #cfff36;
+      transform:rotate(22deg);
+    }
+    .plan-node{
+      position:absolute;
+      z-index:3;
+      width:14px;
+      height:14px;
+      border:1px solid #cfff36;
+      background:#2b2618;
+      box-shadow:0 0 0 4px rgba(207,255,54,.08);
+      animation:plan-node 3.5s ease-in-out infinite;
+    }
+    .plan-node:after{
+      position:absolute;
+      top:17px;
+      left:-1px;
+      width:max-content;
+      color:#f6e5a5;
+      font:500 8px/1.2 "DM Mono",monospace;
+      content:attr(data-label);
+    }
+    .plan-node.n1{top:48%;left:19%}
+    .plan-node.n2{top:41%;left:48%;animation-delay:-1.2s}
+    .plan-node.n3{top:34%;right:17%;animation-delay:-2.2s}
+    .plan-note{
+      position:absolute;
+      z-index:4;
+      right:22px;
+      bottom:22px;
+      width:168px;
+      padding:14px;
+      border:1px solid rgba(255,242,186,.4);
+      border-radius:7px;
+      background:rgba(18,16,10,.86);
+      color:#fff2ba;
+      font:500 8px/1.5 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .plan-note strong{display:block;margin-top:5px;color:#cfff36;font-size:10px;font-weight:500}
+    @keyframes plan-node{50%{background:#cfff36;box-shadow:0 0 0 7px rgba(207,255,54,.1)}}
+
+    .use-card:not(.visible) .corridor-scan,
+    .use-card:not(.visible) .detection,
+    .use-card:not(.visible) .trace-pulse,
+    .use-card:not(.visible) .rig-signal,
+    .use-card:not(.visible) .plan-node{animation-play-state:paused}
+    .use-pagination{display:none}
+
+    /* Systems cards */
+    .systems-grid{gap:20px}
+    .system-card{
+      min-height:620px;
+      padding:0;
+      overflow:hidden;
+      border:1px solid #e4e4e7;
+      border-radius:16px;
+      box-shadow:0 24px 64px rgba(10,14,18,.07);
+      transition:transform .45s cubic-bezier(.2,.75,.25,1),box-shadow .45s;
+    }
+    .system-card:hover{transform:translateY(-5px);box-shadow:0 30px 76px rgba(10,14,18,.11)}
+    .system-art{position:relative;height:390px;overflow:hidden;color:#fff}
+    .system-card-copy{padding:28px 30px 34px}
+    .system-card-copy .system-mark{display:inline-grid;width:max-content;min-width:42px;height:40px;aspect-ratio:auto;padding:0 10px}
+    .system-card-copy h3{margin-top:26px;font-size:22px;letter-spacing:-.025em}
+    .system-card-copy p{max-width:510px;margin-top:12px;font-size:15px;line-height:1.52}
+    .system-art-head,.system-art-foot{
+      position:absolute;
+      z-index:8;
+      right:22px;
+      left:22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:rgba(255,255,255,.84);
+      font:500 9px/1.3 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .system-art-head{top:19px}
+    .system-art-foot{bottom:17px}
+    .system-art-foot span{display:flex;align-items:center;gap:7px}
+    .system-art-foot i{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 3px rgba(255,255,255,.11)}
+
+    /* AI evaluation suite */
+    .ai-system-art{background:#4968d4}
+    .ai-suite{
+      position:absolute;
+      inset:54px 20px 47px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:9px;
+      background:#111939;
+      box-shadow:0 18px 38px rgba(8,13,36,.25);
+    }
+    .ai-suite-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:44px;
+      padding:0 15px;
+      border-bottom:1px solid rgba(255,255,255,.13);
+      color:#dce3ff;
+      font:500 9px/1 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .ai-suite-title strong{color:#cfff36;font-weight:500}
+    .ai-suite-grid{position:relative;padding:0 14px}
+    .ai-suite-row{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:minmax(112px,1fr) repeat(3,36px) 64px;
+      align-items:center;
+      min-height:45px;
+      border-bottom:1px solid rgba(255,255,255,.09);
+      color:#f4f6ff;
+      font:500 8px/1.25 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .ai-suite-row.header{min-height:34px;color:#7f8cbe;font-size:7px}
+    .ai-suite-row:last-of-type{border-bottom:0}
+    .ai-suite-row span:not(:first-child){text-align:center}
+    .suite-cell{
+      display:inline-grid;
+      width:15px;
+      height:15px;
+      margin:auto;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:4px;
+      color:#91a0d1;
+      font-style:normal;
+    }
+    .suite-cell.pass{border-color:rgba(207,255,54,.4);background:rgba(207,255,54,.08);color:#cfff36}
+    .suite-cell.hold{border-color:rgba(255,194,102,.38);color:#ffc266}
+    .suite-result{color:#cfff36}
+    .suite-result.review{color:#ffc266}
+    .suite-scan{
+      position:absolute;
+      z-index:1;
+      right:0;
+      left:0;
+      height:45px;
+      background:linear-gradient(90deg,rgba(120,152,255,.02),rgba(120,152,255,.15),rgba(207,255,54,.04));
+      border-top:1px solid rgba(207,255,54,.23);
+      border-bottom:1px solid rgba(207,255,54,.18);
+      animation:suite-scan 5.5s cubic-bezier(.48,.05,.23,1) infinite;
+    }
+    .suite-progress{
+      position:absolute;
+      right:14px;
+      bottom:12px;
+      left:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#8d9ac9;
+      font:500 8px/1 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .suite-progress-bar{height:2px;flex:1;background:rgba(255,255,255,.12)}
+    .suite-progress-bar:after{display:block;width:78%;height:100%;background:#cfff36;content:"";animation:suite-progress 5.5s ease-in-out infinite}
+    @keyframes suite-scan{0%,8%{top:78px;opacity:0}15%{opacity:1}82%{opacity:1}94%,100%{top:213px;opacity:0}}
+    @keyframes suite-progress{0%{width:0}80%,100%{width:78%}}
+
+    /* AI operating consequence surface */
+    .ai-operating-art{background:#4968d4}
+    .agent-workbench{
+      position:absolute;
+      inset:54px 20px 47px;
+      display:grid;
+      grid-template-columns:1.05fr 1.45fr .8fr;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:9px;
+      background:#11172a;
+      box-shadow:0 18px 38px rgba(8,13,36,.25);
+    }
+    .evidence-deck,.decision-bay,.authority-panel{min-width:0;padding:14px}
+    .evidence-deck{border-right:1px solid rgba(255,255,255,.1);background:#151d32}
+    .workbench-label{
+      color:#8290bb;
+      font:500 7px/1.2 "DM Mono",monospace;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .workbench-label strong{float:right;color:#cfff36;font-weight:500}
+    .evidence-list{display:grid;gap:7px;margin-top:12px}
+    .evidence-item{
+      position:relative;
+      min-height:56px;
+      padding:9px 9px 8px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:6px;
+      background:#1d2740;
+      color:#eff3ff;
+      font:500 7px/1.35 "DM Mono",monospace;
+      animation:evidence-focus 6s ease-in-out infinite;
+    }
+    .evidence-item:nth-child(2){animation-delay:-2s}
+    .evidence-item:nth-child(3){animation-delay:-4s}
+    .evidence-item b{display:block;margin-bottom:4px;color:#9bb1ff;font-weight:500;text-transform:uppercase}
+    .evidence-item i{position:absolute;right:7px;bottom:6px;color:#cfff36;font-style:normal}
+    @keyframes evidence-focus{0%,22%,100%{border-color:rgba(255,255,255,.13);transform:translateX(0)}9%{border-color:rgba(207,255,54,.55);transform:translateX(3px)}}
+    .decision-bay{display:flex;flex-direction:column;background:#0d1324}
+    .answer-panel{
+      position:relative;
+      flex:1;
+      margin-top:12px;
+      padding:13px 13px 12px;
+      overflow:hidden;
+      border-radius:6px;
+      background:#f0f3fb;
+      color:#11172a;
+    }
+    .answer-panel:before{
+      position:absolute;
+      top:0;
+      right:0;
+      left:0;
+      height:3px;
+      background:linear-gradient(90deg,#9acaff 0 62%,#cfff36 62% 78%,#ffba69 78%);
+      content:"";
+    }
+    .answer-panel small{
+      display:block;
+      margin-top:4px;
+      color:#66708c;
+      font:500 7px/1 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .answer-panel p{
+      margin:17px 0 0;
+      color:#11172a;
+      font-size:13px;
+      font-weight:600;
+      line-height:1.25;
+      letter-spacing:-.01em;
+    }
+    .answer-sources{display:flex;flex-wrap:wrap;gap:4px;margin-top:12px}
+    .answer-sources span{
+      padding:4px 5px;
+      border:1px solid #cdd4e6;
+      border-radius:4px;
+      color:#596581;
+      font:500 6px/1 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .answer-cursor{
+      display:inline-block;
+      width:5px;
+      height:11px;
+      margin-left:4px;
+      vertical-align:-1px;
+      background:#4968d4;
+      animation:answer-cursor 1s steps(1,end) infinite;
+    }
+    @keyframes answer-cursor{50%{opacity:0}}
+    .tool-dock{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:5px;
+      margin-top:8px;
+    }
+    .tool-dock span{
+      padding:7px 3px;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:5px;
+      color:#aeb9dc;
+      font:500 6px/1 "DM Mono",monospace;
+      text-align:center;
+      text-transform:uppercase;
+    }
+    .tool-dock span:nth-child(2){border-color:rgba(207,255,54,.35);color:#cfff36}
+    .authority-panel{position:relative;border-left:1px solid rgba(255,255,255,.1);background:#192139}
+    .authority-stack{display:grid;gap:8px;margin-top:15px}
+    .authority-state{
+      position:relative;
+      min-height:49px;
+      padding:9px 8px;
+      border:1px solid rgba(255,255,255,.13);
+      border-radius:6px;
+      color:#7582aa;
+      font:500 7px/1.35 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .authority-state b{display:block;margin-top:5px;color:#dbe3ff;font-weight:500}
+    .authority-state.propose{border-color:rgba(207,255,54,.42);background:rgba(207,255,54,.07);color:#cfff36}
+    .authority-state.execute b{color:#ffba69}
+    .authority-state.execute:after{
+      position:absolute;
+      top:9px;
+      right:8px;
+      width:6px;
+      height:6px;
+      border:1px solid #ffba69;
+      border-radius:50%;
+      content:"";
+    }
+    .human-lock{
+      position:absolute;
+      right:14px;
+      bottom:12px;
+      left:14px;
+      color:#ffba69;
+      font:500 6px/1.35 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .human-lock:before{display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:#ffba69;box-shadow:0 0 0 3px rgba(255,186,105,.1);content:""}
+
+    /* Serviceable physical assembly */
+    .rig-system-art{background:#101314}
+    .assembly-frame{
+      position:absolute;
+      inset:54px 20px 47px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:9px;
+      background:
+        repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 42px),
+        repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 42px),
+        #15191a;
+    }
+    .assembly-axis{
+      position:absolute;
+      top:19%;
+      bottom:16%;
+      left:49%;
+      width:1px;
+      border-left:1px dashed rgba(207,255,54,.42);
+    }
+    .assembly-part{
+      position:absolute;
+      z-index:3;
+      min-width:116px;
+      padding:12px 14px;
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:7px;
+      background:#202627;
+      color:#fff;
+      box-shadow:0 13px 24px rgba(0,0,0,.24);
+      font:500 8px/1.35 "DM Mono",monospace;
+      text-transform:uppercase;
+    }
+    .assembly-part b{display:block;margin-bottom:5px;color:#cfff36;font-weight:500}
+    .assembly-part strong{display:block;font-size:10px;font-weight:500}
+    .assembly-part small{display:block;margin-top:4px;color:#8e9b9e;font:inherit}
+    .assembly-part.sensor{top:27px;left:7%}
+    .assembly-part.compute{top:103px;left:36%;background:#263235}
+    .assembly-part.power{right:7%;bottom:33px}
+    .assembly-part.mount{bottom:28px;left:8%;background:#1b2021}
+    .assembly-link{
+      position:absolute;
+      z-index:2;
+      height:1px;
+      background:#9bffea;
+      transform-origin:0 50%;
+    }
+    .assembly-link.l1{top:81px;left:27%;width:132px;transform:rotate(20deg)}
+    .assembly-link.l2{top:149px;left:58%;width:120px;transform:rotate(28deg)}
+    .assembly-link.l3{top:175px;left:27%;width:119px;transform:rotate(-31deg)}
+    .assembly-pulse{
+      position:absolute;
+      z-index:5;
+      top:78px;
+      left:27%;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#cfff36;
+      box-shadow:0 0 14px rgba(207,255,54,.85);
+      animation:assembly-pulse 4.8s ease-in-out infinite;
+    }
+    .service-zone{
+      position:absolute;
+      z-index:1;
+      top:22px;
+      right:20px;
+      bottom:22px;
+      width:26%;
+      border:1px dashed rgba(255,194,102,.48);
+      border-radius:6px;
+      background:repeating-linear-gradient(135deg,rgba(255,194,102,.05) 0 6px,transparent 6px 12px);
+    }
+    .service-zone span{
+      position:absolute;
+      top:8px;
+      right:8px;
+      color:#ffc266;
+      font:500 7px/1.4 "DM Mono",monospace;
+      text-align:right;
+      text-transform:uppercase;
+    }
+    .assembly-dim{
+      position:absolute;
+      top:24px;
+      bottom:24px;
+      left:17px;
+      width:12px;
+      border-top:1px solid rgba(255,255,255,.42);
+      border-bottom:1px solid rgba(255,255,255,.42);
+      color:#7f8b8e;
+      font:500 7px/1 "DM Mono",monospace;
+    }
+    .assembly-dim:before{position:absolute;top:0;bottom:0;left:5px;border-left:1px solid rgba(255,255,255,.24);content:""}
+    .assembly-dim span{position:absolute;top:48%;left:-5px;width:52px;transform:rotate(-90deg);transform-origin:left top}
+    @keyframes assembly-pulse{0%,8%{transform:translate(0,0);opacity:0}15%{opacity:1}48%{transform:translate(122px,43px)}78%{transform:translate(238px,117px);opacity:1}90%,100%{transform:translate(238px,117px);opacity:0}}
+    .system-card:not(.visible) .suite-scan,
+    .system-card:not(.visible) .suite-progress-bar:after,
+    .system-card:not(.visible) .evidence-item,
+    .system-card:not(.visible) .answer-cursor,
+    .system-card:not(.visible) .assembly-pulse{animation-play-state:paused}
+
+    @media(max-width:980px){
+      .use-rail{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .use-card:nth-child(n){grid-column:auto}
+      .use-visual{height:410px}
+    }
+    @media(max-width:700px){
+      .use-cases{padding:90px 0 105px}
+      .use-rail{
+        display:flex;
+        gap:14px;
+        margin-top:42px;
+        margin-right:-16px;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        padding-right:16px;
+      }
+      .use-card{flex:0 0 84vw;scroll-snap-align:start}
+      .use-card:hover{transform:none}
+      .use-visual{height:408px}
+      .use-pagination{display:flex}
+      .instrument-topline,.instrument-footline{right:16px;left:16px}
+      .trace-stage,.corridor-stage,.rig-stage,.plan-stage{right:14px;left:14px}
+      .rig-signal{animation-name:rig-signal-mobile}
+      .systems-grid{gap:18px}
+      .system-card{min-height:0}
+      .system-card:hover{transform:none}
+      .system-art{height:370px}
+      .system-card-copy{padding:25px 24px 30px}
+      .system-card-copy h3{font-size:21px}
+      .system-art-head,.system-art-foot{right:16px;left:16px}
+      .ai-suite,.agent-workbench,.assembly-frame{right:14px;left:14px}
+      .ai-suite-row{grid-template-columns:minmax(94px,1fr) repeat(3,30px) 56px}
+      .agent-workbench{grid-template-columns:minmax(0,1fr) 86px;grid-template-rows:100px minmax(0,1fr)}
+      .evidence-deck{grid-column:1/-1;padding:10px 12px;border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
+      .evidence-list{display:flex;gap:6px;margin-top:8px}
+      .evidence-item{min-width:0;min-height:57px;flex:1;padding:7px;font-size:6px}
+      .evidence-item i{display:none}
+      .decision-bay{padding:11px}
+      .answer-panel{padding:11px}
+      .answer-panel p{margin-top:13px;font-size:11px}
+      .answer-sources{margin-top:8px}
+      .authority-panel{padding:10px}
+      .authority-stack{gap:4px;margin-top:9px}
+      .authority-state{min-height:34px;padding:5px 6px;font-size:6px}
+      .authority-state b{margin-top:3px}
+      .human-lock{right:9px;bottom:8px;left:9px;font-size:5px;white-space:nowrap}
+      .assembly-part{min-width:102px;padding:10px 11px}
+      .assembly-part.sensor{left:9%}
+      .assembly-part.compute{left:32%}
+      .assembly-part.power{right:6%}
+      .assembly-link.l1{left:29%;width:100px}
+      .assembly-link.l2{left:55%;width:90px}
+      .assembly-link.l3{left:27%;width:92px}
+      .assembly-pulse{left:29%;animation-name:assembly-pulse-mobile}
+    }
+    @keyframes rig-signal-mobile{0%,8%{transform:translate(0,0);opacity:0}15%{opacity:1}48%{transform:translate(88px,66px)}78%{transform:translate(160px,135px);opacity:1}90%,100%{transform:translate(160px,135px);opacity:0}}
+    @keyframes assembly-pulse-mobile{0%,8%{transform:translate(0,0);opacity:0}15%{opacity:1}48%{transform:translate(82px,40px)}78%{transform:translate(160px,110px);opacity:1}90%,100%{transform:translate(160px,110px);opacity:0}}
+    @media(prefers-reduced-motion:reduce){
+      .corridor-scan,.detection,.trace-pulse,.rig-signal,.plan-node,.suite-scan,.suite-progress-bar:after,.evidence-item,.answer-cursor,.assembly-pulse{animation:none!important}
+    }
+  </style>
 </head>
 <body>
   <header class="topbar"><div class="wrap nav"><a class="brand" href="https://jereme.xyz/"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>jereme.xyz</a><nav class="desktop-links" aria-label="Primary"><details class="work-menu desktop-work-menu"><summary>Work</summary><div class="work-popover"><a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a><span aria-disabled="true">pine</span><span aria-disabled="true">nrthrn</span><span aria-disabled="true">drift</span></div></details><a href="https://jereme.xyz/about/">About</a><a href="https://jereme.xyz/contact.html">Contact</a><a href="https://jereme.xyz/">Index</a></nav><a class="nav-badge" href="mailto:jeremedotxyz@gmail.com?subject=Email%20from%20jereme.xyz">Open channel</a><button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"></button></div></header>
@@ -124,17 +888,107 @@
     </div></section>
 
     <section class="systems"><div class="wrap"><div class="systems-copy" data-reveal><h2>Perception for the corridor. Language systems for the decisions. Build rigs for everything between.</h2><p>fw/r works where software has to negotiate with hardware, public infrastructure, messy environments, and the delightful horror of reality refusing to behave like a clean demo.</p></div><div class="systems-grid">
-      <article class="system-card" data-reveal><span class="system-mark" style="--tone:#9acaff">AI</span><h3>Applied AI, not AI theater</h3><p>Harnesses, agents, retrieval, tools, gates, traces, and evaluations built around a real operating consequence.</p></article>
-      <article class="system-card" data-reveal><span class="system-mark" style="--tone:#cfff36">RIG</span><h3>Physical systems under constraint</h3><p>Sensors, wiring, fixtures, compute, installation, service access, and the parts of the build that do not fit in a deck.</p></article>
+      <article class="system-card system-card-ai" data-reveal>
+        <div class="system-art ai-system-art ai-operating-art">
+          <div class="system-art-head"><span>Agent operating surface</span><span>Authority / policy 07</span></div>
+          <div class="agent-workbench">
+            <div class="evidence-deck"><div class="workbench-label">Evidence intake <strong>03 verified</strong></div><div class="evidence-list">
+              <div class="evidence-item"><b>Field record / 18</b>Geometry and operating state agree.<i>.96</i></div>
+              <div class="evidence-item"><b>Agency policy / 07</b>Human approval precedes action.<i>lock</i></div>
+              <div class="evidence-item"><b>Sensor claim / 42</b>Confidence clears monitor threshold.<i>.94</i></div>
+            </div></div>
+            <div class="decision-bay"><div class="workbench-label">Working answer <strong>grounded</strong></div>
+              <div class="answer-panel"><small>Candidate / operator-facing</small><p>Evidence supports a monitor state. Escalation remains a human decision.<i class="answer-cursor"></i></p><div class="answer-sources"><span>field 18</span><span>policy 07</span><span>claim 42</span></div></div>
+              <div class="tool-dock"><span>inspect</span><span>compare</span><span>simulate</span></div>
+            </div>
+            <div class="authority-panel"><div class="workbench-label">Authority</div><div class="authority-stack">
+              <div class="authority-state">01<b>observe</b></div>
+              <div class="authority-state propose">02<b>propose</b></div>
+              <div class="authority-state execute">03<b>execute</b></div>
+            </div><div class="human-lock">Person required</div></div>
+          </div>
+          <div class="system-art-foot"><span><i></i>Context verified</span><span>Tools contained</span><span>Action / human</span></div>
+        </div>
+        <div class="system-card-copy"><span class="system-mark" style="--tone:#9acaff">AI</span><h3>Applied AI, not AI theater</h3><p>Harnesses, agents, retrieval, tools, gates, traces, and evaluations built around a real operating consequence.</p></div>
+      </article>
+      <article class="system-card system-card-rig" data-reveal>
+        <div class="system-art rig-system-art">
+          <div class="system-art-head"><span>Field assembly / rev 07</span><span>Serviceable</span></div>
+          <div class="assembly-frame">
+            <div class="assembly-axis"></div><div class="assembly-dim"><span>640 mm assembly</span></div><div class="service-zone"><span>service access<br>320 mm clear</span></div>
+            <div class="assembly-part sensor"><b>01 / input</b><strong>sensor head</strong><small>sealed / aligned</small></div>
+            <div class="assembly-part compute"><b>02 / logic</b><strong>edge compute</strong><small>fused / logged</small></div>
+            <div class="assembly-part power"><b>03 / service</b><strong>power + I/O</strong><small>field replaceable</small></div>
+            <div class="assembly-part mount"><b>04 / structure</b><strong>fixture plate</strong><small>datum verified</small></div>
+            <i class="assembly-link l1"></i><i class="assembly-link l2"></i><i class="assembly-link l3"></i><i class="assembly-pulse"></i>
+          </div>
+          <div class="system-art-foot"><span><i></i>24.1 V stable</span><span>Bus / live</span><span>Install / clear</span></div>
+        </div>
+        <div class="system-card-copy"><span class="system-mark" style="--tone:#cfff36">RIG</span><h3>Physical systems under constraint</h3><p>Sensors, wiring, fixtures, compute, installation, service access, and the parts of the build that do not fit in a deck.</p></div>
+      </article>
     </div></div></section>
 
     <section class="always"><div class="orbit-stage" aria-hidden="true"><i class="orbit-core"></i><i class="orbit-node" style="--a:0deg;--tone:#5ee4ff">LiDAR</i><i class="orbit-node" style="--a:60deg;--tone:#cfff36">AI</i><i class="orbit-node" style="--a:120deg;--tone:#ff9e45">RIG</i><i class="orbit-node" style="--a:180deg;--tone:#8673ff">TRACE</i><i class="orbit-node" style="--a:240deg;--tone:#3cd88a">FIELD</i><i class="orbit-node" style="--a:300deg;--tone:#ff6557">GATE</i></div><div class="always-copy" data-reveal><h2>Always field-aware. Always inspectable.</h2><p>Abstract direction gets pressure-tested against actual constraints before the clean demo is allowed to call itself finished.</p><span class="mono">real sensors / real signals / real environments<br>human review where confidence requires it</span></div></section>
 
     <section class="use-cases"><div class="wrap"><h2 data-reveal>Every environment has a different way of refusing the obvious answer.</h2><div class="use-rail">
-      <article class="use-card"><figure class="use-visual" style="--tone:#3ec46d"><div class="mini-terminal">corridor.region(03)<br><i>object acquired</i><br>confidence: .94<br>policy: monitor</div></figure><h3>Transit corridors</h3><p>Track-aware perception and graded operational context.</p></article>
-      <article class="use-card"><figure class="use-visual" style="--tone:#4d82df"><div class="mini-terminal">agent.run(sadie)<br><i>gates passed: 12/12</i><br>trace: attached<br>release: review</div></figure><h3>Agent evaluation</h3><p>Language systems with gates, traces, and reports.</p></article>
-      <article class="use-card"><figure class="use-visual" style="--tone:#3db7bd"><div class="mini-terminal">rig.power(on)<br><i>sensor bus stable</i><br>fixture: rev_07<br>loop: recording</div></figure><h3>Prototype rigs</h3><p>Physical loops built to make failure honest and useful.</p></article>
-      <article class="use-card"><figure class="use-visual" style="--tone:#b09145"><div class="mini-terminal">field.install()<br><i>geometry verified</i><br>service path: clear<br>handoff: ready</div></figure><h3>Public infrastructure</h3><p>Systems that respect agencies, operators, and the field.</p></article>
+      <article class="use-card" data-reveal>
+        <figure class="use-visual corridor-instrument">
+          <div class="instrument-topline"><span>Corridor / region 03</span><span>Fusion active</span></div>
+          <div class="corridor-stage">
+            <div class="corridor-horizon"></div><div class="corridor-plane"></div>
+            <i class="corridor-rail r1"></i><i class="corridor-rail r2"></i><i class="corridor-rail r3"></i><i class="corridor-rail r4"></i><i class="corridor-scan"></i>
+            <span class="detection d1"><small>object_371096 / .94</small></span>
+            <span class="detection d2"><small>clearance / .88</small></span>
+            <span class="detection d3"></span>
+          </div>
+          <div class="instrument-footline"><span><i></i>LiDAR</span><span>radar + vision</span><span>monitor</span></div>
+        </figure>
+        <h3>Transit corridors</h3><p>Track-aware perception and graded operational context.</p>
+      </article>
+      <article class="use-card" data-reveal>
+        <figure class="use-visual trace-instrument">
+          <div class="instrument-topline"><span>Sadie / evaluation trace</span><span>Run 1284</span></div>
+          <div class="trace-stage">
+            <div class="trace-input">Input / operating request<strong>Inspect the claim before action.</strong></div>
+            <div class="trace-map"><i class="trace-pulse"></i>
+              <div class="trace-row"><span class="trace-node"></span><b>retrieval</b><em>attached</em></div>
+              <div class="trace-row"><span class="trace-node"></span><b>policy gate</b><em>passed</em></div>
+              <div class="trace-row"><span class="trace-node"></span><b>tool boundary</b><em>contained</em></div>
+              <div class="trace-row"><span class="trace-node"></span><b>human review</b><em>required</em></div>
+            </div>
+            <div class="trace-release"><span>12 / 12 gates</span><span>release / review</span></div>
+          </div>
+          <div class="instrument-footline"><span><i></i>Trace attached</span><span>Evidence intact</span></div>
+        </figure>
+        <h3>Agent evaluation</h3><p>Language systems with gates, traces, and reports.</p>
+      </article>
+      <article class="use-card" data-reveal>
+        <figure class="use-visual rig-instrument">
+          <div class="instrument-topline"><span>Bench rig / rev 07</span><span>Loop recording</span></div>
+          <div class="rig-stage">
+            <div class="rig-bench"></div>
+            <div class="rig-module sensor"><span>sensor head</span></div>
+            <div class="rig-module controller">controller<div class="ports"><i></i><i></i><i></i></div></div>
+            <div class="rig-module recorder">recorder<div class="ports"><i></i><i></i></div></div>
+            <i class="rig-wire w1"></i><i class="rig-wire w2"></i><i class="rig-wire w3"></i><i class="rig-signal"></i>
+            <div class="rig-readout">bus / stable<br>power / 24.1v<br>sample / 60hz</div>
+          </div>
+          <div class="instrument-footline"><span><i></i>Signal live</span><span>Failure visible</span></div>
+        </figure>
+        <h3>Prototype rigs</h3><p>Physical loops built to make failure honest and useful.</p>
+      </article>
+      <article class="use-card" data-reveal>
+        <figure class="use-visual plan-instrument">
+          <div class="instrument-topline"><span>Field installation / 04</span><span>Plan + section</span></div>
+          <div class="plan-stage">
+            <div class="plan-grid"></div><div class="plan-route"></div><div class="plan-service"></div>
+            <i class="plan-node n1" data-label="P01 / platform"></i><i class="plan-node n2" data-label="P02 / track"></i><i class="plan-node n3" data-label="P03 / service"></i>
+            <div class="plan-note">Handoff / operator<strong>Geometry verified</strong>service path clear<br>install window held</div>
+          </div>
+          <div class="instrument-footline"><span><i></i>Agency context</span><span>Ready / field</span></div>
+        </figure>
+        <h3>Public infrastructure</h3><p>Systems that respect agencies, operators, and the field.</p>
+      </article>
     </div><div class="use-pagination" aria-label="Use case carousel position"><button class="use-dot" type="button" aria-label="Show Transit corridors" aria-current="true"></button><button class="use-dot" type="button" aria-label="Show Agent evaluation" aria-current="false"></button><button class="use-dot" type="button" aria-label="Show Prototype rigs" aria-current="false"></button><button class="use-dot" type="button" aria-label="Show Public infrastructure" aria-current="false"></button></div></div></section>
 
     <section class="files" id="files"><div class="wrap"><header class="files-head" data-reveal><h2>Working notes, reference material, and build logic.</h2><p>Downloads for people who want to see the thinking in a form that can be opened, inspected, and used.</p></header><div class="file-list" data-reveal>
