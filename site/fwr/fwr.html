@@ -72,6 +72,7 @@
     .hero-copy{margin:0 auto}
     .programs .hero-surface{margin-top:56px}
     .programs .ecosystem-rail{margin-top:92px}
+    .use-pagination{display:none}
     @media(max-width:700px){
       .hero{padding:94px 0 76px}
       .hero-copy{margin-top:0}
@@ -79,6 +80,9 @@
       .hero-actions .button{width:auto}
       .programs .hero-surface{height:112vw;min-height:430px;margin-top:42px}
       .programs .ecosystem-rail{margin-top:70px}
+      .use-pagination{display:flex;justify-content:center;gap:9px;margin-top:24px}
+      .use-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:#b7b7ba;cursor:pointer;transition:background .2s,transform .2s}
+      .use-dot[aria-current="true"]{background:#111;transform:scale(1.2)}
       .cta-actions{justify-items:center}
       .cta-actions .button{width:auto}
     }
@@ -123,7 +127,7 @@
       <article class="use-card"><figure class="use-visual" style="--tone:#4d82df"><div class="mini-terminal">agent.run(sadie)<br><i>gates passed: 12/12</i><br>trace: attached<br>release: review</div></figure><h3>Agent evaluation</h3><p>Language systems with gates, traces, and reports.</p></article>
       <article class="use-card"><figure class="use-visual" style="--tone:#3db7bd"><div class="mini-terminal">rig.power(on)<br><i>sensor bus stable</i><br>fixture: rev_07<br>loop: recording</div></figure><h3>Prototype rigs</h3><p>Physical loops built to make failure honest and useful.</p></article>
       <article class="use-card"><figure class="use-visual" style="--tone:#b09145"><div class="mini-terminal">field.install()<br><i>geometry verified</i><br>service path: clear<br>handoff: ready</div></figure><h3>Public infrastructure</h3><p>Systems that respect agencies, operators, and the field.</p></article>
-    </div></div></section>
+    </div><div class="use-pagination" aria-label="Use case carousel position"><button class="use-dot" type="button" aria-label="Show Transit corridors" aria-current="true"></button><button class="use-dot" type="button" aria-label="Show Agent evaluation" aria-current="false"></button><button class="use-dot" type="button" aria-label="Show Prototype rigs" aria-current="false"></button><button class="use-dot" type="button" aria-label="Show Public infrastructure" aria-current="false"></button></div></div></section>
 
     <section class="files" id="files"><div class="wrap"><header class="files-head" data-reveal><h2>Working notes, reference material, and build logic.</h2><p>Downloads for people who want to see the thinking in a form that can be opened, inspected, and used.</p></header><div class="file-list" data-reveal>
       <a class="file" href="abstract.pdf" download><span class="file-index">01</span><strong class="file-name">LiDAR Abstract</strong><span class="file-desc">Research abstract for a multi-sensor light-rail perception stack: LiDAR, radar, vision, track-region logic, and graded braking.</span><span class="file-type">PDF -&gt;</span></a>
@@ -144,6 +148,7 @@
       const reveal=[...document.querySelectorAll('[data-reveal]')];if(reduced)reveal.forEach(el=>el.classList.add('visible'));else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});reveal.forEach(el=>observer.observe(el))}
       const narwhalVideo=document.getElementById('narwhal-video');if(narwhalVideo){narwhalVideo.muted=true;narwhalVideo.defaultMuted=true;if(reduced){narwhalVideo.controls=true}else{const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){narwhalVideo.play().catch(()=>{})}else{narwhalVideo.pause()}}),{rootMargin:'220px 0px',threshold:.01});videoObserver.observe(narwhalVideo)}}
       const rail=document.getElementById('program-rail');document.querySelectorAll('[data-rail]').forEach(button=>button.addEventListener('click',()=>rail.scrollBy({left:(button.dataset.rail==='next'?1:-1)*rail.clientWidth*.72,behavior:'smooth'})));
+      const useRail=document.querySelector('.use-rail'),useCards=[...document.querySelectorAll('.use-card')],useDots=[...document.querySelectorAll('.use-dot')];if(useRail&&useDots.length){const syncUseDots=()=>{const center=useRail.scrollLeft+useRail.clientWidth/2;let active=0,distance=Infinity;useCards.forEach((card,index)=>{const nextDistance=Math.abs(card.offsetLeft+card.offsetWidth/2-center);if(nextDistance<distance){distance=nextDistance;active=index}});useDots.forEach((dot,index)=>dot.setAttribute('aria-current',String(index===active)))};useRail.addEventListener('scroll',syncUseDots,{passive:true});addEventListener('resize',syncUseDots,{passive:true});useDots.forEach((dot,index)=>dot.addEventListener('click',()=>useRail.scrollTo({left:useCards[index].offsetLeft-useRail.offsetLeft,behavior:'smooth'})));syncUseDots()}
     })();
   </script>
   <script id="venture-navigation-script">(()=>{const desktop=document.querySelector('.desktop-work-menu'),mobile=document.querySelector('.mobile-work-menu'),fine=matchMedia('(hover:hover) and (pointer:fine)');if(desktop){desktop.addEventListener('mouseenter',()=>{if(fine.matches)desktop.open=true});desktop.addEventListener('mouseleave',()=>{if(fine.matches)desktop.open=false});document.addEventListener('click',event=>{if(!desktop.contains(event.target))desktop.open=false})}document.addEventListener('keydown',event=>{if(event.key==='Escape'){if(desktop)desktop.open=false;if(mobile)mobile.open=false}});document.querySelector('.menu-button')?.addEventListener('click',()=>{if(!document.body.classList.contains('menu-open')&&mobile)mobile.open=false})})();</script>
