@@ -888,6 +888,28 @@
     @media(max-width:360px){.hero-copy h1{font-size:56px}.section-title,.systems-copy h2{font-size:44px}.always-copy h2,.files-head h2{font-size:48px}.cta h2{font-size:53px}}
     @media(prefers-reduced-motion:reduce){.program-photo{transition:none}.ecosystem-track{animation:none!important}}
   </style>
+  <style id="main-type-alignment">
+    body{font-family:Inter,Arial,sans-serif}
+    .hero{min-height:760px;padding:140px 0 110px}
+    .hero-copy{max-width:920px}
+    .hero-copy h1{max-width:10ch;font-size:clamp(58px,6.2vw,96px);font-weight:500;line-height:.98}
+    .hero-copy p{max-width:760px;margin-top:28px;font-size:clamp(18px,1.55vw,22px);line-height:1.45}
+    .section-title{font-size:clamp(44px,5vw,76px);font-weight:500;line-height:1.02}
+    .narwhal-title h2{font-size:clamp(64px,7vw,96px);font-weight:500;line-height:.92}
+    .systems-copy h2{font-size:clamp(48px,5.2vw,80px);font-weight:500;line-height:1}
+    .system-card h3{font-size:clamp(32px,3vw,48px);font-weight:500;line-height:1.05}
+    .files-head h2{font-size:clamp(48px,5vw,76px);font-weight:500;line-height:1.02}
+    .cta h2{font-size:clamp(48px,5vw,76px);font-weight:500;line-height:1.02}
+    @media(max-width:700px){
+      .hero{min-height:680px;padding:112px 0 88px}
+      .hero-copy h1{font-size:49px}
+      .hero-copy p{margin-top:26px;font-size:17px}
+      .section-title,.systems-copy h2,.files-head h2,.cta h2{font-size:48px}
+      .narwhal-title h2{font-size:58px}
+      .system-card h3{font-size:36px}
+    }
+    @media(max-width:360px){.hero-copy h1{font-size:47px}.section-title,.systems-copy h2,.files-head h2,.cta h2{font-size:44px}.narwhal-title h2{font-size:54px}}
+  </style>
 </head>
 <body>
   <header class="topbar"><div class="wrap nav"><a class="brand" href="https://jereme.xyz/"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>jereme.xyz</a><nav class="desktop-links" aria-label="Primary"><details class="work-menu desktop-work-menu"><summary>Work</summary><div class="work-popover"><a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a><span aria-disabled="true">pine</span><span aria-disabled="true">nrthrn</span><span aria-disabled="true">drift</span></div></details><a href="https://jereme.xyz/about/">About</a><a href="https://jereme.xyz/contact.html">Contact</a><a href="https://jereme.xyz/">Index</a></nav><a class="nav-badge" href="mailto:jeremedotxyz@gmail.com?subject=Email%20from%20jereme.xyz">Open channel</a><button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"></button></div></header>
@@ -956,8 +978,6 @@
         <div class="system-card-copy"><span class="system-mark" style="--tone:#cfff36">RIG</span><h3>Physical systems under constraint</h3><p>Sensors, wiring, fixtures, compute, installation, service access, and the parts of the build that do not fit in a deck.</p></div>
       </article>
     </div></div></section>
-
-    <section class="always"><div class="orbit-stage" aria-hidden="true"><i class="orbit-core"></i><i class="orbit-node" style="--a:0deg;--tone:#5ee4ff">LiDAR</i><i class="orbit-node" style="--a:60deg;--tone:#cfff36">AI</i><i class="orbit-node" style="--a:120deg;--tone:#ff9e45">RIG</i><i class="orbit-node" style="--a:180deg;--tone:#8673ff">TRACE</i><i class="orbit-node" style="--a:240deg;--tone:#3cd88a">FIELD</i><i class="orbit-node" style="--a:300deg;--tone:#ff6557">GATE</i></div><div class="always-copy" data-reveal><h2>Always field-aware. Always inspectable.</h2><p>Abstract direction gets pressure-tested against actual constraints before the clean demo is allowed to call itself finished.</p><span class="mono">real sensors / real signals / real environments<br>human review where confidence requires it</span></div></section>
 
     <section class="files" id="files"><div class="wrap"><header class="files-head" data-reveal><h2>Working notes, reference material, and build logic.</h2><p>Downloads for people who want to see the thinking in a form that can be opened, inspected, and used.</p></header><div class="file-list" data-reveal>
       <a class="file" href="abstract.pdf" download><span class="file-index">01</span><strong class="file-name">LiDAR Abstract</strong><span class="file-desc">Research abstract for a multi-sensor light-rail perception stack: LiDAR, radar, vision, track-region logic, and graded braking.</span><span class="file-type">PDF -&gt;</span></a>
