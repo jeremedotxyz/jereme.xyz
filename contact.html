@@ -26,7 +26,7 @@
       --line:rgba(10,10,11,.13);--line-dark:rgba(255,255,255,.14);
       --violet:#7d48ff;--purple:#b018d1;--coral:#f27763;--orange:#f1a26f;
       --cyan:#7cd8e8;--lime:#d8ec82;--green:#8db694;
-      --sans:"Manrope",Arial,sans-serif;--mono:"DM Mono",monospace;
+      --sans:Inter,Arial,sans-serif;--mono:"DM Mono",monospace;
       --ease:cubic-bezier(.22,1,.36,1);--mx:0;--my:0
     }
     *{box-sizing:border-box}
@@ -80,6 +80,26 @@
     @media(max-width:360px){.contact-brief h1,.contact-brief h2{font-size:50px}.composer{padding-inline:17px}.composer-head h2{font-size:30px}.statement-copy{font-size:34px}.method h2{font-size:43px}.final-card h1,.final-card h2{font-size:50px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}[data-reveal]{opacity:1;transform:none}.plane{transform:none!important}}
   </style>
+  <style id="main-type-alignment">
+    .final-channel{min-height:700px;padding:96px 0}
+    .final-card{width:min(800px,calc(100% - 36px));padding:clamp(38px,5vw,64px)}
+    .final-card h1,.final-card h2{font-size:clamp(58px,6.2vw,96px);font-weight:500;line-height:.98}
+    .final-card p{font-size:clamp(18px,1.55vw,22px);line-height:1.45}
+    .statement-copy{font-size:clamp(44px,5vw,76px);font-weight:500;line-height:1.24}
+    .contact-brief h1,.contact-brief h2{font-size:clamp(58px,6.2vw,94px);font-weight:500;line-height:.98}
+    .contact-brief>p{font-size:clamp(17px,1.45vw,21px);line-height:1.5}
+    .composer-head h2{font-weight:500;line-height:1.04}
+    .composer-submit{margin-top:28px}
+    @media(max-width:640px){
+      .final-channel{min-height:600px;padding:72px 0}
+      .final-card{padding:42px 22px}
+      .final-card h1,.final-card h2{font-size:49px}
+      .statement-copy{font-size:39px}
+      .contact-brief h1,.contact-brief h2{font-size:49px}
+      .composer-submit{margin-top:25px}
+    }
+    @media(max-width:360px){.final-card h1,.final-card h2,.contact-brief h1,.contact-brief h2{font-size:47px}.statement-copy{font-size:36px}}
+  </style>
 </head>
 <body>
   <div class="progress" aria-hidden="true"></div>
@@ -109,17 +129,6 @@
       <p class="shell statement-copy" data-reveal>Bring the <span class="signal-word">broken workflow</span>, the <span class="signal-word">field problem</span>, or the <span class="signal-word">uncomfortable sentence</span>. Clarity can begin there.</p>
     </section>
 
-    <section class="method">
-      <div class="shell">
-        <div class="method-head" data-reveal><h2>The answer can wait. <span>Get specific about the question.</span></h2><p class="method-intro">Good projects usually begin before certainty arrives. Context, constraints, and the thing that does not behave are more useful than a performance of confidence.</p></div>
-        <div class="method-rail" data-reveal>
-          <article class="method-step"><span class="step-number">01 / Receive</span><h3>Half-formed is fine.</h3><p>A rough problem statement, a dead end, or evidence from the real world is enough to start.</p></article>
-          <article class="method-step"><span class="step-number">02 / Clarify</span><h3>Name the real constraint.</h3><p>We separate the actual operating problem from the story that has accumulated around it.</p></article>
-          <article class="method-step"><span class="step-number">03 / Respond</span><h3>Decide what deserves motion.</h3><p>If there is a useful way forward, the next step should be legible, proportionate, and real.</p></article>
-        </div>
-      </div>
-    </section>
-
     <section class="intake-stage" aria-labelledby="contact-title">
       <div class="color-field" aria-hidden="true"><i class="plane"></i><i class="plane"></i><i class="plane"></i><i class="plane"></i><i class="plane"></i><i class="plane"></i></div>
       <div class="shell intake-grid">
@@ -140,7 +149,7 @@
         </article>
 
         <section class="composer" data-reveal aria-labelledby="composer-title">
-          <div class="composer-head"><h2 id="composer-title">Open a useful channel.</h2><span class="composer-status">Available</span></div>
+          <div class="composer-head"><h2 id="composer-title">Open a useful channel.</h2></div>
           <form id="contact-form">
             <div class="field-grid">
               <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="Name"></div>
@@ -153,7 +162,6 @@
               </div></fieldset>
               <div class="field full"><label for="problem">What is refusing to work?</label><textarea id="problem" name="problem" placeholder="Context, constraints, the dead end, or the uncomfortable sentence."></textarea></div>
             </div>
-            <div class="composer-note"><span>No polished deck required</span><span>Opens in your email app</span></div>
             <button class="composer-submit" type="submit">Ping me</button>
           </form>
         </section>
