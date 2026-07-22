@@ -462,6 +462,97 @@
     @media(max-width:900px){.research-art{min-height:145px;flex:0 0 145px}.field-condition{min-height:112px}.platforms .venture-compact .venture-evidence-art{top:47px;height:101px}}
     @media(max-width:600px){.research-art{min-height:140px;flex-basis:140px}.sample-rack{grid-template-columns:repeat(4,1fr)}.field-proof-panel{inset:7%;padding:13px}.field-proof-conditions{grid-template-columns:1fr 1fr;margin-top:16px}.field-condition{min-height:100px}.field-condition i{margin-top:25px}.proof-cmf-art{padding:7%;grid-template-columns:1fr}.proof-cmf-decision{display:none}.rhythm-hours{margin-top:18px}.platforms .venture-compact .venture-evidence-art{top:47px;height:96px}}
   </style>
+  <style id="keyword-icon-sharpening">
+    .keyword-scene{--field-color:#19d2ff}
+    .keyword-scene[data-mode="perception"]{--accent:#19d2ff;--accent2:#19d2ff;--field-color:#19d2ff}
+    .keyword-scene[data-mode="objects"]{--accent:#cfff36;--accent2:#cfff36;--field-color:#cfff36}
+    .keyword-scene[data-mode="rooms"]{--accent:#ff5f4a;--accent2:#ff5f4a;--field-color:#ff5f4a}
+    .keyword-scene[data-mode="coast"]{--accent:#6a63ff;--accent2:#6a63ff;--field-color:#6a63ff}
+    .scene-sheet{
+      border-color:rgba(255,255,255,.58);
+      background:var(--field-color);
+      box-shadow:inset -14px 0 24px rgba(0,0,0,.2),0 18px 38px rgba(0,0,0,.25);
+      opacity:.9;
+      transition:top .85s var(--ease),left .85s var(--ease),border-radius .65s var(--ease),opacity .45s,transform .85s var(--ease),background-color .42s var(--ease);
+    }
+    .keyword-scene[data-mode="perception"] .scene-spectrum,
+    .keyword-scene[data-mode="objects"] .scene-spectrum,
+    .keyword-scene[data-mode="rooms"] .scene-spectrum,
+    .keyword-scene[data-mode="coast"] .scene-spectrum{filter:saturate(1.12) contrast(1.05)}
+    .key{color:#fff}
+    .key:hover,.key:focus-visible{color:var(--key);outline:none}
+    .key-icon{
+      position:relative;
+      display:inline-block;
+      width:.78em;
+      height:.78em;
+      flex:0 0 .78em;
+      overflow:hidden;
+      box-sizing:border-box;
+      border:2px solid rgba(255,255,255,.92);
+      border-radius:.18em;
+      background:var(--key);
+      box-shadow:0 .08em 0 rgba(0,0,0,.34);
+      color:#fff;
+      isolation:isolate;
+    }
+    .key-icon:before,.key-icon:after{
+      position:absolute;
+      display:block;
+      box-sizing:border-box;
+      content:"";
+    }
+    .icon-scan:before{
+      inset:18%;
+      border:2px solid #fff;
+      border-radius:50%;
+      transform:none;
+    }
+    .icon-scan:after{
+      top:50%;left:50%;
+      width:20%;height:20%;
+      border-radius:50%;
+      background:#fff;
+      transform:translate(-50%,-50%);
+    }
+    .icon-object:before{
+      top:50%;left:50%;
+      width:44%;height:44%;
+      border-radius:1px;
+      background:#fff;
+      transform:translate(-50%,-50%) rotate(45deg);
+    }
+    .icon-object:after{
+      top:50%;left:50%;
+      width:14%;height:14%;
+      border-radius:1px;
+      background:var(--key);
+      transform:translate(-50%,-50%) rotate(45deg);
+    }
+    .icon-room:before{
+      right:20%;bottom:17%;left:20%;
+      height:45%;
+      border:2px solid #fff;
+      border-top:0;
+      transform:none;
+    }
+    .icon-room:after{
+      top:19%;left:50%;
+      width:42%;height:42%;
+      border-top:2px solid #fff;
+      border-left:2px solid #fff;
+      transform:translateX(-50%) rotate(45deg);
+    }
+    .icon-coast:before{
+      top:31%;left:18%;
+      width:64%;height:2px;
+      border-radius:99px;
+      background:#fff;
+      box-shadow:0 .22em 0 #fff;
+      transform:skewX(-18deg);
+    }
+    .icon-coast:after{display:none}
+  </style>
 </head>
 <body>
   <header class="topbar" id="topbar"><div class="wrap nav"><a class="brand" href="https://jereme.xyz/"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>jereme.xyz</a><nav class="desktop-links" aria-label="Primary"><details class="work-menu desktop-work-menu"><summary>Work</summary><div class="work-popover"><a href="https://jereme.xyz/site/fwr/fwr.html">fw/r</a><span aria-disabled="true">pine</span><span aria-disabled="true">nrthrn</span><span aria-disabled="true">drift</span></div></details><a href="https://jereme.xyz/about/">About</a><a href="https://jereme.xyz/contact.html">Contact</a><a href="https://jereme.xyz/">Index</a></nav><a class="nav-badge" href="mailto:jeremedotxyz@gmail.com?subject=Email%20from%20jereme.xyz">Open channel</a><button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"></button></div></header>
@@ -515,7 +606,7 @@
       </div></div>
     </div></section>
 
-    <section class="keyword-scene" data-keyword-scene data-mode="default"><div class="scene-spectrum" aria-hidden="true"><i class="scene-sheet" style="--i:0;--tone:#62add1"></i><i class="scene-sheet" style="--i:1;--tone:#9bcce0"></i><i class="scene-sheet" style="--i:2;--tone:#d5e6eb"></i><i class="scene-sheet" style="--i:3;--tone:#f0eef3"></i><i class="scene-sheet" style="--i:4;--tone:#e7f6ee"></i><i class="scene-sheet" style="--i:5;--tone:#d5f3bf"></i><i class="scene-sheet" style="--i:6;--tone:#cdef9d"></i><i class="scene-sheet" style="--i:7;--tone:#dce883"></i><i class="scene-sheet" style="--i:8;--tone:#ecd479"></i><i class="scene-sheet" style="--i:9;--tone:#f6b278"></i><i class="scene-sheet" style="--i:10;--tone:#f58a70"></i><i class="scene-sheet" style="--i:11;--tone:#e76562"></i><i class="scene-sheet" style="--i:12;--tone:#c64b58"></i></div><p class="keyword-copy">Build <span class="key" tabindex="0" style="--key:#70e6ff" data-scene="#007da0" data-mode="perception"><i class="key-icon icon-scan" aria-hidden="true"></i>perception systems</span>, <span class="key" tabindex="0" style="--key:#d4ff49" data-scene="#506400" data-mode="objects"><i class="key-icon icon-object" aria-hidden="true"></i>physical objects</span>, <span class="key" tabindex="0" style="--key:#ff907a" data-scene="#9d2d1e" data-mode="rooms"><i class="key-icon icon-room" aria-hidden="true"></i>rooms people remember</span>, and <span class="key" tabindex="0" style="--key:#c4a3ff" data-scene="#592e9b" data-mode="coast"><i class="key-icon icon-coast" aria-hidden="true"></i>slower coastal worlds</span>.</p></section>
+    <section class="keyword-scene" data-keyword-scene data-mode="default"><div class="scene-spectrum" aria-hidden="true"><i class="scene-sheet" style="--i:0;--tone:#00bfe8"></i><i class="scene-sheet" style="--i:1;--tone:#19d2ff"></i><i class="scene-sheet" style="--i:2;--tone:#4b72ff"></i><i class="scene-sheet" style="--i:3;--tone:#6a63ff"></i><i class="scene-sheet" style="--i:4;--tone:#5ee4ff"></i><i class="scene-sheet" style="--i:5;--tone:#33d998"></i><i class="scene-sheet" style="--i:6;--tone:#6ee7a3"></i><i class="scene-sheet" style="--i:7;--tone:#cfff36"></i><i class="scene-sheet" style="--i:8;--tone:#f2dc45"></i><i class="scene-sheet" style="--i:9;--tone:#ffad32"></i><i class="scene-sheet" style="--i:10;--tone:#ff735c"></i><i class="scene-sheet" style="--i:11;--tone:#ff4d4d"></i><i class="scene-sheet" style="--i:12;--tone:#c83255"></i></div><p class="keyword-copy">Build <span class="key" tabindex="0" style="--key:#19d2ff" data-scene="#005a78" data-mode="perception"><i class="key-icon icon-scan" aria-hidden="true"></i>perception systems,</span> <span class="key" tabindex="0" style="--key:#cfff36" data-scene="#344d00" data-mode="objects"><i class="key-icon icon-object" aria-hidden="true"></i>physical objects,</span> <span class="key" tabindex="0" style="--key:#ff5f4a" data-scene="#7f1f16" data-mode="rooms"><i class="key-icon icon-room" aria-hidden="true"></i>rooms people remember,</span> and <span class="key" tabindex="0" style="--key:#6a63ff" data-scene="#2e226f" data-mode="coast"><i class="key-icon icon-coast" aria-hidden="true"></i>slower coastal worlds</span>.</p></section>
 
     <section class="platforms"><div class="wrap"><header class="platforms-head" data-reveal><h2>Four ventures. First-class in their own worlds.</h2><p>Each venture keeps a distinct identity and operating tempo. The connective tissue is judgment: practical, specific, and close enough to reality to be useful.</p></header><div class="platform-list">
       <article class="platform venture-fwr venture-large" data-reveal><div class="platform-shell"><div class="platform-copy"><div class="venture-case-head"><h3>fw/r</h3><span class="venture-state">systems / active</span></div><p class="venture-summary">Technical systems for situations where somebody tried the obvious and the obvious did not hold.</p><div class="venture-metrics"><div class="venture-metric"><strong>03</strong><span>sensing modes</span></div><div class="venture-metric"><strong>0.94</strong><span>field confidence</span></div></div><div class="venture-case-media venture-evidence-art venture-fwr-art" aria-hidden="true"><div class="venture-field-map"></div><div class="venture-field-status"><i>LiDAR live</i><i>evidence attached</i><i>authority held</i></div></div></div></div></article>
@@ -542,7 +633,7 @@ room.send({ pace: "unhurried", return: true })</div><div class="imessage-thread"
       menuButton.addEventListener('click',()=>{const open=body.classList.toggle('menu-open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Close menu':'Open menu')});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>body.classList.remove('menu-open')));
       const reveals=[...document.querySelectorAll('[data-reveal]')];if(reduced)reveals.forEach(el=>el.classList.add('visible'));else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -6%'});reveals.forEach(el=>observer.observe(el))}
       const demo=document.getElementById('operating-surface'),proof=document.querySelector('.proof'),root=document.documentElement;let stackCurrent=0,stackTarget=0,stackFrame=0;const paintStack=()=>{const delta=stackTarget-stackCurrent;stackCurrent=reduced?stackTarget:stackCurrent+delta*.115;if(Math.abs(delta)<.0005)stackCurrent=stackTarget;root.style.setProperty('--stack-progress',stackCurrent.toFixed(4));if(stackCurrent!==stackTarget)stackFrame=requestAnimationFrame(paintStack);else stackFrame=0};const queueStack=()=>{if(!stackFrame)stackFrame=requestAnimationFrame(paintStack)};const update=()=>{const hero=document.getElementById('hero'),r=hero.getBoundingClientRect();stackTarget=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-innerHeight)));queueStack();const light=demo.getBoundingClientRect().top<60&&proof.getBoundingClientRect().bottom>60;topbar.classList.toggle('light',light)};update();addEventListener('scroll',update,{passive:true});addEventListener('resize',update,{passive:true});
-      document.querySelectorAll('[data-keyword-scene]').forEach(scene=>{const base=getComputedStyle(scene).getPropertyValue('--scene'),baseMode=scene.dataset.mode||'default';scene.querySelectorAll('[data-scene]').forEach(key=>{const set=()=>{scene.style.setProperty('--scene',key.dataset.scene);scene.style.setProperty('--key',getComputedStyle(key).getPropertyValue('--key'));scene.dataset.mode=key.dataset.mode||baseMode};const reset=()=>{scene.style.setProperty('--scene',base);scene.style.removeProperty('--key');scene.dataset.mode=baseMode};key.addEventListener('mouseenter',set);key.addEventListener('focus',set);key.addEventListener('mouseleave',reset);key.addEventListener('blur',reset)})});
+      document.querySelectorAll('[data-keyword-scene]').forEach(scene=>{const base=getComputedStyle(scene).getPropertyValue('--scene'),baseMode=scene.dataset.mode||'default',keys=[...scene.querySelectorAll('[data-scene]')];const set=key=>{scene.style.setProperty('--scene',key.dataset.scene);scene.style.setProperty('--key',getComputedStyle(key).getPropertyValue('--key'));scene.style.setProperty('--field-color',getComputedStyle(key).getPropertyValue('--key'));scene.dataset.mode=key.dataset.mode||baseMode};const reset=()=>{scene.style.setProperty('--scene',base);scene.style.removeProperty('--key');scene.style.removeProperty('--field-color');scene.dataset.mode=baseMode};keys.forEach(key=>{key.addEventListener('mouseenter',()=>set(key));key.addEventListener('focus',()=>set(key));key.addEventListener('mouseleave',reset);key.addEventListener('blur',reset);key.addEventListener('touchstart',()=>set(key),{passive:true})});scene.addEventListener('touchmove',event=>{const touch=event.touches[0],target=touch&&document.elementFromPoint(touch.clientX,touch.clientY),key=target&&target.closest('.key');if(key&&scene.contains(key))set(key)},{passive:true})});
       const demos={
         fwr:{title:'Field systems',heading:'Buildable technical infrastructure',sub:'for strange physical futures',code:[['const ','corridor',' = observe(field.geometry)'],['const ','signals',' = fuse(lidar, radar, vision)'],['const ','track',' = regions.extract(signals)'],['const ','objects',' = classify(signals.points)'],['await ','contextualize','(objects, track)'],['await ','evaluate','(motion, heading, distance)'],['evidence.','attach','(frame, object, context)'],['if ','confidence',' < operating_threshold:'],['  return ','human_review','(evidence)'],['if ','authority',' === false:'],['  return ','passive_assurance','(report)'],['return ','decision','({ visible: true })']]},
         pine:{title:'Room systems',heading:'Hospitality designed as infrastructure',sub:'for pace, warmth, and return',code:[['const ','room',' = open({ light, sound })'],['const ','line',' = pace(demand, patience)'],['const ','chairs',' = choose(on_purpose)'],['const ','counter',' = set(service_height)'],['await ','coffee','(repeatable_ritual)'],['await ','listen','(without_hovering)'],['if ','guest.needs',' === "space":'],['  return ','attention','({ hover: false })'],['if ','room.noise',' > useful:'],['  return ','reset','(levels)'],['return ','memory','({ generous: true })'],['schedule.','repeat','(tomorrow)']]},
