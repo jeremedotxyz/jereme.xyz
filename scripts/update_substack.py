@@ -7,6 +7,7 @@ from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 import re
+import time
 import urllib.request
 import urllib.error
 from urllib.parse import urlparse
@@ -14,6 +15,55 @@ import xml.etree.ElementTree as ET
 
 FEED = 'https://jeremedotxyz.substack.com/feed'
 BLOCK = re.compile(r'<article class="latest-post">[\s\S]*?</article>')
+HEADERS = {
+    'User-Agent': 'jereme.xyz RSS fetcher/1.1 (+https://jereme.xyz/)',
+    'Accept': 'application/rss+xml, application/xml, text/xml',
+    'Accept-Encoding': 'identity',
+    'Host': 'jeremedotxyz.substack.com',
+    'Connection': 'close',
+}
+
+
+def fetch_feed():
+    print('GET ' + FEED)
+    print('Request headers (no cookies or authorization):')
+    for name, value in HEADERS.items():
+        print(f'{name}: {value}')
+    for attempt in range(3):
+        try:
+            request = urllib.request.Request(FEED, headers=HEADERS)
+            with urllib.request.urlopen(request, timeout=30) as response:
+                xml = response.read(4_000_001)
+                print(f'Attempt {attempt + 1}: HTTP {response.status}')
+                return xml
+        except (urllib.error.URLError, TimeoutError) as error:
+            print(f'Attempt {attempt + 1}: {type(error).__name__}: {error}')
+            if isinstance(error, urllib.error.HTTPError):
+                for name in ('Date', 'Retry-After', 'CF-Ray', 'X-Request-ID'):
+                    if error.headers and error.headers.get(name):
+                        print(f'Response {name}: {error.headers[name]}')
+                retryable = error.code in (403, 408, 429, 500, 502, 503, 504)
+            else:
+                retryable = True
+            if attempt == 2 or not retryable:
+                raise
+            delay = (10, 30)[attempt]
+            retry_after = error.headers.get('Retry-After') if isinstance(error, urllib.error.HTTPError) and error.headers else None
+            if retry_after:
+                try:
+                    requested = float(retry_after)
+                except ValueError:
+                    try:
+                        requested = (parsedate_to_datetime(retry_after) - datetime.now(timezone.utc)).total_seconds()
+                    except (ValueError, TypeError):
+                        raise error
+                if requested > 120:
+                    raise error
+                delay = max(delay, requested)
+            if isinstance(error, urllib.error.HTTPError) and error.fp is not None:
+                error.fp.close()
+            print(f'Waiting {delay:g} seconds before retrying.')
+            time.sleep(delay)
 
 
 class PlainText(HTMLParser):
@@ -98,10 +148,8 @@ def main():
     if args.feed_file:
         xml = args.feed_file.read_bytes()
     else:
-        request = urllib.request.Request(FEED, headers={'User-Agent': 'jereme.xyz RSS reader/1.0', 'Accept': 'application/rss+xml, application/xml, text/xml'})
         try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                xml = response.read(4_000_001)
+            xml = fetch_feed()
         except (urllib.error.URLError, TimeoutError) as error:
             message = ('Substack refresh unavailable. Publishing the article saved in '
                        'repository index.html unchanged. Automatic freshness is NOT confirmed.')
