@@ -1,5 +1,6 @@
 """Refresh the existing latest-post block without altering the rest of index.html."""
 import argparse
+import os
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from html import escape
@@ -7,6 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 import re
 import urllib.request
+import urllib.error
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 
@@ -90,15 +92,28 @@ def main():
     parser.add_argument('homepage', type=Path)
     parser.add_argument('--feed-file', type=Path, help='Use a local RSS fixture for testing')
     args = parser.parse_args()
+    source = args.homepage.read_text(encoding='utf-8')
+    if len(BLOCK.findall(source)) != 1:
+        raise ValueError('Expected exactly one latest-post block; refusing to publish')
     if args.feed_file:
         xml = args.feed_file.read_bytes()
     else:
         request = urllib.request.Request(FEED, headers={'User-Agent': 'jereme.xyz RSS reader/1.0', 'Accept': 'application/rss+xml, application/xml, text/xml'})
-        with urllib.request.urlopen(request, timeout=30) as response:
-            xml = response.read(4_000_001)
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                xml = response.read(4_000_001)
+        except (urllib.error.URLError, TimeoutError) as error:
+            message = ('Substack refresh unavailable. Publishing the article saved in '
+                       'repository index.html unchanged. Automatic freshness is NOT confirmed.')
+            print('::warning::' + message)
+            print(type(error).__name__, str(error))
+            summary = os.environ.get('GITHUB_STEP_SUMMARY')
+            if summary:
+                with open(summary, 'a', encoding='utf-8') as report:
+                    report.write('## Substack update skipped\n\n' + message + '\n')
+            return
         if len(xml) > 4_000_000:
             raise ValueError('RSS response exceeded size limit')
-    source = args.homepage.read_text(encoding='utf-8')
     updated = update(source, xml)
     if updated != source:
         temporary = args.homepage.with_suffix('.html.tmp')
