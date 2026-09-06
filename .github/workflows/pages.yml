@@ -1,0 +1,43 @@
+name: Publish site and refresh Substack
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: actions/configure-pages@v5
+      - name: Refresh latest article
+        run: python scripts/update_substack.py index.html
+      - name: Stage the existing static site
+        run: |
+          mkdir -p _site
+          rsync -a --exclude='_site/' --exclude='.git/' --exclude='.github/' --exclude='scripts/' --exclude='tests/' --exclude='*.md' --exclude='.DS_Store' ./ _site/
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Publish
+        id: deployment
+        uses: actions/deploy-pages@v4
