@@ -150,9 +150,52 @@
 @media(max-width:720px){#listening .listening li{grid-template-columns:72px minmax(0,1fr) 44px;gap:10px}#listening .track-cover{width:72px;height:72px;flex-basis:72px}#listening .track-artist{grid-column:2;grid-row:1;display:flex;align-items:center;min-height:44px;font-size:20px}#listening .listening li>span:not(.track-artist){grid-column:2;grid-row:2;display:block}#listening .listening li>a:last-child{grid-column:3;grid-row:1;align-self:center}}
 @media(max-width:720px){.radar-video{grid-template-columns:minmax(0,1fr) 24px;gap:15px}.radar-video img{grid-column:1/-1;max-width:440px}.radar-video-copy{grid-column:1;grid-row:2}.radar-arrow{grid-column:2;grid-row:2}.radar-video-copy strong{font-size:28px}}
 </style>
+
+/* Shared light/dark control */
+.theme-toggle{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border:0;border-radius:0;padding:0;background:transparent;color:inherit;font:24px/1 "Helvetica Neue",Arial,sans-serif;cursor:pointer;transition:opacity .18s ease}
+.theme-toggle:hover{opacity:.62}
+.theme-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.theme-toggle-icon{display:block;transform:translateY(-1px)}
+html[data-theme="dark"]{color-scheme:dark;--paper:#181917;--ink:#f1efe9;--line:rgba(241,239,233,.22);--blue:#a8b8ff}
+html[data-theme="dark"] body{background:var(--paper);color:var(--ink)}
+html[data-theme="dark"] .hero-note,
+html[data-theme="dark"] .current p,
+html[data-theme="dark"] .post-meta,
+html[data-theme="dark"] .latest-post>p:last-child,
+html[data-theme="dark"] .ventures-label,
+html[data-theme="dark"] .entry p,
+html[data-theme="dark"] .current>.mono{color:#bcbab3}
+html[data-theme="dark"] .current>.mono,
+html[data-theme="dark"] .entry p,
+html[data-theme="dark"] .latest-post h3 span{color:var(--blue)}
+html[data-theme="dark"] .topline,
+html[data-theme="dark"] .reading-header,
+html[data-theme="dark"] .entry,
+html[data-theme="dark"] .current,
+html[data-theme="dark"] .latest-post,
+html[data-theme="dark"] .personal-addition,
+html[data-theme="dark"] .chapter-head,
+html[data-theme="dark"] .page-body section{border-color:var(--line)}
+html[data-theme="dark"] .reading{background:transparent;color:var(--ink)}
+html[data-theme="dark"] .topline nav a:hover,
+html[data-theme="dark"] .entry:hover,
+html[data-theme="dark"] .latest-post a:hover{color:var(--blue)}
+@media(max-width:720px){
+  .topline{height:auto;min-height:62px;flex-wrap:wrap;gap:8px 12px;padding-block:10px}
+  .topline nav{margin-left:auto;flex:0 1 auto;gap:0 12px}
+  .theme-toggle{width:40px;height:44px;flex-basis:40px}
+}
+@media(max-width:380px){
+  .topline{display:grid;grid-template-columns:minmax(0,1fr) 44px;grid-template-rows:auto auto;gap:2px 8px}
+  .topline .site-id{grid-column:1;grid-row:1}
+  .topline nav{grid-column:1;grid-row:2;width:auto;margin:0;justify-content:flex-start}
+  .topline .theme-toggle{grid-column:2;grid-row:1;width:44px;justify-self:end}
+}
+
+<script>(function(){try{if(localStorage.getItem('jereme-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}})();</script>
 </head>
 <body>
-  <header class="shell topline"><a class="site-id" href="https://jereme.xyz/"><i class="site-mark"></i>jereme.xyz</a><nav class="mono" aria-label="Main"><a href="https://jereme.xyz/site/fwr/fwr.html">work</a><a href="https://jereme.xyz/about/index.html">about</a><a href="mailto:jeremedotxyz@gmail.com?subject=%F0%9F%93%A1%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%A4%96">email</a></nav></header>
+  <header class="shell topline"><a class="site-id" href="https://jereme.xyz/"><i class="site-mark"></i>jereme.xyz</a><nav class="mono" aria-label="Main"><a href="https://jereme.xyz/site/fwr/fwr.html">work</a><a href="https://jereme.xyz/about/index.html">about</a><a href="mailto:jeremedotxyz@gmail.com?subject=%F0%9F%93%A1%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%A4%96">email</a></nav><button class="theme-toggle" type="button" aria-label="switch to dark mode" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span></button></header>
   <main id="top">
     <section class="shell hero"><div class="location mono"><b></b>pacific northwest / online</div><div class="hero-main"><h1>hi 👋, i’m <em>jer.</em><br>i make things and then talk about them here.</h1><p class="hero-note">i build robots, systems, objects, and places. in between: music, long walks, and opinions that have not been cleared by legal.</p><p class="hero-note">this is my little corner of the internet. occasionally, a point. bare bones on purpose. the internet has enough furniture. the ventures get their own homes. this one gets to keep its shoes off.<br><a href="#notes">start somewhere ↓</a></p></div><div class="hero-foot"><p>four ventures. one desk. no appetite for fake certainty.</p><span class="arrow">↓</span></div></section>
     <section id="now" class="shell chapter"><header class="chapter-head"><h2>on my radar. 📡</h2><p class="radar-intro"><span class="radar-kicker">currently on my radar</span>things holding my attention. a position with very little job security.</p></header><a class="radar-video" href="https://youtu.be/Y25LDO6OLzQ?si=SkqwnQ1XGzR6WVyu" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/Y25LDO6OLzQ/hqdefault.jpg" alt="Video thumbnail for Of Monsters and Men - The Cabin Sessions" loading="lazy"><span class="radar-video-copy"><strong>Of Monsters and Men<br>The Cabin Sessions</strong></span><span class="radar-arrow" aria-hidden="true">↗</span></a></section><section id="building" class="shell chapter"><header class="chapter-head"><h2>building. 🔨</h2><p>things in motion, each at its own speed.</p></header><div class="currently"><article class="current current--blue"><span class="mono">fw/r / working</span><h3>field systems under actual constraint.</h3><p>robotics, LiDAR, applied ai, and the difficult joy of making a real thing behave.</p><i class="scribble">signal meets pavement</i></article><article class="current current--yellow"><span class="mono">pine / still becoming</span><h3>a coffee shop with a very long runway.</h3><p>community, pace, return, a room with a reason, and an unreasonable number of decisions about fixtures.</p><i class="scribble">yes, the chairs matter</i></article><article class="current current--green"><span class="mono">nrthrn / in the works</span><h3>objects that earn the counter space.</h3><p>useful, slower, material-minded things for the people who will actually live with them.</p><i class="scribble">currently thinking about toasters</i></article><article class="current current--red"><span class="mono">drift / on the horizon</span><h3>the coast is taking its time.</h3><p>a quieter room by the water, when the block is right and the tide agrees.</p><i class="scribble">no grand opening</i></article></div></section><section id="substack" class="shell chapter"><header class="chapter-head"><h2>latest on substack. 📝</h2><p>the latest dispatch. for when a footnote won’t do.</p></header><article class="latest-post"><p class="post-meta">published <time datetime="2026-09-28">sep 28, 2026</time></p><h3><a href="https://jeremedotxyz.substack.com/p/there-was-never-an-instruction-manual">There was never an instruction manual. <span aria-hidden="true">↗</span></a></h3><p>..ain’t that some bullshit?</p></article></section>
@@ -193,5 +236,7 @@
   });
 })();
 </script>
+
+<script>(function(){const button=document.querySelector('.theme-toggle');if(!button)return;const icon=button.querySelector('.theme-toggle-icon');const meta=document.querySelector('meta[name="theme-color"]');function apply(dark,save){document.documentElement.dataset.theme=dark?'dark':'light';button.setAttribute('aria-pressed',String(dark));button.setAttribute('aria-label',dark?'switch to light mode':'switch to dark mode');icon.textContent=dark?'☼':'☾';if(meta)meta.setAttribute('content',dark?'#181917':'#f3efe6');if(save){try{localStorage.setItem('jereme-theme',dark?'dark':'light')}catch(e){}}}apply(document.documentElement.dataset.theme==='dark',false);button.addEventListener('click',function(){apply(document.documentElement.dataset.theme!=='dark',true)})})();</script>
 </body>
 </html>
