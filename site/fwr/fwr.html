@@ -195,10 +195,14 @@ html[data-theme="dark"] .personal-addition .side-note,
 html[data-theme="dark"] .listening li span,
 html[data-theme="dark"] .radar-kicker{color:#dedbd3}
 html[data-theme="dark"] .socials a{color:#fff}
+
+.site-mark{width:24px;height:24px;flex:0 0 24px;border:0;border-radius:0;position:static;object-fit:contain;filter:invert(1);mix-blend-mode:multiply}
+.site-mark::before,.site-mark::after{content:none}
+html[data-theme="dark"] .site-mark{filter:none;mix-blend-mode:screen}
 </style>
 <script>(function(){try{if(localStorage.getItem('jereme-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}})();</script>
 </head>
-<body><header class="shell topline"><a class="site-id" href="https://jereme.xyz/"><i class="site-mark"></i>jereme.xyz</a><nav class="mono" aria-label="Main"><a href="https://jereme.xyz/about/index.html">about</a><a href="mailto:jeremedotxyz@gmail.com?subject=%F0%9F%93%A1%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%A4%96">email</a></nav><button class="theme-toggle" type="button" aria-label="switch to dark mode" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span></button></header><main class="page-body">
+<body><header class="shell topline"><a class="site-id" href="https://jereme.xyz/"><img class="site-mark" src="/apple-touch-icon.png?v=20260926" alt="">jereme.xyz</a><nav class="mono" aria-label="Main"><a href="https://jereme.xyz/about/index.html">about</a><a href="mailto:jeremedotxyz@gmail.com?subject=%F0%9F%93%A1%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%F0%9F%A4%96">email</a></nav><button class="theme-toggle" type="button" aria-label="switch to dark mode" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span></button></header><main class="page-body">
       <header class="article-header" id="start">
         <p class="eyebrow">fw/r - applied ai / robotics / LiDAR</p>
         <h1>bring perception to the physical world. 🌎</h1>
