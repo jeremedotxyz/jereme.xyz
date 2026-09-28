@@ -151,6 +151,7 @@
 @media(max-width:720px){.radar-video{grid-template-columns:minmax(0,1fr) 24px;gap:15px}.radar-video img{grid-column:1/-1;max-width:440px}.radar-video-copy{grid-column:1;grid-row:2}.radar-arrow{grid-column:2;grid-row:2}.radar-video-copy strong{font-size:28px}}
 </style>
 
+<style>
 /* Shared light/dark control */
 .theme-toggle{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;border:0;border-radius:0;padding:0;background:transparent;color:inherit;font:24px/1 "Helvetica Neue",Arial,sans-serif;cursor:pointer;transition:opacity .18s ease}
 .theme-toggle:hover{opacity:.62}
@@ -194,6 +195,7 @@ html[data-theme="dark"] .theme-toggle:focus-visible{outline-color:#a8b8ff}
   .topline .theme-toggle{grid-column:2;grid-row:1;width:44px;justify-self:end}
 }
 
+</style>
 <script>(function(){try{if(localStorage.getItem('jereme-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}})();</script>
 </head>
 <body>
