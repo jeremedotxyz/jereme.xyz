@@ -40,3 +40,24 @@
 @media(max-width:580px){.audio-entry .audiobook-cover{height:48px}.audio-entry .audiobook-author{font-size:11px}.audio-entry .audio-narrator{font-size:10px;margin-top:2px}.audio-destination{grid-column:3;grid-row:1/3;font-size:11px}}
 
 .hero-copy a{text-decoration:underline;white-space:nowrap}
+
+/* The mobile menu expands in the page; desktop navigation stays inline. */
+.menu-toggle{display:none;justify-self:end;width:44px;height:44px;padding:0;border:0;background:transparent;color:var(--ink);align-items:center;justify-content:center}
+.menu-toggle:hover{background:transparent;color:var(--ink)}
+.menu-lines{position:relative;display:block;width:20px;height:16px}
+.menu-lines>span{position:absolute;left:0;width:20px;height:1px;background:currentColor;transition:transform .15s ease,opacity .15s ease}
+.menu-lines>span:nth-child(1){top:0}
+.menu-lines>span:nth-child(2){top:7px}
+.menu-lines>span:nth-child(3){top:14px}
+.menu-toggle[aria-expanded="true"] .menu-lines>span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] .menu-lines>span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] .menu-lines>span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:580px){
+ .site-header{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:0 16px;padding:18px 0}
+ .site-header.nav-ready .menu-toggle{display:flex}
+ .site-header nav{grid-column:1/-1;flex-direction:column;align-items:stretch;gap:0;margin-top:16px;padding-top:8px;border-top:1px solid var(--line);font-size:13px}
+ .site-header nav a{padding:13px 0}
+ .site-header.nav-ready nav{display:none}
+ .site-header.nav-ready[data-menu-open="true"] nav{display:flex}
+}
+@media(prefers-reduced-motion:reduce){.menu-lines>span{transition:none}}
