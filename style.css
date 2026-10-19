@@ -61,3 +61,8 @@
  .site-header.nav-ready[data-menu-open="true"] nav{display:flex}
 }
 @media(prefers-reduced-motion:reduce){.menu-lines>span{transition:none}}
+
+@media(max-width:580px){
+ .footer-links{flex-wrap:nowrap;justify-content:space-between;gap:2px;font-size:clamp(8px,2.95vw,10px)}
+ .footer-links>a{white-space:nowrap;flex-shrink:0}
+}
