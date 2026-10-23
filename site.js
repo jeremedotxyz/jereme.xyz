@@ -46,3 +46,9 @@ document.querySelector('#contact-form')?.addEventListener('submit', event => {
   setOpen(false);
   header.classList.add('nav-ready');
 })();
+
+(()=>{
+const button=document.querySelector(".theme-toggle");if(!button)return;
+function sync(){const dark=document.documentElement.dataset.theme==="dark";const label=dark?"Switch to light mode":"Switch to dark mode";button.setAttribute("aria-label",label);button.title=label;document.querySelector('meta[name="theme-color"]')?.setAttribute("content",dark?"#171817":"#ffffff");}
+button.addEventListener("click",()=>{const next=document.documentElement.dataset.theme==="dark"?"light":"dark";document.documentElement.dataset.theme=next;try{localStorage.setItem("jereme-theme",next)}catch{}sync()});sync();
+})();

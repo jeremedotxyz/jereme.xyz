@@ -70,3 +70,31 @@
 .page-contact .contact-layout{display:block;max-width:664px}
 
 .page-about .essay-layout{display:block}
+
+/* Theme: preserve the established layout and typography. */
+:root{--paper:#fff}
+html[data-theme="dark"]{color-scheme:dark;--paper:#171817;--ink:#f4f4f2;--muted:#e2e2de;--line:#424440;--subtle:#242623}
+body{background:var(--paper)}
+.site-header nav{margin-left:auto}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;padding:0;border:0;background:transparent;color:var(--ink)}
+.theme-toggle:hover{background:transparent;color:var(--ink);opacity:.7}
+.theme-toggle svg{width:20px;height:20px;stroke-width:1.5}
+.theme-toggle .sun-icon{display:none}
+html[data-theme="dark"] .theme-toggle .moon-icon{display:none}
+html[data-theme="dark"] .theme-toggle .sun-icon{display:block}
+html[data-theme="dark"] ::selection{background:#f4f4f2;color:#171817}
+html[data-theme="dark"] .site-header nav a span{color:var(--muted)}
+html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:var(--subtle);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] input:hover,html[data-theme="dark"] textarea:hover,html[data-theme="dark"] select:hover{border-color:var(--ink)}
+html[data-theme="dark"] button:not(.theme-toggle):not(.menu-toggle){background:var(--ink);color:var(--paper);border-color:var(--ink)}
+html[data-theme="dark"] button:not(.theme-toggle):not(.menu-toggle):hover{background:var(--paper);color:var(--ink)}
+html[data-theme="dark"] .latest-post h3 a:hover{text-decoration-color:var(--ink)}
+html[data-theme="dark"] .signature{filter:invert(1)}
+html[data-theme="dark"] .skip{color:var(--paper)}
+@media(max-width:580px){
+.site-header{grid-template-columns:minmax(0,1fr) 44px 44px;gap:0 8px}
+.site-header .brand{grid-column:1;grid-row:1}
+.site-header .menu-toggle{grid-column:2;grid-row:1}
+.site-header .theme-toggle{grid-column:3;grid-row:1}
+.site-header nav{grid-column:1/-1;grid-row:2;margin-left:0}
+}
