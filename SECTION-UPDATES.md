@@ -18,3 +18,7 @@ Use independent content-update dates on the homepage, directly below each sectio
 - Audiobooks: 2026-10-24
 - Templates: 2026-10-11 (content added in 0f428540948574e3a389993b7cffdac490a7f55b; subsequent redesign retained the entries)
 - Repositories: 2026-10-21 (description updated in b99800be7dd36e5bbf7c762321d0c63f62620d86)
+
+## Repository list policy
+
+Keep exactly five entries in "where i hide all the bodies." Add each new repository first and remove the last entry. Update only the repositories date when this selection changes.
