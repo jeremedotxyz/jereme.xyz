@@ -98,3 +98,6 @@ html[data-theme="dark"] .skip{color:var(--paper)}
 .site-header .theme-toggle{grid-column:3;grid-row:1}
 .site-header nav{grid-column:1/-1;grid-row:2;margin-left:0}
 }
+/* Contact send action stays unframed in either theme. */
+.page-contact #contact-form button[type="submit"]{border:0;background:transparent;color:var(--ink);padding:0;font-size:12px;text-decoration:underline;text-underline-offset:4px}
+.page-contact #contact-form button[type="submit"]:hover{background:transparent;color:var(--ink);opacity:.68}
