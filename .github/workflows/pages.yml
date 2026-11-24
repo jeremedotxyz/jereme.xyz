@@ -48,15 +48,26 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           echo "Waiting for the github-pages artifact to appear in this run's artifact list..."
+          found=""
           for i in $(seq 1 30); do
             if gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .name' | grep -qx "github-pages"; then
-              echo "Artifact is visible."
-              exit 0
+              echo "Artifact is visible in the list."
+              found="yes"
+              break
             fi
             sleep 10
           done
-          echo "ERROR: github-pages artifact did not appear within 5 minutes."
-          exit 1
+          if [ -z "$found" ]; then
+            echo "ERROR: github-pages artifact did not appear within 5 minutes."
+            exit 1
+          fi
+          # Runs #475 and #476 failed even though this step passed: the list
+          # endpoint shows the artifact before deploy-pages' own lookup can
+          # see it (replication lag between API replicas). Give the artifact
+          # service a settle delay after first visibility before deploying.
+          echo "Artifact visible; waiting 90s for it to propagate to the deploy lookup..."
+          sleep 90
+          echo "Proceeding to deploy."
       - name: Publish
         id: deployment
         uses: actions/deploy-pages@v5
