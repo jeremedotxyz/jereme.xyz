@@ -68,6 +68,14 @@ jobs:
           echo "Artifact visible; waiting 90s for it to propagate to the deploy lookup..."
           sleep 90
           echo "Proceeding to deploy."
+      # deploy-pages keeps failing with "No artifacts named github-pages"
+      # even after the artifact is visible (runs #469-#471, #475, #476) —
+      # a transient lookup race on GitHub's side. Retry the deploy step
+      # itself up to 3 times with a 60s delay instead of failing the run.
       - name: Publish
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: Wandalen/wretry.action@master
+        with:
+          action: actions/deploy-pages@v5
+          attempt_limit: 3
+          attempt_delay: 60000
