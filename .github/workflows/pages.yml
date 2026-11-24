@@ -9,6 +9,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: read
 
 concurrency:
   group: pages-main-recovery
@@ -36,6 +37,26 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
+      - name: Wait for Pages artifact to be visible
+        # deploy-pages looks the artifact up by name right after the upload
+        # step, and that lookup has been returning empty even though the
+        # 108 MB artifact exists (runs #467, #469, #470, #471 all failed
+        # with "No artifacts named github-pages were found"). Poll the
+        # run's artifact list until the artifact is actually visible,
+        # so the deploy step stops racing the artifact service.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Waiting for the github-pages artifact to appear in this run's artifact list..."
+          for i in $(seq 1 30); do
+            if gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .name' | grep -qx "github-pages"; then
+              echo "Artifact is visible."
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "ERROR: github-pages artifact did not appear within 5 minutes."
+          exit 1
       - name: Publish
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
